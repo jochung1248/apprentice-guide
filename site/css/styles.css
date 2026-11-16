@@ -52,7 +52,7 @@ p { margin: 0 0 1em; }
 strong, b { font-weight: 800; }
 
 /* Display type: Anton, uppercase signage */
-h1, h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .5px; line-height: .95; margin: 0 0 .45em; }
+h1, h2 { overflow-wrap: break-word; hyphens: manual; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .5px; line-height: .95; margin: 0 0 .45em; }
 h1 { font-size: clamp(2.5rem, 9vw, 4.25rem); }
 h2 { font-size: clamp(1.75rem, 5.5vw, 2.5rem); }
 h3, h4 { font-family: var(--font-text); font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 .5em; font-size: 1.2rem; }
@@ -218,9 +218,9 @@ output { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .5
 .note p:last-child, .card p:last-child { margin-bottom: 0; }
 
 /* Illustrative (unverified) labelling — a tag, so a pill is allowed */
-.badge-ill { display: inline-block; font-size: .64rem; color: var(--ink); background: var(--paper); border: 1.5px dashed var(--steel); border-radius: 999px; padding: .05rem .5rem; vertical-align: middle; white-space: nowrap; letter-spacing: .5px; }
+.badge-ill { display: inline-block; font-size: .64rem; color: var(--ink); background: var(--paper); border: 1.5px dashed var(--steel); border-radius: 999px; padding: .05rem .5rem; vertical-align: middle; white-space: nowrap; letter-spacing: 1px; }
 .badge-ok { display: inline-block; font-size: .64rem; color: var(--ink); border: 1.5px solid var(--go); border-radius: 999px; padding: .05rem .5rem; white-space: nowrap; }
-.src { font-size: .7rem; color: var(--steel); letter-spacing: .5px; }
+.src { font-size: .7rem; color: var(--steel); letter-spacing: 1px; }
 .src a { color: var(--steel); }
 .src a:hover { color: var(--ink); }
 
@@ -307,3 +307,9 @@ details[open] > summary { margin-bottom: .5rem; }
 .article h2 { line-height: 1.02; }
 .card h2 a { color: var(--ink); text-decoration: none; }
 .card h2 a:hover { color: var(--hivis-deep); text-decoration: underline; }
+
+/* Links on the darker alternate band use ink for AA contrast (hivis-deep is 4.19:1 on #EBE7DD) */
+.section-alt a:not(.btn) { color: var(--ink); }
+.section-alt a:not(.btn):hover { color: var(--hivis-deep); }
+.payslip dt.total, .payslip dd.total { align-self: stretch; display: flex; align-items: center; }
+.payslip dd.total { justify-content: flex-end; }
