@@ -151,3 +151,7 @@ None.
 - `employer-cost-desktop.png` (1280px; shows the clipped input card, M1)
 - `trade-dropdown-expanded-mobile.png` (simulated open dropdown, 390px)
 - `all/`: every page at both widths
+
+## Round 3 sign-off (main session, 17 Nov 2026)
+Checked M1 and M2 from screenshots/review3-fix/. Employer-cost at 1280px shows the full input card (incentive selector visible, no internal scroll), and the WA caveat appears inside the payslip card on mobile. The 12 minors were reported fixed; `npm test` passes 32/32.
+**Criterion 7: signed off for v1.1.**
