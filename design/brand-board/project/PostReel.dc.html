@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reel cover template</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#C2410C}a:hover{color:#16181D}
+</style>
+</helmet>
+<div style="width: 1080px; height: 1920px; box-sizing: border-box; background: #F4F1EA; color: #16181D; font-family: Inter, system-ui, sans-serif; padding: 260px 84px 460px; display: flex; flex-direction: column; justify-content: space-between">
+  <div style="display: flex; flex-direction: column; gap: 32px">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 30px; font-weight: 700; letter-spacing: 2px; color: #C2410C">SAME 17-YEAR-OLD · TWO PATHS</div>
+    <h2 style="margin: 0; font-family: Anton, sans-serif; font-weight: 400; font-size: 190px; line-height: 0.9; text-transform: uppercase">Trade vs uni: who's <span style="background: linear-gradient(transparent 58%, #FFE14D 58%, #FFE14D 92%, transparent 92%)">ahead</span> at 25?</h2>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+    <div style="background: #FF6B1A; color: #16181D; border-radius: 18px; padding: 40px; display: flex; flex-direction: column; gap: 14px">
+      <div style="font-family: Anton, sans-serif; font-size: 96px; line-height: 1; text-transform: uppercase">Trade</div>
+      <div style="font-size: 34px; font-weight: 700; line-height: 1.25">Paid from day one. Government payments along the way.</div>
+    </div>
+    <div style="background: #2F5BEA; color: #FFFFFF; border-radius: 18px; padding: 40px; display: flex; flex-direction: column; gap: 14px">
+      <div style="font-family: Anton, sans-serif; font-size: 96px; line-height: 1; text-transform: uppercase">Uni</div>
+      <div style="font-size: 34px; font-weight: 700; line-height: 1.25">Higher starting salary. A HECS debt to pay down.</div>
+    </div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 20px">
+    <div style="width: 84px; height: 84px; border-radius: 14px; background: #16181D; color: #FF6B1A; display: flex; align-items: center; justify-content: center; font-family: Anton, sans-serif; font-size: 42px">TN</div>
+    <div style="font-size: 36px; font-weight: 800">We ran the numbers. Watch to the end.</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1080,"height":1920}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

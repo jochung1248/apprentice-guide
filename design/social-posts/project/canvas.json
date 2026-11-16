@@ -1,0 +1,655 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-16T20:51:13Z"
+ },
+ "title": "Tradie Numbers — Launch social posts",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [
+  {
+   "id": "overview",
+   "name": "Overview"
+  },
+  {
+   "id": "carousels",
+   "name": "Carousels"
+  },
+  {
+   "id": "tweets",
+   "name": "Tweet cards"
+  },
+  {
+   "id": "stats",
+   "name": "Stat cards"
+  },
+  {
+   "id": "reels",
+   "name": "Reels"
+  },
+  {
+   "id": "fun",
+   "name": "Fun"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1920,
+   "h": 1500,
+   "title": "Index",
+   "page": "overview"
+  },
+  "posts/c1/c1-01-cover.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 01 Cover",
+   "page": "carousels"
+  },
+  "posts/c1/c1-02-fine-print.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 02 Fine print",
+   "page": "carousels"
+  },
+  "posts/c1/c1-03-carpentry.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 03 Carpentry",
+   "page": "carousels"
+  },
+  "posts/c1/c1-04-sparky.dc.html": {
+   "x": 3480,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 04 Sparky",
+   "page": "carousels"
+  },
+  "posts/c1/c1-05-plumbing.dc.html": {
+   "x": 4640,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 05 Plumbing",
+   "page": "carousels"
+  },
+  "posts/c1/c1-06-year12-and-climb.dc.html": {
+   "x": 5800,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 06 Year 12 and the climb",
+   "page": "carousels"
+  },
+  "posts/c1/c1-07-sources-cta.dc.html": {
+   "x": 6960,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C1 07 Sources and CTA",
+   "page": "carousels"
+  },
+  "posts/c2/c2-01-cover.dc.html": {
+   "x": 0,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C2 01 Cover",
+   "page": "carousels"
+  },
+  "posts/c2/c2-02-who.dc.html": {
+   "x": 1160,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C2 02 Who it is for",
+   "page": "carousels"
+  },
+  "posts/c2/c2-03-timeline.dc.html": {
+   "x": 2320,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C2 03 Timeline",
+   "page": "carousels"
+  },
+  "posts/c2/c2-04-part-time.dc.html": {
+   "x": 3480,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C2 04 Part-time",
+   "page": "carousels"
+  },
+  "posts/c2/c2-05-employers.dc.html": {
+   "x": 4640,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C2 05 Employers",
+   "page": "carousels"
+  },
+  "posts/c2/c2-06-sources-cta.dc.html": {
+   "x": 5800,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C2 06 Sources and CTA",
+   "page": "carousels"
+  },
+  "posts/c3/c3-01-cover.dc.html": {
+   "x": 0,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C3 01 Cover",
+   "page": "carousels"
+  },
+  "posts/c3/c3-02-atar.dc.html": {
+   "x": 1160,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C3 02 Myth ATAR",
+   "page": "carousels"
+  },
+  "posts/c3/c3-03-quit.dc.html": {
+   "x": 2320,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C3 03 Myth quitting",
+   "page": "carousels"
+  },
+  "posts/c3/c3-04-migrants.dc.html": {
+   "x": 3480,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C3 04 Myth overseas-born",
+   "page": "carousels"
+  },
+  "posts/c3/c3-05-no-work.dc.html": {
+   "x": 4640,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C3 05 Myth no work",
+   "page": "carousels"
+  },
+  "posts/c3/c3-06-sources-cta.dc.html": {
+   "x": 5800,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C3 06 Sources and CTA",
+   "page": "carousels"
+  },
+  "posts/c4/c4-01-cover.dc.html": {
+   "x": 0,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 01 Cover",
+   "page": "carousels"
+  },
+  "posts/c4/c4-02-116700.dc.html": {
+   "x": 1160,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 02 116,700",
+   "page": "carousels"
+  },
+  "posts/c4/c4-03-21600.dc.html": {
+   "x": 2320,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 03 21,600",
+   "page": "carousels"
+  },
+  "posts/c4/c4-04-women.dc.html": {
+   "x": 3480,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 04 Women 3%",
+   "page": "carousels"
+  },
+  "posts/c4/c4-05-half.dc.html": {
+   "x": 4640,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 05 Half as many homes",
+   "page": "carousels"
+  },
+  "posts/c4/c4-06-trade-prices.dc.html": {
+   "x": 5800,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 06 Trade prices 6.6%",
+   "page": "carousels"
+  },
+  "posts/c4/c4-07-approvals.dc.html": {
+   "x": 6960,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 07 Approvals 11,041",
+   "page": "carousels"
+  },
+  "posts/c4/c4-08-sources-cta.dc.html": {
+   "x": 8120,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C4 08 Sources and CTA",
+   "page": "carousels"
+  },
+  "posts/c5/c5-01-cover.dc.html": {
+   "x": 0,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 01 Cover",
+   "page": "carousels"
+  },
+  "posts/c5/c5-02-reasons.dc.html": {
+   "x": 1160,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 02 Reasons",
+   "page": "carousels"
+  },
+  "posts/c5/c5-03-fixable.dc.html": {
+   "x": 2320,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 03 Fixable",
+   "page": "carousels"
+  },
+  "posts/c5/c5-04-fix-pay.dc.html": {
+   "x": 3480,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 04 Fix pay",
+   "page": "carousels"
+  },
+  "posts/c5/c5-05-fix-workplace.dc.html": {
+   "x": 4640,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 05 Fix workplace",
+   "page": "carousels"
+  },
+  "posts/c5/c5-06-fix-support.dc.html": {
+   "x": 5800,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 06 Fix support",
+   "page": "carousels"
+  },
+  "posts/c5/c5-07-sources-cta.dc.html": {
+   "x": 6960,
+   "y": 7080,
+   "w": 1080,
+   "h": 1350,
+   "title": "C5 07 Sources and CTA",
+   "page": "carousels"
+  },
+  "posts/c6/c6-01-cover.dc.html": {
+   "x": 0,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 01 Cover",
+   "page": "carousels"
+  },
+  "posts/c6/c6-02-smoko.dc.html": {
+   "x": 1160,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 02 Smoko",
+   "page": "carousels"
+  },
+  "posts/c6/c6-03-arvo.dc.html": {
+   "x": 2320,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 03 Arvo",
+   "page": "carousels"
+  },
+  "posts/c6/c6-04-chippy.dc.html": {
+   "x": 3480,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 04 Chippy",
+   "page": "carousels"
+  },
+  "posts/c6/c6-05-sparky.dc.html": {
+   "x": 4640,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 05 Sparky",
+   "page": "carousels"
+  },
+  "posts/c6/c6-06-shell-be-right.dc.html": {
+   "x": 5800,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 06 She’ll be right",
+   "page": "carousels"
+  },
+  "posts/c6/c6-07-hooroo.dc.html": {
+   "x": 6960,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 07 Hoo-roo",
+   "page": "carousels"
+  },
+  "posts/c6/c6-08-cta.dc.html": {
+   "x": 8120,
+   "y": 8850,
+   "w": 1080,
+   "h": 1350,
+   "title": "C6 08 CTA",
+   "page": "carousels"
+  },
+  "posts/tweets/t1-tightest-trades.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "T1 Tightest trades",
+   "page": "tweets"
+  },
+  "posts/tweets/t2-employed.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "T2 94.8% employed",
+   "page": "tweets"
+  },
+  "posts/tweets/t3-productivity.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "T3 Homes per hour",
+   "page": "tweets"
+  },
+  "posts/tweets/t4-sparky-rate.dc.html": {
+   "x": 3480,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "T4 Sparky hourly",
+   "page": "tweets"
+  },
+  "posts/tweets/t5-women.dc.html": {
+   "x": 4640,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "T5 Women in trades",
+   "page": "tweets"
+  },
+  "posts/tweets/t6-completions.dc.html": {
+   "x": 5800,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "T6 Completions up",
+   "page": "tweets"
+  },
+  "posts/stats/s1-21600.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1080,
+   "title": "S1 21,600",
+   "page": "stats"
+  },
+  "posts/stats/s2-59-4.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1080,
+   "title": "S2 59.4%",
+   "page": "stats"
+  },
+  "posts/stats/s3-10000.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1080,
+   "title": "S3 $10,000",
+   "page": "stats"
+  },
+  "posts/stats/s4-116700.dc.html": {
+   "x": 3480,
+   "y": 0,
+   "w": 1080,
+   "h": 1080,
+   "title": "S4 116,700",
+   "page": "stats"
+  },
+  "posts/reels/r1-trade-vs-uni.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1920,
+   "title": "R1 Trade vs Uni at 25",
+   "page": "reels"
+  },
+  "posts/reels/r2-payslip-sparky.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1920,
+   "title": "R2 Payslip reveal sparky",
+   "page": "reels"
+  },
+  "posts/reels/r3-guess-the-trade.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1920,
+   "title": "R3 Guess the trade",
+   "page": "reels"
+  },
+  "posts/fun/f1-guess-the-trade.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "F1 Guess the trade",
+   "page": "fun"
+  },
+  "posts/fun/f2-rate-my-smoko.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "F2 Rate my smoko",
+   "page": "fun"
+  },
+  "posts/fun/f3-pay-bingo.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "F3 Tradie pay bingo",
+   "page": "fun"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "posts/c1/c1-01-cover.dc.html",
+  "posts/c1/c1-02-fine-print.dc.html",
+  "posts/c1/c1-03-carpentry.dc.html",
+  "posts/c1/c1-04-sparky.dc.html",
+  "posts/c1/c1-05-plumbing.dc.html",
+  "posts/c1/c1-06-year12-and-climb.dc.html",
+  "posts/c1/c1-07-sources-cta.dc.html",
+  "posts/c2/c2-01-cover.dc.html",
+  "posts/c2/c2-02-who.dc.html",
+  "posts/c2/c2-03-timeline.dc.html",
+  "posts/c2/c2-04-part-time.dc.html",
+  "posts/c2/c2-05-employers.dc.html",
+  "posts/c2/c2-06-sources-cta.dc.html",
+  "posts/c3/c3-01-cover.dc.html",
+  "posts/c3/c3-02-atar.dc.html",
+  "posts/c3/c3-03-quit.dc.html",
+  "posts/c3/c3-04-migrants.dc.html",
+  "posts/c3/c3-05-no-work.dc.html",
+  "posts/c3/c3-06-sources-cta.dc.html",
+  "posts/c4/c4-01-cover.dc.html",
+  "posts/c4/c4-02-116700.dc.html",
+  "posts/c4/c4-03-21600.dc.html",
+  "posts/c4/c4-04-women.dc.html",
+  "posts/c4/c4-05-half.dc.html",
+  "posts/c4/c4-06-trade-prices.dc.html",
+  "posts/c4/c4-07-approvals.dc.html",
+  "posts/c4/c4-08-sources-cta.dc.html",
+  "posts/c5/c5-01-cover.dc.html",
+  "posts/c5/c5-02-reasons.dc.html",
+  "posts/c5/c5-03-fixable.dc.html",
+  "posts/c5/c5-04-fix-pay.dc.html",
+  "posts/c5/c5-05-fix-workplace.dc.html",
+  "posts/c5/c5-06-fix-support.dc.html",
+  "posts/c5/c5-07-sources-cta.dc.html",
+  "posts/c6/c6-01-cover.dc.html",
+  "posts/c6/c6-02-smoko.dc.html",
+  "posts/c6/c6-03-arvo.dc.html",
+  "posts/c6/c6-04-chippy.dc.html",
+  "posts/c6/c6-05-sparky.dc.html",
+  "posts/c6/c6-06-shell-be-right.dc.html",
+  "posts/c6/c6-07-hooroo.dc.html",
+  "posts/c6/c6-08-cta.dc.html",
+  "posts/tweets/t1-tightest-trades.dc.html",
+  "posts/tweets/t2-employed.dc.html",
+  "posts/tweets/t3-productivity.dc.html",
+  "posts/tweets/t4-sparky-rate.dc.html",
+  "posts/tweets/t5-women.dc.html",
+  "posts/tweets/t6-completions.dc.html",
+  "posts/stats/s1-21600.dc.html",
+  "posts/stats/s2-59-4.dc.html",
+  "posts/stats/s3-10000.dc.html",
+  "posts/stats/s4-116700.dc.html",
+  "posts/reels/r1-trade-vs-uni.dc.html",
+  "posts/reels/r2-payslip-sparky.dc.html",
+  "posts/reels/r3-guess-the-trade.dc.html",
+  "posts/fun/f1-guess-the-trade.dc.html",
+  "posts/fun/f2-rate-my-smoko.dc.html",
+  "posts/fun/f3-pay-bingo.dc.html"
+ ],
+ "notes": {
+  "n_c1": {
+   "x": 0,
+   "y": -280,
+   "text": "C1 · What a 1st-year apprentice actually takes home",
+   "kind": "title1",
+   "maxW": 8040,
+   "page": "carousels"
+  },
+  "n_c2": {
+   "x": 0,
+   "y": 1490,
+   "text": "C2 · The $10,000 apprentice payment, explained",
+   "kind": "title1",
+   "maxW": 6880,
+   "page": "carousels"
+  },
+  "n_c3": {
+   "x": 0,
+   "y": 3260,
+   "text": "C3 · Myth vs Fact: trades edition",
+   "kind": "title1",
+   "maxW": 6880,
+   "page": "carousels"
+  },
+  "n_c4": {
+   "x": 0,
+   "y": 5030,
+   "text": "C4 · Australia’s tradie shortage in 6 numbers",
+   "kind": "title1",
+   "maxW": 9200,
+   "page": "carousels"
+  },
+  "n_c5": {
+   "x": 0,
+   "y": 6800,
+   "text": "C5 · Employer Corner: why apprentices quit",
+   "kind": "title1",
+   "maxW": 8040,
+   "page": "carousels"
+  },
+  "n_c6": {
+   "x": 0,
+   "y": 8570,
+   "text": "C6 · Tradie translator",
+   "kind": "title1",
+   "maxW": 9200,
+   "page": "carousels"
+  },
+  "n_tweets": {
+   "x": 0,
+   "y": -280,
+   "text": "Tweet cards · T1–T6 (dark and light)",
+   "kind": "title1",
+   "maxW": 6880,
+   "page": "tweets"
+  },
+  "n_stats": {
+   "x": 0,
+   "y": -280,
+   "text": "Stat cards · S1–S4",
+   "kind": "title1",
+   "maxW": 4560,
+   "page": "stats"
+  },
+  "n_reels": {
+   "x": 0,
+   "y": -280,
+   "text": "Reel / TikTok covers · R1–R3 (UI-safe: top 220px, bottom 420px)",
+   "kind": "title1",
+   "maxW": 3400,
+   "page": "reels"
+  },
+  "n_fun": {
+   "x": 0,
+   "y": -280,
+   "text": "Fun posts · F1–F3",
+   "kind": "title1",
+   "maxW": 3400,
+   "page": "fun"
+  }
+ },
+ "designSystems": []
+}

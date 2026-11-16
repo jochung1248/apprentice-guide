@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tradie Numbers — brand concept</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#C2410C}a:hover{color:#16181D}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; background: #F4F1EA; color: #16181D; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden">
+  <div style="height: 28px; background: repeating-linear-gradient(45deg, #16181D 0 22px, #FF6B1A 22px 44px)" aria-hidden="true"></div>
+  <div style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; padding: 72px 96px 56px">
+    <div style="display: flex; flex-direction: column; gap: 28px; justify-content: center">
+      <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; letter-spacing: 2px; color: #5B616A">BRAND THEME v1 · NOV 2026</div>
+      <div style="display: flex; align-items: center; gap: 24px">
+        <div style="width: 112px; height: 112px; border-radius: 14px; background: #16181D; display: flex; align-items: center; justify-content: center; font-family: Anton, sans-serif; font-size: 60px; color: #FF6B1A; letter-spacing: 1px">TN</div>
+        <h1 style="margin: 0; font-family: Anton, sans-serif; font-weight: 400; font-size: 120px; line-height: 0.92; letter-spacing: 0.5px; text-transform: uppercase">Tradie<br>Numbers</h1>
+      </div>
+      <p style="margin: 0; font-size: 34px; font-weight: 800; line-height: 1.2; max-width: 560px">Honest numbers for the trades.</p>
+      <p style="margin: 0; font-size: 20px; line-height: 1.55; color: #5B616A; max-width: 560px">Hi-vis meets payslip. Site-signage confidence, payslip-level clarity: concrete ground, charcoal ink, one loud safety orange, blueprint blue for data, and a highlighter that only ever marks a number.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center; gap: 20px">
+      <div style="background: #FFFFFF; border-radius: 14px; padding: 36px 40px; box-shadow: 0 1px 0 #E2DDD2, 0 18px 40px rgba(22,24,29,0.08); display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 1.5px; color: #5B616A">
+          <span>CONSTRUCTION TRADES</span><span>6-YR COMPLETION</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 16px">
+          <span style="font-family: Anton, sans-serif; font-size: 168px; line-height: 0.9; background: linear-gradient(transparent 58%, #FFE14D 58%, #FFE14D 92%, transparent 92%); padding: 0 6px">59.4%</span>
+        </div>
+        <div style="font-size: 22px; font-weight: 600; line-height: 1.35">About 6 in 10 construction apprentices finish. Most of the rest could have been kept.</div>
+        <div style="border-top: 2px dashed #E2DDD2; padding-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.2px; color: #5B616A">SOURCE: NCVER 2025 · 2019 COHORT</div>
+      </div>
+      <div style="display: flex; gap: 12px" aria-hidden="true">
+        <div style="flex: 7; height: 18px; background: #F4F1EA; border: 2px solid #16181D; border-radius: 4px"></div>
+        <div style="flex: 2; height: 18px; background: #16181D; border-radius: 4px"></div>
+        <div style="flex: 0.8; height: 18px; background: #FF6B1A; border-radius: 4px"></div>
+        <div style="flex: 0.2; height: 18px; background: #2F5BEA; border-radius: 4px"></div>
+      </div>
+    </div>
+  </div>
+  <div style="height: 40px; display: flex; align-items: flex-end; padding: 0 96px 0; gap: 0" aria-hidden="true">
+    <sc-for list="{{ticks}}" as="t" hint-placeholder-count="60">
+      <div style="flex: 1; display: flex; justify-content: flex-start"><div style="width: 2px; background: #16181D; height: {{t.h}}px"></div></div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ticks = [];
+    for (let i = 0; i < 62; i++) ticks.push({ h: i % 10 === 0 ? 30 : (i % 5 === 0 ? 20 : 10) });
+    return { ticks: ticks };
+  }
+}
+</script>
+</body>
+</html>

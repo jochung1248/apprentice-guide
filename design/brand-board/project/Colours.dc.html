@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tradie Numbers — colour board</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#C2410C}a:hover{color:#16181D}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; background: #F4F1EA; color: #16181D; font-family: Inter, system-ui, sans-serif; padding: 64px 72px; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+    <h2 style="margin: 0; font-family: Anton, sans-serif; font-weight: 400; font-size: 72px; line-height: 0.95; text-transform: uppercase">Colour board</h2>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 1.5px; color: #5B616A">70% GROUND · 20% INK · 8% HI-VIS · 2% DATA + MARKER</div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+    <div style="height: 300px; border-radius: 14px; background: #FF6B1A; color: #16181D; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <div style="font-family: Anton, sans-serif; font-size: 44px; text-transform: uppercase; line-height: 1">Hi-vis</div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700">#FF6B1A</div><div style="font-size: 16px; font-weight: 600">The accent. Fills, big numbers on ink, buttons with ink text.</div></div>
+    </div>
+    <div style="height: 300px; border-radius: 14px; background: #16181D; color: #F4F1EA; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <div style="font-family: Anton, sans-serif; font-size: 44px; text-transform: uppercase; line-height: 1">Ink</div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700">#16181D</div><div style="font-size: 16px; font-weight: 600">Type, dark posts, tweet cards.</div></div>
+    </div>
+    <div style="height: 300px; border-radius: 14px; background: #F4F1EA; border: 2px solid #16181D; color: #16181D; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <div style="font-family: Anton, sans-serif; font-size: 44px; text-transform: uppercase; line-height: 1">Concrete</div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700">#F4F1EA</div><div style="font-size: 16px; font-weight: 600">The ground. Warm, never stark white.</div></div>
+    </div>
+    <div style="height: 300px; border-radius: 14px; background: #2F5BEA; color: #FFFFFF; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <div style="font-family: Anton, sans-serif; font-size: 44px; text-transform: uppercase; line-height: 1">Blueprint</div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700">#2F5BEA</div><div style="font-size: 16px; font-weight: 600">Data series 2 (the uni path), info.</div></div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 96px; border-radius: 10px; background: #FFE14D"></div><div style="font-weight: 800; font-size: 16px">Highlighter</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 14px">#FFE14D</div><div style="font-size: 14px; color: #5B616A">Marker swipe behind a key number. Never text.</div></div>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 96px; border-radius: 10px; background: #C2410C"></div><div style="font-weight: 800; font-size: 16px">Hi-vis deep</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 14px">#C2410C</div><div style="font-size: 14px; color: #5B616A">Orange text and links on light grounds (4.9:1).</div></div>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 96px; border-radius: 10px; background: #8FA8FF"></div><div style="font-weight: 800; font-size: 16px">Blueprint light</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 14px">#8FA8FF</div><div style="font-size: 14px; color: #5B616A">Blueprint on ink backgrounds.</div></div>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 96px; border-radius: 10px; background: #1F8A4C"></div><div style="font-weight: 800; font-size: 16px">Go</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 14px">#1F8A4C</div><div style="font-size: 14px; color: #5B616A">Positive deltas, always with a + sign.</div></div>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 96px; border-radius: 10px; background: #5B616A"></div><div style="font-weight: 800; font-size: 16px">Steel</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 14px">#5B616A</div><div style="font-size: 14px; color: #5B616A">Secondary text (5.3:1 on concrete).</div></div>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 96px; border-radius: 10px; background: #E2DDD2; border: 1px solid #C9C3B6"></div><div style="font-weight: 800; font-size: 16px">Chalk</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 14px">#E2DDD2</div><div style="font-size: 14px; color: #5B616A">Hairlines, dividers, input borders.</div></div>
+  </div>
+  <div style="display: flex; gap: 20px; align-items: stretch">
+    <div style="flex: 1; display: flex; border-radius: 10px; overflow: hidden; height: 44px" aria-hidden="true">
+      <div style="flex: 70; background: #F4F1EA; border: 2px solid #16181D; border-right: 0; border-radius: 10px 0 0 10px"></div>
+      <div style="flex: 20; background: #16181D"></div>
+      <div style="flex: 8; background: #FF6B1A"></div>
+      <div style="flex: 1; background: #2F5BEA"></div>
+      <div style="flex: 1; background: #FFE14D"></div>
+    </div>
+    <div style="font-size: 15px; color: #5B616A; max-width: 380px; line-height: 1.4">Orange vs blue is the chart pair: colour-blind safe and different in lightness, never red vs green.</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
