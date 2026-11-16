@@ -215,6 +215,15 @@ test('employerCost example 3: adult bricklayer, Priority Hiring Incentive', () =
   near(r.netCost, 64209.85); near(r.netWeekly, 1234.80);
 });
 
+test('employerCost: part-time Priority Hiring Incentive is $1,250 ($500 + $750)', () => {
+  const r = C.employerCost({ trade: 'bricklayer', year: 1, type: 'adult', y12: false, hours: 20,
+    workersCompRate: 0.04, tafeFees: 0, toolsPpe: 0, incentive: 'phi' }, R);
+  assert.equal(r.partTime, true); assert.equal(r.incentive, 1250);
+  const ft = C.employerCost({ trade: 'bricklayer', year: 1, type: 'adult', y12: false, hours: 38,
+    workersCompRate: 0.04, tafeFees: 0, toolsPpe: 0, incentive: 'phi' }, R);
+  assert.equal(ft.incentive, 2500);
+});
+
 test('employerCost: part-time KAP employer incentive is $2,500', () => {
   const r = C.employerCost({ trade: 'carpenter', year: 1, type: 'junior', y12: false, hours: 30,
     workersCompRate: 0.04, tafeFees: 0, toolsPpe: 0, incentive: 'kap' }, R);

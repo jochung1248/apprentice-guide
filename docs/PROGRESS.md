@@ -1,7 +1,7 @@
 # Tradie Numbers — progress log
 
 ## Status (17 Nov 2026)
-MVP built and self-reviewed. All automated checks pass. **Waiting on an independent reviewer (acceptance criterion 7)** — the build session had no sub-agent tool, so the main session needs to spawn a fresh reviewer (see `docs/REVIEW-1.md` for what was checked and how).
+MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 14 Minors; all Majors and most Minors are fixed (see below). **Awaiting the round-2 reviewer's re-test/sign-off of M1–M6 (criterion 7).**
 
 ## What's built
 - Pages: `index.html`, `apprentice-pay.html`, `trade-vs-uni.html`, `employer-cost.html`, `about-data.html`, `guides/index.html` + 5 guides.
@@ -27,16 +27,25 @@ MVP built and self-reviewed. All automated checks pass. **Waiting on an independ
 ## Review rounds
 - **Round 1 (self-review, not independent)** — `docs/REVIEW-1.md`. Fixed: contrast on alternate band, offline heading overflow, brand restyle, badge wording, fieldset divider, payslip alignment, sources-table wrapping, chart label overlap, unsourced copy claims. Verdict: PASS on 1–6; 7 open.
 
+- **Round 2 (independent)** — `docs/REVIEW-2.md`. Conditional: sign-off once M1–M6 fixed. Fixed in response:
+  - M1 part-time Priority Hiring Incentive now $1,250 ($500 + $750) in `rates.js` + `employerCost()`; new test; hint prints the actual FT/PT amount.
+  - M2 "construction" → "trade" apprentices in the guide title/H1/JSON-LD, home card and guides index (BUILD_PLAN.md left as the owner's original brief).
+  - M3 mobile nav wraps to two rows below 640px (all five links visible).
+  - M4 sticky compact result bar on all three calculators below 960px (key number + "See full breakdown ↓" → `#results`).
+  - M5 hard hat replaced by the "TN" monogram (header + favicon data URI, all 11 pages and `tools/wrap_guides.py`); spec added to `docs/BRAND.md`.
+  - M6 every `.table-scroll` has `tabindex="0" role="region" aria-label`. axe WCAG 2.1 A/AA: 0 violations on all 11 pages at 390px and 1280px.
+  - Minors fixed: m1 `package.json` (`npm test`) + README; m2 hours clamped 1–38 in both calculators, written back with a hint; m3 age slider min follows start age; m4 "five" → "four" years; m5 FAQ "mid-30s" corrected; m6 27.7% now verified (NCVER outcomes 2025, which also confirms 94.8%); m7 58.7% cohort year no longer asserted; m8 super source → ATO "How to work out and pay super" (earnings from 1 July 2026); m9 HELP indexation simplification stated on about page and in the guide (model unchanged); m10 home inline script moved to `js/ui-home.js`; m11 `data-series` attribute; m12 shorter incentive option labels; m13 unsourced claims softened; m14 stray server stopped (README notes `pkill`).
+  - Not done: trade-vs-uni field reordering/collapsing on mobile (sticky bar addresses the main problem); m9 model change (stated instead).
+
 ## Known issues
-- Unverified (labelled in UI): Medicare levy low-income thresholds (2025–26 values used); per-trade KAP eligibility (provider list); NCVER 27.7% / 42% / 58.7% / 72% figures and BuildSkills 116,700 (secondary sources); all illustrative assumptions (part-time study income $15,000, pay growth 3%, market loading 0%, workers comp 4%, training fees $1,000, tools/PPE $800).
-- Not verified: tax treatment of KAP payments; Priority Hiring Incentive instalment split and part-time amount.
-- Mobile nav scrolls horizontally; results sit below inputs on mobile.
+- Unverified (labelled in UI): Medicare levy low-income thresholds (2025–26 values used); per-trade KAP eligibility (provider list); NCVER completion figures 42% / 58.7% / 72% and BuildSkills 116,700 (secondary sources); all illustrative assumptions (part-time study income $15,000, pay growth 3%, market loading 0%, workers comp 4%, training fees $1,000, tools/PPE $800).
+- Not verified: tax treatment of KAP payments.
+- HELP indexation is applied to new debt immediately (slightly overstates balances; stated in UI copy).
 - Canonical URLs are `example.com` placeholders. Working name and domain unchecked.
-- Logo glyph (hard hat) may need a designer's review against BRAND.md "never a cartoon of a tradie".
 - The KAP employer incentive is announced only for commencements to December 2026 — re-check in January 2027.
 
 ## Next steps
-1. Main session: spawn an independent reviewer for criterion 7 (and BRAND.md check); fix anything it raises.
+1. Round-2 reviewer to re-test M1–M6 and sign off criterion 7.
 2. Re-check Medicare 2026–27 thresholds when published; confirm KAP occupation list with DEWR or an Apprentice Connect provider.
 3. Pick a domain, replace canonical placeholders, wire `submitToBackend()` to real services.
-4. Consider a sticky mobile result bar and a menu button for mobile nav.
+4. Consider reordering/collapsing the trade-vs-uni inputs on mobile.

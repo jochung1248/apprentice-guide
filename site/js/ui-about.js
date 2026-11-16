@@ -86,7 +86,7 @@
     nonCompletersEmployed: 'Apprentices and trainees employed after leaving early (%)',
     nonCompleterEmploymentReasons: 'Trade non-completers who left mainly over pay, conditions or the workplace (%)',
     tradeFourYearAttrition: 'Trade apprentices (2021 starters) who dropped out within four years (%)',
-    tradeSixYearCompletion: 'Trade apprentices (2019 starters) who completed within six years (%)',
+    tradeSixYearCompletion: 'Trade apprentices completing within six years, latest cohort (%)',
     electricianSixYearCompletion: 'Electrical apprentices completing within six years (%)',
     housingExtraWorkers: 'Extra workers needed to build 1.2 million homes by 2029',
     housingAccordTarget: 'National Housing Accord target (homes by 2029)'

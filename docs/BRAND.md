@@ -33,6 +33,7 @@
   3. A "payslip" card: a white card with a dashed tear line and mono labels.
   4. A highlighter swipe behind a key number.
 - No emoji, no gradient washes, no stock photos of hard hats. Icons are simple 2px stroke line icons.
+- **Logo / avatar: the "TN" monogram.** An `ink` (#16181D) rounded square (radius 6 on a 40-unit square) with the letters "TN" in Anton, `hivis` (#FF6B1A), centred, about 58% of the square's height. On ink grounds (site header) add a 1.5px `steel` (#5B616A) outline so the square doesn't disappear. The wordmark beside it is "TRADIE NUMBERS" in Anton, concrete with "NUMBERS" in hi-vis. The favicon is the same mark as an inline SVG data URI (no outline). No hard hats or tradie figures in the logo.
 
 ## Social formats (1080px base)
 - **Carousel:** 1080×1350 (4:5). Cover = big Anton hook + hazard stripe; slides = 1 idea each; last slide = source + call to action ("Free calculator: link in bio").

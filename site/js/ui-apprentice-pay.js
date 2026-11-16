@@ -17,15 +17,26 @@
     if (q.get('y12') === '1') $('y12').checked = true;
   })();
 
+  // Ordinary hours: 1 to 38. Out-of-range entries are corrected in the field (on change) with a hint.
+  function clampHours() {
+    var el = $('hours'), full = R.ordinaryHours.value, v = parseFloat(el.value), h = v;
+    if (!isFinite(v) || v < 1) h = isFinite(v) ? 1 : full; else if (v > full) h = full;
+    $('hours-hint').textContent = h !== v && el.value !== '' ? (v > full ? 'Max ' + full + ' ordinary hours a week — using ' + full + '.' : 'Enter at least 1 hour — using ' + h + '.') : 'Full time is ' + full + '. Fewer hours = part-time pay (and part-time incentive amounts).';
+    return h;
+  }
+  $('hours').addEventListener('change', function () {
+    var h = clampHours(), msg = $('hours-hint').textContent;
+    $('hours').value = h;
+    setTimeout(function () { $('hours-hint').textContent = msg; }, 0); // keep the correction message after the re-render
+  });
+
   var lastTrade = null;
 
   function render() {
     var trade = $('trade').value, t = R.trades[trade];
     // Default the KAP box to the trade's listed eligibility whenever the trade changes.
     if (trade !== lastTrade) { $('kap').checked = !!t.kapEligible.value; lastTrade = trade; }
-    var hours = parseFloat($('hours').value);
-    if (!isFinite(hours) || hours <= 0) hours = R.ordinaryHours.value;
-    hours = Math.min(R.ordinaryHours.value, hours);
+    var hours = clampHours();
     var type = radio('type'), year = parseInt(radio('year'), 10);
     var inputs = { trade: trade, year: year, type: type, y12: $('y12').checked, hours: hours, kapEligible: $('kap').checked };
     var r = C.apprenticePay(inputs, R);
@@ -36,6 +47,7 @@
       : (type === 'adult' ? 'Doesn’t change adult apprentice rates.' : 'Doesn’t change the rate in years 3 and 4.');
 
     $('out-week').textContent = U.money(r.takeHomeWeekly);
+    $('sticky-num').textContent = U.money(r.takeHomeWeekly);
     $('out-fortnight').textContent = U.money(r.takeHomeFortnightly);
     $('out-year').textContent = U.money(r.takeHomeAnnual);
     $('out-hourly').textContent = U.money(r.hourly, true) + '/hr';

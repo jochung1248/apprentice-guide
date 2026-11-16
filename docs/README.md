@@ -13,11 +13,12 @@ Pages also work from any static host (Cloudflare Pages, Netlify) and as a claude
 ## Tests
 ```bash
 # from the project root
-node --test                      # unit tests (calc.test.js) + content/constraint checks (content.test.js)
+npm test                         # = node --test tests/*.test.js  (unit tests + content/constraint checks)
+# (plain `node --test` from the root also works; `node --test tests/` does NOT on Node 22)
 
 # browser checks + screenshots (needs Python Playwright and Chrome)
-python3 -m http.server 8765 --directory site &
-python3 tests/e2e_check.py                        # screenshots -> screenshots/, prints JSON report, exit 1 on problems
+python3 -m http.server 8765 --directory site &     # stop it afterwards: pkill -f "http.server 8765"
+python3 tests/e2e_check.py                        # screenshots (TN_BASE=http://localhost:PORT/ to use another port) -> screenshots/, prints JSON report, exit 1 on problems
 python3 tests/e2e_check.py --offline              # aborts every non-localhost request (zero-network check)
 python3 tests/e2e_check.py --font-dir /tmp/fontsrc  # sandbox without internet: serve brand fonts from local
                                                   # @fontsource packages (npm i @fontsource/anton @fontsource/inter @fontsource/jetbrains-mono)
