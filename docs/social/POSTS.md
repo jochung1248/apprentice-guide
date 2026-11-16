@@ -1,7 +1,7 @@
-# Tradie Numbers: launch social posts (drafts, 17 Nov 2026)
+# Apprentice Guide: launch social posts (drafts, 17 Nov 2026)
 
-Drafts only. Nothing has been posted. The name "Tradie Numbers" and the handle `@tradienumbers` are placeholders.
-The artwork lives on the Claude Design canvas "Tradie Numbers — Launch social posts" (pages: Overview, Carousels, Tweet cards, Stat cards, Reels, Fun). Local copies of the artboard files are in `/home/claude/social-canvas/project/`.
+Drafts only. Nothing has been posted. The name "Apprentice Guide" and the handle `@apprenticeguide` are placeholders.
+The artwork lives on the Claude Design canvas "Apprentice Guide — Launch social posts" (pages: Overview, Carousels, Tweet cards, Stat cards, Reels, Fun). Local copies of the artboard files are in `/home/claude/social-canvas/project/`.
 
 **Rules used for every post:** pay figures come only from `site/js/rates.js` entries marked `verified: true` (2026–27, checked 17 Nov 2026). Other figures come from the approved fact sheet. Every number has a mono source line on the artboard. We say "award minimum", never "you'll earn".
 
@@ -177,7 +177,7 @@ For each card:
   - T4: #electrician #apprenticeship #sparky
   - T5: #womenintrades #construction #tradies
   - T6: #apprenticeship #tradies #ncver
-- **Alt text:** "Text post from Tradie Numbers (@tradienumbers):" followed by the card text in full, then the source.
+- **Alt text:** "Text post from Apprentice Guide (@apprenticeguide):" followed by the card text in full, then the source.
 
 ## Stat cards (1080×1080, ink)
 

@@ -1,7 +1,7 @@
 {
-  "name": "tradie-numbers",
+  "name": "apprentice-guide",
   "private": true,
-  "description": "Tradie Numbers static MVP site (no build step). Tests only.",
+  "description": "Apprentice Guide static MVP site (no build step). Tests only.",
   "scripts": {
     "test": "node --test tests/*.test.js"
   }

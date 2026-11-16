@@ -1,4 +1,4 @@
-# Tradie Numbers: social content plan (v1, 17 Nov 2026)
+# Apprentice Guide: social content plan (v1, 17 Nov 2026)
 
 **Goal:** get parents, careers advisers, career changers and small trade business owners to use the calculators, join the newsletter and send enquiries.
 
@@ -67,7 +67,7 @@ Quick carousels, each backed by a source.
 - **"Tradie pay bingo"**: guess the hourly minimum for 6 trades, then reveal.
 - **"Things your careers adviser never told you"**: punchy and slightly cheeky, but still sourced.
 
-### 8. Data drops (weekly "Tradie Numbers" format, Boring Businesses style)
+### 8. Data drops (weekly "By the numbers" format, Boring Businesses style)
 A text-only carousel with 1 claim per slide and the source on the final slide:
 - "Which trades are the hardest to find right now?" HIA trades availability, quarterly.
 - "Women are ~3% of construction tradies and the biggest untapped workforce."

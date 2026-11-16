@@ -1,4 +1,4 @@
-/* Tradie Numbers — ui-trade-vs-uni.js: wires trade-vs-uni.html to calc.tradeVsUni() and draws an inline SVG chart. */
+/* Apprentice Guide — ui-trade-vs-uni.js: wires trade-vs-uni.html to calc.tradeVsUni() and draws an inline SVG chart. */
 (function () {
   'use strict';
   var R = window.TN_RATES, C = window.TN_CALC, U = window.TN_UI;

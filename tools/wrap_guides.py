@@ -11,7 +11,7 @@ DATE_ISO, DATE = '2026-11-17', '17 November 2026'
 ORDER = ['first-year-apprentice-pay-nsw', 'key-apprenticeship-program-10000', 'trade-vs-uni-at-25',
          'why-apprentices-dont-finish', 'career-change-adult-apprenticeship']
 
-ICON = '<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2040%2040%27%3E%3Crect%20width=%2740%27%20height=%2740%27%20rx=%276%27%20fill=%27%2316181D%27/%3E%3Ctext%20x=%2720%27%20y=%2729.5%27%20text-anchor=%27middle%27%20font-family=%27Anton,%20Impact,%20Arial%20Narrow%20Bold,%20sans-serif%27%20font-size=%2723%27%20fill=%27%23FF6B1A%27%3ETN%3C/text%3E%3C/svg%3E">'
+ICON = '<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2040%2040%27%3E%3Crect%20width=%2740%27%20height=%2740%27%20rx=%276%27%20fill=%27%2316181D%27/%3E%3Ctext%20x=%2720%27%20y=%2729.5%27%20text-anchor=%27middle%27%20font-family=%27Anton,%20Impact,%20Arial%20Narrow%20Bold,%20sans-serif%27%20font-size=%2723%27%20fill=%27%23FF6B1A%27%3EAG%3C/text%3E%3C/svg%3E">'
 FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">'
 
 def head(title, desc, canon):
@@ -33,7 +33,7 @@ HEADER = '''<body>
 <header class="site-header">
   <div class="stripe" aria-hidden="true"></div>
   <div class="wrap">
-    <a class="brand" href="../index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".75" y=".75" width="38.5" height="38.5" rx="6" fill="#16181D" stroke="#5B616A" stroke-width="1.5"/><text x="20" y="29.5" text-anchor="middle" font-family="Anton, Impact, 'Arial Narrow Bold', sans-serif" font-size="23" letter-spacing=".5" fill="#FF6B1A">TN</text></svg><span>Tradie <b>Numbers</b></span></a>
+    <a class="brand" href="../index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".75" y=".75" width="38.5" height="38.5" rx="6" fill="#16181D" stroke="#5B616A" stroke-width="1.5"/><text x="20" y="29.5" text-anchor="middle" font-family="Anton, Impact, 'Arial Narrow Bold', sans-serif" font-size="23" letter-spacing=".5" fill="#FF6B1A">AG</text></svg><span>Apprentice <b>Guide</b></span></a>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../apprentice-pay.html">Apprentice pay</a></li>
@@ -61,7 +61,7 @@ FOOTER = '''<footer class="site-footer">
     </nav>
     <p class="checked">Figures last checked: <span data-last-checked>17 November 2026</span> · <span data-fy>2026–27</span> rates</p>
     <p class="disclaimer">General information only — not financial, legal or tax advice. Pay figures are award minimums from Fair Work pay guides; many employers pay more, and overtime, penalty rates and most allowances aren't included. Check your exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>. Government payments have eligibility rules and can change — confirm with your Apprentice Connect Australia provider.</p>
-    <p class="disclaimer">Tradie Numbers (working name) is independent and not affiliated with any government agency.</p>
+    <p class="disclaimer">Apprentice Guide (working name) is independent and not affiliated with any government agency.</p>
   </div>
 </footer>
 <script src="../js/rates.js"></script>
@@ -91,7 +91,7 @@ for slug in ORDER:
     ld_faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     ld_art = {"@context": "https://schema.org", "@type": "Article", "headline": meta['title'], "datePublished": DATE_ISO,
-              "dateModified": DATE_ISO, "author": {"@type": "Organization", "name": "Tradie Numbers"}, "inLanguage": "en-AU"}
+              "dateModified": DATE_ISO, "author": {"@type": "Organization", "name": "Apprentice Guide"}, "inLanguage": "en-AU"}
     page = head(meta['seo'], meta['desc'], meta['slug'])
     page += '<script type="application/ld+json">' + json.dumps(ld_art, ensure_ascii=False) + '</script>\n'
     page += '<script type="application/ld+json">' + json.dumps(ld_faq, ensure_ascii=False) + '</script>\n</head>\n'
@@ -120,7 +120,7 @@ for slug in ORDER:
     print(slug, n, 'words')
 
 # index
-page = head('Guides — apprentice pay, incentives and trade vs uni | Tradie Numbers',
+page = head('Guides — apprentice pay, incentives and trade vs uni | Apprentice Guide',
             'Plain-English guides to apprentice pay, the Key Apprenticeship Program, trade vs uni, apprentice completion and adult apprenticeships in Australia (2026–27).', 'index.html')
 page += '</head>\n' + HEADER.replace('{cur}', ' aria-current="page"')
 page += '''

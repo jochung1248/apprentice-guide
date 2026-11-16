@@ -1,4 +1,4 @@
-# Workstream: Tradie Numbers (apprentice pay, incentives & pathways hub): handoff brief
+# Workstream: Apprentice Guide (apprentice pay, incentives & pathways hub): handoff brief
 
 Open a new chat in the Side Hustler project and say: "Read workstreams/apprentice-hub/HANDOFF.md and continue as the build lead." That chat should work only on this product.
 
@@ -10,10 +10,10 @@ You are the build lead. You may use sub-agents, test and iterate. Don't post to 
   - Run locally: `cd site && python3 -m http.server`
   - Tests: `npm test` (24 tests)
   - Rates are updated every 1 July in `site/js/rates.js`; see `docs/README.md`.
-- **Live demo (claude.ai page):** "Tradie Numbers — MVP demo"
+- **Live demo (claude.ai page):** "Apprentice Guide — MVP demo"
 - **Claude Design canvases:**
-  - "Tradie Numbers — Brand theme & social board" (palette, type, motifs, website hero, 4 post templates). Source is in `design/brand-board/`.
-  - "Tradie Numbers — Launch social posts" (59 artboards: 6 carousels, 6 tweet cards, 4 stat cards, 3 Reel covers, 3 fun posts). Source is in `design/social-posts/`. Captions, alt text, hashtags, Reel scripts and posting order are in `docs/social/POSTS.md`.
+  - "Apprentice Guide — Brand theme & social board" (palette, type, motifs, website hero, 4 post templates). Source is in `design/brand-board/`.
+  - "Apprentice Guide — Launch social posts" (59 artboards: 6 carousels, 6 tweet cards, 4 stat cards, 3 Reel covers, 3 fun posts). Source is in `design/social-posts/`. Captions, alt text, hashtags, Reel scripts and posting order are in `docs/social/POSTS.md`.
 - **Docs:** `docs/BUILD_PLAN.md`, `BRAND.md`, `SOCIAL_CONTENT.md`, `DATA_SOURCES.md`, `PROGRESS.md`, `REVIEW-1.md` and `REVIEW-2.md` (independent review, signed off on 17 Nov 2026).
 
 ## Status (17 Nov 2026): MVP done
@@ -26,7 +26,7 @@ You are the build lead. You may use sub-agents, test and iterate. Don't post to 
 - **Incentive deadline:** the employer Key Apprenticeship Program incentive applies to apprentices starting by Dec 2026. Re-check it in Jan 2027.
 - **Government payments** are not taxed in the calculators, because how they're taxed is unconfirmed.
 - **HELP indexation** is applied in the year the debt is taken on, which slightly overstates the balance. This is disclosed on the about page.
-- **Unchecked:** the name "Tradie Numbers" and handle @tradienumbers. Check domain and trademark availability.
+- **Unchecked:** the name "Apprentice Guide" and handle @apprenticeguide. Check domain and trademark availability.
 
 ## Next milestone: "launch-ready"
 1. Check the domain and handles. Deploy to Cloudflare Pages (free tier) with Joseph's OK.

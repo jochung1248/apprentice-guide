@@ -1,6 +1,6 @@
 # Tradie Numbers — Apprentice Pay, Incentives & Pathways hub (MVP build plan)
 
-Working name: **Tradie Numbers** (placeholder; check domain + trademark before launch).
+Working name: **Apprentice Guide** (@apprenticeguide; renamed from the earlier placeholder on 17 Nov 2026; check domain + trademark before launch).
 Owner: Joseph (Sydney). Market: NSW first. Date of plan: 17 Nov 2026 (FY 2026–27 rates apply, effective 1 July 2026).
 
 ## What it is

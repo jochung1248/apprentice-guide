@@ -1,5 +1,5 @@
 """
-Browser checks for Tradie Numbers (Playwright + Chrome).
+Browser checks for Apprentice Guide (Playwright + Chrome).
 
 Usage (from the project root):
     python3 -m http.server 8765 --directory site &      # serve the site

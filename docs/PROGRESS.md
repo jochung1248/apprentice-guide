@@ -1,4 +1,4 @@
-# Tradie Numbers — progress log
+# Apprentice Guide — progress log
 
 ## Status (17 Nov 2026)
 MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 14 Minors; all Majors and most Minors are fixed (see below). **Awaiting the round-2 reviewer's re-test/sign-off of M1–M6 (criterion 7).**
@@ -9,6 +9,13 @@ MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 1
 - Maths: `site/js/calc.js` (UMD, pure functions).
 - Tests: `tests/calc.test.js` (hand-worked examples), `tests/content.test.js` (figure traceability, CSP, structure), `tests/e2e_check.py` (Playwright screenshots, console errors, calculator and form runs, `--offline`).
 - Brand: `docs/BRAND.md` applied in `site/css/styles.css`.
+
+## Rename (17 Nov 2026)
+- Product renamed from the earlier working name to **Apprentice Guide**, handle **@apprenticeguide** (Joseph's decision).
+- Updated: every page `<title>`, meta description, header wordmark ("APPRENTICE" concrete + "GUIDE" hi-vis), footer independence line, consent copy on the enquiry form, JSON-LD author/publisher names, about page, `rates.js` (`meta.siteName`, assumption source names), JS/CSS file headers, `tools/wrap_guides.py`, tests, `package.json`, and docs (README, PROGRESS, BRAND, DATA_SOURCES, SOCIAL_CONTENT, HANDOFF, social/POSTS).
+- Monogram and favicon changed from the old letters to **"AG"** (same spec: ink rounded square, Anton, hi-vis letters; steel outline on ink).
+- BRAND.md: name/handle section and the voice line "Honest numbers for apprentices." BUILD_PLAN.md: only the "Working name" line changed (its title line still carries the old name, as instructed).
+- The GitHub repo is still named `jochung1248/tradie-numbers`; renaming it is Joseph's call. `design/` was left to the coordinator.
 
 ## Key decisions
 - **No framework, no build step.** Header/footer are duplicated in each page. Guides were wrapped once with `tools/wrap_guides.py` from `tools/guide-src/*.body.html`; either edit the HTML directly or re-run the script.
@@ -32,7 +39,7 @@ MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 1
   - M2 "construction" → "trade" apprentices in the guide title/H1/JSON-LD, home card and guides index (BUILD_PLAN.md left as the owner's original brief).
   - M3 mobile nav wraps to two rows below 640px (all five links visible).
   - M4 sticky compact result bar on all three calculators below 960px (key number + "See full breakdown ↓" → `#results`).
-  - M5 hard hat replaced by the "TN" monogram (header + favicon data URI, all 11 pages and `tools/wrap_guides.py`); spec added to `docs/BRAND.md`.
+  - M5 hard hat replaced by a two-letter monogram, now "AG" after the rename (header + favicon data URI, all 11 pages and `tools/wrap_guides.py`); spec added to `docs/BRAND.md`.
   - M6 every `.table-scroll` has `tabindex="0" role="region" aria-label`. axe WCAG 2.1 A/AA: 0 violations on all 11 pages at 390px and 1280px.
   - Minors fixed: m1 `package.json` (`npm test`) + README; m2 hours clamped 1–38 in both calculators, written back with a hint; m3 age slider min follows start age; m4 "five" → "four" years; m5 FAQ "mid-30s" corrected; m6 27.7% now verified (NCVER outcomes 2025, which also confirms 94.8%); m7 58.7% cohort year no longer asserted; m8 super source → ATO "How to work out and pay super" (earnings from 1 July 2026); m9 HELP indexation simplification stated on about page and in the guide (model unchanged); m10 home inline script moved to `js/ui-home.js`; m11 `data-series` attribute; m12 shorter incentive option labels; m13 unsourced claims softened; m14 stray server stopped (README notes `pkill`).
   - Not done: trade-vs-uni field reordering/collapsing on mobile (sticky bar addresses the main problem); m9 model change (stated instead).

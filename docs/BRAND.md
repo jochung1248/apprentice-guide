@@ -1,4 +1,4 @@
-# Tradie Numbers: brand theme v1 (17 Nov 2026)
+# Apprentice Guide: brand theme v1 (17 Nov 2026)
 
 **The idea: "Hi-vis meets payslip".** Honest numbers delivered with site-signage confidence. The look is warm concrete ground, charcoal ink, one loud safety-orange accent, blueprint blue for data, and a highlighter yellow used only to mark numbers. Big condensed numerals like site signage; clean sans for reading; mono labels like dimension callouts on a building plan. It should feel useful and a bit cheeky, never corporate, and never a cartoon of a tradie.
 
@@ -33,14 +33,19 @@
   3. A "payslip" card: a white card with a dashed tear line and mono labels.
   4. A highlighter swipe behind a key number.
 - No emoji, no gradient washes, no stock photos of hard hats. Icons are simple 2px stroke line icons.
-- **Logo / avatar: the "TN" monogram.** An `ink` (#16181D) rounded square (radius 6 on a 40-unit square) with the letters "TN" in Anton, `hivis` (#FF6B1A), centred, about 58% of the square's height. On ink grounds (site header) add a 1.5px `steel` (#5B616A) outline so the square doesn't disappear. The wordmark beside it is "TRADIE NUMBERS" in Anton, concrete with "NUMBERS" in hi-vis. The favicon is the same mark as an inline SVG data URI (no outline). No hard hats or tradie figures in the logo.
+- **Logo / avatar: the "AG" monogram.** An `ink` (#16181D) rounded square (radius 6 on a 40-unit square) with the letters "AG" in Anton, `hivis` (#FF6B1A), centred, about 58% of the square's height. On ink grounds (site header) add a 1.5px `steel` (#5B616A) outline so the square doesn't disappear. The wordmark beside it is "APPRENTICE GUIDE" in Anton: "APPRENTICE" in concrete (ink on light grounds) and "GUIDE" in hi-vis. The favicon is the same mark as an inline SVG data URI (no outline). No hard hats or tradie figures in the logo.
 
 ## Social formats (1080px base)
 - **Carousel:** 1080×1350 (4:5). Cover = big Anton hook + hazard stripe; slides = 1 idea each; last slide = source + call to action ("Free calculator: link in bio").
-- **Tweet/quote card:** 1080×1350 or 1080×1080, ink ground (or concrete for the light variant), brand avatar + "Tradie Numbers" + @tradienumbers handle, Inter text. Our own account only. No X/Twitter logo or other platform UI.
+- **Tweet/quote card:** 1080×1350 or 1080×1080, ink ground (or concrete for the light variant), brand avatar + "Apprentice Guide" + @apprenticeguide handle, Inter text. Our own account only. No X/Twitter logo or other platform UI.
 - **Stat card:** 1080×1080, one huge Anton number in hi-vis, one-line context, mono source line.
 - **Reel/TikTok cover:** 1080×1920, hook in the top third, safe zones clear of the platform UI (top 220px, bottom 420px).
 - Every number carries a mono source line, e.g. `SOURCE: NCVER 2025 · 2019 COHORT`.
 
+## Name and handle
+**Apprentice Guide** (working name), handle **@apprenticeguide**. Renamed from the earlier working name on 17 Nov 2026.
+
 ## Voice
+Tagline / voice line: **"Honest numbers for apprentices."**
+
 Plain Australian English, short sentences, numbers first. Respectful of both tradies and uni grads. Light humour, never punching down. Say "award minimum", not "you'll earn".

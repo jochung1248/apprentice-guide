@@ -1,4 +1,4 @@
-# Tradie Numbers — developer README
+# Apprentice Guide — developer README
 
 Static MVP site: plain HTML + one CSS file + vanilla JS. No framework, no build step for the site, no runtime network requests except the optional Google Fonts stylesheet (system fonts take over if it can't load).
 

@@ -1,4 +1,4 @@
-# Tradie Numbers — data sources (checked 17 Nov 2026, FY 2026–27)
+# Apprentice Guide — data sources (checked 17 Nov 2026, FY 2026–27)
 
 The single source of truth is `site/js/rates.js`. This file records what was checked, where, and what could not be verified. The About page (`site/about-data.html`) renders the same list live from `rates.js`.
 

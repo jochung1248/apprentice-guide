@@ -1,5 +1,5 @@
 /*
- * Tradie Numbers — calc.js
+ * Apprentice Guide — calc.js
  * Pure calculation functions. No DOM access. UMD: window.TN_CALC in the browser,
  * require('./calc.js') in Node (see tests/calc.test.js).
  *

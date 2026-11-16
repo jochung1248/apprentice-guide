@@ -1,5 +1,5 @@
 /*
- * Tradie Numbers — ui-common.js
+ * Apprentice Guide — ui-common.js
  * Shared helpers for every page: money formatting, "last checked" date, illustrative badges,
  * and the three demo forms (newsletter, pre-apprenticeship enquiry, employer waitlist).
  * Requires rates.js to be loaded first.
