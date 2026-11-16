@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About the numbers — sources, methods and disclaimers | Tradie Numbers</title>
+<meta name="description" content="Where every Tradie Numbers figure comes from: Fair Work pay guides, ATO tax and HELP rates, Department of Employment incentive schedules and QILT graduate data, with effective dates and our calculation method.">
+<link rel="canonical" href="https://www.example.com/about-data.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%279%27 fill=%27%23FF6B1A%27/%3E%3Cpath d=%27M11 26a9 9 0 0 1 18 0zM8 26h24v3.5H8z%27 fill=%27%2316181D%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="stripe" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#FF6B1A"/><path d="M11 26a9 9 0 0 1 18 0z" fill="#16181D"/><path d="M8 26h24v3.5H8z" fill="#16181D"/><path d="M19 15h2v6h-2z" fill="#FF6B1A"/></svg><span>Tradie <b>Numbers</b></span></a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="apprentice-pay.html">Apprentice pay</a></li>
+        <li><a href="trade-vs-uni.html">Trade vs uni</a></li>
+        <li><a href="employer-cost.html">Employer cost</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="about-data.html" aria-current="page">About the numbers</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Methodology · last checked <span data-last-checked>17 November 2026</span></span>
+      <h1>About the numbers</h1>
+      <p class="lede">We'd rather show you an honest estimate with its workings than a confident number with none. Here's where every figure comes from, how the calculators work, and what they leave out.</p>
+    </div>
+  </section>
+
+  <div class="wrap article">
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>Pay rates</strong> are the award minimums in the Fair Work Ombudsman pay guides for the Building and Construction General On-site Award, the Electrical, Electronic and Communications Contracting Award and the Plumbing and Fire Sprinklers Award, effective from the first full pay period on or after 1 July 2026.</li>
+      <li><strong>Tax</strong> uses the ATO's 2026–27 resident rates (the bottom rate fell from 16% to 15% on 1 July 2026), the low income tax offset and the Medicare levy.</li>
+      <li><strong>Government payments</strong> come from the Department of Employment and Workplace Relations (DEWR) incentive payments overview effective 1 July 2026.</li>
+      <li><strong>HELP</strong> repayment thresholds are the ATO's 2026–27 figures; student contributions are the Department of Education's 2026 maximums; indexation is the 2.8% applied on 1 June 2026.</li>
+      <li><strong>Graduate salaries</strong> are medians from the 2025 Graduate Outcomes Survey (QILT).</li>
+      <li>Anything we couldn't check against a primary source is marked <span class="badge-ill">illustrative — edit to suit</span> and can be changed in the calculator.</li>
+    </ul>
+
+    <h2>How the calculators work</h2>
+    <h3>Apprentice pay</h3>
+    <p>We take the weekly award minimum for the trade, year and apprentice type from the pay guide. For fewer than 38 hours we scale the weekly rate by hours ÷ 38. Yearly pay is weekly pay × 52, because apprentices are paid during annual leave and public holidays. Tax is the end-of-year amount an Australian resident with no other income or deductions would owe: resident tax rates, minus the low income tax offset, plus the Medicare levy (with the low-income phase-in). Take-home is yearly pay minus that tax, divided back into weeks and fortnights. Real pay slips use the ATO withholding tables, so they can differ by a few dollars.</p>
+    <h3>Trade vs uni</h3>
+    <p>Both paths start at the same age. The trade path earns four years of apprentice minimums, then the qualified award minimum (plus any percentage you add), rising by the pay growth you choose. Key Apprenticeship Program payments are added in the year they're paid and aren't taxed in our model. The uni path earns your part-time income while finishing school and studying, then the graduate salary, rising at the same growth rate. Each study year adds the student contribution to a HELP debt. Each year we take off the compulsory repayment on that year's income, then index what's left. The chart shows each path's total take-home pay minus any HELP debt still owing. Tax rates and thresholds stay at 2026–27 levels throughout — a simplification that slightly overstates tax and HELP repayments in later years.</p>
+    <h3>Employer cost</h3>
+    <p>Yearly wages (weekly award minimum × 52) plus super guarantee at 12%, workers comp as a percentage of wages, and the training, tools and PPE amounts you enter. We take off the first-year employer incentive you choose (only in year 1). We don't include leave loading, overtime, allowances outside the pay guide rate, payroll tax, or the time a qualified worker spends supervising.</p>
+
+    <h2>What we leave out</h2>
+    <ul>
+      <li>Above-award pay, overtime, penalty rates, and allowances not already built into the pay guide rates (for example travel, fares and living-away allowances).</li>
+      <li>Apprentices who started before 1 January 2014, school-based apprentices, and trainees.</li>
+      <li>State-specific schemes (for example NSW fee-free training). Awards and tax are national, so the numbers apply Australia-wide, but your state may offer extra help.</li>
+      <li>Superannuation as part of the employee's wealth, living costs, and the value of a qualification beyond pay.</li>
+    </ul>
+
+    <h2 id="sources">Every figure and its source</h2>
+    <p>This table is built directly from the file the calculators use (<code>js/rates.js</code>), so it can't drift out of sync with them.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="table-scroll">
+        <table class="data-table sources-table">
+          <caption class="visually-hidden">Figures, values, effective dates and sources</caption>
+          <thead><tr><th scope="col">Figure</th><th scope="col">Value</th><th scope="col">Effective</th><th scope="col">Status</th><th scope="col">Source</th></tr></thead>
+          <tbody id="sources-body"><tr><td colspan="5">Turn on JavaScript to see the full list of figures and sources.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap article">
+    <h2 id="research">Research figures in our guides</h2>
+    <p>Our guides also quote research about apprenticeships and the housing workforce. Where we couldn't open the original publication ourselves (some research sites block automated checking), we say so and link the report we relied on. These figures are marked † in the guides.</p>
+    <ul id="research-list"></ul>
+
+    <h2>Disclaimer</h2>
+    <p><strong>General information only.</strong> Tradie Numbers gives general information, not financial, legal, tax or careers advice, and doesn't take your circumstances into account. Pay figures are award minimums only — your award, classification, employer agreement or contract may entitle you to more. Check your exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a> or the Fair Work Ombudsman on 13 13 94. Government payments have eligibility rules and can change at short notice; confirm with your Apprentice Connect Australia provider. Tax estimates aren't a substitute for the ATO's calculators or a registered tax agent.</p>
+    <p>Spotted a wrong or out-of-date figure? We'd genuinely like to know — that's the whole point of the site.</p>
+
+    <h2>Keeping it current</h2>
+    <p>Award rates change from 1 July each year after the Fair Work Commission's annual wage review, and tax, HELP and incentive settings often change on the same date. We re-check every figure each July and whenever a major change is announced. Figures last checked: <strong data-last-checked>17 November 2026</strong>.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="apprentice-pay.html">Apprentice pay</a></li>
+        <li><a href="trade-vs-uni.html">Trade vs uni</a></li>
+        <li><a href="employer-cost.html">Employer cost</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="about-data.html">About the numbers</a></li>
+        <li><a href="index.html#enquire">Find a pre-apprenticeship</a></li>
+      </ul>
+    </nav>
+    <p class="checked">Figures last checked: <span data-last-checked>17 November 2026</span> · <span data-fy>2026–27</span> rates</p>
+    <p class="disclaimer">General information only — not financial, legal or tax advice. Pay figures are award minimums from Fair Work pay guides; many employers pay more, and overtime, penalty rates and most allowances aren't included. Check your exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>. Government payments have eligibility rules and can change — confirm with your Apprentice Connect Australia provider.</p>
+    <p class="disclaimer">Tradie Numbers (working name) is independent and not affiliated with any government agency.</p>
+  </div>
+</footer>
+<script src="js/rates.js"></script>
+<script src="js/calc.js"></script>
+<script src="js/ui-common.js"></script>
+<script src="js/ui-about.js"></script>
+</body>
+</html>
