@@ -10,6 +10,10 @@
  },
  "pages": [
   {
+   "id": "flagship",
+   "name": "Flagship"
+  },
+  {
    "id": "overview",
    "name": "Overview"
   },
@@ -43,6 +47,102 @@
    "title": "Index",
    "page": "overview"
   },
+  "posts/c0/c0-01-cover.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 01 Cover",
+   "page": "flagship"
+  },
+  "posts/c0/c0-02-pay-climb.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 02 Pay climbs 68%",
+   "page": "flagship"
+  },
+  "posts/c0/c0-03-year-12.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 03 Year 12 is worth $5,800",
+   "page": "flagship"
+  },
+  "posts/c0/c0-04-age-21.dc.html": {
+   "x": 3480,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 04 Start at 21",
+   "page": "flagship"
+  },
+  "posts/c0/c0-05-chippy-vs-sparky.dc.html": {
+   "x": 4640,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 05 Chippies vs sparkies",
+   "page": "flagship"
+  },
+  "posts/c0/c0-06-trade-gap.dc.html": {
+   "x": 5800,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 06 Up to $95 apart",
+   "page": "flagship"
+  },
+  "posts/c0/c0-07-kap.dc.html": {
+   "x": 6960,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 07 $10,000 to finish",
+   "page": "flagship"
+  },
+  "posts/c0/c0-08-tax.dc.html": {
+   "x": 8120,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 08 Tax barely touches it",
+   "page": "flagship"
+  },
+  "posts/c0/c0-09-employer-cost.dc.html": {
+   "x": 9280,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 09 What you cost your boss",
+   "page": "flagship"
+  },
+  "posts/c0/c0-10-completion.dc.html": {
+   "x": 10440,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 10 4 in 10 do not finish",
+   "page": "flagship"
+  },
+  "posts/c0/c0-11-jobs.dc.html": {
+   "x": 11600,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 11 Finish and get a job",
+   "page": "flagship"
+  },
+  "posts/c0/c0-12-tool.dc.html": {
+   "x": 12760,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C0 12 The tool",
+   "page": "flagship"
+  },
   "posts/c1/c1-01-cover.dc.html": {
    "x": 0,
    "y": 0,
@@ -51,52 +151,20 @@
    "title": "C1 01 Cover",
    "page": "carousels"
   },
-  "posts/c1/c1-02-fine-print.dc.html": {
+  "posts/c1/c1-02-take-home.dc.html": {
    "x": 1160,
    "y": 0,
    "w": 1080,
    "h": 1350,
-   "title": "C1 02 Fine print",
+   "title": "C1 02 Take-home in 6 trades",
    "page": "carousels"
   },
-  "posts/c1/c1-03-carpentry.dc.html": {
+  "posts/c1/c1-03-sources-cta.dc.html": {
    "x": 2320,
    "y": 0,
    "w": 1080,
    "h": 1350,
-   "title": "C1 03 Carpentry",
-   "page": "carousels"
-  },
-  "posts/c1/c1-04-sparky.dc.html": {
-   "x": 3480,
-   "y": 0,
-   "w": 1080,
-   "h": 1350,
-   "title": "C1 04 Sparky",
-   "page": "carousels"
-  },
-  "posts/c1/c1-05-plumbing.dc.html": {
-   "x": 4640,
-   "y": 0,
-   "w": 1080,
-   "h": 1350,
-   "title": "C1 05 Plumbing",
-   "page": "carousels"
-  },
-  "posts/c1/c1-06-year12-and-climb.dc.html": {
-   "x": 5800,
-   "y": 0,
-   "w": 1080,
-   "h": 1350,
-   "title": "C1 06 Year 12 and the climb",
-   "page": "carousels"
-  },
-  "posts/c1/c1-07-sources-cta.dc.html": {
-   "x": 6960,
-   "y": 0,
-   "w": 1080,
-   "h": 1350,
-   "title": "C1 07 Sources and CTA",
+   "title": "C1 03 Sources and CTA",
    "page": "carousels"
   },
   "posts/c2/c2-01-cover.dc.html": {
@@ -248,7 +316,7 @@
    "y": 5310,
    "w": 1080,
    "h": 1350,
-   "title": "C4 07 Approvals 11,041",
+   "title": "C4 07 Approvals 11,040",
    "page": "carousels"
   },
   "posts/c4/c4-08-sources-cta.dc.html": {
@@ -408,7 +476,7 @@
    "y": 0,
    "w": 1080,
    "h": 1350,
-   "title": "T4 Sparky hourly",
+   "title": "T4 Sparky pay climb",
    "page": "tweets"
   },
   "posts/tweets/t5-women.dc.html": {
@@ -510,13 +578,21 @@
  },
  "order": [
   "Main.dc.html",
+  "posts/c0/c0-01-cover.dc.html",
+  "posts/c0/c0-02-pay-climb.dc.html",
+  "posts/c0/c0-03-year-12.dc.html",
+  "posts/c0/c0-04-age-21.dc.html",
+  "posts/c0/c0-05-chippy-vs-sparky.dc.html",
+  "posts/c0/c0-06-trade-gap.dc.html",
+  "posts/c0/c0-07-kap.dc.html",
+  "posts/c0/c0-08-tax.dc.html",
+  "posts/c0/c0-09-employer-cost.dc.html",
+  "posts/c0/c0-10-completion.dc.html",
+  "posts/c0/c0-11-jobs.dc.html",
+  "posts/c0/c0-12-tool.dc.html",
   "posts/c1/c1-01-cover.dc.html",
-  "posts/c1/c1-02-fine-print.dc.html",
-  "posts/c1/c1-03-carpentry.dc.html",
-  "posts/c1/c1-04-sparky.dc.html",
-  "posts/c1/c1-05-plumbing.dc.html",
-  "posts/c1/c1-06-year12-and-climb.dc.html",
-  "posts/c1/c1-07-sources-cta.dc.html",
+  "posts/c1/c1-02-take-home.dc.html",
+  "posts/c1/c1-03-sources-cta.dc.html",
   "posts/c2/c2-01-cover.dc.html",
   "posts/c2/c2-02-who.dc.html",
   "posts/c2/c2-03-timeline.dc.html",
@@ -570,18 +646,26 @@
   "posts/fun/f3-pay-bingo.dc.html"
  ],
  "notes": {
+  "n_c0": {
+   "x": 0,
+   "y": -280,
+   "text": "Flagship · 10 things nobody tells you about apprentice pay",
+   "kind": "title1",
+   "maxW": 13840,
+   "page": "flagship"
+  },
   "n_c1": {
    "x": 0,
    "y": -280,
-   "text": "C1 · What a 1st-year apprentice actually takes home",
+   "text": "C1 · What a first-year apprentice takes home in 6 trades",
    "kind": "title1",
-   "maxW": 8040,
+   "maxW": 3400,
    "page": "carousels"
   },
   "n_c2": {
    "x": 0,
    "y": 1490,
-   "text": "C2 · The $10,000 apprentice payment, explained",
+   "text": "C2 · 4 things nobody tells you about the apprentice payment",
    "kind": "title1",
    "maxW": 6880,
    "page": "carousels"
@@ -589,7 +673,7 @@
   "n_c3": {
    "x": 0,
    "y": 3260,
-   "text": "C3 · Myth vs Fact: trades edition",
+   "text": "C3 · Myth vs fact: 4 things everyone gets wrong about trades",
    "kind": "title1",
    "maxW": 6880,
    "page": "carousels"
@@ -597,7 +681,7 @@
   "n_c4": {
    "x": 0,
    "y": 5030,
-   "text": "C4 · Australia’s tradie shortage in 6 numbers",
+   "text": "C4 · 6 numbers that show Australia needs more tradies",
    "kind": "title1",
    "maxW": 9200,
    "page": "carousels"
@@ -605,7 +689,7 @@
   "n_c5": {
    "x": 0,
    "y": 6800,
-   "text": "C5 · Employer Corner: why apprentices quit",
+   "text": "C5 · Employer corner: why apprentices quit, and 3 things you can fix",
    "kind": "title1",
    "maxW": 8040,
    "page": "carousels"
@@ -613,7 +697,7 @@
   "n_c6": {
    "x": 0,
    "y": 8570,
-   "text": "C6 · Tradie translator",
+   "text": "C6 · Tradie translator: 6 site words nobody explains on day one",
    "kind": "title1",
    "maxW": 9200,
    "page": "carousels"
