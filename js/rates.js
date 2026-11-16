@@ -40,7 +40,6 @@
     dewrKapFactsheet: 'https://www.dewr.gov.au/download/17045/key-apprenticeship-program-factsheet/41879/key-apprenticeship-program-factsheet/pdf',
     ministerKapExtended: 'https://ministers.dewr.gov.au/rishworth/apprentice-support-key-sectors-extended',
     ministerOutcomes: 'https://ministers.dewr.gov.au/giles/research-shows-apprenticeships-deliver-strong-job-outcomes',
-    kapOccupationList: 'https://www.busyatwork.com.au/wp-content/uploads/2025/07/List-of-KAP-eligible-occupations.pdf',
     studyAssistIndexation: 'https://www.studyassist.gov.au/news/indexation-28-will-be-applied-your-study-loan-1-june-2026',
     eduIndexedRates2026: 'https://www.education.gov.au/download/19201/2026-indexed-rates/41481/document/pdf',
     qiltGos2025: 'https://www.qilt.edu.au/docs/default-source/default-document-library/2025-gos-national-report.pdf',
@@ -60,7 +59,7 @@
    * each {weekly, hourly} for a 38-hour week, apprentices who started on or after 1 Jan 2014.
    */
   var SRC2 = {
-    pgHair: 'https://awards.fairwork.gov.au/MA000005.html',
+    pgHair: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000005&fileType=pdf',
     pgVehicle: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000089&fileType=pdf',
     pgHosp: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000009&fileType=pdf',
     pgManuf: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000010&fileType=pdf',
@@ -69,7 +68,7 @@
     priorityList: 'https://www.dewr.gov.au/it/download/17559/australian-apprenticeships-priority-list-1-april-2026/42585/australian-apprenticeships-priority-list-1-april-2026/pdf',
     fwoAdult: 'https://www.fairwork.gov.au/starting-employment/types-of-employees/apprentices-and-trainees/hairdressing-apprentices'
   };
-  var PG_H = 'Hair and Beauty Industry Award 2020 [MA000005] — award text, rates from 1 Jul 2026 (Fair Work Ombudsman)';
+  var PG_H = 'Fair Work Ombudsman pay guide — Hair and Beauty Industry Award [MA000005], published 24 Jun 2026';
   var PG_V = 'Fair Work Ombudsman pay guide — Vehicle Repair, Services and Retail Award [MA000089], published 4 Nov 2026';
   var PG_HO = 'Fair Work Ombudsman pay guide — Hospitality Industry (General) Award [MA000009], published 24 Jun 2026';
   var PG_M = 'Fair Work Ombudsman pay guide — Manufacturing and Associated Industries and Occupations Award [MA000010], published 29 Jul 2026';
@@ -186,7 +185,7 @@
     ['building', 'Building and construction'], ['electrical', 'Electrical and plumbing'], ['automotive', 'Automotive'],
     ['engineering', 'Engineering and manufacturing'], ['hospitality', 'Hospitality'], ['hair', 'Hair and barbering'], ['outdoor', 'Landscaping']
   ];
-  function trade(key, label, industry, table, osca, stream, onList, licence, extraNote) {
+  function trade(key, label, industry, table, osca, stream, onList, licence, extraNote, kapMaybe) {
     var t = T[table];
     var streamText = { housing: 'Housing Construction stream', newEnergy: 'New Energy stream', both: 'both the Housing Construction and New Energy streams', none: 'no KAP stream' }[stream];
     return {
@@ -195,14 +194,15 @@
       apprenticeJuniorNoY12: t.apprenticeJuniorNoY12, apprenticeJuniorY12: t.apprenticeJuniorY12,
       apprenticeAdult: t.apprenticeAdult, tradesperson: t.tradesperson,
       licence: licence || null,
+      kapMaybe: !!kapMaybe, // not a KAP occupation, but some of its qualifications sit under a KAP occupation on the list
       priorityList: fig(onList, '2026-04-01', SRC2.priorityList, PL_NAME, true,
         onList ? 'Listed as ' + osca + ' on the Priority List; marked for ' + streamText + '.' : 'Not found on the 1 April 2026 Priority List.'),
       kapStream: fig(stream, '2026-04-01', SRC2.priorityList, PL_NAME, true,
-        (stream === 'none' ? 'Not a Key Apprenticeship Program occupation.' : 'Eligible for KAP under ' + streamText + ' if the employer provides meaningful work in that sector.') + (extraNote ? ' ' + extraNote : '')),
+        (stream === 'none' ? (kapMaybe ? 'Usually not a KAP occupation — eligibility depends on the qualification; check with your Apprentice Connect provider.' : 'Not a Key Apprenticeship Program occupation.') : 'Eligible for KAP under ' + streamText + ' if the employer provides meaningful work in that sector.') + (extraNote ? ' ' + extraNote : '')),
       // Default for the "qualifies for KAP" checkbox: on for housing-construction occupations only.
       kapEligible: fig(stream === 'housing' || stream === 'both', '2026-04-01', SRC2.priorityList, PL_NAME, true,
         stream === 'newEnergy' ? 'KAP only if the employer works in new energy (e.g. EV or renewable work).' :
-        (stream === 'both' ? 'Eligible if the employer works in housing construction or new energy.' : (stream === 'housing' ? 'Eligible with a housing-construction employer.' : 'Not eligible for KAP.')))
+        (stream === 'both' ? 'Eligible if the employer works in housing construction or new energy.' : (stream === 'housing' ? 'Eligible with a housing-construction employer.' : (kapMaybe ? 'Usually not a KAP occupation — eligibility depends on the qualification; check with your Apprentice Connect provider.' : 'Not a KAP occupation.'))))
     };
   }
   var TRADES = {};
@@ -219,10 +219,10 @@
     trade('electrician', 'Electrician', 'electrical', 'elec', '381231 Electrician (General)', 'both', true, 'electrical'),
     trade('plumber', 'Plumber', 'electrical', 'plumb', '363131 Plumber (General)', 'both', true, 'plumbing'),
     trade('lightvehicle', 'Light vehicle mechanic', 'automotive', 'vehicle', '351131 Automotive Technician (General)', 'newEnergy', true),
-    trade('diesel', 'Heavy vehicle / diesel mechanic', 'automotive', 'vehicle', '351433 Diesel Technician', 'none', true),
+    trade('diesel', 'Heavy vehicle / diesel mechanic', 'automotive', 'vehicle', '351433 Diesel Technician', 'none', true, null, 'The heavy vehicle qualification (AUR31120) is also listed under Automotive Technician (General), which is New Energy-eligible.', true),
     trade('autoelec', 'Auto electrician', 'automotive', 'vehicle', '351231 Automotive Electrician', 'newEnergy', true),
     trade('panelbeater', 'Panel beater', 'automotive', 'vehicle', '351331 Panelbeater', 'none', true),
-    trade('vehiclepainter', 'Vehicle painter', 'automotive', 'vehicle', '351631 Vehicle Painter', 'none', true),
+    trade('vehiclepainter', 'Vehicle painter', 'automotive', 'vehicle', '351631 Vehicle Painter', 'none', true, null, 'The automotive refinishing qualification (AUR32420) is also listed under Painter, which is Housing Construction-eligible.', true),
     trade('fitter', 'Fitter and turner / mechanical fitter', 'engineering', 'manuf', '332232 Fitter and Turner / 332231 Fitter (General)', 'both', true, null, 'A factory or mining employer usually won’t qualify.'),
     trade('boilermaker', 'Boilermaker / welder (metal fabrication)', 'engineering', 'manuf', '331131 Metal Fabricator / 331133 Welder (First Class)', 'both', true, null, 'A factory or mining employer usually won’t qualify.'),
     trade('cook', 'Chef / commercial cook', 'hospitality', 'cook', '322331 Cook', 'none', true),
@@ -246,7 +246,7 @@
     },
 
     ordinaryHours: fig(38, FY_START, SRC.pgBuilding, PG_B, true,
-      'Full-time ordinary hours are 38 per week under all three awards. Pay guide weekly rates assume 38 hours.'),
+      'Full-time ordinary hours are 38 per week under all nine awards used here. Pay guide weekly rates assume 38 hours.'),
 
     // ---- Award minimum rates and trades (see TRADES / T above) ----
     industries: INDUSTRIES,
@@ -263,7 +263,7 @@
       tax: fig('excepted', FY_START, 'https://www.ato.gov.au/tax-rates-and-codes/tax-rates-if-you-re-under-18-years-old', 'ATO — Tax rates if you’re under 18', true,
         'Employment income of under-18s is "excepted income" taxed at the normal adult resident rates; higher minor rates apply to some other income.'),
       consent: fig('parent-signs', '2026-11-17', 'https://www.apprenticeships.vic.gov.au/your-training-contract', 'Apprenticeships Victoria — Your training contract', true,
-        'In Victoria a parent or guardian must sign the training contract (and any changes) for an apprentice under 18. Other states have similar rules — check with your Apprentice Connect provider.')
+        'A parent or guardian usually needs to sign the training contract for an apprentice under 18 (in Victoria, for example, they must sign it and any changes). Check your state\u2019s rules with your Apprentice Connect provider.')
     },
     waNotice: fig('state-system', '2026-10-27', 'https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-laws-applies', 'WA Government — Which system of employment laws applies (updated 27 Oct 2026)', true,
       'In WA, sole traders, partnerships and trusts that are not constitutional corporations are covered by the WA state system (WA awards), not the national awards shown here.'),
@@ -303,13 +303,15 @@
                      plumbing: { name: 'Queensland Building and Construction Commission (QBCC)', url: 'https://www.qbcc.qld.gov.au/licences/start-your-career/when-you-need-licence' } } },
       WA: { name: 'Western Australia',
         items: [
-          fig({ kind: 'training', title: 'Fee-free apprenticeship courses', text: 'From January 2026 five apprenticeship qualifications are fee-free, in trades such as plumbing, bricklaying and solid plastering.' },
+          fig({ kind: 'training', title: 'Fee-free apprenticeship courses', text: 'From January 2026 five more apprenticeship qualifications were added to WA\u2019s fee-free list: plumbing, bricklaying and blocklaying, wall and ceiling lining, and solid plastering.' },
             '2025-11-04', 'https://www.wa.gov.au/government/media-statements/Cook%20Labor%20Government/Housing-made-possible-thanks-to-fee-free,-low-fee-TAFE-training-20251104', 'WA Government media statement (4 Nov 2025)', true, ''),
           fig({ kind: 'travel', regional: true, title: 'Travel and Accommodation Allowance', text: 'For WA-resident apprentices who travel more than 70 km round trip to the closest funded training provider. Claim through WAAMS within 60 days.' },
             '2025-12-22', 'https://www.wa.gov.au/service/education-and-training/vocational-education/travel-and-accommodation-allowance-apprentices-and-trainees', 'WA Government — Travel and Accommodation Allowance (updated 22 Dec 2025)', true, ''),
-          fig({ kind: 'training', title: 'Construction Training Fund: apprentice support', text: 'Building and construction apprentices can get an Apprentice Support Bonus of $1,000 a year (up to $3,000) and up to $2,000 towards tools and safety gear.' },
+          fig({ kind: 'training', industries: ['building'], title: 'Construction Training Fund: apprentice support', text: 'Building and construction apprentices can get an Apprentice Support Bonus of $1,000 a year (up to $3,000) and up to $2,000 towards tools and safety gear.' },
             '2025-06-01', 'https://www.jobsandskills.wa.gov.au/sites/default/files/uploads/documents/TRAINING_section/jswa-sd-state-government-incentives-and-allowances-for-apprentices-trainees-v3-jun2025.pdf', 'Jobs and Skills WA — State incentives and allowances for apprentices (June 2025)', true, ''),
-          fig({ kind: 'employer', title: 'Employer incentives and payroll tax', text: 'Jobs and Skills WA Employer Incentive: base payment up to $8,500, with loadings (including regional WA). Adult Apprentice Employer Incentive: up to $26,800 for apprentices 21+ in a Priority Start occupation. Construction Training Fund grant: up to $15,000 for construction apprentices. Apprentice wages under a registered training contract are exempt from payroll tax.' },
+          fig({ kind: 'employer', title: 'Employer incentives and payroll tax', text: 'Jobs and Skills WA Employer Incentive: base payment up to $8,500, with loadings (including regional WA) — employers with payroll above $1 million get the payroll tax exemption instead. Adult Apprentice Employer Incentive: up to $26,800 for apprentices 21+ who live and work in WA, in a Priority Start occupation. Apprentice wages under a registered training contract are exempt from payroll tax.' },
+            '2026-10-05', 'https://www.jobsandskills.wa.gov.au/employer-incentives', 'Jobs and Skills WA — Incentives for employers (updated 5 Oct 2026)', true, ''),
+          fig({ kind: 'employer', industries: ['building'], title: 'Construction Training Fund employer grant', text: 'Up to $15,000 for employers of building and construction apprentices, with loadings (including regional).' },
             '2026-10-05', 'https://www.jobsandskills.wa.gov.au/employer-incentives', 'Jobs and Skills WA — Incentives for employers (updated 5 Oct 2026)', true, '')
         ],
         licensing: { electrical: { name: 'Building and Energy (WA)', url: 'https://www.wa.gov.au/organisation/service-delivery/building-and-energy-licensing-and-registration' },

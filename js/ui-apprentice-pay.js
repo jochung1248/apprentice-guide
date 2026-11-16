@@ -32,7 +32,7 @@
   // Age: whole years 15 to 60, corrected on change.
   function readAge() {
     var v = parseFloat($('age').value);
-    return isFinite(v) ? Math.min(60, Math.max(15, Math.round(v))) : 17;
+    return isFinite(v) ? Math.min(60, Math.max(15, Math.floor(v))) : 17; // completed years
   }
   $('age').addEventListener('change', function () { $('age').value = readAge(); });
 
@@ -106,6 +106,7 @@
 
     var st = $('state').value;
     $('state-name').textContent = R.states[st].name;
+    U.waCaveat($('wa-caveat'), st);
     $('state-panel').innerHTML = U.statePanelHtml(st, { trade: trade, regional: radio('location') === 'regional', audience: 'apprentice' });
   }
 

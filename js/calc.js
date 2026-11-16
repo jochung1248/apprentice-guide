@@ -117,7 +117,7 @@
 
   // Adult apprentice = 21 or older when the apprenticeship starts (Fair Work). Ages are whole years, 15-60.
   function apprenticeTypeForAge(age, R) {
-    var a = clamp(Math.round(num(age, 17)), 15, 60);
+    var a = clamp(Math.floor(num(age, 17)), 15, 60); // completed years
     return a >= R.adultAge.value ? 'adult' : 'junior';
   }
 
@@ -134,7 +134,7 @@
     return {
       stream: stream,
       onPriorityList: onList,
-      kapPossible: stream !== 'none',
+      kapPossible: stream !== 'none' || !!t.kapMaybe,
       kapDefault: !!t.kapEligible.value,
       // employer default: KAP if the occupation defaults to KAP, otherwise Priority Hiring if on the list, else none
       employerDefault: t.kapEligible.value ? 'kap' : (onList ? 'phi' : 'none'),
@@ -196,7 +196,7 @@
    * Everything is in 2026–27 rules and thresholds (no bracket indexation).
    */
   function tradeVsUni(inputs, R) {
-    var startAge = clamp(Math.round(num(inputs.startAge, 17)), 15, 40);
+    var startAge = clamp(Math.floor(num(inputs.startAge, 17)), 15, 40);
     var targetAge = clamp(Math.round(num(inputs.targetAge, 25)), startAge + 1, 60);
     var uniStart = Math.max(startAge, Math.round(num(inputs.uniStartAge, startAge)));
     var degreeYears = clamp(Math.round(num(inputs.degreeYears, 3)), 1, 6);

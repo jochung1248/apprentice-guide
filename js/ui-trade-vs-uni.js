@@ -33,8 +33,12 @@
   var lastTrade = null;
   function read() {
     var trade = $('trade').value;
-    if (trade !== lastTrade) { $('kap').checked = !!R.trades[trade].kapEligible.value; lastTrade = trade; }
-    var startAge = Math.round(Math.min(30, Math.max(15, n('start-age', 17))));
+    var opt = C.incentiveOptions(trade, R);
+    if (trade !== lastTrade) { $('kap').checked = opt.kapDefault; lastTrade = trade; }
+    $('kap').disabled = !opt.kapPossible;            // review 3 m5: no KAP for non-KAP trades
+    if (!opt.kapPossible) $('kap').checked = false;
+    $('kap-hint').textContent = R.trades[trade].kapEligible.note;
+    var startAge = Math.floor(Math.min(30, Math.max(15, n('start-age', 17))));
     // Keep the age slider consistent with the start age (at least two years of comparison).
     var tgtEl = $('target');
     tgtEl.min = Math.max(21, startAge + 2);

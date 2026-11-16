@@ -132,22 +132,28 @@
     }
     var kinds = opts.audience === 'employer' ? ['employer', 'training', 'travel'] : ['training', 'travel', 'employer'];
     var titles = { training: 'Training costs', travel: 'Travel and accommodation', employer: 'For employers' };
-    var any = false;
-    kinds.forEach(function (k) {
-      var items = st.items.filter(function (it) { return it.value.kind === k; });
-      if (!items.length) return;
-      any = true;
-      html += '<h3 class="h4-size">' + titles[k] + '</h3><ul class="help-list">' + items.map(function (it) {
+    // Hide items that only apply to some industries (e.g. Construction Training Fund) for other trades.
+    var items = st.items.filter(function (it) { return !it.value.industries || (t && it.value.industries.indexOf(t.industry) >= 0); });
+    // Regional-relevant travel help first when "Regional or remote" is chosen.
+    if (opts.regional) kinds.sort(function (a, b) { return (b === 'travel') - (a === 'travel'); });
+    var groups = kinds.map(function (k) {
+      var its = items.filter(function (it) { return it.value.kind === k; });
+      if (!its.length) return '';
+      return '<h3 class="h4-size">' + titles[k] + '</h3><ul class="help-list">' + its.map(function (it) {
         var hi = opts.regional && it.value.regional;
         return '<li' + (hi ? ' class="hl-item"' : '') + '><strong>' + esc(it.value.title) + (hi ? ' <span class="badge-ok">relevant if you’re regional</span>' : '') +
           '.</strong> ' + esc(it.value.text) + '<br>' + dated(it) + '</li>';
       }).join('') + '</ul>';
-    });
-    if (!any) html += '<p>We couldn’t verify any extra state programs for ' + esc(st.name) + ' yet, so we’ve left this blank rather than guess.</p>';
+    }).filter(Boolean);
+    if (!groups.length) html += '<p>We couldn’t verify any extra state programs for ' + esc(st.name) + ' for this trade, so we’ve left this blank rather than guess.</p>';
+    else if (items.length > 3 && groups.length > 1) {
+      // Long panels: first group visible, the rest behind a disclosure.
+      html += groups[0] + '<details class="state-more"><summary>Show all ' + items.length + ' items</summary>' + groups.slice(1).join('') + '</details>';
+    } else html += groups.join('');
     html += '<p class="hint">We only list programs we could check on an official government site. Others may exist — ask your Apprentice Connect provider.</p>';
     if (opts.regional) {
-      html += '<h3 class="h4-size">Regional or remote</h3><p>' + esc(R.lafhaNote.note) + ' Year 1 amount: ' + money(R.incentives.lafha.value.year1, true) +
-        ' a week. ' + dated(R.lafhaNote, false) + '</p><p class="hint">Award pay is the same in the city and the regions. Travel allowances above depend on distance to training.</p>';
+      html += '<h3 class="h4-size">Moving away from home</h3><ul class="help-list"><li>' + esc(R.lafhaNote.note) + ' Year 1 amount: ' + money(R.incentives.lafha.value.year1, true) +
+        ' a week.<br>' + dated(R.lafhaNote, false) + '</li></ul><p class="hint">Award pay is the same in the city and the regions. State travel help depends on distance to training.</p>';
     }
     if (t && t.licence) {
       var L = st.licensing[t.licence];
@@ -170,7 +176,23 @@
       ' ' + dated(R.under18.consent, false);
   }
 
-  window.TN_UI = { money: money, pct: pct, esc: esc, srcLine: srcLine, $: $, $all: $all,
+  // Sticky input card only when it fits the viewport (review 3 M1); otherwise it scrolls with the page.
+  function fitSticky() {
+    $all('.calc .inputs').forEach(function (el) { el.classList.toggle('fits', el.offsetHeight + 32 <= window.innerHeight); });
+  }
+  window.addEventListener('resize', fitSticky);
+  document.addEventListener('input', function () { setTimeout(fitSticky, 0); });
+  document.addEventListener('change', function () { setTimeout(fitSticky, 0); });
+  document.addEventListener('DOMContentLoaded', fitSticky);
+
+  // One-line WA caveat inside result cards.
+  function waCaveat(el, state) {
+    if (!el) return;
+    if (state === 'WA') { el.hidden = false; el.innerHTML = 'WA sole traders, partnerships and trusts use WA state awards, not these national rates — <a href="#state-card">see below</a>.'; }
+    else { el.hidden = true; el.innerHTML = ''; }
+  }
+
+  window.TN_UI = { waCaveat: waCaveat, fitSticky: fitSticky, money: money, pct: pct, esc: esc, srcLine: srcLine, $: $, $all: $all,
     fillTradeSelect: fillTradeSelect, fillStateSelect: fillStateSelect, statePanelHtml: statePanelHtml,
     ageExplain: ageExplain, under18Html: under18Html, dated: dated };
 })();
