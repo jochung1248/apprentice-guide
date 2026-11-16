@@ -34,8 +34,11 @@
     var trade = $('trade').value;
     if (trade !== lastTrade) { $('kap').checked = !!R.trades[trade].kapEligible.value; lastTrade = trade; }
     var startAge = Math.round(Math.min(30, Math.max(15, n('start-age', 17))));
+    // Keep the age slider consistent with the start age (at least two years of comparison).
+    var tgtEl = $('target');
+    tgtEl.min = Math.max(21, startAge + 2);
     var target = Math.round(n('target', 25));
-    if (target <= startAge + 1) target = startAge + 2;
+    if (target < +tgtEl.min) { target = +tgtEl.min; tgtEl.value = target; }
     return {
       trade: trade, startAge: startAge, targetAge: target, y12: $('y12').checked, kapEligible: $('kap').checked,
       marketLoading: Math.max(0, n('loading', 0)) / 100, payGrowth: Math.max(0, n('growth', 0)) / 100,
@@ -134,10 +137,10 @@
       dT.setAttribute('cx', cx); dT.setAttribute('cy', Y(r.trade.position)); dT.setAttribute('opacity', 1);
       dU.setAttribute('cx', cx); dU.setAttribute('cy', Y(r.uni.position)); dU.setAttribute('opacity', 1);
       tip.innerHTML = '<b>By age ' + r.endAge + '</b><br>' +
-        '<i style-color="trade"></i>Trade (' + U.esc(r.trade.stage) + '): ' + U.money(r.trade.position) + '<br>' +
-        '<i style-color="uni"></i>Uni (' + U.esc(r.uni.stage) + '): ' + U.money(r.uni.position) +
+        '<i data-series="trade"></i>Trade (' + U.esc(r.trade.stage) + '): ' + U.money(r.trade.position) + '<br>' +
+        '<i data-series="uni"></i>Uni (' + U.esc(r.uni.stage) + '): ' + U.money(r.uni.position) +
         (r.uni.helpBalance > 0 ? '<br><span>HELP owed: ' + U.money(r.uni.helpBalance) + '</span>' : '');
-      tip.querySelectorAll('i').forEach(function (i) { i.style.background = COLORS[i.getAttribute('style-color')]; });
+      tip.querySelectorAll('i').forEach(function (i) { i.style.background = COLORS[i.getAttribute('data-series')]; });
       var left = cx * (box.width / W);
       var tw = tip.offsetWidth || 180;
       tip.style.left = Math.max(0, Math.min(box.width - tw, left + 12 > box.width - tw ? left - tw - 12 : left + 12)) + 'px';
@@ -161,6 +164,8 @@
     $('hero-label').textContent = 'By age ' + res.targetAge;
     var ahead = s.difference >= 0 ? 'trade' : 'uni';
     $('hero-figure').textContent = U.money(Math.abs(s.difference));
+    $('sticky-num').textContent = U.money(Math.abs(s.difference));
+    $('sticky-label').textContent = (ahead === 'trade' ? 'trade' : 'uni') + ' ahead by age ' + res.targetAge;
     $('hero-text').textContent = (ahead === 'trade' ? 'The trade path is ahead' : 'The uni path is ahead') +
       ' on these assumptions (total take-home pay, minus any HELP debt still owing).' +
       (ahead === 'trade' ? ' The uni path hasn’t caught up by ' + res.targetAge + '.' : (s.breakEvenAge ? ' Uni pulled ahead by age ' + s.breakEvenAge + '.' : ''));

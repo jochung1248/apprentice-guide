@@ -34,7 +34,7 @@
     atoTaxCut: 'https://www.ato.gov.au/about-ato/new-legislation/in-detail/individuals/personal-income-tax-new-tax-cuts-for-every-australian-taxpayer',
     atoLito: 'https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-income-tax-offset',
     atoMedicareLow: 'https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy/medicare-levy-reduction/medicare-levy-reduction-for-low-income-earners',
-    atoSuper: 'https://www.ato.gov.au/businesses-and-organisations/super-for-employers/quarterly-super-to-30-june-2026/how-much-super-to-pay',
+    atoSuper: 'https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super/paying-super-on-payday/making-super-payments',
     atoHelp: 'https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds',
     dewrPayments: 'https://www.dewr.gov.au/id/download/16760/australian-apprenticeships-incentive-system-payment-summary/43087/australian-apprenticeships-incentive-system-payments-overview/pdf',
     dewrKapFactsheet: 'https://www.dewr.gov.au/download/17045/key-apprenticeship-program-factsheet/41879/key-apprenticeship-program-factsheet/pdf',
@@ -159,7 +159,7 @@
         '2026–27 thresholds had not been published when checked, so the 2025–26 single thresholds are used. The 10c-per-$1 phase-in is inferred from the ATO worked example.')
     },
 
-    superGuarantee: fig(0.12, FY_START, SRC.atoSuper, 'ATO — Super guarantee percentage', true,
+    superGuarantee: fig(0.12, FY_START, SRC.atoSuper, 'ATO — How to work out and pay super (earnings paid from 1 July 2026)', true,
       '12% for 2025–26 and stays at 12% from 1 July 2026. From 1 July 2026 super must be paid each payday (Payday Super) and is calculated on qualifying earnings.'),
 
     // ---- Government payments ---------------------------------------------
@@ -174,8 +174,11 @@
         partTime: [{ month: 6, amount: 1000 }, { month: 12, amount: 1500 }]
       }, '2026-01-01', SRC.dewrPayments, 'DEWR — Australian Apprenticeships Incentive System payments overview (effective 1 Jul 2026)', true,
         'KAP Employer Incentive: up to $5,000 (full-time) in the first year, for apprentices commencing or recommencing on or after 1 January 2026. The Minister announced it is available for commencements to December 2026 — check what applies after that.'),
-      priorityHiring: fig({ firstYearMax: 2500 }, '2026-01-01', SRC.dewrPayments, 'DEWR — Australian Apprenticeships Incentive System payments overview (effective 1 Jul 2026)', true,
-        'Priority Hiring Incentive for employers of apprentices in other Priority List occupations (not KAP): up to $2,500 in the first year for commencements from 1 Jan 2026, paid at 6 and 12 months.'),
+      priorityHiring: fig({
+        fullTime: [{ month: 6, amount: 1000 }, { month: 12, amount: 1500 }],
+        partTime: [{ month: 6, amount: 500 }, { month: 12, amount: 750 }]
+      }, '2026-01-01', SRC.dewrPayments, 'DEWR — Australian Apprenticeships Incentive System payments overview (effective 1 Jul 2026)', true,
+        'Priority Hiring Incentive for employers of apprentices in other Priority List occupations (not KAP): up to $2,500 full-time ($1,000 at 6 months, $1,500 at 12 months) or $1,250 part-time ($500 + $750) in the first year.'),
       aatsp: fig({ fullTime: [{ month: 6, amount: 625 }, { month: 12, amount: 625 }, { month: 18, amount: 625 }, { month: 24, amount: 625 }] },
         '2026-01-01', SRC.dewrPayments, 'DEWR — Australian Apprenticeships Incentive System payments overview (effective 1 Jul 2026)', true,
         'Australian Apprentice Training Support Payment: $2,500 over two years for full-time apprentices in Priority List occupations that are not KAP. Not paid on top of KAP.'),
@@ -235,13 +238,13 @@
         'About 95% of trade apprentices who completed were employed after training (NCVER reports 94.8%; we could not open the NCVER page itself).'),
       nonCompletersEmployed: fig(77, '2025-01-01', SRC.ministerOutcomes, 'Minister for Skills and Training media release citing NCVER Apprentice and trainee outcomes 2025', true,
         '77% of apprentices and trainees who left before completing were employed afterwards.'),
-      nonCompleterEmploymentReasons: fig(27.7, '2025-01-01', SRC.ncverOutcomes2025, 'NCVER — Apprentice and trainee outcomes 2025', false,
-        'Share of trade non-completers whose main reason for leaving was dissatisfaction with pay, conditions or the workplace (from the project brief; NCVER pages blocked our checker).'),
+      nonCompleterEmploymentReasons: fig(27.7, '2025-01-01', SRC.ncverOutcomes2025, 'NCVER — Apprentice and trainee outcomes 2025', true,
+        'For trade occupations, dissatisfaction with pay, working conditions or the workplace was the most common main reason for not completing (27.7%). The same report puts trade completers in work after training at 94.8%.'),
       tradeFourYearAttrition: fig(42, '2021-01-01', SRC.futureCampusCompletion, 'Future Campus (28 Jul 2026) reporting NCVER Apprentice and trainee completion rates 2025', false,
         'About 42% of trade apprentices who started in 2021 had dropped out within four years. Secondary source — NCVER page blocked our checker.'),
-      tradeSixYearCompletion: fig(58.7, '2019-01-01', SRC.futureCampusCompletion, 'Future Campus (28 Jul 2026) reporting NCVER Apprentice and trainee completion rates 2025', false,
-        'Six-year completion rate for trade apprentices who started in 2019. Secondary source.'),
-      electricianSixYearCompletion: fig(72, '2019-01-01', SRC.futureCampusCompletion, 'Future Campus (28 Jul 2026) reporting NCVER', false,
+      tradeSixYearCompletion: fig(58.7, '2026-07-01', SRC.futureCampusCompletion, 'Future Campus (28 Jul 2026) reporting NCVER Apprentice and trainee completion rates 2025', false,
+        'Six-year completion rate for trade apprentices in the latest cohort NCVER can track over six years (cohort year not stated in the article). Secondary source.'),
+      electricianSixYearCompletion: fig(72, '2026-07-01', SRC.futureCampusCompletion, 'Future Campus (28 Jul 2026) reporting NCVER', false,
         'Electricians had the highest six-year completion rate (about 72%). Secondary source.'),
       housingExtraWorkers: fig(116700, '2025-09-01', SRC.buildSkillsAigroup, 'Ai Group summary of BuildSkills Australia 2025 Housing Workforce Capacity Study', false,
         'Extra workers needed (above business-as-usual) to build 1.2 million homes under the National Housing Accord by 2029. Secondary source — BuildSkills report not opened directly.'),

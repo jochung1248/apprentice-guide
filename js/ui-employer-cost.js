@@ -11,13 +11,26 @@
   $('fees').value = R.illustrative.tafeFees.value;
   $('tools').value = R.illustrative.toolsPpe.value;
 
+  // Ordinary hours: 1 to 38. Out-of-range entries are corrected in the field (on change) with a hint.
+  function clampHours() {
+    var el = $('hours'), full = R.ordinaryHours.value, v = parseFloat(el.value), h = v;
+    if (!isFinite(v) || v < 1) h = isFinite(v) ? 1 : full; else if (v > full) h = full;
+    $('hours-hint').textContent = h !== v && el.value !== '' ? (v > full ? 'Max ' + full + ' ordinary hours a week — using ' + full + '.' : 'Enter at least 1 hour — using ' + h + '.') : 'Full time is ' + full + '. Fewer hours = part-time.';
+    return h;
+  }
+  $('hours').addEventListener('change', function () {
+    var h = clampHours(), msg = $('hours-hint').textContent;
+    $('hours').value = h;
+    setTimeout(function () { $('hours-hint').textContent = msg; }, 0); // keep the correction message after the re-render
+  });
+
   var lastTrade = null;
   function render() {
     var trade = $('trade').value, t = R.trades[trade];
     if (trade !== lastTrade) { $('incentive').value = t.kapEligible.value ? 'kap' : 'phi'; lastTrade = trade; }
     var inputs = {
       trade: trade, year: parseInt(radio('year'), 10), type: radio('type'), y12: $('y12').checked,
-      hours: Math.min(R.ordinaryHours.value, Math.max(1, n('hours', R.ordinaryHours.value))),
+      hours: clampHours(),
       workersCompRate: Math.max(0, n('comp', 0)) / 100, tafeFees: Math.max(0, n('fees', 0)), toolsPpe: Math.max(0, n('tools', 0)),
       incentive: $('incentive').value
     };
@@ -25,14 +38,17 @@
 
     $('hero-label').textContent = 'Net cost, year ' + r.year;
     $('out-week').textContent = U.money(r.netWeekly);
+    $('sticky-num').textContent = U.money(r.netWeekly);
+    $('sticky-label').textContent = 'a week, net cost in year ' + r.year;
     $('out-year').textContent = U.money(r.netCost);
     $('out-hourly').textContent = U.money(r.hourly, true) + '/hr';
     $('out-gross').textContent = U.money(r.grossCost);
     $('out-inc').textContent = r.incentive ? '−' + U.money(r.incentive) : U.money(0);
 
     var inc = $('incentive').value, hint = '';
-    if (inc === 'kap') hint = 'Up to ' + U.money(r.incentiveAvailable) + ' in the first year (paid at 6 and 12 months) for KAP apprentices who commence by the end of December 2026. ';
-    else if (inc === 'phi') hint = 'Up to ' + U.money(r.incentiveAvailable) + ' in the first year (paid at 6 and 12 months) for other Priority List occupations. Part-time amounts are lower. ';
+    var ftpt = r.partTime ? ' (part-time amount)' : ' (full-time amount)';
+    if (inc === 'kap') hint = 'Key Apprenticeship Program employer incentive: up to ' + U.money(r.incentiveAvailable) + ftpt + ' in the first year, paid at 6 and 12 months, for KAP apprentices who commence by the end of December 2026. ';
+    else if (inc === 'phi') hint = 'Priority Hiring Incentive: up to ' + U.money(r.incentiveAvailable) + ftpt + ' in the first year, paid at 6 and 12 months, for other Priority List occupations. ';
     if (r.year > 1 && inc !== 'none') hint += 'Incentives are first-year only, so none is deducted in year ' + r.year + '.';
     $('incentive-hint').textContent = hint;
 

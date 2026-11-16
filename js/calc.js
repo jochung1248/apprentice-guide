@@ -157,6 +157,8 @@
    * Uni path: before uniStartAge and while studying, income = partTimeIncome.
    * HELP: contribution added at the start of each study year; each year the compulsory
    * repayment (on that year's income) is deducted, then the remaining balance is indexed.
+   * Simplification: in reality debt less than 11 months old isn't indexed on the next 1 June,
+   * so this slightly overstates the HELP balance (stated on about-data.html and in the guide).
    * Everything is in 2026–27 rules and thresholds (no bracket indexation).
    */
   function tradeVsUni(inputs, R) {
@@ -258,7 +260,7 @@
     if (inputs.incentive === 'kap') {
       defaultIncentive = R.incentives.kapEmployer.value[partTime ? 'partTime' : 'fullTime'].reduce(function (s, p) { return s + p.amount; }, 0);
     } else if (inputs.incentive === 'phi') {
-      defaultIncentive = R.incentives.priorityHiring.value.firstYearMax;
+      defaultIncentive = R.incentives.priorityHiring.value[partTime ? 'partTime' : 'fullTime'].reduce(function (s, p) { return s + p.amount; }, 0);
     }
     var incentive = year === 1 ? Math.max(0, num(inputs.incentiveAmount, defaultIncentive)) : 0;
     var net = round2(gross - incentive);
