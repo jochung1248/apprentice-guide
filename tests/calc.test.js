@@ -280,7 +280,8 @@ test('age -> adult derivation (21+ at start), with clamping to 15-60', () => {
   assert.equal(C.apprenticeTypeForAge(14, R), 'junior'); // clamped to 15
   assert.equal(C.apprenticeTypeForAge(60, R), 'adult');
   assert.equal(C.apprenticeTypeForAge(75, R), 'adult');  // clamped to 60
-  assert.equal(C.apprenticeTypeForAge(20.6, R), 'adult'); // rounds to 21
+  assert.equal(C.apprenticeTypeForAge(20.6, R), 'junior'); // completed years: 20.6 -> 20
+  assert.equal(C.apprenticeTypeForAge(21.0, R), 'adult');
 });
 
 test('under-21 edge cases: Year 12 counts at 20, is ignored at 21', () => {
@@ -304,6 +305,9 @@ test('incentive options follow the Priority List streams', () => {
   assert.deepEqual([o('concreter').employerDefault, o('concreter').onPriorityList, o('concreter').apprenticeFallback], ['none', false, 'check']);
   assert.deepEqual([o('lightvehicle').stream, o('lightvehicle').kapDefault], ['newEnergy', false]);
   assert.equal(o('fitter').employerDefault, 'phi');
+  // edge cases: diesel / vehicle painter qualifications also sit under KAP occupations -> KAP possible but not default
+  assert.deepEqual([o('diesel').kapPossible, o('diesel').kapDefault], [true, false]);
+  assert.deepEqual([o('hairdresser').kapPossible, o('cook').kapPossible, o('concreter').kapPossible], [false, false, false]);
   for (const k of Object.keys(R.trades)) {
     const t = R.trades[k];
     if (t.kapStream.value === 'none') assert.equal(t.kapEligible.value, false, k + ' non-KAP trade must not default to KAP');

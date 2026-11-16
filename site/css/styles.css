@@ -137,7 +137,7 @@ main { display: block; }
 
 /* ---------- Calculator layout ---------- */
 .calc { display: grid; gap: 1.1rem; align-items: start; }
-@media (min-width: 960px) { .calc { grid-template-columns: minmax(300px, 400px) 1fr; } .calc .inputs { position: sticky; top: 1rem; } }
+@media (min-width: 960px) { .calc { grid-template-columns: minmax(300px, 400px) 1fr; } }
 fieldset { border: 0; padding: 0; margin: 0 0 1rem; min-width: 0; }
 fieldset + fieldset { padding-top: .35rem; }
 legend { font-size: .82rem; padding: 0; margin-bottom: .5rem; color: var(--ink); }
@@ -346,6 +346,13 @@ details[open] > summary { margin-bottom: .5rem; }
 fieldset.field { margin-bottom: .95rem; }
 fieldset.field .seg span { padding: .45rem .7rem; font-size: .95rem; }
 input[type="checkbox"]:disabled + span { color: var(--steel); }
-/* v1.1: the input card can be taller than the screen; keep it sticky but scrollable so every field is reachable */
-@media (min-width: 960px) { .calc .inputs { max-height: calc(100vh - 2rem); overflow-y: auto; overscroll-behavior: contain; } }
+/* Review 3 M1: input cards scroll with the page (no sticky, no inner scroll), so no field is ever hidden.
+   JS (ui-common) re-enables sticky only when the card fits the viewport. */
+@media (min-width: 960px) { .calc .inputs.fits { position: sticky; top: 1rem; } }
+/* Review 3 m12: keep focused fields clear of the mobile sticky result bar */
+@media (max-width: 959px) { html { scroll-padding-bottom: 6rem; } }
+/* WA caveat inside result cards */
+.wa-caveat { margin: .7rem 0 0; padding: .5rem .7rem; background: var(--concrete); border-left: 5px solid var(--hivis); border-radius: var(--r-ctl); font-size: .9rem; font-weight: 600; }
+.state-more > summary { font-weight: 800; }
+.state-more { margin-top: .8rem; }
 .breakdown .badge-ill { white-space: normal; border-radius: 8px; }

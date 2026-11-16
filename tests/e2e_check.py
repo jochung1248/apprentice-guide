@@ -117,7 +117,7 @@ with sync_playwright() as p:
     page.check('input[name=year][value="1"]', force=True); page.select_option('#state', 'WA'); page.check('input[name=location][value="regional"]', force=True)
     page.wait_for_timeout(50)
     report['v11_hairdresser_wa'] = {'week': page.text_content('#out-week'), 'kap_title': page.text_content('#kap-title'),
-        'wa_notice': 'WA employers' in page.inner_html('#state-panel'), 'regional': 'Regional or remote' in page.inner_html('#state-panel'),
+        'wa_notice': 'WA employers' in page.inner_html('#state-panel'), 'regional': 'Moving away from home' in page.inner_html('#state-panel'), 'wa_caveat': page.is_visible('#wa-caveat'),
         'u18': page.is_visible('#u18-note'), 'optgroups': page.locator('#trade optgroup').count(), 'trades': page.locator('#trade option').count()}
     if not report['v11_hairdresser_wa']['wa_notice'] or report['v11_hairdresser_wa']['trades'] < 15:
         problems.append('v1.1 state panel / trade list check failed')

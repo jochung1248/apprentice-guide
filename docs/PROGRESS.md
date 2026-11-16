@@ -1,7 +1,7 @@
 # Apprentice Guide — progress log
 
 ## Status (17 Nov 2026)
-MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 14 Minors; all Majors and most Minors are fixed (see below). **Awaiting the round-2 reviewer's re-test/sign-off of M1–M6 (criterion 7).**
+v1.1 is live on GitHub Pages (`gh-pages`). Review round 3 (`docs/REVIEW-3.md`, no blockers) is addressed: M1–M2 and the minors below. Waiting on the reviewer's re-check.
 
 ## What's built
 - Pages: `index.html`, `apprentice-pay.html`, `trade-vs-uni.html`, `employer-cost.html`, `about-data.html`, `guides/index.html` + 5 guides.
@@ -9,6 +9,11 @@ MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 1
 - Maths: `site/js/calc.js` (UMD, pure functions).
 - Tests: `tests/calc.test.js` (hand-worked examples), `tests/content.test.js` (figure traceability, CSP, structure), `tests/e2e_check.py` (Playwright screenshots, console errors, calculator and form runs, `--offline`).
 - Brand: `docs/BRAND.md` applied in `site/css/styles.css`.
+
+## Review round 3 fixes (17 Nov 2026)
+- M1: input cards are no longer inner-scrolling; they scroll with the page and are only sticky when they fit the viewport (`fitSticky()` in ui-common.js toggles `.fits`).
+- M2: with WA selected, a one-line caveat appears in the payslip card and the employer result card, linking to the state panel.
+- m1/m2 WA wording (fee-free list; $1m payroll and "live and work in WA" conditions). m3: construction-only state items (Construction Training Fund) are hidden for non-building trades; panels with more than 3 items show the first group and put the rest behind "Show all N items". m4: age uses completed years (floor). m5: trade-vs-uni KAP box is disabled for non-KAP trades (training support payment and 3-year terms are still not modelled). m6: under-18 consent note is state-neutral. m7: "above" wording. m8: stale notes removed (`kapOccupationList`, "three awards"). m9: "Moving away from home" block styled like other items. m10: hair source is now the Fair Work pay guide. m11: diesel and vehicle painter are "usually not KAP", depending on qualification (box enabled, off by default). m12: `scroll-padding-bottom` under 960px.
 
 ## v1.1 (17 Nov 2026)
 - **22 trades across 9 awards**, grouped by industry in all three calculators (optgroups built from `rates.js`). New awards: MA000005, MA000089, MA000009 (cooks; MA000119 noted for restaurants), MA000010, MA000029, MA000101. New MA000020 groups: plasterer, roof tiler, painter/glazier, "all others" (concreter, mapping unverified). Wall and floor tiler is now its own entry. Air-con/refrigeration was left out (the award varies by employer).
@@ -56,7 +61,7 @@ MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 1
   - Not done: trade-vs-uni field reordering/collapsing on mobile (sticky bar addresses the main problem); m9 model change (stated instead).
 
 ## Known issues
-- Unverified (labelled in UI): Medicare levy low-income thresholds (2025–26 values used); per-trade KAP eligibility (provider list); NCVER completion figures 42% / 58.7% / 72% and BuildSkills 116,700 (secondary sources); all illustrative assumptions (part-time study income $15,000, pay growth 3%, market loading 0%, workers comp 4%, training fees $1,000, tools/PPE $800).
+- Unverified (labelled in UI): Medicare levy low-income thresholds (2025–26 values used); NCVER completion figures 42% / 58.7% / 72% and BuildSkills 116,700 (secondary sources); all illustrative assumptions (part-time study income $15,000, pay growth 3%, market loading 0%, workers comp 4%, training fees $1,000, tools/PPE $800).
 - Not verified: tax treatment of KAP payments; concreter award mapping ("all others" group); state items we couldn't verify were left out (see DATA_SOURCES.md v1.1).
 - HELP indexation is applied to new debt immediately (slightly overstates balances; stated in UI copy).
 - Canonical URLs are `example.com` placeholders. Working name and domain unchecked.

@@ -11,7 +11,7 @@
   U.fillStateSelect($('state'), 'NSW');
   function readAge() {
     var v = parseFloat($('age').value);
-    return isFinite(v) ? Math.min(60, Math.max(15, Math.round(v))) : 17;
+    return isFinite(v) ? Math.min(60, Math.max(15, Math.floor(v))) : 17; // completed years
   }
   $('age').addEventListener('change', function () { $('age').value = readAge(); });
 
@@ -54,6 +54,7 @@
     if (age < 18) { u18.hidden = false; u18.innerHTML = '<p>' + U.under18Html() + '</p>'; } else { u18.hidden = true; u18.innerHTML = ''; }
     var st = $('state').value;
     $('state-name').textContent = R.states[st].name;
+    U.waCaveat($('wa-caveat'), st);
     $('state-panel').innerHTML = U.statePanelHtml(st, { trade: trade, regional: radio('location') === 'regional', audience: 'employer' });
 
     $('hero-label').textContent = 'Net cost, year ' + r.year;
