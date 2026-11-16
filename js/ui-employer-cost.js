@@ -1,4 +1,4 @@
-/* Tradie Numbers — ui-employer-cost.js: wires employer-cost.html to calc.employerCost(). */
+/* Apprentice Guide — ui-employer-cost.js: wires employer-cost.html to calc.employerCost(). */
 (function () {
   'use strict';
   var R = window.TN_RATES, C = window.TN_CALC, U = window.TN_UI;

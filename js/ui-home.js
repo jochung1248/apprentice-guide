@@ -1,4 +1,4 @@
-/* Tradie Numbers — ui-home.js: home-page hook figure, computed live from rates.js. */
+/* Apprentice Guide — ui-home.js: home-page hook figure, computed live from rates.js. */
   (function () {
     var R = window.TN_RATES, C = window.TN_CALC, U = window.TN_UI;
     var r = C.apprenticePay({ trade: 'electrician', year: 1, type: 'junior', y12: false, hours: 38 }, R);

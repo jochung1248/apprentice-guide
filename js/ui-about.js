@@ -1,4 +1,4 @@
-/* Tradie Numbers — ui-about.js: renders the sources table on about-data.html straight from rates.js. */
+/* Apprentice Guide — ui-about.js: renders the sources table on about-data.html straight from rates.js. */
 (function () {
   'use strict';
   var R = window.TN_RATES, U = window.TN_UI;

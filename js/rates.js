@@ -1,5 +1,5 @@
 /*
- * Tradie Numbers — rates.js
+ * Apprentice Guide — rates.js
  * SINGLE SOURCE OF TRUTH for every figure shown on the site.
  *
  * Each figure is an object: { value, effectiveFrom, sourceUrl, sourceName, verified, note }
@@ -61,7 +61,7 @@
 
   return {
     meta: {
-      siteName: 'Tradie Numbers',
+      siteName: 'Apprentice Guide',
       lastChecked: '2026-11-17',
       lastCheckedLabel: '17 November 2026',
       financialYear: '2026–27',
@@ -213,19 +213,19 @@
 
     // ---- Illustrative assumptions (NOT verified — UI must label them) ------
     illustrative: {
-      partTimeStudyIncome: fig(15000, FY_START, '', 'Tradie Numbers assumption', false,
+      partTimeStudyIncome: fig(15000, FY_START, '', 'Apprentice Guide assumption', false,
         'Gross part-time income per year while studying. Not from a primary source — edit to suit.'),
-      payGrowth: fig(0.03, FY_START, '', 'Tradie Numbers assumption', false,
+      payGrowth: fig(0.03, FY_START, '', 'Apprentice Guide assumption', false,
         'Yearly pay rise once qualified or graduated. Not from a primary source — edit to suit.'),
-      marketLoading: fig(0, FY_START, '', 'Tradie Numbers assumption', false,
+      marketLoading: fig(0, FY_START, '', 'Apprentice Guide assumption', false,
         'Percentage above the award minimum that a qualified tradesperson earns. We default to 0% (award minimum) because we could not find a primary-source market wage. Many qualified tradies earn well above award — edit to suit.'),
-      workersCompRate: fig(0.04, FY_START, '', 'Tradie Numbers assumption', false,
+      workersCompRate: fig(0.04, FY_START, '', 'Apprentice Guide assumption', false,
         'Workers compensation premium as a % of wages. Real premiums depend on your industry classification, wages and claims history (in NSW, set by icare). Get a quote — edit to suit.'),
-      tafeFees: fig(1000, FY_START, '', 'Tradie Numbers assumption', false,
+      tafeFees: fig(1000, FY_START, '', 'Apprentice Guide assumption', false,
         'Yearly training fees if the employer pays them. In NSW many apprenticeships are fee-free or low-fee — check with your RTO. Edit to suit.'),
-      toolsPpe: fig(800, FY_START, '', 'Tradie Numbers assumption', false,
+      toolsPpe: fig(800, FY_START, '', 'Apprentice Guide assumption', false,
         'Yearly tools, PPE and uniform costs for the employer. Edit to suit.'),
-      supervisionHours: fig(0, FY_START, '', 'Tradie Numbers assumption', false,
+      supervisionHours: fig(0, FY_START, '', 'Apprentice Guide assumption', false,
         'Optional: weekly hours of a qualified worker’s time spent supervising. Default 0. Edit to suit.')
     },
 

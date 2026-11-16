@@ -1,4 +1,4 @@
-/* Tradie Numbers — ui-apprentice-pay.js: wires apprentice-pay.html to calc.apprenticePay(). */
+/* Apprentice Guide — ui-apprentice-pay.js: wires apprentice-pay.html to calc.apprenticePay(). */
 (function () {
   'use strict';
   var R = window.TN_RATES, C = window.TN_CALC, U = window.TN_UI;
