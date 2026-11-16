@@ -55,9 +55,184 @@
   var PG_E = 'Fair Work Ombudsman pay guide — Electrical, Electronic and Communications Contracting Award [MA000025], published 7 Aug 2026';
   var PG_P = 'Fair Work Ombudsman pay guide — Plumbing and Fire Sprinklers Award [MA000036], published 11 Aug 2026';
 
-  var KAP_NOTE = 'Housing-construction occupations on the Australian Apprenticeships Priority List qualify. ' +
-    'This trade appears on a KAP occupation list published by an Apprentice Connect Australia provider; ' +
-    'DEWR does not publish a plain list we could check, so confirm eligibility with your Apprentice Connect provider.';
+  /* ---------------- Award pay tables (FY 2026–27) ----------------
+   * One table per pay-guide group; several trades can share a table. Arrays are [year1..year4],
+   * each {weekly, hourly} for a 38-hour week, apprentices who started on or after 1 Jan 2014.
+   */
+  var SRC2 = {
+    pgHair: 'https://awards.fairwork.gov.au/MA000005.html',
+    pgVehicle: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000089&fileType=pdf',
+    pgHosp: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000009&fileType=pdf',
+    pgManuf: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000010&fileType=pdf',
+    pgJoinery: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000029&fileType=pdf',
+    pgGarden: 'https://calculate.fairwork.gov.au/Download/AwardSummary?awardCode=ma000101&fileType=pdf',
+    priorityList: 'https://www.dewr.gov.au/it/download/17559/australian-apprenticeships-priority-list-1-april-2026/42585/australian-apprenticeships-priority-list-1-april-2026/pdf',
+    fwoAdult: 'https://www.fairwork.gov.au/starting-employment/types-of-employees/apprentices-and-trainees/hairdressing-apprentices'
+  };
+  var PG_H = 'Hair and Beauty Industry Award 2020 [MA000005] — award text, rates from 1 Jul 2026 (Fair Work Ombudsman)';
+  var PG_V = 'Fair Work Ombudsman pay guide — Vehicle Repair, Services and Retail Award [MA000089], published 4 Nov 2026';
+  var PG_HO = 'Fair Work Ombudsman pay guide — Hospitality Industry (General) Award [MA000009], published 24 Jun 2026';
+  var PG_M = 'Fair Work Ombudsman pay guide — Manufacturing and Associated Industries and Occupations Award [MA000010], published 29 Jul 2026';
+  var PG_J = 'Fair Work Ombudsman pay guide — Joinery and Building Trades Award [MA000029], published 24 Jun 2026';
+  var PG_G = 'Fair Work Ombudsman pay guide — Gardening and Landscaping Services Award [MA000101], published 28 Aug 2026';
+  var PL_NAME = 'DEWR — Australian Apprenticeships Priority List (1 April 2026)';
+
+  function prH(h) { return pr(Math.round(h * 38 * 100) / 100, h); } // weekly = hourly x 38 where the guide gives hourly only
+
+  function tbl(id, award, awardShort, src, srcName, noY12, y12, adult, trade, tradeLabel, notes) {
+    return {
+      id: id, award: award, awardShort: awardShort,
+      apprenticeJuniorNoY12: fig(noY12, FY_START, src, srcName, true, notes.junior),
+      apprenticeJuniorY12: fig(y12, FY_START, src, srcName, true, notes.y12 || 'Completed Year 12.'),
+      apprenticeAdult: fig(adult, FY_START, src, srcName, true, notes.adult),
+      tradesperson: fig(trade, FY_START, src, srcName, notes.tradeVerified !== false, tradeLabel)
+    };
+  }
+  var A20 = 'Building and Construction General On-site Award 2020 [MA000020]';
+  var RES = ' Residential work, weekly hire; includes industry and tool allowances. Non-residential (commercial) rates are slightly higher.';
+  var T = {
+    bCarp: tbl('bCarp', A20, 'Building & Construction Award', SRC.pgBuilding, PG_B,
+      [pr(654.49, 17.22), pr(766.40, 20.17), pr(934.27, 24.59), pr(1102.13, 29.00)],
+      [pr(710.45, 18.70), pr(822.36, 21.64), pr(934.27, 24.59), pr(1102.13, 29.00)],
+      [pr(1108.44, 29.17), pr(1108.44, 29.17), pr(1108.44, 29.17), pr(1108.44, 29.17)],
+      pr(1214.04, 31.95), 'Level 3 (CW/ECW 3) carpenter/joiner/tilelayer group.' + RES,
+      { junior: 'Carpenter/joiner/tilelayer group, did not complete Year 12.' + RES, y12: 'Completed Year 12 (years 1–2 only).', adult: 'Adult apprentice (21+ at start); one rate for all years.' }),
+    bBrick: tbl('bBrick', A20, 'Building & Construction Award', SRC.pgBuilding, PG_B,
+      [pr(642.53, 16.91), pr(754.44, 19.85), pr(922.31, 24.27), pr(1090.17, 28.69)],
+      [pr(698.49, 18.38), pr(810.40, 21.33), pr(922.31, 24.27), pr(1090.17, 28.69)],
+      [pr(1096.48, 28.85), pr(1096.48, 28.85), pr(1096.48, 28.85), pr(1096.48, 28.85)],
+      pr(1202.08, 31.63), 'Level 3 bricklayer.' + RES,
+      { junior: 'Bricklayer group, did not complete Year 12.' + RES, adult: 'Adult apprentice; one rate for all years.' }),
+    bPlaster: tbl('bPlaster', A20, 'Building & Construction Award', SRC.pgBuilding, PG_B,
+      [pr(647.37, 17.04), pr(759.28, 19.98), pr(927.15, 24.40), pr(1095.01, 28.82)],
+      [pr(703.33, 18.51), pr(815.24, 21.45), pr(927.15, 24.40), pr(1095.01, 28.82)],
+      [pr(1101.32, 28.98), pr(1101.32, 28.98), pr(1101.32, 28.98), pr(1101.32, 28.98)],
+      pr(1206.92, 31.76), 'Level 3 caster, fixer, floorlayer specialist or plasterer.' + RES,
+      { junior: 'Caster/fixer/plasterer group, did not complete Year 12.' + RES, adult: 'Adult apprentice; one rate for all years.' }),
+    bRoof: tbl('bRoof', A20, 'Building & Construction Award', SRC.pgBuilding, PG_B,
+      [pr(634.86, 16.71), pr(746.77, 19.65), pr(914.64, 24.07), pr(1082.50, 28.49)],
+      [pr(690.82, 18.18), pr(802.73, 21.12), pr(914.64, 24.07), pr(1082.50, 28.49)],
+      [pr(1088.81, 28.65), pr(1088.81, 28.65), pr(1088.81, 28.65), pr(1088.81, 28.65)],
+      pr(1194.41, 31.43), 'Level 3 roof tiler, slateridger or roof fixer.' + RES,
+      { junior: 'Roof tiler group, did not complete Year 12.' + RES, adult: 'Adult apprentice; one rate for all years.' }),
+    bPaint: tbl('bPaint', A20, 'Building & Construction Award', SRC.pgBuilding, PG_B,
+      [pr(623.16, 16.40), pr(735.07, 19.34), pr(902.94, 23.76), pr(1070.80, 28.18)],
+      [pr(679.12, 17.87), pr(791.03, 20.82), pr(902.94, 23.76), pr(1070.80, 28.18)],
+      [pr(1077.11, 28.35), pr(1077.11, 28.35), pr(1077.11, 28.35), pr(1077.11, 28.35)],
+      pr(1182.71, 31.12), 'Level 3 painter or glazier.' + RES,
+      { junior: 'Glazier/painter/signwriter group, did not complete Year 12.' + RES, adult: 'Adult apprentice; one rate for all years.' }),
+    bOther: tbl('bOther', A20, 'Building & Construction Award', SRC.pgBuilding, PG_B,
+      [pr(613.27, 16.14), pr(725.18, 19.08), pr(893.05, 23.50), pr(1060.91, 27.92)],
+      [pr(669.23, 17.61), pr(781.14, 20.56), pr(893.05, 23.50), pr(1060.91, 27.92)],
+      [pr(1067.22, 28.08), pr(1067.22, 28.08), pr(1067.22, 28.08), pr(1067.22, 28.08)],
+      pr(1172.82, 30.86), 'Level 3, not entitled to a tool allowance. We use this row for concreters — our reading of the award, not a named row; check with Fair Work.' + RES,
+      { junior: '"All others" apprentice group, did not complete Year 12. Used for concreting, which the pay guide does not name — check with Fair Work.' + RES, adult: 'Adult apprentice, "all others" group; one rate for all years.', tradeVerified: false }),
+    elec: tbl('elec', 'Electrical, Electronic and Communications Contracting Award 2020 [MA000025]', 'Electrical Contracting Award', SRC.pgElectrical, PG_E,
+      [pr(622.72, 16.39), pr(742.79, 19.55), pr(862.87, 22.71), pr(1006.97, 26.50)],
+      [pr(682.76, 17.97), pr(802.84, 21.13), pr(862.87, 22.71), pr(1006.97, 26.50)],
+      [pr(982.95, 25.87), pr(1098.29, 28.90), pr(1098.29, 28.90), pr(1098.29, 28.90)],
+      pr(1223.11, 32.19), 'Electrical worker grade 5 (licensed electrician). Includes industry, tool and electrician’s licence allowances.',
+      { junior: '4-year apprentice, did not complete Year 12. Pay guide states rates include applicable all-purpose allowances.', adult: 'Adult apprentice.' }),
+    plumb: tbl('plumb', 'Plumbing and Fire Sprinklers Award 2020 [MA000036]', 'Plumbing Award', SRC.pgPlumbing, PG_P,
+      [pr(629.23, 16.56), pr(746.79, 19.65), pr(864.35, 22.75), pr(1099.48, 28.93)],
+      [pr(688.01, 18.11), pr(805.57, 21.20), pr(864.35, 22.75), pr(1099.48, 28.93)],
+      [pr(1046.31, 27.53), pr(1046.31, 27.53), pr(1046.31, 27.53), pr(1099.48, 28.93)],
+      pr(1246.54, 32.80), 'Plumbing and mechanical services tradesperson Level 1, registered. Not-registered rate is $1,201.78/week.',
+      { junior: 'Plumbing and mechanical services, did not complete Year 12. Includes applicable industry, plumbing trade and tool allowances.', adult: 'Adult apprentice, plumbing and mechanical services.' }),
+    hair: tbl('hair', 'Hair and Beauty Industry Award 2020 [MA000005]', 'Hair & Beauty Award', SRC2.pgHair, PG_H,
+      [pr(559.55, 14.73), pr(671.46, 17.67), pr(861.71, 22.68), pr(1007.19, 26.51)],
+      [pr(615.51, 16.20), pr(727.42, 19.14), pr(861.71, 22.68), pr(1007.19, 26.51)],
+      [pr(895.28, 23.56), pr(1056.80, 27.81), pr(1056.80, 27.81), pr(1056.80, 27.81)],
+      pr(1119.10, 29.45), 'Hair and beauty employee level 3 (qualified hairdresser or barber).',
+      { junior: 'Hairdressing apprentice, did not complete Year 12 (50%, 60%, 77%, 90% of the level 3 rate). Most hairdressing apprenticeships run 3 years; the 4th-year rate applies only where relevant.', adult: 'Adult apprentice: year 1 is the greater of 80% of the standard rate or the table rate; later years the greater of the level 1 rate ($1,056.80) or the table rate (award cl. 18.4).' }),
+    vehicle: tbl('vehicle', 'Vehicle Repair, Services and Retail Award 2020 [MA000089]', 'Vehicle Repair Award', SRC2.pgVehicle, PG_V,
+      [pr(559.55, 14.73), pr(671.46, 17.67), pr(839.33, 22.09), pr(984.81, 25.92)],
+      [pr(615.51, 16.20), pr(727.42, 19.14), pr(839.33, 22.09), pr(984.81, 25.92)],
+      [pr(895.28, 23.56), pr(978.10, 25.74), pr(1004.90, 26.44), pr(1029.10, 27.08)],
+      pr(1119.10, 29.45), 'Vehicle industry RS&R tradesperson or equivalent level 1. The pay guide does not map specific trades to levels — check the award classifications.',
+      { junior: 'Vehicle industry RS&R apprentice, did not complete Year 12. One table covers all vehicle trades.', adult: 'Adult apprentice.' }),
+    cook: tbl('cook', 'Hospitality Industry (General) Award 2020 [MA000009]', 'Hospitality Award', SRC2.pgHosp, PG_HO,
+      [pr(615.51, 16.20), pr(727.42, 19.14), pr(895.28, 23.56), pr(1063.15, 27.98)],
+      [pr(615.51, 16.20), pr(727.42, 19.14), pr(895.28, 23.56), pr(1063.15, 27.98)],
+      [pr(895.28, 23.56), pr(978.10, 25.74), pr(978.10, 25.74), pr(1063.15, 27.98)],
+      pr(1119.10, 29.45), 'Level 4 cook (tradesperson) grade 3. Restaurants use the Restaurant Industry Award [MA000119]; we use the Hospitality (General) Award.',
+      { junior: 'Apprentice cook. The pay guide has no Year 12 distinction for cooking apprentices.', y12: 'Same as without Year 12 (no distinction for cooking apprentices).', adult: 'Adult apprentice cook.' }),
+    manuf: tbl('manuf', 'Manufacturing and Associated Industries and Occupations Award 2020 [MA000010]', 'Manufacturing Award', SRC2.pgManuf, PG_M,
+      [pr(559.55, 14.73), pr(671.46, 17.67), pr(839.33, 22.09), pr(984.81, 25.92)],
+      [pr(615.51, 16.20), pr(727.42, 19.14), pr(839.33, 22.09), pr(1029.10, 27.08)],
+      [pr(895.28, 23.56), pr(978.10, 25.74), pr(1004.90, 26.44), pr(1029.10, 27.08)],
+      pr(1119.10, 29.45), 'C10 engineering/manufacturing tradesperson level I.',
+      { junior: 'General manufacturing apprentice (4-year), did not complete Year 12.', y12: 'Completed Year 12 (the pay guide also lifts the 4th-year rate).', adult: 'Adult apprentice, general manufacturing.' }),
+    joinery: tbl('joinery', 'Joinery and Building Trades Award 2020 [MA000029]', 'Joinery Award', SRC2.pgJoinery, PG_J,
+      [pr(601.54, 15.83), pr(713.44, 18.77), pr(881.24, 23.19), pr(1049.14, 27.61)],
+      [pr(657.44, 17.30), pr(769.34, 20.24), pr(881.24, 23.19), pr(1049.14, 27.61)],
+      [pr(948.44, 24.96), pr(993.14, 26.13), pr(1026.74, 27.02), pr(1093.94, 28.78)],
+      pr(1161.04, 30.55), 'Level 5 (all others), joinery/shopfitting work. Excludes the all-purpose tool allowance ($1.08/hr for qualified joiners).',
+      { junior: '4-year apprentice (joinery, shopfitting, stonemasonry or outside work), did not complete Year 12. Includes industry allowance; excludes tool allowance.', adult: 'Adult apprentice.' }),
+    garden: tbl('garden', 'Gardening and Landscaping Services Award 2020 [MA000101]', 'Gardening & Landscaping Award', SRC2.pgGarden, PG_G,
+      [prH(14.73), prH(17.67), prH(22.09), prH(27.98)],
+      [prH(16.20), prH(19.14), prH(22.09), prH(27.98)],
+      [prH(23.56), prH(25.74), prH(25.74), prH(27.98)],
+      pr(1119.10, 29.45), 'Level 4 (adult). The pay guide does not label a landscape tradesperson level — check the award.',
+      { junior: 'Apprentice, did not complete Year 12. The pay guide lists hourly rates only; weekly = hourly × 38.', y12: 'Completed Year 12 (hourly × 38).', adult: 'Adult apprentice (hourly × 38).' })
+  };
+
+  /* ---------------- Trades ----------------
+   * stream: KAP eligibility stream from the Priority List — 'housing' (HCA), 'newEnergy' (NEA), 'both', or 'none'.
+   * priorityList: on the Australian Apprenticeships Priority List (1 April 2026).
+   * licence: 'electrical' | 'plumbing' | null (state licensing note).
+   */
+  var INDUSTRIES = [
+    ['building', 'Building and construction'], ['electrical', 'Electrical and plumbing'], ['automotive', 'Automotive'],
+    ['engineering', 'Engineering and manufacturing'], ['hospitality', 'Hospitality'], ['hair', 'Hair and barbering'], ['outdoor', 'Landscaping']
+  ];
+  function trade(key, label, industry, table, osca, stream, onList, licence, extraNote) {
+    var t = T[table];
+    var streamText = { housing: 'Housing Construction stream', newEnergy: 'New Energy stream', both: 'both the Housing Construction and New Energy streams', none: 'no KAP stream' }[stream];
+    return {
+      key: key, label: label, short: label.toLowerCase(), industry: industry, table: table,
+      award: t.award, awardShort: t.awardShort,
+      apprenticeJuniorNoY12: t.apprenticeJuniorNoY12, apprenticeJuniorY12: t.apprenticeJuniorY12,
+      apprenticeAdult: t.apprenticeAdult, tradesperson: t.tradesperson,
+      licence: licence || null,
+      priorityList: fig(onList, '2026-04-01', SRC2.priorityList, PL_NAME, true,
+        onList ? 'Listed as ' + osca + ' on the Priority List; marked for ' + streamText + '.' : 'Not found on the 1 April 2026 Priority List.'),
+      kapStream: fig(stream, '2026-04-01', SRC2.priorityList, PL_NAME, true,
+        (stream === 'none' ? 'Not a Key Apprenticeship Program occupation.' : 'Eligible for KAP under ' + streamText + ' if the employer provides meaningful work in that sector.') + (extraNote ? ' ' + extraNote : '')),
+      // Default for the "qualifies for KAP" checkbox: on for housing-construction occupations only.
+      kapEligible: fig(stream === 'housing' || stream === 'both', '2026-04-01', SRC2.priorityList, PL_NAME, true,
+        stream === 'newEnergy' ? 'KAP only if the employer works in new energy (e.g. EV or renewable work).' :
+        (stream === 'both' ? 'Eligible if the employer works in housing construction or new energy.' : (stream === 'housing' ? 'Eligible with a housing-construction employer.' : 'Not eligible for KAP.')))
+    };
+  }
+  var TRADES = {};
+  [
+    trade('carpenter', 'Carpenter or carpenter and joiner', 'building', 'bCarp', '372132 Carpenter / 372131 Carpenter and Joiner', 'housing', true),
+    trade('tiler', 'Wall and floor tiler', 'building', 'bCarp', '362431 Wall and Floor Tiler', 'housing', true),
+    trade('bricklayer', 'Bricklayer', 'building', 'bBrick', '371131 Bricklayer', 'housing', true),
+    trade('plasterer', 'Plasterer (wall and ceiling)', 'building', 'bPlaster', '362231 Plasterer (Wall and Ceiling)', 'housing', true),
+    trade('rooftiler', 'Roof tiler', 'building', 'bRoof', '362331 Roof Tiler', 'housing', true),
+    trade('painter', 'Painter and decorator', 'building', 'bPaint', '361231 Painter', 'housing', true),
+    trade('glazier', 'Glazier', 'building', 'bPaint', '362131 Glazier', 'both', true),
+    trade('concreter', 'Concreter', 'building', 'bOther', '', 'none', false, null, 'Concreter is not on the Priority List, so KAP, the Priority Hiring Incentive and the training support payment are unlikely to apply — check with your Apprentice Connect provider.'),
+    trade('cabinetmaker', 'Cabinetmaker or joiner (shopfitting)', 'building', 'joinery', '369131 Cabinet Maker / 372133 Joiner', 'housing', true),
+    trade('electrician', 'Electrician', 'electrical', 'elec', '381231 Electrician (General)', 'both', true, 'electrical'),
+    trade('plumber', 'Plumber', 'electrical', 'plumb', '363131 Plumber (General)', 'both', true, 'plumbing'),
+    trade('lightvehicle', 'Light vehicle mechanic', 'automotive', 'vehicle', '351131 Automotive Technician (General)', 'newEnergy', true),
+    trade('diesel', 'Heavy vehicle / diesel mechanic', 'automotive', 'vehicle', '351433 Diesel Technician', 'none', true),
+    trade('autoelec', 'Auto electrician', 'automotive', 'vehicle', '351231 Automotive Electrician', 'newEnergy', true),
+    trade('panelbeater', 'Panel beater', 'automotive', 'vehicle', '351331 Panelbeater', 'none', true),
+    trade('vehiclepainter', 'Vehicle painter', 'automotive', 'vehicle', '351631 Vehicle Painter', 'none', true),
+    trade('fitter', 'Fitter and turner / mechanical fitter', 'engineering', 'manuf', '332232 Fitter and Turner / 332231 Fitter (General)', 'both', true, null, 'A factory or mining employer usually won’t qualify.'),
+    trade('boilermaker', 'Boilermaker / welder (metal fabrication)', 'engineering', 'manuf', '331131 Metal Fabricator / 331133 Welder (First Class)', 'both', true, null, 'A factory or mining employer usually won’t qualify.'),
+    trade('cook', 'Chef / commercial cook', 'hospitality', 'cook', '322331 Cook', 'none', true),
+    trade('hairdresser', 'Hairdresser', 'hair', 'hair', '392132 Hairdresser', 'none', true),
+    trade('barber', 'Barber', 'hair', 'hair', '392131 Barber', 'none', true),
+    trade('landscaper', 'Landscaper (landscape construction)', 'outdoor', 'garden', '342432 Landscape Gardener', 'housing', true)
+  ].forEach(function (t) { TRADES[t.key] = t; });
+  // The fitter/boilermaker defaults: on the list for both streams, but a manufacturing employer is usually not in housing or new energy.
+  TRADES.fitter.kapEligible.value = false; TRADES.boilermaker.kapEligible.value = false;
+  TRADES.fitter.kapEligible.note = TRADES.boilermaker.kapEligible.note = 'Eligible only if the employer works in housing construction or new energy; most manufacturing employers don’t.';
 
   return {
     meta: {
@@ -73,71 +248,102 @@
     ordinaryHours: fig(38, FY_START, SRC.pgBuilding, PG_B, true,
       'Full-time ordinary hours are 38 per week under all three awards. Pay guide weekly rates assume 38 hours.'),
 
-    // ---- Award minimum rates (weekly hire, apprentices who started on or after 1 Jan 2014) --------
-    // Arrays are indexed by apprentice year: [year1, year2, year3, year4].
-    trades: {
-      carpenter: {
-        label: 'Carpenter, joiner or wall & floor tiler',
-        short: 'carpenter',
-        award: 'Building and Construction General On-site Award 2020 [MA000020]',
-        awardShort: 'Building & Construction Award',
-        apprenticeJuniorNoY12: fig([pr(654.49, 17.22), pr(766.40, 20.17), pr(934.27, 24.59), pr(1102.13, 29.00)], FY_START, SRC.pgBuilding, PG_B, true,
-          '4-year apprentice, started on or after 1 Jan 2014, residential work, carpenter/joiner/tilelayer group. Includes industry and tool allowances. Non-residential (general building) rates are slightly higher.'),
-        apprenticeJuniorY12: fig([pr(710.45, 18.70), pr(822.36, 21.64), pr(934.27, 24.59), pr(1102.13, 29.00)], FY_START, SRC.pgBuilding, PG_B, true,
-          'As above, for apprentices who completed Year 12. The award only distinguishes Year 12 in years 1 and 2.'),
-        apprenticeAdult: fig([pr(1108.44, 29.17), pr(1108.44, 29.17), pr(1108.44, 29.17), pr(1108.44, 29.17)], FY_START, SRC.pgBuilding, PG_B, true,
-          'Adult apprentice (21 or over at commencement), residential, carpenter/joiner/tilelayer group. The pay guide lists one rate for all years.'),
-        tradesperson: fig(pr(1214.04, 31.95), FY_START, SRC.pgBuilding, PG_B, true,
-          'Level 3 (CW/ECW 3) carpenter/joiner/tilelayer, weekly hire, residential. Includes industry and tool allowances.'),
-        kapEligible: fig(true, '2025-07-01', SRC.kapOccupationList, 'KAP eligible occupations list (Apprentice Connect provider, Jul 2025)', false, KAP_NOTE)
-      },
-      bricklayer: {
-        label: 'Bricklayer',
-        short: 'bricklayer',
-        award: 'Building and Construction General On-site Award 2020 [MA000020]',
-        awardShort: 'Building & Construction Award',
-        apprenticeJuniorNoY12: fig([pr(642.53, 16.91), pr(754.44, 19.85), pr(922.31, 24.27), pr(1090.17, 28.69)], FY_START, SRC.pgBuilding, PG_B, true,
-          '4-year apprentice, started on or after 1 Jan 2014, residential, bricklayer/refractory bricklayer group. Includes industry and tool allowances.'),
-        apprenticeJuniorY12: fig([pr(698.49, 18.38), pr(810.40, 21.33), pr(922.31, 24.27), pr(1090.17, 28.69)], FY_START, SRC.pgBuilding, PG_B, true,
-          'As above, completed Year 12 (distinction applies in years 1 and 2 only).'),
-        apprenticeAdult: fig([pr(1096.48, 28.85), pr(1096.48, 28.85), pr(1096.48, 28.85), pr(1096.48, 28.85)], FY_START, SRC.pgBuilding, PG_B, true,
-          'Adult apprentice, residential, bricklayer group. One rate for all years.'),
-        tradesperson: fig(pr(1202.08, 31.63), FY_START, SRC.pgBuilding, PG_B, true,
-          'Level 3 bricklayer, weekly hire, residential. Includes industry and tool allowances.'),
-        kapEligible: fig(true, '2025-07-01', SRC.kapOccupationList, 'KAP eligible occupations list (Apprentice Connect provider, Jul 2025)', false, KAP_NOTE)
-      },
-      electrician: {
-        label: 'Electrician',
-        short: 'electrician',
-        award: 'Electrical, Electronic and Communications Contracting Award 2020 [MA000025]',
-        awardShort: 'Electrical Contracting Award',
-        apprenticeJuniorNoY12: fig([pr(622.72, 16.39), pr(742.79, 19.55), pr(862.87, 22.71), pr(1006.97, 26.50)], FY_START, SRC.pgElectrical, PG_E, true,
-          '4-year apprentice, started on or after 1 Jan 2014, did not complete Year 12. Pay guide states rates include applicable all-purpose allowances.'),
-        apprenticeJuniorY12: fig([pr(682.76, 17.97), pr(802.84, 21.13), pr(862.87, 22.71), pr(1006.97, 26.50)], FY_START, SRC.pgElectrical, PG_E, true,
-          'As above, completed Year 12 (distinction applies in years 1 and 2 only).'),
-        apprenticeAdult: fig([pr(982.95, 25.87), pr(1098.29, 28.90), pr(1098.29, 28.90), pr(1098.29, 28.90)], FY_START, SRC.pgElectrical, PG_E, true,
-          'Adult apprentice, started on or after 1 Jan 2014.'),
-        tradesperson: fig(pr(1223.11, 32.19), FY_START, SRC.pgElectrical, PG_E, true,
-          'Electrical worker grade 5 (licensed electrician). Includes industry, tool and electrician’s licence allowances.'),
-        kapEligible: fig(true, '2025-07-01', SRC.kapOccupationList, 'KAP eligible occupations list (Apprentice Connect provider, Jul 2025)', false,
-          'Electrician (General) is listed under both the housing construction and new energy streams. ' + KAP_NOTE)
-      },
-      plumber: {
-        label: 'Plumber',
-        short: 'plumber',
-        award: 'Plumbing and Fire Sprinklers Award 2020 [MA000036]',
-        awardShort: 'Plumbing Award',
-        apprenticeJuniorNoY12: fig([pr(629.23, 16.56), pr(746.79, 19.65), pr(864.35, 22.75), pr(1099.48, 28.93)], FY_START, SRC.pgPlumbing, PG_P, true,
-          '4-year plumbing and mechanical services apprentice, started after 1 Jan 2014, did not complete Year 12. Includes applicable industry, plumbing trade and tool allowances.'),
-        apprenticeJuniorY12: fig([pr(688.01, 18.11), pr(805.57, 21.20), pr(864.35, 22.75), pr(1099.48, 28.93)], FY_START, SRC.pgPlumbing, PG_P, true,
-          'As above, completed Year 12 (distinction applies in years 1 and 2 only).'),
-        apprenticeAdult: fig([pr(1046.31, 27.53), pr(1046.31, 27.53), pr(1046.31, 27.53), pr(1099.48, 28.93)], FY_START, SRC.pgPlumbing, PG_P, true,
-          'Adult apprentice, plumbing and mechanical services.'),
-        tradesperson: fig(pr(1246.54, 32.80), FY_START, SRC.pgPlumbing, PG_P, true,
-          'Plumbing and mechanical services tradesperson Level 1, registered. Includes industry/special allowance and plumbing trade and registration allowance. Not-registered rate is $1,201.78/week.'),
-        kapEligible: fig(true, '2025-07-01', SRC.kapOccupationList, 'KAP eligible occupations list (Apprentice Connect provider, Jul 2025)', false,
-          'Plumber (General) is listed under both the housing construction and new energy streams. ' + KAP_NOTE)
-      }
+    // ---- Award minimum rates and trades (see TRADES / T above) ----
+    industries: INDUSTRIES,
+    payTables: T,
+    trades: TRADES,
+    adultAge: fig(21, FY_START, SRC2.fwoAdult, 'Fair Work Ombudsman — apprentice pay (adult apprentices are 21 or older when they start)', true,
+      'Adult apprentice rates apply if you are 21 or older when the apprenticeship starts.'),
+
+    // ---- States and territories: extra help, licensing, notices (verified items only; unverifiable items left out) ----
+    // Each item: fig({ kind, title, text, regional }, dateOnSource, url, sourceName, true, note)
+    //   kind: 'training' (free/fee-free training), 'travel' (travel/accommodation help), 'employer' (employer payments/payroll tax)
+    //   regional: true if mainly relevant to apprentices far from training (highlighted when "Regional or remote" is chosen)
+    under18: {
+      tax: fig('excepted', FY_START, 'https://www.ato.gov.au/tax-rates-and-codes/tax-rates-if-you-re-under-18-years-old', 'ATO — Tax rates if you’re under 18', true,
+        'Employment income of under-18s is "excepted income" taxed at the normal adult resident rates; higher minor rates apply to some other income.'),
+      consent: fig('parent-signs', '2026-11-17', 'https://www.apprenticeships.vic.gov.au/your-training-contract', 'Apprenticeships Victoria — Your training contract', true,
+        'In Victoria a parent or guardian must sign the training contract (and any changes) for an apprentice under 18. Other states have similar rules — check with your Apprentice Connect provider.')
+    },
+    waNotice: fig('state-system', '2026-10-27', 'https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-laws-applies', 'WA Government — Which system of employment laws applies (updated 27 Oct 2026)', true,
+      'In WA, sole traders, partnerships and trusts that are not constitutional corporations are covered by the WA state system (WA awards), not the national awards shown here.'),
+    lafhaNote: fig('lafha', '2026-07-01', SRC.dewrPayments, 'DEWR — Australian Apprenticeships Incentive System payments overview (effective 1 Jul 2026)', true,
+      'Living Away From Home Allowance: for apprentices who must move out of a parent’s or guardian’s home for the first time to take up or stay in the apprenticeship, within 36 months of starting. Not available to those getting Youth Allowance, Austudy, ABSTUDY or Centrelink rent assistance, or free/subsidised board from the employer.'),
+    states: {
+      NSW: { name: 'New South Wales',
+        items: [
+          fig({ kind: 'training', title: 'Fee-free apprenticeships', text: 'NSW apprentices whose Smart and Skilled-funded training starts before 30 June 2027 pay no student fee (normally up to $2,000).' },
+            '2026-05-19', 'https://education.nsw.gov.au/skills-nsw/students-and-job-seekers/low-cost-and-free-training-options/fee-free-apprenticeships', 'NSW Department of Education — Fee-free apprenticeships (updated 19 May 2026)', true, ''),
+          fig({ kind: 'travel', regional: true, title: 'Travel and accommodation allowance (VTAS)', text: 'If you travel more than 110 km return to day or block release training: $0.52 per km and $70 per night for accommodation (rates from 1 November 2025). Claim through your local Training Services NSW office.' },
+            '2025-11-01', 'https://education.nsw.gov.au/skills-nsw/apprentices-and-trainees/support-with-your-apprenticeship-or-traineeship/financial-assistance/travel--accommodation-and-relocation-assistance-package', 'NSW Department of Education — Travel, accommodation and relocation assistance', true, ''),
+          fig({ kind: 'employer', title: 'Payroll tax rebate', text: 'Employers can claim a payroll tax rebate on wages paid to apprentices approved by Training Services NSW (not an exemption).' },
+            '2025-07-14', 'https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/taxable-wages/apprentice-and-trainee-wages', 'Revenue NSW — Payroll tax for apprentice and trainee wages (updated 14 Jul 2025)', true, '')
+        ],
+        licensing: { electrical: { name: 'NSW Fair Trading', url: 'https://www.fairtrading.nsw.gov.au/trades-and-businesses/licensing-and-qualifications/electrical-licences' },
+                     plumbing: { name: 'NSW Fair Trading', url: 'https://www.fairtrading.nsw.gov.au/trades-and-businesses/licensing-and-qualifications/plumbing,-draining-and-gasfitting-licences' } } },
+      VIC: { name: 'Victoria',
+        items: [
+          fig({ kind: 'training', title: 'Free TAFE for priority apprenticeships (from 2027)', text: 'From 2027, six priority apprenticeships (including home building, renewable energy, hair styling and baking) join Free TAFE: first-year tuition fees are covered for apprentices who start one at TAFE.' },
+            '2026-10-29', 'https://www.premier.vic.gov.au/free-tafe-apprenticeships-power-victorias-economy', 'Premier of Victoria — Free TAFE apprenticeships (29 Oct 2026)', true, ''),
+          fig({ kind: 'employer', title: 'Payroll tax: re-employed apprentices', text: 'Wages are exempt from payroll tax when an out-of-trade apprentice is hired by a new employer to continue the same training (not the same employer or group).' },
+            '2026-10-22', 'https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/exempt-wages-and-organisations/wages-exempt-payroll-tax', 'State Revenue Office Victoria — Wages exempt from payroll tax (updated 22 Oct 2026)', true, '')
+        ],
+        licensing: { electrical: { name: 'Energy Safe Victoria', url: 'https://www.energysafe.vic.gov.au/licensing/electrical-licences' },
+                     plumbing: { name: 'Building and Plumbing Commission', url: 'https://www.bpc.vic.gov.au/plumbers/registration-and-licensing/which-registration-or-licence-do-i-need' } } },
+      QLD: { name: 'Queensland',
+        items: [
+          fig({ kind: 'training', title: 'Free Apprenticeships for Under 25s', text: 'Course fees are covered for apprentices under 25 in a high-priority apprenticeship who start by 30 June 2027 with an approved Skills Assure Supplier. Uniforms, resources and travel may still cost.' },
+            '2025-08-08', 'https://www.qld.gov.au/education/training/subsidies/freeapprenticeships', 'Queensland Government — Free Apprenticeships for Under 25s (updated 8 Aug 2025)', true, ''),
+          fig({ kind: 'travel', regional: true, title: 'Travel and accommodation allowance', text: 'If your closest training provider is at least 100 km return: up to 34 cents per km (from 1 July 2025) and $58 a night intrastate or $112 interstate.' },
+            '2025-08-11', 'https://www.qld.gov.au/education/apprenticeships/for-apprentices/support/financial', 'Queensland Government — Financial help for apprentices and trainees (updated 11 Aug 2025)', true, ''),
+          fig({ kind: 'employer', title: 'Payroll tax exemption and rebate', text: 'Wages paid to apprentices under a registered training contract may be exempt from payroll tax, and employers may also claim a rebate.' },
+            '2026-09-16', 'https://qro.qld.gov.au/payroll-tax/exemptions/wages/', 'Queensland Revenue Office — Exempt wages for payroll tax (updated 16 Sep 2026)', true, '')
+        ],
+        licensing: { electrical: { name: 'Electrical Safety Office (WorkSafe Queensland)', url: 'https://www.worksafe.qld.gov.au/licensing-and-registrations/electrical-licences/classes-of-licences' },
+                     plumbing: { name: 'Queensland Building and Construction Commission (QBCC)', url: 'https://www.qbcc.qld.gov.au/licences/start-your-career/when-you-need-licence' } } },
+      WA: { name: 'Western Australia',
+        items: [
+          fig({ kind: 'training', title: 'Fee-free apprenticeship courses', text: 'From January 2026 five apprenticeship qualifications are fee-free, in trades such as plumbing, bricklaying and solid plastering.' },
+            '2025-11-04', 'https://www.wa.gov.au/government/media-statements/Cook%20Labor%20Government/Housing-made-possible-thanks-to-fee-free,-low-fee-TAFE-training-20251104', 'WA Government media statement (4 Nov 2025)', true, ''),
+          fig({ kind: 'travel', regional: true, title: 'Travel and Accommodation Allowance', text: 'For WA-resident apprentices who travel more than 70 km round trip to the closest funded training provider. Claim through WAAMS within 60 days.' },
+            '2025-12-22', 'https://www.wa.gov.au/service/education-and-training/vocational-education/travel-and-accommodation-allowance-apprentices-and-trainees', 'WA Government — Travel and Accommodation Allowance (updated 22 Dec 2025)', true, ''),
+          fig({ kind: 'training', title: 'Construction Training Fund: apprentice support', text: 'Building and construction apprentices can get an Apprentice Support Bonus of $1,000 a year (up to $3,000) and up to $2,000 towards tools and safety gear.' },
+            '2025-06-01', 'https://www.jobsandskills.wa.gov.au/sites/default/files/uploads/documents/TRAINING_section/jswa-sd-state-government-incentives-and-allowances-for-apprentices-trainees-v3-jun2025.pdf', 'Jobs and Skills WA — State incentives and allowances for apprentices (June 2025)', true, ''),
+          fig({ kind: 'employer', title: 'Employer incentives and payroll tax', text: 'Jobs and Skills WA Employer Incentive: base payment up to $8,500, with loadings (including regional WA). Adult Apprentice Employer Incentive: up to $26,800 for apprentices 21+ in a Priority Start occupation. Construction Training Fund grant: up to $15,000 for construction apprentices. Apprentice wages under a registered training contract are exempt from payroll tax.' },
+            '2026-10-05', 'https://www.jobsandskills.wa.gov.au/employer-incentives', 'Jobs and Skills WA — Incentives for employers (updated 5 Oct 2026)', true, '')
+        ],
+        licensing: { electrical: { name: 'Building and Energy (WA)', url: 'https://www.wa.gov.au/organisation/service-delivery/building-and-energy-licensing-and-registration' },
+                     plumbing: { name: 'Plumbers Licensing Board (Building and Energy)', url: 'https://www.wa.gov.au/government/multi-step-guides/plumbers-licensing' } } },
+      SA: { name: 'South Australia',
+        items: [
+          fig({ kind: 'travel', regional: true, title: 'Travel and Accommodation Allowance', text: 'A part-payment towards travel and accommodation for apprentices, usually in rural or regional areas, who live a long way from their nearest training location. Your employer checks eligibility and applies.' },
+            '2026-04-02', 'https://mytraining.skills.sa.gov.au/trainees-apprentices/get-started/travel-and-accommodation-allowance', 'Skills SA — Travel and accommodation allowance', true, 'sa.gov.au support page updated 2 Apr 2026.')
+        ],
+        licensing: { electrical: { name: 'Consumer and Business Services (CBS)', url: 'https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trades/licensing' },
+                     plumbing: { name: 'Consumer and Business Services (CBS)', url: 'https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trades/licensing' } } },
+      TAS: { name: 'Tasmania',
+        items: [
+          fig({ kind: 'travel', regional: true, title: 'Travel and Accommodation Contribution', text: 'Help with travel over 21 km each way within Tasmania, accommodation if training is more than 61 km from home, and interstate airfares and overnight stays.' },
+            '2026-11-17', 'https://www.skills.tas.gov.au/apprenticeships_and_traineeships/information_for_learners_about_apprenticeships', 'Skills Tasmania — Information for apprentices (checked 17 Nov 2026)', true, 'Page shows no date.')
+        ],
+        licensing: { electrical: { name: 'Consumer, Building and Occupational Services (CBOS)', url: 'https://www.cbos.tas.gov.au/' },
+                     plumbing: { name: 'Consumer, Building and Occupational Services (CBOS)', url: 'https://www.cbos.tas.gov.au/topics/licensing-and-registration/licensed-occupations/plumbing/practitioner' } } },
+      ACT: { name: 'Australian Capital Territory',
+        items: [
+          fig({ kind: 'travel', title: 'Interstate block-release travel', text: 'A payment towards travel for eligible apprentices who must attend interstate block-release training.' },
+            '2026-11-17', 'https://www.act.gov.au/skills/students/australian-apprenticeships', 'ACT Government — Australian Apprenticeships (checked 17 Nov 2026)', true, 'Page shows no date.'),
+          fig({ kind: 'employer', title: 'Payroll tax: group training', text: 'Wages paid by approved not-for-profit group training organisations to their apprentices are exempt from ACT payroll tax.' },
+            '2011-07-01', 'https://www.revenue.act.gov.au/__data/assets/pdf_file/0008/2944601/PTA070.pdf', 'ACT Revenue Office — Circular PTA070', true, '')
+        ],
+        licensing: { electrical: { name: 'Access Canberra (Construction Occupations Registrar)', url: 'https://www.planning.act.gov.au/professionals/regulation-and-responsibilities/construction-licences' },
+                     plumbing: { name: 'Access Canberra (Construction Occupations Registrar)', url: 'https://www.planning.act.gov.au/professionals/regulation-and-responsibilities/construction-licences' } } },
+      NT: { name: 'Northern Territory',
+        items: [
+          fig({ kind: 'travel', regional: true, title: 'Apprenticeship travel and accommodation subsidy', text: 'A partial contribution to travel and accommodation when your training provider is more than 50 km away (one way). Claim through the Apprentice Connect provider in the NT.' },
+            '2016-03-31', 'https://nt.gov.au/employ/apprenticeships-and-traineeships/support-for-apprentices/apprenticeship-travel-and-accommodation-help', 'NT Government — Apprenticeship travel and accommodation subsidy (page updated 31 Mar 2016)', true, 'The page is old; check current rates before relying on them.')
+        ],
+        licensing: { electrical: { name: 'Electrical Workers and Contractors Licensing Board (NT WorkSafe)', url: 'https://worksafe.nt.gov.au/licensing-and-registration/electrical-licensing/electrical-licenses-and-endorsements' },
+                     plumbing: { name: 'Plumbers and Drainers Licensing Board', url: 'https://plumberslicensing.nt.gov.au/licensing' } } }
     },
 
     // ---- Personal income tax (residents) ----------------------------------

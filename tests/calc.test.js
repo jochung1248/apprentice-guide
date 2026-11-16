@@ -28,11 +28,12 @@ test('every figure in rates.js has the required metadata', () => {
 });
 
 test('pay guide hourly figures are consistent with weekly / 38', () => {
+  // Tolerance 1 cent: the Fair Work pay guides truncate some hourly figures (e.g. joinery adult yr 4: $1,093.94 -> $28.78).
   for (const [key, t] of Object.entries(R.trades)) {
     for (const tbl of ['apprenticeJuniorNoY12', 'apprenticeJuniorY12', 'apprenticeAdult']) {
-      t[tbl].value.forEach((r, i) => assert.ok(Math.abs(r.weekly / 38 - r.hourly) < 0.006, `${key}.${tbl}[${i}]`));
+      t[tbl].value.forEach((r, i) => assert.ok(Math.abs(r.weekly / 38 - r.hourly) < 0.01, `${key}.${tbl}[${i}]`));
     }
-    assert.ok(Math.abs(t.tradesperson.value.weekly / 38 - t.tradesperson.value.hourly) < 0.006, key + ' tradesperson');
+    assert.ok(Math.abs(t.tradesperson.value.weekly / 38 - t.tradesperson.value.hourly) < 0.01, key + ' tradesperson');
   }
 });
 
@@ -228,4 +229,91 @@ test('employerCost: part-time KAP employer incentive is $2,500', () => {
   const r = C.employerCost({ trade: 'carpenter', year: 1, type: 'junior', y12: false, hours: 30,
     workersCompRate: 0.04, tafeFees: 0, toolsPpe: 0, incentive: 'kap' }, R);
   assert.equal(r.partTime, true); assert.equal(r.incentive, 2500);
+});
+
+/* ------------------------------------------------------------------ */
+/* v1.1: more awards, age -> adult derivation, incentives by trade     */
+/* ------------------------------------------------------------------ */
+test('new award example 1: hairdresser (MA000005), 1st year, age 17, no Year 12', () => {
+  // weekly 559.55 (50% of level 3 $1,119.10); annual x 52 = 29,096.60; taxable 29,096
+  // bracket (29,096-18,200) x 15% = 10,896 x 0.15 = 1,634.40; LITO 700 -> income tax 934.40
+  // Medicare phase-in (29,096-28,011) x 10% = 108.50 (< 2% = 581.92); total 1,042.90
+  // take-home 29,096.60 - 1,042.90 = 28,053.70 -> 539.49/wk. Not a KAP occupation -> no KAP.
+  const r = C.apprenticePay({ trade: 'hairdresser', year: 1, age: 17, y12: false, hours: 38 }, R);
+  assert.equal(r.type, 'junior');
+  near(r.weekly, 559.55); near(r.annual, 29096.60); near(r.tax.incomeTax, 934.40); near(r.tax.medicare, 108.50);
+  near(r.takeHomeAnnual, 28053.70); near(r.takeHomeWeekly, 539.49); assert.equal(r.kapTotal, 0);
+});
+
+test('new award example 2: light vehicle mechanic (MA000089), 2nd year, age 22 -> adult', () => {
+  // adult yr 2 weekly 978.10; annual 50,861.20; taxable 50,861
+  // bracket 4,020 + (50,861-45,000) x 30% = 4,020 + 1,758.30 = 5,778.30
+  // LITO 325 - 5,861 x 1.5% = 325 - 87.915 = 237.085 (~237.09) -> income tax 5,541.215 (~5,541.22)
+  // Medicare 2% x 50,861 = 1,017.22; total ~6,558.44; take-home ~44,302.76
+  const r = C.apprenticePay({ trade: 'lightvehicle', year: 2, age: 22, y12: false, hours: 38 }, R);
+  assert.equal(r.type, 'adult');
+  near(r.annual, 50861.20); near(r.tax.lito, 237.09); near(r.tax.medicare, 1017.22); near(r.tax.total, 6558.44);
+  near(r.takeHomeAnnual, 44302.76);
+});
+
+test('new award example 3: apprentice cook (MA000009), 3rd year, age 19', () => {
+  // weekly 895.28 (80% of $1,119.10); annual 46,554.56; taxable 46,554
+  // bracket 4,020 + 1,554 x 30% = 4,486.20; LITO 325 - 1,554 x 1.5% = 301.69 -> 4,184.51
+  // Medicare 2% x 46,554 = 931.08; total 5,115.59; take-home 41,438.97 -> 796.90/wk
+  const r = C.apprenticePay({ trade: 'cook', year: 3, age: 19, y12: true, hours: 38 }, R);
+  near(r.tax.incomeTax, 4184.51); near(r.tax.medicare, 931.08); near(r.takeHomeAnnual, 41438.97); near(r.takeHomeWeekly, 796.90);
+  assert.equal(r.y12Applies, false); // cooking apprentices have no Year 12 distinction
+});
+
+test('new award example 4: cabinetmaker (MA000029), adult 1st year, age 30', () => {
+  // adult yr 1 weekly 948.44; annual 49,318.88; taxable 49,318
+  // bracket 4,020 + 4,318 x 30% = 5,315.40; LITO 325 - 4,318 x 1.5% = 260.23 -> 5,055.17
+  // Medicare 986.36; total 6,041.53; take-home 43,277.35. Housing-construction occupation -> KAP $10,000.
+  const r = C.apprenticePay({ trade: 'cabinetmaker', year: 1, age: 30, y12: false, hours: 38 }, R);
+  near(r.tax.incomeTax, 5055.17); near(r.tax.total, 6041.53); near(r.takeHomeAnnual, 43277.35); assert.equal(r.kapTotal, 10000);
+});
+
+test('age -> adult derivation (21+ at start), with clamping to 15-60', () => {
+  assert.equal(C.apprenticeTypeForAge(20, R), 'junior');
+  assert.equal(C.apprenticeTypeForAge(21, R), 'adult');
+  assert.equal(C.apprenticeTypeForAge(15, R), 'junior');
+  assert.equal(C.apprenticeTypeForAge(14, R), 'junior'); // clamped to 15
+  assert.equal(C.apprenticeTypeForAge(60, R), 'adult');
+  assert.equal(C.apprenticeTypeForAge(75, R), 'adult');  // clamped to 60
+  assert.equal(C.apprenticeTypeForAge(20.6, R), 'adult'); // rounds to 21
+});
+
+test('under-21 edge cases: Year 12 counts at 20, is ignored at 21', () => {
+  // plumber yr 1: age 20 + Year 12 -> junior Y12 rate 688.01; age 21 -> adult 1,046.31 (Year 12 irrelevant)
+  const a20 = C.apprenticePay({ trade: 'plumber', year: 1, age: 20, y12: true, hours: 38 }, R);
+  const a21 = C.apprenticePay({ trade: 'plumber', year: 1, age: 21, y12: true, hours: 38 }, R);
+  near(a20.weekly, 688.01); assert.equal(a20.type, 'junior'); assert.equal(a20.y12Applies, true);
+  near(a21.weekly, 1046.31); assert.equal(a21.type, 'adult'); assert.equal(a21.y12Applies, false);
+  // Year 12 only matters in years 1-2 for building trades
+  assert.equal(C.y12Matters('carpenter', 'junior', 1, R), true);
+  assert.equal(C.y12Matters('carpenter', 'junior', 3, R), false);
+  // employer cost derives the same type from age
+  const e = C.employerCost({ trade: 'bricklayer', year: 1, age: 25, hours: 38, workersCompRate: 0.05, tafeFees: 0, toolsPpe: 0, incentive: 'phi' }, R);
+  near(e.wages, 57016.96); assert.equal(e.type, 'adult');
+});
+
+test('incentive options follow the Priority List streams', () => {
+  const o = (k) => C.incentiveOptions(k, R);
+  assert.deepEqual([o('carpenter').employerDefault, o('carpenter').kapDefault], ['kap', true]);
+  assert.deepEqual([o('hairdresser').employerDefault, o('hairdresser').kapPossible, o('hairdresser').apprenticeFallback], ['phi', false, 'aatsp']);
+  assert.deepEqual([o('concreter').employerDefault, o('concreter').onPriorityList, o('concreter').apprenticeFallback], ['none', false, 'check']);
+  assert.deepEqual([o('lightvehicle').stream, o('lightvehicle').kapDefault], ['newEnergy', false]);
+  assert.equal(o('fitter').employerDefault, 'phi');
+  for (const k of Object.keys(R.trades)) {
+    const t = R.trades[k];
+    if (t.kapStream.value === 'none') assert.equal(t.kapEligible.value, false, k + ' non-KAP trade must not default to KAP');
+  }
+});
+
+test('every state has a name, licensing bodies and only verified, linked items', () => {
+  for (const [code, st] of Object.entries(R.states)) {
+    assert.ok(st.name && st.licensing.electrical.url.startsWith('https://') && st.licensing.plumbing.url.startsWith('https://'), code);
+    for (const it of st.items) { assert.equal(it.verified, true, code + ' ' + it.value.title); assert.match(it.sourceUrl, /^https:\/\//); }
+  }
+  assert.deepEqual(Object.keys(R.states), ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT']);
 });
