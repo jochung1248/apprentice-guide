@@ -16,6 +16,9 @@ You are the build lead. You may use sub-agents, test and iterate. Don't post to 
   - "Apprentice Guide — Launch social posts" (59 artboards: 6 carousels, 6 tweet cards, 4 stat cards, 3 Reel covers, 3 fun posts). Source is in `design/social-posts/`. Captions, alt text, hashtags, Reel scripts and posting order are in `docs/social/POSTS.md`.
 - **Docs:** `docs/BUILD_PLAN.md`, `BRAND.md`, `SOCIAL_CONTENT.md`, `DATA_SOURCES.md`, `PROGRESS.md`, `REVIEW-1.md` and `REVIEW-2.md` (independent review, signed off on 17 Nov 2026).
 
+## Deploy
+Run `tools/deploy-pages.sh` after changes to `site/`. It pushes `site/` to the `gh-pages` branch, which GitHub Pages serves (Settings → Pages → Deploy from branch: gh-pages, /root).
+
 ## Status (17 Nov 2026): MVP done
 - **Pages:** 3 calculators (apprentice take-home pay, trade vs uni, employer cost), 5 guides, an about/data page, and front-end-only forms (newsletter, pre-apprenticeship enquiry, employer dashboard waitlist as a fake door).
 - **Figures:** all award, tax, HELP and incentive figures for 2026–27 are verified against primary sources. Anything unverified is labelled "illustrative — edit to suit".
