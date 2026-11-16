@@ -228,6 +228,9 @@
 
     // ---- Research figures quoted in guides --------------------------------
     research: {
+      awardIncrease2026: fig(4.75, FY_START, 'https://www.fwc.gov.au/documents/resources/annual-wage-review-2026-decision-announcement.pdf',
+        'Fair Work Commission — Annual Wage Review 2026 decision announcement', true,
+        'Modern award minimum wages rose 4.75% from 1 July 2026 (first full pay period on or after). National Minimum Wage $1,004.90 a week.'),
       tradeCompletersEmployed: fig(95, '2025-01-01', SRC.ministerOutcomes, 'Minister for Skills and Training media release citing NCVER Apprentice and trainee outcomes 2025', true,
         'About 95% of trade apprentices who completed were employed after training (NCVER reports 94.8%; we could not open the NCVER page itself).'),
       nonCompletersEmployed: fig(77, '2025-01-01', SRC.ministerOutcomes, 'Minister for Skills and Training media release citing NCVER Apprentice and trainee outcomes 2025', true,

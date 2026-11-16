@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apprentice pay calculator 2026–27 — take-home pay after tax | Tradie Numbers</title>
+<meta name="description" content="Work out an apprentice's award minimum pay, tax, Medicare levy and weekly or fortnightly take-home for carpentry, bricklaying, tiling, electrical and plumbing apprenticeships (2026–27 rates).">
+<link rel="canonical" href="https://www.example.com/apprentice-pay.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%279%27 fill=%27%23FF6B1A%27/%3E%3Cpath d=%27M11 26a9 9 0 0 1 18 0zM8 26h24v3.5H8z%27 fill=%27%2316181D%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="stripe" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#FF6B1A"/><path d="M11 26a9 9 0 0 1 18 0z" fill="#16181D"/><path d="M8 26h24v3.5H8z" fill="#16181D"/><path d="M19 15h2v6h-2z" fill="#FF6B1A"/></svg><span>Tradie <b>Numbers</b></span></a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="apprentice-pay.html" aria-current="page">Apprentice pay</a></li>
+        <li><a href="trade-vs-uni.html">Trade vs uni</a></li>
+        <li><a href="employer-cost.html">Employer cost</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="about-data.html">About the numbers</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Calculator · <span data-fy>2026–27</span></span>
+      <h1>Apprentice take-home pay</h1>
+      <p class="lede">Pick a trade and year to see the award minimum, estimated tax and what actually lands in the bank — plus Key Apprenticeship Program payments if the trade qualifies.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="calc">
+      <form class="card inputs" id="pay-form" aria-label="Apprentice pay inputs">
+        <div class="field">
+          <label for="trade">Trade</label>
+          <select id="trade" name="trade">
+            <option value="carpenter">Carpenter, joiner or wall &amp; floor tiler</option>
+            <option value="bricklayer">Bricklayer</option>
+            <option value="electrician">Electrician</option>
+            <option value="plumber">Plumber</option>
+          </select>
+          <span class="hint" id="award-name">Building and Construction General On-site Award</span>
+        </div>
+        <fieldset>
+          <legend>Year of apprenticeship</legend>
+          <div class="seg">
+            <label><input type="radio" name="year" value="1" checked><span>1st</span></label>
+            <label><input type="radio" name="year" value="2"><span>2nd</span></label>
+            <label><input type="radio" name="year" value="3"><span>3rd</span></label>
+            <label><input type="radio" name="year" value="4"><span>4th</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Type of apprentice</legend>
+          <div class="seg">
+            <label><input type="radio" name="type" value="junior" checked><span>Junior</span></label>
+            <label><input type="radio" name="type" value="adult"><span>Adult (21+)</span></label>
+          </div>
+          <span class="hint">Adult apprentices are 21 or older when they start and get a higher minimum rate.</span>
+        </fieldset>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="y12" name="y12"> <span>Finished Year 12</span></label>
+          <span class="hint" id="y12-hint">Year 12 lifts the minimum in years 1 and 2 for junior apprentices.</span>
+        </div>
+        <div class="field">
+          <label for="hours">Ordinary hours per week</label>
+          <div class="input-suffix"><input id="hours" name="hours" type="number" min="1" max="38" step="0.5" value="38" inputmode="decimal"><span>hrs</span></div>
+          <span class="hint">Full time is 38. Fewer hours = part-time pay (and part-time incentive amounts).</span>
+        </div>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="kap" name="kap" checked> <span>Apprenticeship qualifies for the Key Apprenticeship Program</span></label>
+          <span class="hint">Housing-construction apprenticeships that started on or after 1 July 2025. <a href="guides/key-apprenticeship-program-10000.html">Check eligibility</a>.</span>
+        </div>
+      </form>
+
+      <div class="results" aria-live="polite">
+        <div class="payslip">
+          <div class="payslip-head"><span id="ps-who">Apprentice</span><span>FY <span data-fy>2026–27</span> · award minimum</span></div>
+          <div class="payslip-body">
+            <p class="label">Estimated take-home pay</p>
+            <p class="big num"><span class="hl" id="out-week">—</span><small> / week</small></p>
+            <p><span id="out-fortnight">—</span> a fortnight · <span id="out-year">—</span> a year</p>
+          </div>
+          <div class="tear" aria-hidden="true"></div>
+          <div class="payslip-foot">
+            <dl>
+              <dt>Award minimum rate</dt><dd id="out-hourly">—</dd>
+              <dt>Gross pay per week</dt><dd id="out-gross-week">—</dd>
+              <dt>Tax + Medicare per week</dt><dd id="out-tax-week">—</dd>
+              <dt class="total">Gross pay per year</dt><dd class="total" id="out-gross-year">—</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="h3-size">How we got there</h2>
+          <table class="breakdown">
+            <caption class="visually-hidden">Yearly pay and tax breakdown</caption>
+            <tbody id="breakdown"></tbody>
+          </table>
+          <p class="hint" id="rate-src"></p>
+        </div>
+
+        <div class="card" id="kap-card">
+          <h2 class="h3-size">Key Apprenticeship Program payments</h2>
+          <p id="kap-intro"></p>
+          <ol class="timeline" id="kap-list"></ol>
+          <p class="hint" id="kap-src"></p>
+        </div>
+
+        <div class="note">
+          <p><strong>These are minimums.</strong> Many employers pay above award. Overtime, penalty rates, travel, fares and most other allowances aren't included (the pay guide rates already include the industry and tool allowances where they apply). Tax is an end-of-year estimate for an Australian resident with no other income or deductions, so your pay slip may differ slightly. Check your exact rate with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap article">
+      <h2>Good to know</h2>
+      <ul>
+        <li>Rates shown are for apprentices who started on or after 1 January 2014, on weekly hire. Building trades use the residential rates; non-residential (commercial) rates are slightly higher.</li>
+        <li>Under-18s pay normal resident tax rates on wages — the special minors' rates only apply to things like interest and dividends.</li>
+        <li>Moving out of home for an apprenticeship? You might be eligible for a Living Away From Home Allowance — see the <a href="guides/key-apprenticeship-program-10000.html">incentives guide</a>.</li>
+      </ul>
+      <p>Related: <a href="guides/first-year-apprentice-pay-nsw.html">What first-year apprentices actually earn in NSW</a> · <a href="trade-vs-uni.html">Trade vs uni calculator</a> · <a href="about-data.html">How we calculate</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="apprentice-pay.html">Apprentice pay</a></li>
+        <li><a href="trade-vs-uni.html">Trade vs uni</a></li>
+        <li><a href="employer-cost.html">Employer cost</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="about-data.html">About the numbers</a></li>
+        <li><a href="index.html#enquire">Find a pre-apprenticeship</a></li>
+      </ul>
+    </nav>
+    <p class="checked">Figures last checked: <span data-last-checked>17 November 2026</span> · <span data-fy>2026–27</span> rates</p>
+    <p class="disclaimer">General information only — not financial, legal or tax advice. Pay figures are award minimums from Fair Work pay guides; many employers pay more, and overtime, penalty rates and most allowances aren't included. Check your exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>. Government payments have eligibility rules and can change — confirm with your Apprentice Connect Australia provider.</p>
+    <p class="disclaimer">Tradie Numbers (working name) is independent and not affiliated with any government agency.</p>
+  </div>
+</footer>
+<script src="js/rates.js"></script>
+<script src="js/calc.js"></script>
+<script src="js/ui-common.js"></script>
+<script src="js/ui-apprentice-pay.js"></script>
+</body>
+</html>
