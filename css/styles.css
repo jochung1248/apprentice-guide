@@ -218,7 +218,7 @@ output { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .5
 .note p:last-child, .card p:last-child { margin-bottom: 0; }
 
 /* Illustrative (unverified) labelling — a tag, so a pill is allowed */
-.badge-ill { display: inline-block; font-size: .64rem; color: var(--ink); background: var(--paper); border: 1.5px dashed var(--steel); border-radius: 999px; padding: .05rem .5rem; vertical-align: middle; white-space: nowrap; letter-spacing: 1px; }
+.badge-ill { display: inline-block; font-size: .64rem; color: var(--ink); background: var(--paper); border: 1.5px dashed var(--steel); border-radius: 999px; padding: .05rem .5rem; vertical-align: middle; white-space: normal; letter-spacing: 1px; }
 .badge-ok { display: inline-block; font-size: .64rem; color: var(--ink); border: 1.5px solid var(--go); border-radius: 999px; padding: .05rem .5rem; white-space: nowrap; }
 .src { font-size: .7rem; color: var(--steel); letter-spacing: 1px; }
 .src a { color: var(--steel); }
@@ -251,7 +251,8 @@ details[open] > summary { margin-bottom: .5rem; }
 .form-card.dark a { color: var(--blueprint-light); }
 .form-card.dark input, .form-card.dark select { border-color: var(--paper); }
 .form-row { display: grid; gap: .8rem; }
-@media (min-width: 640px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 640px) { .form-row.two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.form-row.two > * { min-width: 0; }
 .inline-form { display: flex; flex-wrap: wrap; gap: .6rem; }
 .inline-form input { flex: 1 1 220px; }
 .error { color: #9B1C1C; font-weight: 800; font-size: .9rem; margin-top: .3rem; }
@@ -333,4 +334,5 @@ details[open] > summary { margin-bottom: .5rem; }
   .sticky-result:hover .sr-link, .sticky-result:focus-visible .sr-link { color: #fff; }
   .sticky-result:focus-visible { outline-color: var(--hivis); }
   #results { scroll-margin-top: 1rem; }
+  html { scroll-padding-bottom: 6rem; }
 }
