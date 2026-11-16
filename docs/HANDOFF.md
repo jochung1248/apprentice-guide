@@ -19,7 +19,17 @@ You are the build lead. You may use sub-agents, test and iterate. Don't post to 
 ## Deploy
 Run `tools/deploy-pages.sh` after changes to `site/`. It pushes `site/` to the `gh-pages` branch, which GitHub Pages serves (Settings → Pages → Deploy from branch: gh-pages, /root).
 
-## Status (17 Nov 2026): MVP done
+## Status (17 Nov 2026): v1.1 live
+- **Live site:** https://jochung1248.github.io/tradie-numbers/ (GitHub Pages, served from the gh-pages branch). The Instagram handle @apprenticeguide is secured; there is no brand email yet.
+- **v1.1 adds:**
+  - 22 trades across 8 awards;
+  - age at start (adult = 21+);
+  - a state selector with verified per-state help panels (fee-free training, travel allowances, payroll tax, licensing bodies, and a WA state-system caveat);
+  - a capital/regional toggle.
+- **Review:** independent review round 3 is signed off (docs/REVIEW-3.md). Tests pass 32/32.
+- **Not yet covered:** air-con/refrigeration mechanic (the award depends on the employer). Trade vs uni assumes 4-year apprenticeships and leaves out the training support payment.
+
+### MVP (earlier the same day)
 - **Pages:** 3 calculators (apprentice take-home pay, trade vs uni, employer cost), 5 guides, an about/data page, and front-end-only forms (newsletter, pre-apprenticeship enquiry, employer dashboard waitlist as a fake door).
 - **Figures:** all award, tax, HELP and incentive figures for 2026–27 are verified against primary sources. Anything unverified is labelled "illustrative — edit to suit".
 
