@@ -95,5 +95,82 @@
     $all('form[data-demo-form]').forEach(wireForm);
   });
 
-  window.TN_UI = { money: money, pct: pct, esc: esc, srcLine: srcLine, $: $, $all: $all };
+  /* -------- Trades, states and extra-help panels (v1.1) -------- */
+
+  // Fill a <select> with every trade, grouped by industry (optgroups).
+  function fillTradeSelect(sel, selected) {
+    var html = '';
+    R.industries.forEach(function (ind) {
+      var opts = Object.keys(R.trades).filter(function (k) { return R.trades[k].industry === ind[0]; });
+      if (!opts.length) return;
+      html += '<optgroup label="' + esc(ind[1]) + '">' + opts.map(function (k) {
+        return '<option value="' + k + '"' + (k === selected ? ' selected' : '') + '>' + esc(R.trades[k].label) + '</option>';
+      }).join('') + '</optgroup>';
+    });
+    sel.innerHTML = html;
+    if (selected && R.trades[selected]) sel.value = selected;
+  }
+
+  function fillStateSelect(sel, selected) {
+    sel.innerHTML = Object.keys(R.states).map(function (k) {
+      return '<option value="' + k + '"' + (k === (selected || 'NSW') ? ' selected' : '') + '>' + esc(R.states[k].name) + '</option>';
+    }).join('');
+  }
+
+  function dated(f, withNote) {
+    return '<span class="src">Source: <a href="' + esc(f.sourceUrl) + '" target="_blank" rel="noopener">' + esc(f.sourceName) + '</a>' +
+      (withNote !== false && f.note ? ' · ' + esc(f.note) : '') + '</span>';
+  }
+
+  // HTML for the "Extra help in your state" panel.
+  // opts: { trade: key, regional: bool, audience: 'apprentice' | 'employer' }
+  function statePanelHtml(stateKey, opts) {
+    var st = R.states[stateKey], t = R.trades[opts.trade], html = '';
+    if (stateKey === 'WA') {
+      html += '<div class="note note-warn"><p><strong>WA employers:</strong> ' + esc(R.waNotice.note) +
+        ' The rates on this page are national (Fair Work) award rates. ' + dated(R.waNotice, false) + '</p></div>';
+    }
+    var kinds = opts.audience === 'employer' ? ['employer', 'training', 'travel'] : ['training', 'travel', 'employer'];
+    var titles = { training: 'Training costs', travel: 'Travel and accommodation', employer: 'For employers' };
+    var any = false;
+    kinds.forEach(function (k) {
+      var items = st.items.filter(function (it) { return it.value.kind === k; });
+      if (!items.length) return;
+      any = true;
+      html += '<h3 class="h4-size">' + titles[k] + '</h3><ul class="help-list">' + items.map(function (it) {
+        var hi = opts.regional && it.value.regional;
+        return '<li' + (hi ? ' class="hl-item"' : '') + '><strong>' + esc(it.value.title) + (hi ? ' <span class="badge-ok">relevant if you’re regional</span>' : '') +
+          '.</strong> ' + esc(it.value.text) + '<br>' + dated(it) + '</li>';
+      }).join('') + '</ul>';
+    });
+    if (!any) html += '<p>We couldn’t verify any extra state programs for ' + esc(st.name) + ' yet, so we’ve left this blank rather than guess.</p>';
+    html += '<p class="hint">We only list programs we could check on an official government site. Others may exist — ask your Apprentice Connect provider.</p>';
+    if (opts.regional) {
+      html += '<h3 class="h4-size">Regional or remote</h3><p>' + esc(R.lafhaNote.note) + ' Year 1 amount: ' + money(R.incentives.lafha.value.year1, true) +
+        ' a week. ' + dated(R.lafhaNote, false) + '</p><p class="hint">Award pay is the same in the city and the regions. Travel allowances above depend on distance to training.</p>';
+    }
+    if (t && t.licence) {
+      var L = st.licensing[t.licence];
+      html += '<h3 class="h4-size">Licensing in ' + esc(st.name) + '</h3><p>' + (t.licence === 'electrical' ? 'Electricians' : 'Plumbers') +
+        ' need a licence to work unsupervised once qualified. In ' + esc(st.name) + ' that’s handled by <a href="' + esc(L.url) + '" target="_blank" rel="noopener">' + esc(L.name) + '</a>.</p>';
+    }
+    return html;
+  }
+
+  // Short text explaining which apprentice rate applies for an age.
+  function ageExplain(age, type) {
+    var lim = R.adultAge.value;
+    return type === 'adult'
+      ? 'Adult apprentice rate: you’re ' + lim + ' or older when you start, so the higher adult minimum applies.'
+      : 'Junior apprentice rate: you’re under ' + lim + ' when you start. (At ' + lim + ' or older you’d get the adult rate.)';
+  }
+
+  function under18Html() {
+    return '<strong>Under 18?</strong> Wages are taxed at normal resident rates (the tax-free threshold applies). ' + esc(R.under18.consent.note) +
+      ' ' + dated(R.under18.consent, false);
+  }
+
+  window.TN_UI = { money: money, pct: pct, esc: esc, srcLine: srcLine, $: $, $all: $all,
+    fillTradeSelect: fillTradeSelect, fillStateSelect: fillStateSelect, statePanelHtml: statePanelHtml,
+    ageExplain: ageExplain, under18Html: under18Html, dated: dated };
 })();

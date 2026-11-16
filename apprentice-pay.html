@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apprentice pay calculator 2026–27 — take-home pay after tax | Apprentice Guide</title>
-<meta name="description" content="Work out an apprentice's award minimum pay, tax, Medicare levy and weekly or fortnightly take-home for carpentry, bricklaying, tiling, electrical and plumbing apprenticeships (2026–27 rates).">
+<meta name="description" content="Work out an apprentice's award minimum pay, tax and weekly or fortnightly take-home for 22 trades — building, electrical, plumbing, automotive, engineering, hospitality, hair and landscaping (2026–27 rates).">
 <link rel="canonical" href="https://www.example.com/apprentice-pay.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2040%2040%27%3E%3Crect%20width=%2740%27%20height=%2740%27%20rx=%276%27%20fill=%27%2316181D%27/%3E%3Ctext%20x=%2720%27%20y=%2729.5%27%20text-anchor=%27middle%27%20font-family=%27Anton,%20Impact,%20Arial%20Narrow%20Bold,%20sans-serif%27%20font-size=%2723%27%20fill=%27%23FF6B1A%27%3EAG%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
@@ -33,7 +33,7 @@
     <div class="wrap">
       <span class="kicker">Calculator · <span data-fy>2026–27</span></span>
       <h1>Apprentice take-home pay</h1>
-      <p class="lede">Pick a trade and year to see the award minimum, estimated tax and what actually lands in the bank — plus Key Apprenticeship Program payments if the trade qualifies.</p>
+      <p class="lede">Pick one of 22 trades, your year and your age to see the award minimum, estimated tax and what actually lands in the bank — plus the government payments and state help you may be able to get.</p>
     </div>
   </section>
 
@@ -43,10 +43,7 @@
         <div class="field">
           <label for="trade">Trade</label>
           <select id="trade" name="trade">
-            <option value="carpenter">Carpenter, joiner or wall &amp; floor tiler</option>
-            <option value="bricklayer">Bricklayer</option>
-            <option value="electrician">Electrician</option>
-            <option value="plumber">Plumber</option>
+            <option value="carpenter">Carpenter or carpenter and joiner</option>
           </select>
           <span class="hint" id="award-name">Building and Construction General On-site Award</span>
         </div>
@@ -59,14 +56,11 @@
             <label><input type="radio" name="year" value="4"><span>4th</span></label>
           </div>
         </fieldset>
-        <fieldset>
-          <legend>Type of apprentice</legend>
-          <div class="seg">
-            <label><input type="radio" name="type" value="junior" checked><span>Junior</span></label>
-            <label><input type="radio" name="type" value="adult"><span>Adult (21+)</span></label>
-          </div>
-          <span class="hint">Adult apprentices are 21 or older when they start and get a higher minimum rate.</span>
-        </fieldset>
+        <div class="field">
+          <label for="age">Age when you start the apprenticeship</label>
+          <div class="input-suffix"><input id="age" name="age" type="number" min="15" max="60" step="1" value="17" inputmode="numeric" aria-describedby="age-note"><span>years</span></div>
+          <span class="hint" id="age-note" aria-live="polite">Junior apprentice rate: you're under 21 when you start.</span>
+        </div>
         <div class="field">
           <label class="check"><input type="checkbox" id="y12" name="y12"> <span>Finished Year 12</span></label>
           <span class="hint" id="y12-hint">Year 12 lifts the minimum in years 1 and 2 for junior apprentices.</span>
@@ -78,7 +72,20 @@
         </div>
         <div class="field">
           <label class="check"><input type="checkbox" id="kap" name="kap" checked> <span>Apprenticeship qualifies for the Key Apprenticeship Program</span></label>
-          <span class="hint">Housing-construction apprenticeships that started on or after 1 July 2025. <a href="guides/key-apprenticeship-program-10000.html">Check eligibility</a>.</span>
+          <span class="hint" id="kap-hint">Housing-construction apprenticeships that started on or after 1 July 2025. <a href="guides/key-apprenticeship-program-10000.html">Check eligibility</a>.</span>
+        </div>
+        <div>
+          <div class="field">
+            <label for="state">State or territory</label>
+            <select id="state" name="state"><option value="NSW">New South Wales</option></select>
+          </div>
+          <fieldset class="field">
+            <legend>Where will you train/work?</legend>
+            <div class="seg">
+              <label><input type="radio" name="location" value="capital" checked><span>Capital city</span></label>
+              <label><input type="radio" name="location" value="regional"><span>Regional or remote</span></label>
+            </div>
+          </fieldset>
         </div>
         <a class="sticky-result" href="#results" aria-describedby="sticky-label"><span class="sr-num" id="sticky-num">—</span> <span class="sr-label" id="sticky-label">a week take-home</span> <span class="sr-link">See full breakdown ↓</span></a>
       </form>
@@ -111,11 +118,18 @@
           <p class="hint" id="rate-src"></p>
         </div>
 
+        <div class="note" id="u18-note" hidden></div>
+
         <div class="card" id="kap-card">
-          <h2 class="h3-size">Key Apprenticeship Program payments</h2>
+          <h2 class="h3-size" id="kap-title">Key Apprenticeship Program payments</h2>
           <p id="kap-intro"></p>
           <ol class="timeline" id="kap-list"></ol>
           <p class="hint" id="kap-src"></p>
+        </div>
+
+        <div class="card" id="state-card">
+          <h2 class="h3-size">Extra help in <span id="state-name">your state</span></h2>
+          <div id="state-panel"></div>
         </div>
 
         <div class="note">
@@ -130,7 +144,8 @@
       <h2>Good to know</h2>
       <ul>
         <li>Rates shown are for apprentices who started on or after 1 January 2014, on weekly hire. Building trades use the residential rates; non-residential (commercial) rates are slightly higher.</li>
-        <li>Under-18s pay normal resident tax rates on wages — the special minors' rates only apply to things like interest and dividends.</li>
+        <li>Under-18s pay normal resident tax rates on wages — the higher minors' rates only apply to some other income, such as certain trust distributions.</li>
+        <li>Pay rates are national award minimums, so they're the same in every state and in the city or the regions. In WA, some small employers (sole traders and partnerships) use WA state awards instead.</li>
         <li>Moving out of home for an apprenticeship? You might be eligible for a Living Away From Home Allowance — see the <a href="guides/key-apprenticeship-program-10000.html">incentives guide</a>.</li>
       </ul>
       <p>Related: <a href="guides/first-year-apprentice-pay-nsw.html">What first-year apprentices actually earn in NSW</a> · <a href="trade-vs-uni.html">Trade vs uni calculator</a> · <a href="about-data.html">How we calculate</a></p>
