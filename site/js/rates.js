@@ -235,7 +235,7 @@
         'Fair Work Commission — Annual Wage Review 2026 decision announcement', true,
         'Modern award minimum wages rose 4.75% from 1 July 2026 (first full pay period on or after). National Minimum Wage $1,004.90 a week.'),
       tradeCompletersEmployed: fig(95, '2025-01-01', SRC.ministerOutcomes, 'Minister for Skills and Training media release citing NCVER Apprentice and trainee outcomes 2025', true,
-        'About 95% of trade apprentices who completed were employed after training (NCVER reports 94.8%; we could not open the NCVER page itself).'),
+        'About 95% of trade apprentices who completed were employed after training (NCVER reports 94.8%, confirmed on the NCVER Apprentice and trainee outcomes 2025 page).'),
       nonCompletersEmployed: fig(77, '2025-01-01', SRC.ministerOutcomes, 'Minister for Skills and Training media release citing NCVER Apprentice and trainee outcomes 2025', true,
         '77% of apprentices and trainees who left before completing were employed afterwards.'),
       nonCompleterEmploymentReasons: fig(27.7, '2025-01-01', SRC.ncverOutcomes2025, 'NCVER — Apprentice and trainee outcomes 2025', true,

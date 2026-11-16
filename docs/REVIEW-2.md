@@ -127,3 +127,100 @@ None.
   - `trade-vs-uni-mobile-results.png`
   - `tvu-edge-start30-desktop.png`
   - `focus-ring-apprentice-pay-mobile.png`
+
+---
+
+## Round 2 re-test (17 Nov 2026, commit e695094)
+
+Re-tested independently: own scripts (outside the repo), own Python model, server on port 8767 (stopped afterwards). The fixes were checked in the browser, not just read from PROGRESS.md.
+
+### Automated checks
+- **`npm test`** (= `node --test tests/*.test.js`): **24/24 pass**. This includes a new PHI part-time test.
+  - `node --test tests/` with a bare directory argument still errors. That is Node 22 behaviour, not a project bug. README and `package.json` now use the working form, so m1 is closed.
+- **Pages:** all 11 pages at 390×844 and 1280×800.
+  - 0 console or page errors.
+  - No horizontal page overflow.
+  - 28/28 internal links and fragments resolve.
+  - No dialogs.
+  - Only Google Fonts requested off-site.
+- **axe-core** (WCAG 2.0/2.1 A/AA): **0 violations on all 11 pages at both 390px and 1280px.**
+- **Forms:** newsletter, enquiry and waitlist still show inline errors on an empty submit (1, 6 and 3 errors) and the in-page confirmation on a valid submit. No regressions.
+
+### Major fixes
+| Issue | Result | Evidence |
+|---|---|---|
+| M1 part-time PHI | **Fixed** | `rates.js` now has FT $1,000 + $1,500 and PT $500 + $750, matching DEWR's 1 Jul 2026 overview. Bricklayer, adult, 20 h, PHI shows **−$1,250**, net $680/wk and $35,360/yr, matching my model. The hint prints "up to $1,250 (part-time amount)". FT PHI ($2,500), PT KAP ($2,500) and FT KAP ($5,000) are also correct. |
+| M2 wording | **Fixed** | "Why 4 in 10 **trade** apprentices…" is now used in the h1, the JSON-LD headline, the `<title>`, the home card and the guides index. The remaining "housing-construction" uses all describe KAP eligibility, which is correct. |
+| M3 mobile nav | **Fixed** | At 390px the nav width equals the viewport (355 = 355). All five links show on two rows (`review2-final/home-mobile.png`). Desktop is unchanged. |
+| M4 sticky result bars | **Fixed** | All three calculators show a sticky ink bar at 390px from first load, with the live key number: "$611 a week take-home", "$698 a week, net cost in year 1" and "$133,366 trade ahead by age 25". It updates on input (plumber → $592). It links to `#results`, which exists, and tapping it lands the results 16px from the top. It scrolls away once the results are reached and is hidden at ≥960px (`display: none`). See `review2-final/apprentice-pay-mobile-sticky.png`. |
+| M5 TN monogram | **Fixed** | All 11 pages use an ink `#16181D` square with "TN" in Anton `#FF6B1A` (steel outline on the ink header). The favicon data-URI uses the same mark. No hard-hat path remains anywhere. BRAND.md now records the spec. |
+| M6 table regions | **Fixed** | Every `.table-scroll` has `tabindex="0" role="region" aria-label`, and axe is clean at 390px and 1280px. |
+
+### Minor fixes
+- **Verified in the browser or in the files:**
+  - m2: hours are clamped to 1–38 and written back to the field in both calculators.
+    - Apprentice pay: 0 or −5 → 1 h; 50 → 38.
+    - Employer cost: 0 → 1 h.
+  - m3: with start age 30, the slider minimum and value move to 32, and the label reads "By age 32".
+  - m4: "four years" is corrected.
+  - m5: the FAQ is corrected in both the HTML and the JSON-LD.
+  - m6: 27.7% is now verified and cites NCVER.
+  - m7: the cohort year is no longer asserted.
+  - m8: the new super URL fetched fine and states "12% of the qualifying earnings" for earnings paid from 1 July 2026.
+  - m10: `js/ui-home.js` replaces the home page's inline script.
+  - m11: the tooltip uses `data-series`.
+  - m12: the incentive option labels are shorter.
+  - m13: the unsourced claims are softened.
+- **Accepted as documented:** m9 (indexation timing is stated on the about page rather than changed in the model).
+
+### Calculator spot-checks (UI vs my independent model)
+| Input | UI | Model |
+|---|---|---|
+| Apprentice pay, electrician, adult, year 2, 38 h | $932/wk, $1,864/fn, $48,459/yr | 931.90 / 1,863.80 / 48,458.90 |
+| Apprentice pay, bricklayer, junior, Y12, year 1, 25 h | gross $459.53, $457/wk, $23,741/yr | 459.53 / 456.57 / 23,741.46 |
+| Trade vs uni, plumber from 22 (adult) vs 4-yr engineering from 22, 15% above award, target 33 | trade $653,251, uni $534,406, HELP $25,557, gap $144,401 | 653,251 / 534,406 / 25,557 / 144,401 |
+| Employer cost (four cases above, including both incentive types × FT/PT) | all match to the dollar | — |
+
+### New findings in this round
+
+**N1 (Major, pre-existing; I missed it in round 2). Employer-cost form field overlaps the results card at ≥960px.**
+- What happens: in the "Training fees / Tools, PPE, uniform" two-column row, the Tools field (label, input, badge) sticks **55px out of the inputs card**. It covers the start of "Net cost for the year" and the "Wage:" source line in the breakdown card (`review2-final/employer-cost-desktop.png`, middle left). It happens at 960, 1024, 1280 and 1440px, and not at 390 or 768px.
+- Cause: the non-wrapping "ILLUSTRATIVE — EDIT TO SUIT" badge and the long label make the `1fr` grid tracks wider than the 400px inputs column.
+- No other card on any page overflows at 390, 768, 960 or 1280px; I checked every `.card`, `.form-card`, `.payslip`, `.stat` and `.note`.
+- Fix (`site/css/styles.css`): change `.form-row.two` to `grid-template-columns: minmax(0,1fr) minmax(0,1fr)`, and add `.badge-ill { white-space: normal; }` or `@media (min-width: 960px) { .calc .inputs .form-row.two { grid-template-columns: 1fr; } }`. Re-check with a desktop screenshot.
+
+**N2 (Minor, introduced by the M4 fix). Sticky bar can hide the keyboard-focused field on mobile.**
+- When tabbing at 390px, the bar covers part or all of the focused control:
+  - apprentice-pay: `type` (22 of 47px covered);
+  - employer-cost: `year` and `fees`;
+  - trade-vs-uni: `start-age` (47 of 49px) and `field` (fully hidden), plus `pt-income` and `indexation`.
+- This is WCAG 2.2 SC 2.4.11 (Focus Not Obscured), which is outside the project's 2.1 AA target but easy to fix.
+- Fix: inside the `@media (max-width: 959px)` block, add `html { scroll-padding-bottom: 6rem; }` so focused fields scroll clear of the bar.
+
+**N3 (Minor). Stale note.** The `rates.js` line 238 note for `tradeCompletersEmployed` still says "we could not open the NCVER page itself". The NCVER page now confirms 94.8%; update the note, and optionally show 94.8% rather than "about 95%".
+
+### Final verdict per criterion
+| # | Criterion | Final |
+|---|---|---|
+| 1 | Calculators match hand-checked examples; tests pass | **PASS** |
+| 2 | Figures traceable to `rates.js`, unverified labelled | **PASS** |
+| 3 | Clean at 390px and 1280px, no console errors | **FAIL** until N1 is fixed (a visible overlap at 1280px on employer-cost). Everything else is clean. |
+| 4 | Zero network apart from Google Fonts | **PASS** |
+| 5 | Guides + about page accurate, with disclaimers | **PASS** |
+| 6 | Forms show in-page confirmation, no dialogs | **PASS** |
+| 7 | Independent sign-off | **CONDITIONAL PASS.** M1–M6 are verified fixed. Sign-off becomes unconditional once N1 is fixed and confirmed with a ≥960px screenshot of employer-cost. No full re-review is needed. N2 and N3 are recommended but don't block sign-off. |
+
+Fresh screenshots are in `screenshots/review2-final/`:
+- `home-mobile.png`
+- `apprentice-pay-mobile-sticky.png`
+- `trade-vs-uni-desktop.png`
+- `employer-cost-desktop.png`
+
+All 22 per-page shots are in `review2-final/all/`.
+
+## Round 2 follow-up (main session, 17 Nov 2026)
+- N1 fixed: `.form-row.two` now uses `minmax(0,1fr)` columns with `min-width:0` children; `.badge-ill` wraps. Verified no input overflows its row at 1280, 960 and 390px (Playwright check plus screenshot `screenshots/final/employer-cost-desktop.png`).
+- N2 fixed: `html { scroll-padding-bottom: 6rem }` under 960px, so the sticky result bar no longer hides the focused field.
+- N3 fixed: rates.js note updated (94.8% confirmed on NCVER page).
+- `npm test`: 24/24 pass.
+- **Criterion 7: signed off** (the reviewer's conditional pass is now met).
