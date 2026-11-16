@@ -10,6 +10,17 @@ MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 1
 - Tests: `tests/calc.test.js` (hand-worked examples), `tests/content.test.js` (figure traceability, CSP, structure), `tests/e2e_check.py` (Playwright screenshots, console errors, calculator and form runs, `--offline`).
 - Brand: `docs/BRAND.md` applied in `site/css/styles.css`.
 
+## v1.1 (17 Nov 2026)
+- **22 trades across 9 awards**, grouped by industry in all three calculators (optgroups built from `rates.js`). New awards: MA000005, MA000089, MA000009 (cooks; MA000119 noted for restaurants), MA000010, MA000029, MA000101. New MA000020 groups: plasterer, roof tiler, painter/glazier, "all others" (concreter, mapping unverified). Wall and floor tiler is now its own entry. Air-con/refrigeration was left out (the award varies by employer).
+- Shared `payTables` in `rates.js`; each trade references one table and carries `priorityList`, `kapStream` and `kapEligible`, verified against the DEWR Priority List (1 Apr 2026). Non-housing trades default to no KAP and show the training support payment (if on the list) or "check eligibility".
+- **Age** input (15–60) replaces the junior/adult toggle; adult = 21+ at start (`calc.apprenticeTypeForAge`). Year 12 hint shows when it matters (`calc.y12Matters`). Under-18 note covers tax and parental consent.
+- **State/territory** selector (default NSW) on pay and employer calculators: WA state-system notice, "Extra help in your state" panel (verified, dated, linked items only) and an electrical/plumbing licensing note.
+- **Location** toggle (capital / regional or remote): highlights distance-based state travel help and shows the LAFHA eligibility note. Award pay is unchanged.
+- Employer calculator: age, state, location; incentive default per trade; ineligible incentives aren't deducted.
+- About page lists tables, Priority List status, state items and licensing bodies from `rates.js`. First-year guide has an "Other trades" table. The KAP guide cites the DEWR Priority List (the provider list is no longer used). Home copy says "15+ trades".
+- Desktop input card is now scrollable when taller than the screen (bottom fields were unreachable).
+- Tests: 32 unit/content tests (adds hand-worked examples for MA000005, MA000089, MA000009 and MA000029, plus age derivation, under-21 edge cases, incentive options and state data). e2e updated for the age input and a WA/regional/hairdresser run. axe: 0 violations at 390 and 1280 on all pages, including the WA/regional state panel.
+
 ## Rename (17 Nov 2026)
 - Product renamed from the earlier working name to **Apprentice Guide**, handle **@apprenticeguide** (Joseph's decision).
 - Updated: every page `<title>`, meta description, header wordmark ("APPRENTICE" concrete + "GUIDE" hi-vis), footer independence line, consent copy on the enquiry form, JSON-LD author/publisher names, about page, `rates.js` (`meta.siteName`, assumption source names), JS/CSS file headers, `tools/wrap_guides.py`, tests, `package.json`, and docs (README, PROGRESS, BRAND, DATA_SOURCES, SOCIAL_CONTENT, HANDOFF, social/POSTS).
@@ -46,7 +57,7 @@ MVP built. Independent review round 2 (`docs/REVIEW-2.md`) raised 6 Majors and 1
 
 ## Known issues
 - Unverified (labelled in UI): Medicare levy low-income thresholds (2025–26 values used); per-trade KAP eligibility (provider list); NCVER completion figures 42% / 58.7% / 72% and BuildSkills 116,700 (secondary sources); all illustrative assumptions (part-time study income $15,000, pay growth 3%, market loading 0%, workers comp 4%, training fees $1,000, tools/PPE $800).
-- Not verified: tax treatment of KAP payments.
+- Not verified: tax treatment of KAP payments; concreter award mapping ("all others" group); state items we couldn't verify were left out (see DATA_SOURCES.md v1.1).
 - HELP indexation is applied to new debt immediately (slightly overstates balances; stated in UI copy).
 - Canonical URLs are `example.com` placeholders. Working name and domain unchecked.
 - The KAP employer incentive is announced only for commencements to December 2026 — re-check in January 2027.

@@ -8,14 +8,14 @@
   function radio(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : null; }
   function setRadio(name, v) { var el = form.querySelector('input[name="' + name + '"][value="' + v + '"]'); if (el) el.checked = true; }
 
-  // Allow deep links such as apprentice-pay.html?trade=electrician&year=1
-  (function applyQuery() {
-    var q = new URLSearchParams(window.location.search);
-    if (q.get('trade') && R.trades[q.get('trade')]) $('trade').value = q.get('trade');
-    if (/^[1-4]$/.test(q.get('year') || '')) setRadio('year', q.get('year'));
-    if (q.get('type') === 'adult') setRadio('type', 'adult');
-    if (q.get('y12') === '1') $('y12').checked = true;
-  })();
+  // Deep links such as apprentice-pay.html?trade=electrician&year=1&age=22&state=QLD
+  var q = new URLSearchParams(window.location.search);
+  U.fillTradeSelect($('trade'), R.trades[q.get('trade')] ? q.get('trade') : 'carpenter');
+  U.fillStateSelect($('state'), R.states[q.get('state')] ? q.get('state') : 'NSW');
+  if (/^[1-4]$/.test(q.get('year') || '')) setRadio('year', q.get('year'));
+  if (/^\d{2}$/.test(q.get('age') || '')) $('age').value = q.get('age');
+  if (q.get('y12') === '1') $('y12').checked = true;
+  if (q.get('location') === 'regional') setRadio('location', 'regional');
 
   // Ordinary hours: 1 to 38. Out-of-range entries are corrected in the field (on change) with a hint.
   function clampHours() {
@@ -29,22 +29,34 @@
     $('hours').value = h;
     setTimeout(function () { $('hours-hint').textContent = msg; }, 0); // keep the correction message after the re-render
   });
+  // Age: whole years 15 to 60, corrected on change.
+  function readAge() {
+    var v = parseFloat($('age').value);
+    return isFinite(v) ? Math.min(60, Math.max(15, Math.round(v))) : 17;
+  }
+  $('age').addEventListener('change', function () { $('age').value = readAge(); });
 
   var lastTrade = null;
 
   function render() {
-    var trade = $('trade').value, t = R.trades[trade];
+    var trade = $('trade').value, t = R.trades[trade], opt = C.incentiveOptions(trade, R);
     // Default the KAP box to the trade's listed eligibility whenever the trade changes.
-    if (trade !== lastTrade) { $('kap').checked = !!t.kapEligible.value; lastTrade = trade; }
-    var hours = clampHours();
-    var type = radio('type'), year = parseInt(radio('year'), 10);
-    var inputs = { trade: trade, year: year, type: type, y12: $('y12').checked, hours: hours, kapEligible: $('kap').checked };
+    if (trade !== lastTrade) { $('kap').checked = opt.kapDefault; lastTrade = trade; }
+    $('kap').disabled = !opt.kapPossible;
+    if (!opt.kapPossible) $('kap').checked = false;
+    var hours = clampHours(), age = readAge(), year = parseInt(radio('year'), 10);
+    var inputs = { trade: trade, year: year, age: age, y12: $('y12').checked, hours: hours, kapEligible: $('kap').checked };
     var r = C.apprenticePay(inputs, R);
+    var type = r.type;
 
     $('award-name').textContent = t.award;
-    var y12Relevant = type === 'junior' && year <= 2;
-    $('y12-hint').textContent = y12Relevant ? 'Year 12 lifts the minimum in years 1 and 2 for junior apprentices.'
-      : (type === 'adult' ? 'Doesn’t change adult apprentice rates.' : 'Doesn’t change the rate in years 3 and 4.');
+    $('age-note').textContent = U.ageExplain(age, type);
+    $('y12-hint').textContent = r.y12Applies ? 'Finishing Year 12 lifts the minimum in this year for junior apprentices.'
+      : (type === 'adult' ? 'Doesn’t change adult apprentice rates.' : 'Doesn’t change the rate for this trade and year.');
+    $('kap-hint').innerHTML = U.esc(t.kapEligible.note) + ' <a href="guides/key-apprenticeship-program-10000.html">How KAP works</a>.';
+
+    var u18 = $('u18-note');
+    if (age < 18) { u18.hidden = false; u18.innerHTML = '<p>' + U.under18Html() + '</p>'; } else { u18.hidden = true; u18.innerHTML = ''; }
 
     $('out-week').textContent = U.money(r.takeHomeWeekly);
     $('sticky-num').textContent = U.money(r.takeHomeWeekly);
@@ -54,7 +66,7 @@
     $('out-gross-week').textContent = U.money(r.weekly, true);
     $('out-gross-year').textContent = U.money(r.annual);
     $('out-tax-week').textContent = U.money(r.tax.total / 52, true);
-    $('ps-who').textContent = t.short.charAt(0).toUpperCase() + t.short.slice(1) + ' \u00b7 year ' + year + ' \u00b7 ' + (type === 'adult' ? 'adult' : 'junior') + (r.partTime ? ' \u00b7 ' + r.hours + ' hrs' : '');
+    $('ps-who').textContent = t.label + ' · year ' + year + ' · ' + type + ' (age ' + age + ')' + (r.partTime ? ' · ' + r.hours + ' hrs' : '');
 
     var tx = r.tax;
     $('breakdown').innerHTML =
@@ -64,25 +76,37 @@
       '<tr class="total"><td>Take-home for the year</td><td>' + U.money(r.takeHomeAnnual, true) + '</td></tr>';
 
     var tbl = type === 'adult' ? t.apprenticeAdult : (inputs.y12 ? t.apprenticeJuniorY12 : t.apprenticeJuniorNoY12);
-    $('rate-src').innerHTML = 'Pay rate: ' + U.srcLine(tbl) + '<br>Tax: ' + U.srcLine(R.tax.brackets) +
+    $('rate-src').innerHTML = 'Pay rate: ' + U.srcLine(tbl) + '<br><span class="src">' + U.esc(tbl.note) + '</span><br>Tax: ' + U.srcLine(R.tax.brackets) +
       '<br>Medicare low-income thresholds: ' + U.srcLine(R.tax.medicareLowIncome) +
       (R.tax.medicareLowIncome.verified ? '' : '<br><span class="src">' + U.esc(R.tax.medicareLowIncome.note) + '</span>');
 
-    // KAP
+    // Government payments for the apprentice
     var K = R.incentives.kapApprentice;
     if (r.kapEligible) {
+      $('kap-title').textContent = 'Key Apprenticeship Program payments';
       $('kap-intro').innerHTML = 'If this apprenticeship qualifies, the apprentice can receive up to <strong>' + U.money(r.kapTotal) +
         '</strong> (' + (r.partTime ? 'part-time' : 'full-time') + ' amounts), on top of wages. These payments are shown separately and aren’t included in the tax estimate above. Timing is measured from the start of the apprenticeship.';
       $('kap-list').innerHTML = r.kap.map(function (p) {
-        return '<li><span>' + U.esc(p.label) + (p.month !== 'completion' && typeof p.month === 'number' && p.label.indexOf('completion') < 0 ? ' (year ' + (p.yearIndex + 1) + ')' : '') + '</span><b>' + U.money(p.amount) + '</b></li>';
+        return '<li><span>' + U.esc(p.label) + (p.label.indexOf('completion') < 0 ? ' (year ' + (p.yearIndex + 1) + ')' : '') + '</span><b>' + U.money(p.amount) + '</b></li>';
       }).join('');
-      $('kap-src').innerHTML = U.srcLine(K) + '<br>Trade eligibility: ' + U.srcLine(t.kapEligible);
+      $('kap-src').innerHTML = U.srcLine(K) + '<br>Occupation: ' + U.srcLine(t.kapStream) + '<br><span class="src">' + U.esc(t.kapStream.note) + '</span>';
+    } else if (opt.apprenticeFallback === 'aatsp') {
+      var A = R.incentives.aatsp;
+      $('kap-title').textContent = 'Training support payment';
+      $('kap-intro').textContent = (opt.kapPossible ? 'Not counting KAP. ' : 'This trade isn’t a Key Apprenticeship Program occupation. ') +
+        'It is on the Australian Apprenticeships Priority List, so a full-time apprentice may get the Australian Apprentice Training Support Payment instead:';
+      $('kap-list').innerHTML = A.value.fullTime.map(function (p) { return '<li><span>After ' + p.month + ' months</span><b>' + U.money(p.amount) + '</b></li>'; }).join('');
+      $('kap-src').innerHTML = U.srcLine(A) + '<br>Occupation: ' + U.srcLine(t.priorityList);
     } else {
-      $('kap-intro').textContent = 'Not included. If the apprenticeship is on the Priority List but isn’t a KAP occupation, the apprentice may instead get the Australian Apprentice Training Support Payment of up to ' +
-        U.money(R.incentives.aatsp.value.fullTime.reduce(function (s, p) { return s + p.amount; }, 0)) + ' (full-time) over two years.';
+      $('kap-title').textContent = 'Government payments';
+      $('kap-intro').textContent = 'We couldn’t find this occupation on the Australian Apprenticeships Priority List, so the Key Apprenticeship Program and training support payments may not apply. Check eligibility with your Apprentice Connect Australia provider.';
       $('kap-list').innerHTML = '';
-      $('kap-src').innerHTML = U.srcLine(R.incentives.aatsp);
+      $('kap-src').innerHTML = U.srcLine(t.priorityList);
     }
+
+    var st = $('state').value;
+    $('state-name').textContent = R.states[st].name;
+    $('state-panel').innerHTML = U.statePanelHtml(st, { trade: trade, regional: radio('location') === 'regional', audience: 'apprentice' });
   }
 
   form.addEventListener('input', render);

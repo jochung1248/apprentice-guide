@@ -336,3 +336,16 @@ details[open] > summary { margin-bottom: .5rem; }
   #results { scroll-margin-top: 1rem; }
   html { scroll-padding-bottom: 6rem; }
 }
+
+/* v1.1: state help panel */
+.h4-size { font-size: 1rem; font-weight: 800; margin: 1rem 0 .4rem; }
+.help-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.help-list li { background: var(--concrete); border-radius: var(--r-ctl); padding: .6rem .75rem; font-size: .95rem; }
+.help-list li.hl-item { border-left: 6px solid var(--hivis); }
+.note-warn { border-left-color: var(--hivis); margin-bottom: .6rem; }
+fieldset.field { margin-bottom: .95rem; }
+fieldset.field .seg span { padding: .45rem .7rem; font-size: .95rem; }
+input[type="checkbox"]:disabled + span { color: var(--steel); }
+/* v1.1: the input card can be taller than the screen; keep it sticky but scrollable so every field is reachable */
+@media (min-width: 960px) { .calc .inputs { max-height: calc(100vh - 2rem); overflow-y: auto; overscroll-behavior: contain; } }
+.breakdown .badge-ill { white-space: normal; border-radius: 8px; }

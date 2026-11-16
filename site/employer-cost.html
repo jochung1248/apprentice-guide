@@ -43,11 +43,9 @@
         <div class="field">
           <label for="trade">Trade</label>
           <select id="trade" name="trade">
-            <option value="carpenter">Carpenter, joiner or wall &amp; floor tiler</option>
-            <option value="bricklayer">Bricklayer</option>
-            <option value="electrician">Electrician</option>
-            <option value="plumber">Plumber</option>
+            <option value="carpenter">Carpenter or carpenter and joiner</option>
           </select>
+          <span class="hint" id="award-name"></span>
         </div>
         <fieldset>
           <legend>Year of apprenticeship</legend>
@@ -58,14 +56,28 @@
             <label><input type="radio" name="year" value="4"><span>4th</span></label>
           </div>
         </fieldset>
-        <fieldset>
-          <legend>Apprentice</legend>
-          <div class="seg">
-            <label><input type="radio" name="type" value="junior" checked><span>Junior</span></label>
-            <label><input type="radio" name="type" value="adult"><span>Adult (21+)</span></label>
+        <div class="field">
+          <label for="age">Apprentice's age when they start</label>
+          <div class="input-suffix"><input id="age" name="age" type="number" min="15" max="60" step="1" value="17" inputmode="numeric" aria-describedby="age-note"><span>years</span></div>
+          <span class="hint" id="age-note" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="y12" name="y12"> <span>Finished Year 12</span></label>
+          <span class="hint" id="y12-hint"></span>
+        </div>
+        <div>
+          <div class="field">
+            <label for="state">State or territory</label>
+            <select id="state" name="state"><option value="NSW">New South Wales</option></select>
           </div>
-          <div class="field mt-s"><label class="check"><input type="checkbox" id="y12" name="y12"> <span>Finished Year 12</span></label></div>
-        </fieldset>
+          <fieldset class="field">
+            <legend>Where is the work?</legend>
+            <div class="seg">
+              <label><input type="radio" name="location" value="capital" checked><span>Capital city</span></label>
+              <label><input type="radio" name="location" value="regional"><span>Regional or remote</span></label>
+            </div>
+          </fieldset>
+        </div>
         <div class="field">
           <label for="hours">Ordinary hours per week</label>
           <div class="input-suffix"><input id="hours" name="hours" type="number" min="1" max="38" step="0.5" value="38" inputmode="decimal" aria-describedby="hours-hint"><span>hrs</span></div>
@@ -122,8 +134,13 @@
           </table>
           <p class="hint" id="emp-src"></p>
         </div>
+        <div class="note" id="u18-note" hidden></div>
+        <div class="card" id="state-card">
+          <h2 class="h3-size">Extra help in <span id="state-name">your state</span></h2>
+          <div id="state-panel"></div>
+        </div>
         <div class="note">
-          <p><strong>Not included:</strong> overtime, penalty rates, travel and other allowances outside the pay guide rate, leave loading, payroll tax (only applies above your state's threshold), and the supervision time of a qualified worker. An apprentice also does productive work that brings money in, but we don't try to estimate that. Check the apprentice's exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>.</p>
+          <p><strong>Not included:</strong> overtime, penalty rates, travel and other allowances outside the pay guide rate, leave loading, payroll tax (only applies above your state's threshold), the supervision time of a qualified worker, and state employer incentives (listed separately below). An apprentice also does productive work that brings money in, but we don't try to estimate that. Check the apprentice's exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>.</p>
         </div>
       </div>
     </div>

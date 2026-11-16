@@ -36,6 +36,11 @@
   };
 
   function fmtVal(v, key) {
+    if (key === 'stateItem') return U.esc(v.text);
+    if (key === 'text') return U.esc(String(v));
+    if (key === 'adultAgeYears') return v + ' or older';
+    if (key === 'priorityList') return v ? 'Yes' : 'No';
+    if (key === 'kapStream') return { housing: 'Housing Construction', newEnergy: 'New Energy', both: 'Housing Construction and New Energy', none: 'None' }[v];
     if (typeof v === 'boolean') return v ? 'Yes' : 'No';
     if (typeof v === 'number') {
       if (/Rate|indexation|payGrowth|marketLoading|superGuarantee/.test(key) && v < 1) return U.pct(v, 1);
@@ -68,15 +73,36 @@
   }
 
   add(LABELS.ordinaryHours, R.ordinaryHours, 'ordinaryHours');
+  add('Adult apprentice age (at start)', R.adultAge, 'adultAgeYears');
+  // One set of rows per pay table (several trades can share a table)
+  Object.keys(R.payTables).forEach(function (id) {
+    var tb = R.payTables[id];
+    var users = Object.keys(R.trades).filter(function (k) { return R.trades[k].table === id; }).map(function (k) { return R.trades[k].label; }).join(', ');
+    ['apprenticeJuniorNoY12', 'apprenticeJuniorY12', 'apprenticeAdult', 'tradesperson'].forEach(function (f) {
+      add(users + ' (' + tb.awardShort + '): ' + LABELS[f], tb[f], f);
+    });
+  });
+  // Priority List / KAP status per trade
   Object.keys(R.trades).forEach(function (k) {
     var t = R.trades[k];
-    ['apprenticeJuniorNoY12', 'apprenticeJuniorY12', 'apprenticeAdult', 'tradesperson', 'kapEligible'].forEach(function (f) {
-      add(t.label + ': ' + LABELS[f], t[f], f);
-    });
+    add(t.label + ': on the Priority List', t.priorityList, 'priorityList');
+    add(t.label + ': Key Apprenticeship Program stream', t.kapStream, 'kapStream');
   });
   ['tax', 'incentives', 'help', 'graduates', 'illustrative'].forEach(function (grp) {
     Object.keys(R[grp]).forEach(function (k) { add(LABELS[k] || k, R[grp][k], k); });
     if (grp === 'tax') add(LABELS.superGuarantee, R.superGuarantee, 'superGuarantee');
+  });
+  add('Under-18s: tax on wages', R.under18.tax, 'text');
+  add('Under-18s: training contract consent', R.under18.consent, 'text');
+  add('WA: state system employers', R.waNotice, 'text');
+  add('Living Away From Home Allowance eligibility', R.lafhaNote, 'text');
+  Object.keys(R.states).forEach(function (code) {
+    var st = R.states[code];
+    st.items.forEach(function (it) { add(st.name + ': ' + it.value.title, it, 'stateItem'); });
+    ['electrical', 'plumbing'].forEach(function (lic) {
+      var L = st.licensing[lic];
+      rows.push('<tr><td>' + U.esc(st.name + ': ' + lic + ' licensing body') + '</td><td>' + U.esc(L.name) + '</td><td>—</td><td><span class="badge-ok">verified</span></td><td><a href="' + U.esc(L.url) + '" target="_blank" rel="noopener">' + U.esc(L.name) + '</a></td></tr>');
+    });
   });
   document.getElementById('sources-body').innerHTML = rows.join('');
 

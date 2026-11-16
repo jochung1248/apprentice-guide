@@ -7,6 +7,7 @@
   // Brand: orange = trade path (hivis-deep), blueprint blue = uni path. Pair validated with the dataviz palette checker (all checks pass on white).
   var COLORS = { trade: '#C2410C', uni: '#2F5BEA' };
 
+  U.fillTradeSelect($('trade'), 'electrician');
   var contrib = R.help.contributions.value, sal = R.graduates.medianSalary.value;
   var FIELDS = {
     business:    { contribution: contrib.commerce.amount,    salary: sal.business,    years: 3, band: contrib.commerce.label },

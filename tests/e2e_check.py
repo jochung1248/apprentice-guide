@@ -105,7 +105,7 @@ with sync_playwright() as p:
                                          ('plumber', '2', 'adult', False, '30'), ('bricklayer', '1', 'junior', True, '38')]:
         page.select_option('#trade', trade)
         page.check(f'input[name=year][value="{year}"]', force=True)
-        page.check(f'input[name=type][value="{typ}"]', force=True)
+        page.fill('#age', '25' if typ == 'adult' else '17')
         page.set_checked('#y12', y12)
         page.fill('#hours', hours)
         page.wait_for_timeout(50)
@@ -113,6 +113,14 @@ with sync_playwright() as p:
                       'fortnight': page.text_content('#out-fortnight'), 'gross': page.text_content('#out-gross-year'),
                       'kap_items': page.locator('#kap-list li').count()})
     report['apprentice_pay'] = cases
+    page.select_option('#trade', 'hairdresser'); page.fill('#age', '17'); page.set_checked('#y12', False); page.fill('#hours', '38')
+    page.check('input[name=year][value="1"]', force=True); page.select_option('#state', 'WA'); page.check('input[name=location][value="regional"]', force=True)
+    page.wait_for_timeout(50)
+    report['v11_hairdresser_wa'] = {'week': page.text_content('#out-week'), 'kap_title': page.text_content('#kap-title'),
+        'wa_notice': 'WA employers' in page.inner_html('#state-panel'), 'regional': 'Regional or remote' in page.inner_html('#state-panel'),
+        'u18': page.is_visible('#u18-note'), 'optgroups': page.locator('#trade optgroup').count(), 'trades': page.locator('#trade option').count()}
+    if not report['v11_hairdresser_wa']['wa_notice'] or report['v11_hairdresser_wa']['trades'] < 15:
+        problems.append('v1.1 state panel / trade list check failed')
 
     page.goto(BASE + 'trade-vs-uni.html')
     tv = []
@@ -133,7 +141,7 @@ with sync_playwright() as p:
     for trade, year, typ, comp, inc in [('carpenter', '1', 'junior', '4', 'kap'), ('electrician', '2', 'junior', '3', 'kap'), ('bricklayer', '1', 'adult', '5', 'phi')]:
         page.select_option('#trade', trade)
         page.check(f'input[name=year][value="{year}"]', force=True)
-        page.check(f'input[name=type][value="{typ}"]', force=True)
+        page.fill('#age', '25' if typ == 'adult' else '17')
         page.fill('#comp', comp)
         page.select_option('#incentive', inc)
         page.wait_for_timeout(50)

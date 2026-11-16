@@ -58,3 +58,51 @@ URL: https://www.dewr.gov.au/id/download/16760/australian-apprenticeships-incent
 
 ## Illustrative assumptions (no primary source; editable in UI)
 Part-time study income $15,000/yr; pay growth 3%/yr; qualified pay above award 0%; workers comp 4% of wages; training fees $1,000/yr; tools/PPE $800/yr. A market-typical qualified tradesperson wage could not be sourced from a primary source (Jobs and Skills Australia / Your Career pages could not be read), so the trade path defaults to the award minimum.
+
+
+## v1.1 additions (checked 17 Nov 2026)
+
+### More trades (all verified against Fair Work 2026–27 sources unless noted)
+Weekly / hourly, 38 hours, apprentices who started on or after 1 Jan 2014. Junior no-Y12 yrs 1–4 | Junior Y12 yrs 1–4 | Adult yrs 1–4 | Qualified.
+| Table (award) | Trades | Junior no Y12 | Junior Y12 | Adult | Qualified |
+|---|---|---|---|---|---|
+| MA000020 plasterer group (residential) | Plasterer | 647.37 / 759.28 / 927.15 / 1,095.01 | 703.33 / 815.24 / same | 1,101.32 | L3 1,206.92 |
+| MA000020 roof tiler group | Roof tiler | 634.86 / 746.77 / 914.64 / 1,082.50 | 690.82 / 802.73 / same | 1,088.81 | L3 1,194.41 |
+| MA000020 glazier/painter/signwriter | Painter, glazier | 623.16 / 735.07 / 902.94 / 1,070.80 | 679.12 / 791.03 / same | 1,077.11 | L3 1,182.71 |
+| MA000020 "all others" | Concreter (**mapping unverified**) | 613.27 / 725.18 / 893.05 / 1,060.91 | 669.23 / 781.14 / same | 1,067.22 | L3 no tool allowance 1,172.82 (verified:false) |
+| MA000020 carpenter group | Carpenter, wall and floor tiler | (as before) | | | |
+| MA000029 Joinery (published 24 Jun 2026) | Cabinetmaker/joiner | 601.54 / 713.44 / 881.24 / 1,049.14 | 657.44 / 769.34 / same | 948.44 / 993.14 / 1,026.74 / 1,093.94 ($28.78 as printed) | L5 1,161.04 (excl. $1.08/hr tool allowance) |
+| MA000089 Vehicle (published 4 Nov 2026) | Light vehicle, diesel, auto electrician, panel beater, vehicle painter | 559.55 / 671.46 / 839.33 / 984.81 | 615.51 / 727.42 / 839.33 / 984.81 | 895.28 / 978.10 / 1,004.90 / 1,029.10 | Tradesperson L1 1,119.10 |
+| MA000010 Manufacturing (published 29 Jul 2026) | Fitter and turner, boilermaker/welder | 559.55 / 671.46 / 839.33 / 984.81 | 615.51 / 727.42 / 839.33 / 1,029.10 | 895.28 / 978.10 / 1,004.90 / 1,029.10 | C10 1,119.10 |
+| MA000009 Hospitality (General) (published 24 Jun 2026) | Chef/cook | 615.51 / 727.42 / 895.28 / 1,063.15 (no Y12 distinction) | same | 895.28 / 978.10 / 978.10 / 1,063.15 | Cook grade 3 (L4) 1,119.10 |
+| MA000005 Hair and Beauty (award text, ppc 1 Jul 2026) | Hairdresser, barber | 559.55 / 671.46 / 861.71 / 1,007.19 | 615.51 / 727.42 / same | 895.28 / 1,056.80 ×3 (cl. 18.4 "greater of") | L3 1,119.10 |
+| MA000101 Gardening (published 28 Aug 2026; hourly only) | Landscaper | 14.73 / 17.67 / 22.09 / 27.98 per hour | 16.20 / 19.14 / 22.09 / 27.98 | 23.56 / 25.74 / 25.74 / 27.98 | L4 1,119.10 |
+
+Cooks: we used the Hospitality Industry (General) Award [MA000009]; restaurants use the Restaurant Industry Award [MA000119]. Hair: the calculate.fairwork.gov.au pay-guide endpoint kept returning the plumbing guide to our fetcher, so the hairdressing rates come from the award text on awards.fairwork.gov.au. FWO's hairdressing page confirms the $14.73 junior and $23.56 adult starting rates. **Not added:** air-conditioning and refrigeration mechanic. The award depends on the employer (electrical contracting, plumbing/mechanical services or manufacturing), so we couldn't verify a single right award.
+
+### Priority List and KAP streams (verified)
+DEWR Australian Apprenticeships Priority List, 1 April 2026: https://www.dewr.gov.au/it/download/17559/australian-apprenticeships-priority-list-1-april-2026/42585/australian-apprenticeships-priority-list-1-april-2026/pdf
+- Housing Construction (HCA): carpenter, carpenter and joiner, bricklayer, wall and floor tiler, painter, plasterer, roof tiler, cabinet maker, landscape gardener.
+- Both streams: electrician, plumber, glazier, joiner, fitter and turner, fitter (general), metal fabricator, welder (first class).
+- New Energy only (NEA): automotive technician (general), automotive electrician.
+- On the list, no KAP stream: diesel technician, panelbeater, vehicle painter, cook, hairdresser, barber.
+- Not on the list: concreter.
+- Stream columns were read from the row spacing in the extracted PDF text. Building trades matched the earlier provider list.
+
+### Age, under-18s, WA, LAFHA (verified)
+- Adult apprentice = 21+ at start: https://www.fairwork.gov.au/starting-employment/types-of-employees/apprentices-and-trainees/hairdressing-apprentices
+- Under-18 wages are taxed at adult rates as excepted income: https://www.ato.gov.au/tax-rates-and-codes/tax-rates-if-you-re-under-18-years-old
+- In Victoria a parent or guardian signs the training contract for under-18s: https://www.apprenticeships.vic.gov.au/your-training-contract
+- WA state system covers sole traders, partnerships and trusts that aren't constitutional corporations (updated 27 Oct 2026): https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-laws-applies
+- LAFHA eligibility comes from the DEWR payments overview.
+
+### State help and licensing (verified items only; see `rates.js` → `states` for text and URLs)
+- NSW: fee-free apprenticeships (Smart and Skilled training starting before 30 Jun 2027); VTAS travel $0.52/km and $70/night over 110 km return; payroll tax rebate. Licensing: NSW Fair Trading.
+- VIC: Free TAFE for six priority apprenticeships from 2027 (first-year fees); payroll tax exemption for re-employed out-of-trade apprentices. Licensing: Energy Safe Victoria and the Building and Plumbing Commission. **No travel allowance verified.**
+- QLD: Free Apprenticeships for Under 25s (start by 30 Jun 2027); travel allowance 34c/km and $58/$112 a night, 100 km return minimum; payroll tax exemption plus rebate. Licensing: Electrical Safety Office and QBCC.
+- WA: five fee-free apprenticeship qualifications from Jan 2026; Travel and Accommodation Allowance over 70 km round trip; Construction Training Fund apprentice bonus ($1,000 a year, up to $3,000) and tools (up to $2,000) (June 2025 doc); employer incentives (JSWA up to $8,500 base, Adult Apprentice up to $26,800, CTF up to $15,000); payroll tax exemption for apprentices. Licensing: Building and Energy and the Plumbers Licensing Board.
+- SA: travel and accommodation allowance (distance thresholds differ between two SA pages, so we don't quote one). **No current payroll tax exemption** (the 2020–22 scheme has ended). Licensing: Consumer and Business Services.
+- TAS: Travel and Accommodation Contribution. **The payroll tax rebate only covers apprentices who started by 30 Jun 2026, so it's omitted.** Licensing: CBOS.
+- ACT: interstate block-release travel payment; payroll tax exemption for approved not-for-profit GTOs only. Licensing: Access Canberra (Construction Occupations Registrar).
+- NT: travel and accommodation subsidy over 50 km one way. The page dates from 2016, so amounts are omitted. Licensing: Electrical Workers and Contractors Licensing Board and the Plumbers and Drainers Licensing Board.
+- Regional-specific: no Commonwealth regional loading found. State travel allowances are distance-based and are highlighted when "Regional or remote" is selected. The WA JSWA regional loading amount isn't stated, so it isn't quoted.
