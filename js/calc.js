@@ -113,14 +113,46 @@
     });
   }
 
+  /* ---------------- Age, Year 12 and incentive helpers ---------------- */
+
+  // Adult apprentice = 21 or older when the apprenticeship starts (Fair Work). Ages are whole years, 15-60.
+  function apprenticeTypeForAge(age, R) {
+    var a = clamp(Math.round(num(age, 17)), 15, 60);
+    return a >= R.adultAge.value ? 'adult' : 'junior';
+  }
+
+  // Does finishing Year 12 change the junior rate for this trade and year?
+  function y12Matters(tradeKey, type, year, R) {
+    if (type === 'adult') return false;
+    var t = R.trades[tradeKey], y = clamp(Math.round(num(year, 1)), 1, 4) - 1;
+    return t.apprenticeJuniorY12.value[y].weekly !== t.apprenticeJuniorNoY12.value[y].weekly;
+  }
+
+  // Which Commonwealth incentives a trade may attract (from the Priority List streams).
+  function incentiveOptions(tradeKey, R) {
+    var t = R.trades[tradeKey], stream = t.kapStream.value, onList = !!t.priorityList.value;
+    return {
+      stream: stream,
+      onPriorityList: onList,
+      kapPossible: stream !== 'none',
+      kapDefault: !!t.kapEligible.value,
+      // employer default: KAP if the occupation defaults to KAP, otherwise Priority Hiring if on the list, else none
+      employerDefault: t.kapEligible.value ? 'kap' : (onList ? 'phi' : 'none'),
+      // apprentice fallback when KAP doesn't apply: the training support payment needs a Priority List occupation
+      apprenticeFallback: onList ? 'aatsp' : 'check'
+    };
+  }
+
   /* ---------------- Calculator 1: apprentice pay ---------------- */
   /*
-   * inputs: { trade, year (1-4), type ('junior'|'adult'), y12 (bool), hours (<=38), kapEligible (bool, optional) }
+   * inputs: { trade, year (1-4), age (15-60; preferred) or type ('junior'|'adult'), y12 (bool), hours (<=38), kapEligible (bool, optional) }
+   * If `age` is given, the apprentice type is derived from it (21+ at start = adult).
    */
   function apprenticePay(inputs, R) {
     var full = R.ordinaryHours.value;
     var hours = clamp(num(inputs.hours, full), 1, full);
-    var rate = apprenticeRate(inputs.trade, inputs.year, inputs.type, !!inputs.y12, R);
+    var type = inputs.age !== undefined && inputs.age !== null && inputs.age !== '' ? apprenticeTypeForAge(inputs.age, R) : (inputs.type === 'adult' ? 'adult' : 'junior');
+    var rate = apprenticeRate(inputs.trade, inputs.year, type, !!inputs.y12, R);
     var weekly = weeklyForHours(rate.weekly, hours, R);
     var annual = round2(weekly * WEEKS);
     var tax = incomeTax(annual, R);
@@ -129,6 +161,8 @@
     var partTime = hours < full;
     var kap = eligible ? kapSchedule(partTime, R, 4) : [];
     return {
+      type: type,
+      y12Applies: y12Matters(inputs.trade, type, inputs.year, R),
       hours: hours,
       partTime: partTime,
       hourly: rate.hourly,
@@ -174,7 +208,7 @@
     var idx = num(inputs.indexation, 0);
     var t = R.trades[inputs.trade];
     if (!t) throw new Error('Unknown trade: ' + inputs.trade);
-    var adult = startAge >= 21;
+    var adult = startAge >= R.adultAge.value;
     var kapOn = inputs.kapEligible !== undefined ? !!inputs.kapEligible : !!t.kapEligible.value;
     var kap = kapOn ? kapSchedule(false, R, 4) : [];
     var qualifiedBase = t.tradesperson.value.weekly * WEEKS * (1 + loading);
@@ -238,7 +272,7 @@
 
   /* ---------------- Calculator 3: employer cost ---------------- */
   /*
-   * inputs: { trade, year, type, y12, hours, workersCompRate (0.04), tafeFees, toolsPpe,
+   * inputs: { trade, year, age (or type), y12, hours, workersCompRate (0.04), tafeFees, toolsPpe,
    *           incentive ('kap'|'phi'|'none'), incentiveAmount (optional override) }
    * Incentives are first-year only, so they are only deducted when year === 1.
    */
@@ -246,7 +280,8 @@
     var full = R.ordinaryHours.value;
     var hours = clamp(num(inputs.hours, full), 1, full);
     var year = clamp(Math.round(num(inputs.year, 1)), 1, 4);
-    var rate = apprenticeRate(inputs.trade, year, inputs.type, !!inputs.y12, R);
+    var type = inputs.age !== undefined && inputs.age !== null && inputs.age !== '' ? apprenticeTypeForAge(inputs.age, R) : (inputs.type === 'adult' ? 'adult' : 'junior');
+    var rate = apprenticeRate(inputs.trade, year, type, !!inputs.y12, R);
     var weekly = weeklyForHours(rate.weekly, hours, R);
     var wages = round2(weekly * WEEKS);
     var superAmt = round2(wages * R.superGuarantee.value);
@@ -265,7 +300,7 @@
     var incentive = year === 1 ? Math.max(0, num(inputs.incentiveAmount, defaultIncentive)) : 0;
     var net = round2(gross - incentive);
     return {
-      hours: hours, partTime: partTime, year: year,
+      type: type, hours: hours, partTime: partTime, year: year,
       hourly: rate.hourly, weekly: weekly,
       wages: wages, super: superAmt, workersComp: comp, workersCompRate: compRate,
       tafeFees: fees, toolsPpe: tools,
@@ -286,6 +321,9 @@
     incomeTax: incomeTax,
     helpRepayment: helpRepayment,
     apprenticeRate: apprenticeRate,
+    apprenticeTypeForAge: apprenticeTypeForAge,
+    y12Matters: y12Matters,
+    incentiveOptions: incentiveOptions,
     weeklyForHours: weeklyForHours,
     kapSchedule: kapSchedule,
     apprenticePay: apprenticePay,
