@@ -10,7 +10,7 @@ REELS={
  {'type':'end','t0':28.5,'t1':34,'kicker':'Qualified carpenter · from year 5','big':'$1,214','sub':'a week, award minimum.'},
 ]},
 'reel-2-tafe-or-uni':{'series':'TAFE OR UNI? · 4 ROUNDS','scenes':[
- {'type':'hook','t0':0,'t1':3.4,'kicker':'Four rounds · real numbers','big':'TAFE<br>OR UNI?','size':230,'sub':'We scored both paths. Uni wins one.','cap':'Keep score.'},
+ {'type':'hook','t0':0,'t1':3.4,'kicker':'Four rounds · real numbers','big':'TAFE<br>OR UNI?','size':230,'sub':'We scored both paths.','cap':'Keep score.'},
  {'type':'round','t0':3.4,'t1':9.4,'n':1,'label':'Cost to study','title':'What you pay each year.','trade':{'name':'NSW apprentice','v':0,'t':'$0'},'uni':{'name':'Business uni','v':17399,'t':'$17,399'},'winner':'TRADE','prev':[0,0],'score':[1,0],'cap':'NSW apprenticeship training is fee-free.'},
  {'type':'round','t0':9.4,'t1':15.4,'n':2,'label':'Paid while learning','title':'What you earn while you train.','trade':{'name':'Apprentice chippy, 4 yrs','v':TOT,'t':'$179,779'},'uni':{'name':'Uni study','v':0,'t':'$0'},'winner':'TRADE','prev':[1,0],'score':[2,0],'cap':'Uni students pay to learn.'},
  {'type':'round','t0':15.4,'t1':21.4,'n':3,'label':'Job after finishing','title':'Employed after you finish.','trade':{'name':'Trade apprentices','v':94.8,'t':'94.8%'},'uni':{'name':'New uni grads','v':89.2,'t':'89.2%'},'winner':'TRADE','prev':[2,0],'score':[3,0],'cap':'Close, but trade takes it.'},
