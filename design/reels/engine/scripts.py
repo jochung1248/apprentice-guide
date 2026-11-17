@@ -39,3 +39,16 @@ REELS['reel-4-tradies-wanted']={'series':'TRADIES WANTED · 2026','scenes':[
    {'name':'Plumber','v':1246.54,'c':'#FF6B1A'},{'name':'Electrician','v':1223.11},{'name':'Carpenter','v':1214.04},{'name':'Bricklayer','v':1202.08}],'cap':'That’s the floor, not the ceiling.'},
  {'type':'end','t0':38,'t1':43.5,'kicker':'Your trade · your numbers','big':'22 TRADES','size':150,'sub':'Free apprentice pay calculator.'},
 ]}
+
+REELS['reel-5-hard-years-end']={'series':'AFTER YOU QUALIFY','scenes':[
+ {'type':'hook','t0':0,'t1':3.8,'kicker':'Life after your apprenticeship','big':'THE HARD<br>YEARS END','size':200,'sub':'Here’s what’s on the other side.','cap':'First-year chippy: $654 a week.'},
+ {'type':'tapes','t0':3.8,'t1':10.3,'label':'Weekly pay · 2026–27 award minimum','title':'Qualifying nearly doubles your pay.','stagger':0.9,'max':1300,'compact':True,'bars':[
+   {'name':'Sparky · first year','v':622.72},{'name':'Sparky · qualified','v':1223.11,'c':'#FF6B1A'},{'name':'Chippy · first year','v':654.49},{'name':'Chippy · qualified','v':1214.04,'c':'#FF6B1A'}],'cap':'Same job. Almost double the pay.'},
+ {'type':'tapes','t0':10.3,'t1':16.8,'label':'Typical full-time pay vs the legal minimum','title':'The award is the floor, not the ceiling.','stagger':0.9,'max':2100,'compact':True,'bars':[
+   {'name':'Plumber · typical full-time','v':1990,'c':'#FF6B1A'},{'name':'Plumber · legal minimum','v':1246.54},{'name':'Carpenter · typical full-time','v':1760,'c':'#FF6B1A'},{'name':'Carpenter · legal minimum','v':1214.04}],'cap':'The typical plumber earns $743 above it.'},
+ {'type':'stamp','t0':16.8,'t1':21.3,'kicker':'Work for themselves','big':'1 IN 5','sub':'construction workers are independent contractors.','cap':'Across all jobs, it’s 7.6%.'},
+ {'type':'tapes','t0':21.3,'t1':26.8,'label':'Share working full-time hours · 2025','title':'Trade jobs are full-time jobs.','stagger':0.9,'bars':[
+   {'name':'Plumbers','v':93,'t':'93%','c':'#FF6B1A'},{'name':'Carpenters','v':89,'t':'89%','c':'#FF6B1A'},{'name':'All jobs','v':69,'t':'69%'}],'cap':'And 3 in 4 stay in their trade.'},
+ {'type':'stamp','t0':26.8,'t1':31.3,'kicker':'In shortage every year, 2021–2025','big':'71 OF 139','size':190,'sub':'occupations short every year since 2021 are trades.','cap':'Trade skills stay in demand.'},
+ {'type':'end','t0':31.3,'t1':36.8,'kicker':'Qualified plumber · award minimum','big':'$1,247','sub':'a week. And that’s the floor.','cta':'See the climb, year by year · link in bio'},
+]}

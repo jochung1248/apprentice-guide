@@ -43,3 +43,16 @@ Numbers are written as words so the voice reads them naturally. Each line goes i
 | 0:38 | What would your trade pay? Free calculator for twenty-two trades. Link in bio. |
 
 Sources: HIA Trades Availability Index (Sept quarter 2026 by market; June quarter 2026 by trade; scores show shortage, so higher means harder to find), BuildSkills Australia Housing Workforce Capacity Study (Sept 2025), ABS Job Vacancies (Feb 2026), NCVER Apprentice and Trainee Outcomes 2025, Fair Work pay guides 2026–27.
+
+## Reel 5: The hard years end (37s)
+| Start | Line |
+|---|---|
+| 0:00 | The hard years of an apprenticeship end. Here's what's on the other side. |
+| 0:04 | A first-year sparky earns six hundred and twenty-three a week. Qualified, it's twelve hundred and twenty-three. Chippies, almost the same jump. |
+| 0:10 | And that's just the legal minimum. The typical full-time plumber earns nearly two thousand a week. Carpenters, seventeen sixty. |
+| 0:17 | One in five construction workers works for themselves. Across all jobs, it's under one in ten. |
+| 0:21 | Trade jobs are full-time jobs. Ninety-three per cent of plumbers work full-time hours. |
+| 0:27 | And seventy-one of the occupations short every year since 2021 are trades. |
+| 0:31 | Qualified plumber: twelve hundred and forty-seven a week. And that's the floor. Link in bio. |
+
+Sources: Fair Work pay guides 2026–27; Jobs and Skills Australia occupation profiles (ABS Employee Earnings and Hours, May 2025; Labour Force 2025); ABS Working arrangements, Aug 2025; JSA 2025 Occupation Shortage List; NCVER outcomes 2025.
