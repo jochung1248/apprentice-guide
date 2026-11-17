@@ -17,15 +17,19 @@ Save this one for later.
 
 #apprentice #apprenticeship #tradie #tradieaustralia #autoelectrician #electrician #plumber #bricklayer #carpenter #fitter #tafe #careeradvice
 
-## reel-loop-trap.mp4 (10s)
+## reel-loop-trap.mp4 (12s)
 
-The apprentice trap: don't buy the HiLux straight away.
+The apprentice trap: don't buy the HiLux the day you qualify.
 
-Four years on apprentice wages. You finally qualify. Then 28% of your take-home goes on a ute.
+1. The repayment eats 28% of your take-home pay, every week, for 5 years.
+2. $14,730 of what you pay back is just interest.
+3. Bank that $287 a week for a year instead and you'd have almost $15,000.
+
+Four years waiting for the pay rise. Don't hand it straight to the bank.
 
 Tag the mate eyeing a ute 👇
 
 —
-Pictured: Toyota HiLux (photo supplied, credit: [add]). Price example: 2026 HiLux SR5 4x4 dual-cab, $63,990 before on-road costs, or $59,990 with Toyota's $4,000 finance deposit bonus (orders by 31 Dec 2026). Drive-away costs more. Loan example only: a $60,000 car loan at 9% a year over 5 years, $1,245.50 a month ($287 a week, 52 weeks). Rates and prices vary. Carpenter pay = Fair Work award minimum from 1 July 2026 ($1,214.04 a week). After-tax figure uses ATO 2026–27 resident rates and the Medicare levy (2025–26 low-income thresholds, the latest published). 28% = repayment ÷ take-home pay. Not financial advice.
+Pictured: Toyota HiLux (photo supplied, credit: [add]). Price example: 2026 HiLux SR5 4x4 dual-cab, $63,990 before on-road costs, or $59,990 with Toyota's $4,000 finance deposit bonus (orders by 31 Dec 2026). Drive-away costs more. Loan example only: a $60,000 car loan at 9% a year over 5 years, $1,245.50 a month ($287 a week, 52 weeks). Rates and prices vary. Qualified worker pay = Fair Work award minimum for a qualified carpenter from 1 July 2026 ($1,214.04 a week). $287.42 × 52 weeks = $14,946. After-tax figure uses ATO 2026–27 resident rates and the Medicare levy (2025–26 low-income thresholds, the latest published). 28% = repayment ÷ take-home pay. Not financial advice.
 
 #apprentice #tradie #tradieaustralia #ute #carfinance #moneytips #apprenticeship #firstcar #personalfinance
