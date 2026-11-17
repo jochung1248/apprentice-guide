@@ -24,6 +24,6 @@ Four years on apprentice wages. Then the first big purchase is a ute on finance.
 Tag the mate eyeing a ute 👇
 
 —
-The ute is a generic illustration, not a specific model. Example only: a $60,000 car loan at 9% a year over 5 years, $1,245.50 a month ($287 a week, 52 weeks). Rates and prices vary. Carpenter pay = Fair Work award minimum from 1 July 2026 ($1,214.04 a week). After-tax figure uses ATO 2026–27 resident rates and the Medicare levy (2025–26 low-income thresholds, the latest published). 28% = repayment ÷ take-home pay. Not financial advice.
+Pictured: Toyota HiLux (photo supplied, credit: [add]). Price example: 2026 HiLux SR5 4x4 dual-cab, $63,990 before on-road costs, or $59,990 with Toyota's $4,000 finance deposit bonus (orders by 31 Dec 2026). Drive-away costs more. Loan example only: a $60,000 car loan at 9% a year over 5 years, $1,245.50 a month ($287 a week, 52 weeks). Rates and prices vary. Carpenter pay = Fair Work award minimum from 1 July 2026 ($1,214.04 a week). After-tax figure uses ATO 2026–27 resident rates and the Medicare levy (2025–26 low-income thresholds, the latest published). 28% = repayment ÷ take-home pay. Not financial advice.
 
 #apprentice #tradie #tradieaustralia #ute #carfinance #moneytips #apprenticeship #firstcar #personalfinance
