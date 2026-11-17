@@ -8,7 +8,7 @@ What tradies actually earn, per week. 13 trades, highest to lowest.
 
 First year on the left. The legal minimum once you qualify in the middle. What most full-time workers in that trade actually earn on the right.
 
-5 trades beat the average Aussie job. Auto electricians top it at $2,808 a week.
+Auto electricians top it at $2,808 a week.
 
 Save this one for later.
 
