@@ -1,0 +1,117 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:400;src:url(fonts/inter-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:500;src:url(fonts/jetbrains-mono-latin-500-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0;background:#0E0F12}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#0E0F12;color:#F4F1EA;font-family:Inter}
+.mono{font-family:JBM;text-transform:uppercase;letter-spacing:2px}
+.layer{position:absolute;inset:0}
+.crumb{position:absolute;left:72px;top:150px;font-size:22px;color:#6E747D}
+.title{position:absolute;left:72px;top:196px;font-size:40px;font-weight:600}
+.src{position:absolute;left:72px;top:250px;font-size:18px;color:#5B616A}
+.total{position:absolute;left:72px;right:72px;top:300px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #2A2D33;padding-top:18px}
+.total .k{font-size:18px;color:#6E747D}
+.total .v{font-family:JBM;font-weight:700;font-size:58px;color:#FF6B1A;letter-spacing:0}
+#grid{position:absolute;left:72px;right:72px;top:420px}
+.row{margin-bottom:18px}
+.rowhead{display:flex;justify-content:space-between;font-size:20px;color:#8A9099;margin-bottom:8px}
+.icons{display:grid;grid-template-columns:repeat(16,1fr);gap:6px 6px}
+.ic{width:52px;height:34px}
+.cap{position:absolute;left:80px;right:80px;top:1390px;text-align:center;font-size:46px;font-weight:600;line-height:1.3}
+.hl{background:#FFE14D;color:#16181D;padding:0 8px}
+.ledger{position:absolute;left:72px;right:72px;top:380px}
+.lrow{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-bottom:1px solid #2A2D33;font-size:34px}
+.lrow .l small{display:block;font-family:JBM;font-size:16px;color:#6E747D;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.lrow .r{font-family:JBM;font-weight:700;font-size:38px}
+.bar{height:44px;border-radius:6px}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const W=[654.49,766.40,934.27,1102.13].map(w=>w*52); // annual award wages, carpentry junior, no Y12 (2026-27)
+const KAP=10000, HECS=17399*3;
+const HAT=c=>`<svg class="ic" viewBox="0 0 200 130"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="${c}"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98 Z" fill="${c}" opacity=".55"/><rect x="10" y="94" width="180" height="22" rx="11" fill="${c}"/></svg>`;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const fmtK=v=>'$'+(v/1000).toFixed(1)+'K';
+const fmt=v=>'$'+Math.round(v).toLocaleString('en-AU');
+// beats: [start,end,label,amount,color]
+const rows=[
+ {s:4.0,e:8.5,label:'YEAR 1 · $654 A WEEK',amt:W[0]},
+ {s:8.5,e:12,label:'YEAR 2 · $766 A WEEK',amt:W[1]},
+ {s:12,e:15.5,label:'YEAR 3 · $934 A WEEK',amt:W[2]},
+ {s:15.5,e:19,label:'YEAR 4 · $1,102 A WEEK',amt:W[3]},
+ {s:19,e:23,label:'KEY APPRENTICESHIP PROGRAM · 5 × $2,000',amt:KAP,kap:true},
+];
+const caps=[
+ [0.6,4,'A 17-year-old starts a carpentry apprenticeship.'],
+ [4,8.5,'Year one pays <span class="hl">$654 a week.</span>'],
+ [8.5,12,'Year two, $766.'],
+ [12,15.5,'Year three, $934.'],
+ [15.5,19,'Year four, $1,102.'],
+ [19,23,'Then the government adds <span class="hl">$10,000</span> for finishing.'],
+ [23,29,'Four years. <span class="hl">$189,779</span> earned.'],
+ [29,35,'A three-year commerce degree? <span class="hl">$52,197</span> in HECS.'],
+ [35,40.5,'Then you’re qualified. <span class="hl">$1,214 a week.</span>'],
+];
+function render(t){
+ const st=document.getElementById('stage'); let h='';
+ // header (scenes 0-23 grid, 23-29 ledger, 29-35 compare, 35+ end)
+ const head=(crumb,title,src,o=1)=>`<div class="layer" style="opacity:${o}"><div class="crumb mono">${crumb}</div><div class="title">${title}</div><div class="src mono">${src}</div></div>`;
+ const fin=a=>clamp((t-a)/0.5), fout=b=>1-clamp((t-b)/0.5);
+ if(t<23.4){
+  const o=Math.min(fin(0),fout(22.9));
+  h+=head('Apprentice pay · Carpentry · NSW','Four years as an apprentice chippy','Fair Work pay guide 2026–27 · award minimum · before tax',o);
+  // running total
+  let tot=0; rows.forEach(r=>{tot+=r.amt*ease((t-r.s)/(r.e-r.s-0.8));});
+  h+=`<div class="total" style="opacity:${Math.min(fin(3.5),fout(22.9))}"><div class="k mono">Running total · 1 hat = $1,000</div><div class="v">${fmtK(tot)}</div></div>`;
+  h+=`<div id="grid" style="opacity:${fout(22.9)}">`;
+  rows.forEach((r,i)=>{
+   if(t<r.s-0.2) return;
+   const n=Math.round(r.amt/1000), shown=Math.floor(n*ease((t-r.s)/(r.e-r.s-0.8)));
+   const cur=t<r.e; const col=r.kap?'#FFE14D':(cur?'#FF6B1A':'#C9C5BC');
+   let ic=''; for(let k=0;k<n;k++) ic+=`<div style="opacity:${k<shown?1:0}">${HAT(col)}</div>`;
+   h+=`<div class="row" style="opacity:${fin(r.s-0.2)}"><div class="rowhead mono"><span style="color:${cur?'#F4F1EA':'#8A9099'}">${r.label}</span><span>${fmt(r.amt*clamp((t-r.s)/(r.e-r.s-0.8)))}</span></div><div class="icons">${ic}</div></div>`;
+  });
+  h+=`</div>`;
+ }
+ if(t>=22.9 && t<29.4){
+  const o=Math.min(fin(22.9),fout(28.9));
+  h+=head('Add it up','Four years, added up','Award wages + Key Apprenticeship Program payments',o);
+  const L=[['Wages',`52 weeks × 4 years · award minimum`,fmt(W[0]+W[1]+W[2]+W[3]),'#F4F1EA',23.6],['Government payments','Key Apprenticeship Program',fmt(KAP),'#FFE14D',24.6],['Total earned','before tax',fmt(W[0]+W[1]+W[2]+W[3]+KAP),'#FF6B1A',25.6],['Student debt','',  '$0','#F4F1EA',26.8]];
+  h+=`<div class="ledger" style="opacity:${o}">`+L.map(([a,b,c,col,s])=>`<div class="lrow" style="opacity:${fin(s)};transform:translateY(${(1-ease((t-s)/0.5))*20}px)"><div class="l">${a}<small>${b}</small></div><div class="r" style="color:${col}">${c}</div></div>`).join('')+`</div>`;
+ }
+ if(t>=28.9 && t<35.4){
+  const o=Math.min(fin(28.9),fout(34.9));
+  h+=head('The comparison','Same four years, two paths','Apprentice wages vs HECS for a 3-year commerce degree (2026 student contribution)',o);
+  const max=W.reduce((a,b)=>a+b)+KAP, g1=ease((t-29.6)/1.4), g2=ease((t-31.4)/1.2);
+  h+=`<div class="layer" style="opacity:${o}"><div style="position:absolute;left:72px;right:72px;top:420px">
+   <div class="mono" style="font-size:20px;color:#8A9099;margin-bottom:12px">Apprentice chippy · earned</div>
+   <div class="bar" style="width:${g1*100}%;background:#FF6B1A"></div>
+   <div style="font-family:JBM;font-weight:700;font-size:44px;color:#FF6B1A;margin:14px 0 70px">+${fmt(max*g1)}</div>
+   <div class="mono" style="font-size:20px;color:#8A9099;margin-bottom:12px;opacity:${fin(31.2)}">Commerce degree · HECS owed</div>
+   <div class="bar" style="width:${g2*HECS/max*100}%;background:#2F5BEA"></div>
+   <div style="font-family:JBM;font-weight:700;font-size:44px;color:#8FA8FF;margin-top:14px;opacity:${fin(31.2)}">−${fmt(HECS*g2)}</div>
+  </div></div>`;
+ }
+ if(t>=34.9){
+  const o=fin(34.9);
+  h+=`<div class="layer" style="opacity:${o}"><div style="position:absolute;left:0;right:0;top:520px;display:flex;flex-direction:column;align-items:center;gap:28px">
+   <div style="font-family:JBM;font-size:20px;color:#6E747D;letter-spacing:2px">QUALIFIED CARPENTER · AWARD MINIMUM</div>
+   <div style="font-family:Anton;font-size:190px;line-height:1;color:#FF6B1A">$1,214</div>
+   <div style="font-size:40px;font-weight:600;color:#C9C5BC">a week, from year five</div>
+   <div style="margin-top:90px;opacity:${fin(36.5)};display:flex;align-items:center;gap:22px">
+     <div style="width:120px;height:120px;border-radius:24px;background:#F4F1EA;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 200 130" width="96"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="9"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98 Z" fill="#C2410C" stroke="#16181D" stroke-width="9"/><rect x="10" y="94" width="180" height="22" rx="11" fill="#16181D"/></svg></div>
+     <div><div style="font-family:Anton;font-size:56px;line-height:1">APPRENTICE <span style="color:#FF6B1A">GUIDE</span></div><div style="font-size:30px;color:#C9C5BC;margin-top:8px">Work out your pay · link in bio</div></div>
+   </div></div></div>`;
+ }
+ // captions
+ caps.forEach(([a,b,txt])=>{ if(t>=a-0.05&&t<b){ const o=Math.min(clamp((t-a)/0.25),clamp((b-t)/0.25)); h+=`<div class="cap" style="opacity:${o}">${txt}</div>`; }});
+ st.innerHTML=h;
+}
+window.render=render; render(0);
+</script></body></html>
