@@ -14,6 +14,16 @@ This is modelled on what makes high-performing Australian data carousels work (f
    - **"SWIPE TO SEE NEXT ▸"** pill bottom-right.
 3. **Final slide: the soft sell.** "If only there was a tool…", then a calculator mockup, then "…that told you what you'd actually take home.", then "It's free. Link in bio." Sources go here, small, in one block.
 
+## Covers: vary the opener
+Never use the same hook twice in a row. "X things nobody tells you…" belongs to the flagship only. Rotate these opener formats:
+- **Big number:** "$10,000 / for finishing your apprenticeship."
+- **Stat shock:** "4 in 10 / trade apprentices never finish."
+- **Question:** "TAFE or uni?"
+- **Before → after:** "$654 → $1,214 / The hard years end."
+- **Overheard quote:** "“We’re not taking anyone on.”"
+- **Challenge:** "Speak fluent site by Friday."
+Each cover has one line underneath that promises the payoff ("Here’s how to be one of the 6 who do.").
+
 ## Rules
 - **Confident, not hedged.** Slides must not contain "award minimum", "illustrative", "junior, 4-yr, no Year 12", "may", "usually", "eligible occupations", or brackets of caveats. Put the conditions in the subhead's own wording ("A 17-year-old first-year chippy earns…") and put the fine print in the caption and on the final slide.
 - **Specific numbers, rounded for reading:** $654 a week, $5,800, 69%, 1 in 3, 4 in 10, 8 in 10. Prefer "X in 10" and "1 in X" framings. Weekly dollars for pay, yearly for totals.

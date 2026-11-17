@@ -82,11 +82,11 @@ The artwork lives on the Claude Design canvas "Apprentice Guide — Launch socia
   2. "Chippies take home the most. Mechanics and hairdressers, the least." Bars of weekly take-home after tax: carpentry $611, plumbing $592, electrical $587, chef $581, mechanic $539, hairdresser $539.
   3. "If only there was a tool…" A calculator showing electrician, 1st year, age 17, $587 a week. Then "…that worked it out for your trade. It's free. Link in bio." and the sources.
 
-## C2: 4 things nobody tells you about the apprentice payment (6 slides)
+## C2: $10,000 for finishing your apprenticeship (6 slides)
 
 - **Slides:** 01 cover · 02 who gets it · 03 when it lands · 04 part-time · 05 your boss gets $5,000 · 06 tool + sources
 - **Caption:**
-  > 4 things nobody tells you about the $10,000 apprentice payment…
+  > $10,000 for finishing your apprenticeship. Here’s when each payment lands…
   >
   > It lands in five $2,000 drops.
   > Most of it comes after year one.
@@ -99,7 +99,7 @@ The artwork lives on the Claude Design canvas "Apprentice Guide — Launch socia
   >
   > #apprenticeship #keyapprenticeshipprogram #construction #tradies
 - **Alt text:**
-  1. Cover: "4 things nobody tells you about the apprentice payment".
+  1. Cover: "$10,000 for finishing your apprenticeship." / "If you’re in a housing trade. Five payments, and here’s when each one lands.".
   2. "Housing and new energy apprentices get $10,000." Trade chips: carpenter, bricklayer, tiler, plasterer, roof tiler, painter, plumber, electrician, glazier, cabinetmaker, landscaper.
   3. "It lands in five $2,000 drops." A timeline of $2,000 at 6, 12, 24 and 36 months and at the finish.
   4. "Part-time apprentices get half: $5,000." Bars: full-time $10K, part-time $5K.
@@ -182,7 +182,7 @@ The artwork lives on the Claude Design canvas "Apprentice Guide — Launch socia
 ## C6: Tradie translator (8 slides)
 
 - **Caption:**
-  > 6 site words nobody explains on day one…
+  > Speak fluent site by Friday. 6 words you’ll hear on day one…
   >
   > Smoko. Arvo. Chippy. Sparky. She'll be right. Hoo-roo.
   >
@@ -351,11 +351,11 @@ Four more carousels in the flagship style (1080×1350). The artwork is on the ca
 
 If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
 
-## C7: TAFE vs uni: 7 things nobody tells you (9 slides)
+## C7: TAFE or uni? (9 slides)
 
 - **Slides:** 01 cover · 02 three years of business uni costs $52,197 · 03 paid $180,000 to learn · 04 finished tradies have jobs · 05 professionals earn $20 an hour more · 06 HELP grows every June · 07 3 in 10 grads feel overqualified · 08 tradies stay in their trade · 09 the tool + sources
 - **Caption:**
-  > 7 things nobody tells you about TAFE vs uni (and uni wins a couple)…
+  > TAFE or uni? We ran the numbers on both, and uni wins one round…
   >
   > Three years of business uni costs $52,197. A NSW apprentice pays $0 in student fees.
   > A chippy gets paid $179,779 while training.
@@ -368,7 +368,7 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   >
   > #tafevsuni #apprenticeship #careersadvice #university #tradie
 - **Alt text:**
-  1. Cover: "7 things nobody tells you about TAFE vs uni".
+  1. Cover: "TAFE or uni?" / "We ran the numbers on both. Uni wins one round.".
   2. One: "Three years of business uni costs $52,197." Bars of student fees per full-time year in 2026: business and law $17,399, engineering, IT and science $9,537, teaching and nursing $4,738, NSW apprentice $0.
   3. Two: "Apprentices get paid $180,000 while they learn." Bars of a carpentry apprentice's yearly pay before tax: year 1 $34K, year 2 $40K, year 3 $49K, year 4 $57K.
   4. Three: "Finish a trade and you're more likely to have a job." Bars: 94.8% of trade apprentices who finish are employed, against 89.2% of new uni grads.
@@ -378,11 +378,11 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   8. Seven: "Finish a trade and you'll probably work in it." Bars: 73.7% of trade completers work in the occupation group they trained for, against 37.5% of non-trade completers.
   9. "If only there was a tool…" A trade vs uni calculator showing carpenter, business degree, start age 17: paid while training $179,779, uni fees over three years $52,197. Then "…that put your trade and your degree side by side. It's free. Link in bio." and the sources.
 
-## C8: 8 things nobody tells you about finishing your apprenticeship (10 slides)
+## C8: 4 in 10 never finish: how to be one of the 6 (10 slides)
 
 - **Slides:** 01 cover · 02 almost 1 in 5 quit in year one · 03 bigger employers finish more · 04 a GTO can be your boss · 05 the workplace is the top reason · 06 change bosses, not trades · 07 TAFE days are paid days · 08 borrow $27,048 · 09 sort five things in week one · 10 the tool + sources
 - **Caption:**
-  > 8 things nobody tells you about finishing your apprenticeship (most people learn them too late)…
+  > 4 in 10 trade apprentices never finish. Here’s how to be one of the 6 who do…
   >
   > Almost 1 in 5 trade apprentices quit in the first 12 months.
   > The top reason is the workplace, not the trade.
@@ -395,7 +395,7 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   >
   > #apprenticeship #apprentice #tradie #apprenticelife #careersadvice
 - **Alt text:**
-  1. Cover: "8 things nobody tells you about finishing your apprenticeship".
+  1. Cover: "4 in 10 trade apprentices never finish." / "Here’s how to be one of the 6 who do.".
   2. One: "Almost 1 in 5 trade apprentices quit in year one." A bar split 58.7% finished and 41.3% didn't, for trade apprentices who started in 2019.
   3. Two: "Bigger employers get more apprentices to the finish." Bars: 55.3% finish at businesses with up to 4 staff, 65.9% at businesses with 200 or more.
   4. Three: "A group training organisation can be your boss." Bars: 61.5% of group training organisation apprentices finish, against 57.7% with private employers.
@@ -406,11 +406,11 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   9. Eight: "Sort these five things in your first week." A checklist: your supervisor, your training plan, your TAFE days, your pay rate, your Apprentice Connect provider.
   10. "If only there was a tool…" A calculator showing carpenter, 4th year, age 17: take-home $934 a week. Then "…that showed you what finishing is worth. It's free. Link in bio." and the sources.
 
-## C9: 6 things nobody tells you about life after your apprenticeship (8 slides)
+## C9: The hard years end (8 slides)
 
 - **Slides:** 01 cover · 02 qualifying nearly doubles your pay · 03 the rate is a floor · 04 registration is a pay rise · 05 1 in 5 work for themselves · 06 half of long shortages are trades · 07 trade jobs are full-time jobs · 08 the tool + sources
 - **Caption:**
-  > 6 things nobody tells you about life after your apprenticeship (the hard years pay off)…
+  > The hard years end. A first-year chippy earns $654 a week; a qualified one, $1,214. Here’s what’s on the other side…
   >
   > Qualifying nearly doubles your pay.
   > The median full-time plumber earns $1,990 a week, $743 above the minimum.
@@ -423,7 +423,7 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   >
   > #tradie #apprenticeship #plumber #electrician #tradiepay
 - **Alt text:**
-  1. Cover: "6 things nobody tells you about life after your apprenticeship".
+  1. Cover: "$654 → $1,214. The hard years end." / "Here’s what’s on the other side.".
   2. One: "Qualifying nearly doubles your pay." Grouped bars of weekly pay, first year then qualified: carpenter $654 and $1,214, electrician $623 and $1,223, plumber $629 and $1,247, mechanic $560 and $1,119, hairdresser $560 and $1,119.
   3. Two: "The qualified rate is a floor, not a ceiling." Paired bars of weekly pay, median full-time then qualified minimum: plumbers $1,990 and $1,247, carpenters $1,760 and $1,214, motor mechanics $1,622 and $1,119.
   4. Three: "Getting registered is a pay rise on day one." Bars: not registered $1,202 a week, registered $1,247.
@@ -432,11 +432,11 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   7. Six: "Trade jobs are full-time jobs." Bars of the share who work full-time hours: plumbers 93%, carpenters 89%, all jobs 69%.
   8. "If only there was a tool…" A calculator showing plumber, 4th year, age 17: take-home $933 a week. Then "…that showed you the climb, year by year. It's free. Link in bio." and the sources.
 
-## C10: 8 things nobody tells you about landing an apprenticeship (10 slides)
+## C10: “We’re not taking anyone on.” (10 slides)
 
 - **Slides:** 01 cover · 02 fewer than 3 in 10 employers · 03 year one costs a boss $41,279 · 04 9 in 10 businesses are tiny · 05 4 in 10 never finish · 06 get a White Card first · 07 turn up ready · 08 a GTO takes the risk · 09 your boss can get $5,000 · 10 the tool + sources
 - **Caption:**
-  > 8 things nobody tells you about landing an apprenticeship (it's harder for the boss than you think)…
+  > “We’re not taking anyone on.” Why small builders say it, and how to get them to say yes…
   >
   > Fewer than 3 in 10 employers train apprentices.
   > Year one of you costs a boss $41,279.
@@ -449,7 +449,7 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   >
   > #apprenticeship #tradie #getanapprenticeship #careersadvice #smallbusiness
 - **Alt text:**
-  1. Cover: "8 things nobody tells you about landing an apprenticeship".
+  1. Cover: "“We’re not taking anyone on.”" / "Why small builders say it, and how to get them to say yes.".
   2. One: "Fewer than 3 in 10 employers train apprentices." Bars: 31.3% of employers had apprentices or trainees in 2023, 28.7% in 2025.
   3. Two: "Year one of you costs a boss $41,279." Bars of first-year employer costs: wages $34,033, super $4,084, workers comp $1,361, training $1,000, tools $800, incentive minus $5,000.
   4. Three: "9 in 10 Australian businesses have fewer than 5 staff." Bars of businesses by number of employees: none 64%, 1 to 4 25%, 5 to 19 8.5%, 20 to 199 2.5%, 200 or more 0.2%.
