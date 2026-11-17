@@ -13,11 +13,11 @@ First year on the left. The legal minimum once you qualify in the middle. What m
 Save this one for later.
 
 —
-"What most earn" = median weekly earnings for full-time employees paid at the adult rate, before tax (Jobs and Skills Australia occupation profiles, ABS Survey of Employee Earnings and Hours, May 2025). It covers all experience levels; there's no official figure by years of experience. All jobs: $1,852. Mechanic covers car and diesel (ANZSCO 3212); fitter & turner = metal fitters and machinists (3232); boilermaker/welder = structural steel and welding trades (3223). 1st year and qualified minimum = Fair Work award rates from 1 July 2026, 38-hour week; 1st year is an apprentice under 21 without Year 12. Tilers, roof tilers, glaziers and landscapers left out: no published median. Full calculator, link in bio.
+"What most earn" = median weekly earnings for full-time employees paid at the adult rate, before tax (Jobs and Skills Australia occupation profiles, ABS Survey of Employee Earnings and Hours, May 2025). It covers all experience levels; there's no official figure by years of experience. Mechanic covers car and diesel (ANZSCO 3212); fitter & turner = metal fitters and machinists (3232); boilermaker/welder = structural steel and welding trades (3223). 1st year and qualified minimum = Fair Work award rates from 1 July 2026, 38-hour week; 1st year is an apprentice under 21 without Year 12. Tilers, roof tilers, glaziers and landscapers left out: no published median. Full calculator, link in bio.
 
 #apprentice #apprenticeship #tradie #tradieaustralia #autoelectrician #electrician #plumber #bricklayer #carpenter #fitter #tafe #careeradvice
 
-## reel-loop-trap.mp4 (13s)
+## reel-loop-trap.mp4 (10s)
 
 The apprentice trap: don't buy the HiLux straight away.
 
