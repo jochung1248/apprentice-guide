@@ -14,6 +14,10 @@
    "name": "Flagship"
   },
   {
+   "id": "batch2",
+   "name": "Batch 2"
+  },
+  {
    "id": "overview",
    "name": "Overview"
   },
@@ -574,6 +578,302 @@
    "h": 1350,
    "title": "F3 Tradie pay bingo",
    "page": "fun"
+  },
+  "posts/c7/c7-01-cover.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 01 Cover",
+   "page": "batch2"
+  },
+  "posts/c7/c7-02-fees.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 02 Business uni costs $52,197",
+   "page": "batch2"
+  },
+  "posts/c7/c7-03-paid-to-learn.dc.html": {
+   "x": 2320,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 03 Paid $180,000 to learn",
+   "page": "batch2"
+  },
+  "posts/c7/c7-04-jobs.dc.html": {
+   "x": 3480,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 04 Finished tradies have jobs",
+   "page": "batch2"
+  },
+  "posts/c7/c7-05-hourly-pay.dc.html": {
+   "x": 4640,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 05 Professionals earn $20 an hour more",
+   "page": "batch2"
+  },
+  "posts/c7/c7-06-help.dc.html": {
+   "x": 5800,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 06 HELP debt grows every June",
+   "page": "batch2"
+  },
+  "posts/c7/c7-07-overqualified.dc.html": {
+   "x": 6960,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 07 3 in 10 grads feel overqualified",
+   "page": "batch2"
+  },
+  "posts/c7/c7-08-stay-in-trade.dc.html": {
+   "x": 8120,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 08 Tradies stay in their trade",
+   "page": "batch2"
+  },
+  "posts/c7/c7-09-tool.dc.html": {
+   "x": 9280,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "C7 09 The tool + sources",
+   "page": "batch2"
+  },
+  "posts/c8/c8-01-cover.dc.html": {
+   "x": 0,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 01 Cover",
+   "page": "batch2"
+  },
+  "posts/c8/c8-02-year-one.dc.html": {
+   "x": 1160,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 02 Almost 1 in 5 quit in year one",
+   "page": "batch2"
+  },
+  "posts/c8/c8-03-employer-size.dc.html": {
+   "x": 2320,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 03 Big employers finish more",
+   "page": "batch2"
+  },
+  "posts/c8/c8-04-gto.dc.html": {
+   "x": 3480,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 04 A GTO can be your boss",
+   "page": "batch2"
+  },
+  "posts/c8/c8-05-why-quit.dc.html": {
+   "x": 4640,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 05 The workplace is the top reason",
+   "page": "batch2"
+  },
+  "posts/c8/c8-06-switch.dc.html": {
+   "x": 5800,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 06 Change bosses, not trades",
+   "page": "batch2"
+  },
+  "posts/c8/c8-07-tafe-paid.dc.html": {
+   "x": 6960,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 07 TAFE days are paid days",
+   "page": "batch2"
+  },
+  "posts/c8/c8-08-loan.dc.html": {
+   "x": 8120,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 08 Borrow $27,048",
+   "page": "batch2"
+  },
+  "posts/c8/c8-09-week-one.dc.html": {
+   "x": 9280,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 09 Sort five things in week one",
+   "page": "batch2"
+  },
+  "posts/c8/c8-10-tool.dc.html": {
+   "x": 10440,
+   "y": 1770,
+   "w": 1080,
+   "h": 1350,
+   "title": "C8 10 The tool + sources",
+   "page": "batch2"
+  },
+  "posts/c9/c9-01-cover.dc.html": {
+   "x": 0,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 01 Cover",
+   "page": "batch2"
+  },
+  "posts/c9/c9-02-pay-doubles.dc.html": {
+   "x": 1160,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 02 Qualifying nearly doubles your pay",
+   "page": "batch2"
+  },
+  "posts/c9/c9-03-floor.dc.html": {
+   "x": 2320,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 03 The rate is a floor",
+   "page": "batch2"
+  },
+  "posts/c9/c9-04-licence.dc.html": {
+   "x": 3480,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 04 Registration is a pay rise",
+   "page": "batch2"
+  },
+  "posts/c9/c9-05-own-boss.dc.html": {
+   "x": 4640,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 05 1 in 5 work for themselves",
+   "page": "batch2"
+  },
+  "posts/c9/c9-06-shortage.dc.html": {
+   "x": 5800,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 06 Half of long shortages are trades",
+   "page": "batch2"
+  },
+  "posts/c9/c9-07-full-time.dc.html": {
+   "x": 6960,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 07 Trade jobs are full-time jobs",
+   "page": "batch2"
+  },
+  "posts/c9/c9-08-tool.dc.html": {
+   "x": 8120,
+   "y": 3540,
+   "w": 1080,
+   "h": 1350,
+   "title": "C9 08 The tool + sources",
+   "page": "batch2"
+  },
+  "posts/c10/c10-01-cover.dc.html": {
+   "x": 0,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 01 Cover",
+   "page": "batch2"
+  },
+  "posts/c10/c10-02-few-employers.dc.html": {
+   "x": 1160,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 02 Fewer than 3 in 10 employers",
+   "page": "batch2"
+  },
+  "posts/c10/c10-03-cost.dc.html": {
+   "x": 2320,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 03 Year one costs a boss $41,279",
+   "page": "batch2"
+  },
+  "posts/c10/c10-04-small-business.dc.html": {
+   "x": 3480,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 04 9 in 10 businesses are tiny",
+   "page": "batch2"
+  },
+  "posts/c10/c10-05-risk.dc.html": {
+   "x": 4640,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 05 4 in 10 never finish",
+   "page": "batch2"
+  },
+  "posts/c10/c10-06-white-card.dc.html": {
+   "x": 5800,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 06 Get a White Card first",
+   "page": "batch2"
+  },
+  "posts/c10/c10-07-kit.dc.html": {
+   "x": 6960,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 07 Turn up ready",
+   "page": "batch2"
+  },
+  "posts/c10/c10-08-gto.dc.html": {
+   "x": 8120,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 08 A GTO takes the risk",
+   "page": "batch2"
+  },
+  "posts/c10/c10-09-incentive.dc.html": {
+   "x": 9280,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 09 Your boss can get $5,000",
+   "page": "batch2"
+  },
+  "posts/c10/c10-10-tool.dc.html": {
+   "x": 10440,
+   "y": 5310,
+   "w": 1080,
+   "h": 1350,
+   "title": "C10 10 The tool + sources",
+   "page": "batch2"
   }
  },
  "order": [
@@ -643,7 +943,44 @@
   "posts/reels/r3-guess-the-trade.dc.html",
   "posts/fun/f1-guess-the-trade.dc.html",
   "posts/fun/f2-rate-my-smoko.dc.html",
-  "posts/fun/f3-pay-bingo.dc.html"
+  "posts/fun/f3-pay-bingo.dc.html",
+  "posts/c7/c7-01-cover.dc.html",
+  "posts/c7/c7-02-fees.dc.html",
+  "posts/c7/c7-03-paid-to-learn.dc.html",
+  "posts/c7/c7-04-jobs.dc.html",
+  "posts/c7/c7-05-hourly-pay.dc.html",
+  "posts/c7/c7-06-help.dc.html",
+  "posts/c7/c7-07-overqualified.dc.html",
+  "posts/c7/c7-08-stay-in-trade.dc.html",
+  "posts/c7/c7-09-tool.dc.html",
+  "posts/c8/c8-01-cover.dc.html",
+  "posts/c8/c8-02-year-one.dc.html",
+  "posts/c8/c8-03-employer-size.dc.html",
+  "posts/c8/c8-04-gto.dc.html",
+  "posts/c8/c8-05-why-quit.dc.html",
+  "posts/c8/c8-06-switch.dc.html",
+  "posts/c8/c8-07-tafe-paid.dc.html",
+  "posts/c8/c8-08-loan.dc.html",
+  "posts/c8/c8-09-week-one.dc.html",
+  "posts/c8/c8-10-tool.dc.html",
+  "posts/c9/c9-01-cover.dc.html",
+  "posts/c9/c9-02-pay-doubles.dc.html",
+  "posts/c9/c9-03-floor.dc.html",
+  "posts/c9/c9-04-licence.dc.html",
+  "posts/c9/c9-05-own-boss.dc.html",
+  "posts/c9/c9-06-shortage.dc.html",
+  "posts/c9/c9-07-full-time.dc.html",
+  "posts/c9/c9-08-tool.dc.html",
+  "posts/c10/c10-01-cover.dc.html",
+  "posts/c10/c10-02-few-employers.dc.html",
+  "posts/c10/c10-03-cost.dc.html",
+  "posts/c10/c10-04-small-business.dc.html",
+  "posts/c10/c10-05-risk.dc.html",
+  "posts/c10/c10-06-white-card.dc.html",
+  "posts/c10/c10-07-kit.dc.html",
+  "posts/c10/c10-08-gto.dc.html",
+  "posts/c10/c10-09-incentive.dc.html",
+  "posts/c10/c10-10-tool.dc.html"
  ],
  "notes": {
   "n_c0": {
@@ -733,6 +1070,38 @@
    "kind": "title1",
    "maxW": 3400,
    "page": "fun"
+  },
+  "n_c7": {
+   "x": 0,
+   "y": -280,
+   "text": "C7 · TAFE vs uni: 7 things nobody tells you",
+   "kind": "title1",
+   "maxW": 10360,
+   "page": "batch2"
+  },
+  "n_c8": {
+   "x": 0,
+   "y": 1490,
+   "text": "C8 · 8 things nobody tells you about finishing your apprenticeship",
+   "kind": "title1",
+   "maxW": 11520,
+   "page": "batch2"
+  },
+  "n_c9": {
+   "x": 0,
+   "y": 3260,
+   "text": "C9 · The hard years pay off: 6 things nobody tells you about life after your apprenticeship",
+   "kind": "title1",
+   "maxW": 9200,
+   "page": "batch2"
+  },
+  "n_c10": {
+   "x": 0,
+   "y": 5030,
+   "text": "C10 · Getting hired: 8 things nobody tells you about landing an apprenticeship",
+   "kind": "title1",
+   "maxW": 11520,
+   "page": "batch2"
   }
  },
  "designSystems": []

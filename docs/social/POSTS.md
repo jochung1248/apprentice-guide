@@ -333,3 +333,199 @@ The artwork lives on the Claude Design canvas "Apprentice Guide — Launch socia
 **Known limit on every take-home figure:** the ATO has not published the 2026–27 Medicare low-income thresholds, so `rates.js` uses 2025–26 ($28,011 / $35,013, `verified: false`). If the 2026–27 thresholds rise, the take-home figures in the low-$30Ks band will go up by a few dollars a week. Update `rates.js`, then regenerate C0, C1, R2 and the final-slide calculators.
 
 **Not from rates.js:** C4 slide 2's kicker ("more than a packed MCG") rests on the MCG's capacity of about 100,000.
+
+---
+
+# Batch 2: C7–C10 (17 Nov 2026)
+
+Four more carousels in the flagship style (1080×1350). The artwork is on the canvas page "Batch 2", and the files are in `design/social-posts/project/posts/c7` to `c10`. Slide labels follow Joseph's 17 Nov change: tag pills are word-only ("ONE", "TWO"…) and the bottom-right pill reads "SWIPE TO SEE NEXT ▸". Every number on a slide is listed in the batch 2 verification log at the end of this file.
+
+## Suggested slots (weeks 2–4)
+
+| When | Post | Platforms | Why here |
+|---|---|---|---|
+| Week 2 · Day 9 (Tue), evening | **C7** TAFE vs uni | IG, Threads, FB groups, LinkedIn | Lands the same day as R1 (trade vs uni at 25), so the reel and the carousel point at the same calculator. |
+| Week 3 · Day 15 (Mon) | **C10** Getting hired | IG, FB trade groups, LinkedIn | Post it before mid-December: the $5,000 KAP employer incentive on slide 9 covers apprentices who start by December 2026. |
+| Week 3 · Day 18 (Thu) | **C8** Finishing your apprenticeship | IG, Threads, FB | Follows C10: from landing the job to keeping it. |
+| Week 4 · Day 22 (Mon) | **C9** The hard years pay off | IG, Threads, LinkedIn | Closes the run with the payoff. |
+
+If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
+
+## C7: TAFE vs uni: 7 things nobody tells you (9 slides)
+
+- **Slides:** 01 cover · 02 three years of business uni costs $52,197 · 03 paid $180,000 to learn · 04 finished tradies have jobs · 05 professionals earn $20 an hour more · 06 HELP grows every June · 07 3 in 10 grads feel overqualified · 08 tradies stay in their trade · 09 the tool + sources
+- **Caption:**
+  > 7 things nobody tells you about TAFE vs uni (and uni wins a couple)…
+  >
+  > Three years of business uni costs $52,197. A NSW apprentice pays $0 in student fees.
+  > A chippy gets paid $179,779 while training.
+  > Professionals still out-earn tradies by $20 an hour.
+  > 3 in 10 new grads feel overqualified for their job.
+  >
+  > Free trade vs uni calculator: link in bio.
+  >
+  > Fine print: uni fees are the 2026 maximum student contribution for a full-time Commonwealth supported place (business, law and commerce $17,399; engineering, IT and science $9,537; teaching and nursing $4,738), and $52,197 is three years at the business rate before indexation. "NSW apprentice $0" is the NSW fee-free apprenticeship offer for Smart and Skilled-funded training that starts before 30 June 2027; other states differ. Apprentice pay is the 2026–27 award minimum for a carpentry apprentice (residential) who starts at 17 without Year 12, full-time, weekly pay × 52, before tax. Employment: NCVER "employed after training" for trade apprentices who completed (surveyed June–August 2025) against QILT overall employment for domestic undergraduates four to six months after finishing (2025 GOS); the two surveys use different methods. Hourly pay is the ABS median for all employees in each occupation group (August 2025), all ages, and "professionals" is the ABS occupation group, not only uni graduates. HELP: 2.8% indexation applied 1 June 2026; 2026–27 repayment thresholds; indexation only applies to debt more than 11 months old. Overqualification is QILT's perceived-overqualification measure for domestic undergraduates in full-time work; underemployment means working part-time and wanting more hours. Same-occupation figures are NCVER completers employed in the same occupational group as their training. Completion is the NCVER six-year rate for trade apprentices who started in 2019. Sources: Department of Education, NSW Department of Education, Fair Work Ombudsman, NCVER, QILT, ABS, ATO, Study Assist.
+  >
+  > #tafevsuni #apprenticeship #careersadvice #university #tradie
+- **Alt text:**
+  1. Cover: "7 things nobody tells you about TAFE vs uni".
+  2. One: "Three years of business uni costs $52,197." Bars of student fees per full-time year in 2026: business and law $17,399, engineering, IT and science $9,537, teaching and nursing $4,738, NSW apprentice $0.
+  3. Two: "Apprentices get paid $180,000 while they learn." Bars of a carpentry apprentice's yearly pay before tax: year 1 $34K, year 2 $40K, year 3 $49K, year 4 $57K.
+  4. Three: "Finish a trade and you're more likely to have a job." Bars: 94.8% of trade apprentices who finish are employed, against 89.2% of new uni grads.
+  5. Four: "Professionals out-earn tradies by $20 an hour." Bars of median hourly earnings: professionals $59.50, managers $58.80, all employees $42.90, technicians and trades workers $39.00.
+  6. Five: "Your HELP debt grows every June." Bars of compulsory HELP repayments a year: $0 on $60,000, $71 on $70,000, $1,121 on $77,000, $3,071 on $90,000, $4,571 on $100,000.
+  7. Six: "3 in 10 uni grads feel overqualified for their job." A bar split 29.4% feel overqualified and 70.6% don't.
+  8. Seven: "Finish a trade and you'll probably work in it." Bars: 73.7% of trade completers work in the occupation group they trained for, against 37.5% of non-trade completers.
+  9. "If only there was a tool…" A trade vs uni calculator showing carpenter, business degree, start age 17: paid while training $179,779, uni fees over three years $52,197. Then "…that put your trade and your degree side by side. It's free. Link in bio." and the sources.
+
+## C8: 8 things nobody tells you about finishing your apprenticeship (10 slides)
+
+- **Slides:** 01 cover · 02 almost 1 in 5 quit in year one · 03 bigger employers finish more · 04 a GTO can be your boss · 05 the workplace is the top reason · 06 change bosses, not trades · 07 TAFE days are paid days · 08 borrow $27,048 · 09 sort five things in week one · 10 the tool + sources
+- **Caption:**
+  > 8 things nobody tells you about finishing your apprenticeship (most people learn them too late)…
+  >
+  > Almost 1 in 5 trade apprentices quit in the first 12 months.
+  > The top reason is the workplace, not the trade.
+  > You can change bosses without starting again.
+  > TAFE days are paid days.
+  >
+  > Free take-home pay calculator: see what year four pays. Link in bio.
+  >
+  > Fine print: completion and attrition figures are NCVER "Apprentice and trainee completion rates 2025": the six-year completion rate for trade apprentices who started in 2019, by employer size (micro is up to 4 employees, large is 200 or more) and employer type (group training organisations against private sector employers). Reasons for leaving and employer changes are NCVER "Apprentice and trainee outcomes 2025", trade non-completers, surveyed June–August 2025. Training contract transfers need approval from your state training authority (in NSW, Training Services NSW). Paid training time and reimbursement of RTO fees and prescribed textbooks are from the Fair Work Ombudsman; some exceptions apply, for example if the employer pays the RTO directly. The Australian Apprenticeship Support Loan is for apprentices in eligible priority qualifications: up to $27,048 in 2026–27, paid monthly, repaid once income passes $69,528, and 20% off when you complete. The $112 pay rise and $934 take-home are 2026–27 award minimums for a carpentry apprentice who started at 17 without Year 12, full-time. Apprentice Connect Australia providers give free, confidential advice. Sources: NCVER, Fair Work Ombudsman, DEWR, NSW Department of Education, Skills Tasmania, ATO.
+  >
+  > #apprenticeship #apprentice #tradie #apprenticelife #careersadvice
+- **Alt text:**
+  1. Cover: "8 things nobody tells you about finishing your apprenticeship".
+  2. One: "Almost 1 in 5 trade apprentices quit in year one." A bar split 58.7% finished and 41.3% didn't, for trade apprentices who started in 2019.
+  3. Two: "Bigger employers get more apprentices to the finish." Bars: 55.3% finish at businesses with up to 4 staff, 65.9% at businesses with 200 or more.
+  4. Three: "A group training organisation can be your boss." Bars: 61.5% of group training organisation apprentices finish, against 57.7% with private employers.
+  5. Four: "The top reason apprentices quit is the workplace." Bars of the main reason trade apprentices left: pay, conditions or workplace 27.7%, personal reasons 19.8%, illness or health 8.7%, family reasons 5.4%.
+  6. Five: "Hate the job? Change bosses, not trades." A bar showing 65.3% of trade apprentices who left and found work are with a different employer.
+  7. Six: "TAFE days are paid days." Bars of a first-year chippy's week: $131 for each of four site days and $131 for the TAFE day.
+  8. Seven: "You can borrow $27,048 to get through the lean years." Bars: borrow $27,048, owe $21,638 if you finish.
+  9. Eight: "Sort these five things in your first week." A checklist: your supervisor, your training plan, your TAFE days, your pay rate, your Apprentice Connect provider.
+  10. "If only there was a tool…" A calculator showing carpenter, 4th year, age 17: take-home $934 a week. Then "…that showed you what finishing is worth. It's free. Link in bio." and the sources.
+
+## C9: 6 things nobody tells you about life after your apprenticeship (8 slides)
+
+- **Slides:** 01 cover · 02 qualifying nearly doubles your pay · 03 the rate is a floor · 04 registration is a pay rise · 05 1 in 5 work for themselves · 06 half of long shortages are trades · 07 trade jobs are full-time jobs · 08 the tool + sources
+- **Caption:**
+  > 6 things nobody tells you about life after your apprenticeship (the hard years pay off)…
+  >
+  > Qualifying nearly doubles your pay.
+  > The median full-time plumber earns $1,990 a week, $743 above the minimum.
+  > 1 in 5 construction workers works for themselves.
+  > Half of Australia's long-running shortages are trades.
+  >
+  > Free pay calculator for 22 trades: link in bio.
+  >
+  > Fine print: first-year and qualified pay are 2026–27 national award minimums, full-time 38 hrs. First-year rates are for apprentices under 21 without Year 12. Qualified rates: carpenter CW/ECW 3 residential, electrician grade 5 (licensed), plumber Level 1 registered (not registered $1,201.78), vehicle tradesperson level 1 ("mechanic", light vehicle) and hair and beauty level 3. Median full-time earnings are from Jobs and Skills Australia occupation profiles (ABS Survey of Employee Earnings and Hours, May 2025) and include overtime and above-award pay; they are 2025 figures set against 2026–27 minimums, so the real gap is a little smaller. Independent contractors are from ABS Working arrangements, August 2025. Shortage figures are from the Jobs and Skills Australia 2025 Occupation Shortage List. Full-time shares are from JSA occupation profiles (ABS Labour Force Survey 2025). Same-occupation figures are NCVER Apprentice and trainee outcomes 2025, trade completers. The $933 take-home is a 4th-year plumbing apprentice who started at 17. WA sole traders and partnerships use WA state awards. Sources: Fair Work Ombudsman, Jobs and Skills Australia, ABS, NCVER, ATO.
+  >
+  > #tradie #apprenticeship #plumber #electrician #tradiepay
+- **Alt text:**
+  1. Cover: "6 things nobody tells you about life after your apprenticeship".
+  2. One: "Qualifying nearly doubles your pay." Grouped bars of weekly pay, first year then qualified: carpenter $654 and $1,214, electrician $623 and $1,223, plumber $629 and $1,247, mechanic $560 and $1,119, hairdresser $560 and $1,119.
+  3. Two: "The qualified rate is a floor, not a ceiling." Paired bars of weekly pay, median full-time then qualified minimum: plumbers $1,990 and $1,247, carpenters $1,760 and $1,214, motor mechanics $1,622 and $1,119.
+  4. Three: "Getting registered is a pay rise on day one." Bars: not registered $1,202 a week, registered $1,247.
+  5. Four: "1 in 5 construction workers works for themselves." Bars of independent contractors as a share of employed people: construction 21%, technicians and trades workers 15%, all jobs 7.6%.
+  6. Five: "Half of Australia's long-running shortages are trades." Bars: 71 technician and trade occupations and 68 other occupations were in shortage every year from 2021 to 2025.
+  7. Six: "Trade jobs are full-time jobs." Bars of the share who work full-time hours: plumbers 93%, carpenters 89%, all jobs 69%.
+  8. "If only there was a tool…" A calculator showing plumber, 4th year, age 17: take-home $933 a week. Then "…that showed you the climb, year by year. It's free. Link in bio." and the sources.
+
+## C10: 8 things nobody tells you about landing an apprenticeship (10 slides)
+
+- **Slides:** 01 cover · 02 fewer than 3 in 10 employers · 03 year one costs a boss $41,279 · 04 9 in 10 businesses are tiny · 05 4 in 10 never finish · 06 get a White Card first · 07 turn up ready · 08 a GTO takes the risk · 09 your boss can get $5,000 · 10 the tool + sources
+- **Caption:**
+  > 8 things nobody tells you about landing an apprenticeship (it's harder for the boss than you think)…
+  >
+  > Fewer than 3 in 10 employers have an apprentice.
+  > Year one of you costs a boss $41,279.
+  > 9 in 10 businesses have fewer than 5 staff.
+  > Your boss can get up to $5,000 for hiring you.
+  >
+  > Free employer cost calculator (send it to the boss): link in bio.
+  >
+  > Fine print: employer use of apprentices and trainees is from NCVER "Employers' use and views of the VET system 2025" (all industries; 2023 is 28.7% plus the reported 2.6-point fall). The employer cost is our calculator for a first-year carpentry apprentice aged 17, no Year 12, full-time: 2026–27 award wages, 12% super, and our illustrative workers comp (4%), training ($1,000) and tools ($800), less the $5,000 KAP employer incentive. Business counts are ABS Counts of Australian Businesses, actively trading businesses at 30 June 2025, all industries (we couldn't verify a construction-only split). Completion is the NCVER six-year rate for trade apprentices who started in 2019. White Card rules are SafeWork NSW's; other states have the same card and NSW accepts theirs. Unpaid trials must be no longer than needed to show your skills, under direct supervision (Fair Work Ombudsman). GTO completion is NCVER's trade rate for group training organisations (61.5%) against private sector employers (57.7%). Employer incentives: the KAP Employer Incentive ($2,000 at 6 months and $3,000 at 12 months) is for housing construction and new energy apprentices who start from 1 Jan 2026 to December 2026, with an employer giving meaningful work in that sector; the Priority Hiring Incentive ($1,000 + $1,500) covers other Priority List occupations. Sources: NCVER, ABS, Fair Work Ombudsman, SafeWork NSW, NSW Department of Education, DEWR, ATO.
+  >
+  > #apprenticeship #tradie #getanapprenticeship #careersadvice #smallbusiness
+- **Alt text:**
+  1. Cover: "8 things nobody tells you about landing an apprenticeship".
+  2. One: "Fewer than 3 in 10 employers have an apprentice." Bars: 31.3% of employers had apprentices or trainees in 2023, 28.7% in 2025.
+  3. Two: "Year one of you costs a boss $41,279." Bars of first-year employer costs: wages $34,033, super $4,084, workers comp $1,361, training $1,000, tools $800, incentive minus $5,000.
+  4. Three: "9 in 10 Australian businesses have fewer than 5 staff." Bars of businesses by number of employees: none 64%, 1 to 4 25%, 5 to 19 8.5%, 20 to 199 2.5%, 200 or more 0.2%.
+  5. Four: "4 in 10 apprentices a boss hires never finish." Ten hard hats, six orange (finish, 58.7%) and four grey.
+  6. Five: "No White Card, no site. Get one first." An illustration of a general construction induction card.
+  7. Six: "Turn up ready to start on Monday." A checklist: White Card, driver's licence, pre-apprenticeship or Cert II, steel caps and basic hand tools, a referee who's seen you work.
+  8. Seven: "A group training organisation takes the risk off the boss." Bars: 61.5% of group training organisation apprentices finish, against 57.7% with private employers.
+  9. Eight: "Your boss can get up to $5,000 for hiring you." Grouped bars of employer payments in year one: housing or new energy $2,000 at 6 months, $3,000 at 12 months, $5,000 total; other priority trades $1,000, $1,500, $2,500.
+  10. "If only there was a tool…" An employer cost calculator showing carpenter, 1st year, age 17: net cost $698 a week. Then "…that showed a boss what you'd really cost. It's free. Link in bio." and the sources.
+
+---
+
+## Batch 2 verification log (checked 17 Nov 2026)
+
+Wording in quotes is copied from the source page. "Computed" means worked out with `site/js/rates.js` and `site/js/calc.js` in Node.
+
+**Computed from rates.js / calc.js**
+| Figure | Where | How |
+|---|---|---|
+| $17,399 / $9,537 / $4,738 a year; $52,197 | C7-02, C7-06, C7-09 | `help.contributions` (Dept of Education 2026 indexed rates, verified). 17,399 × 3 = 52,197. |
+| NSW apprentice $0 | C7-02 | `states.NSW` fee-free apprenticeships item (NSW Dept of Education, updated 19 May 2026): "pay no student fee (normally up to $2,000)" for Smart and Skilled-funded training starting before 30 June 2027. |
+| $34,033 / $39,853 / $48,582 / $57,311; $179,779 | C7-03, C7-09 | Carpenter junior no-Y12 weekly × 52: 654.49, 766.40, 934.27, 1,102.13. Sum 179,779.08. |
+| HELP repayments $0 / $71 / $1,121 / $3,071 / $4,571 | C7-06 | `calc.helpRepayment` at $60K, $70K, $77K, $90K, $100K (2026–27 thresholds; 15c per $1 over $69,528). |
+| 2.8% indexation; $1,462 | C7-06 | `help.indexation` (Study Assist, 1 June 2026). 52,197 × 0.028 = 1,461.52. |
+| $112 a week | C8-02 | 766.40 − 654.49 = 111.91. |
+| $131 a day | C8-07 | 654.49 ÷ 5 = 130.90 (17.22/hr × 7.6 hrs = 130.87). |
+| $27,048; $69,528; 20%; $21,638 | C8-08 | `incentives.aasl` and the DEWR AASL page (below). 27,048 × 0.8 = 21,638.40. |
+| $63,130 | C8-08 | Qualified carpenter 1,214.04 × 52 = 63,130.08. |
+| $934 a week take-home | C8-10 | `calc.apprenticePay` carpenter, year 4, age 17: take-home $934.46. |
+| First-year vs qualified: $654/$1,214, $623/$1,223, $629/$1,247, $560/$1,119 (mechanic and hairdresser) | C9-02, C9-03 | Pay tables bCarp, elec, plumb, vehicle, hair. 1,119.10 ÷ 559.55 = 2.000. |
+| $1,246.54 vs $1,201.78; $2,328 a year | C9-04 | `trades.plumber.tradesperson` note ("Not-registered rate is $1,201.78/week", FWO MA000036 pay guide). 44.76 × 52 = 2,327.52. |
+| $743 above the floor | C9-03 | 1,990 − 1,246.54 = 743.46. |
+| $933 a week take-home | C9-08 | `calc.apprenticePay` plumber, year 4, age 17: $932.70. |
+| $41,279; $34,033 / $4,084 / $1,361 / $1,000 / $800; −$5,000; $36,279; $698 a week | C10-03, C10-09, C10-10 | `calc.employerCost` carpenter, year 1, age 17, KAP, tafeFees 1,000, toolsPpe 800: gross 41,278.84, net 36,278.84, net weekly 697.67. Workers comp, training and tools are illustrative (`verified: false`), stated in the caption. |
+| KAP employer $2,000 + $3,000; Priority Hiring $1,000 + $1,500 | C10-09 | `incentives.kapEmployer` and `incentives.priorityHiring` (DEWR payments overview, effective 1 Jul 2026). "December 2026" end date: DEWR minister release (ministers.dewr.gov.au/rishworth/apprentice-support-key-sectors-extended) says the $5,000 employer incentive is extended to "December 2026". |
+
+**From primary sources opened with WebFetch on 17 Nov 2026**
+| Figure | Where | Source | Date | Exact wording |
+|---|---|---|---|---|
+| 94.8% trade completers employed; 80.8% non-completers | C7-04 | https://www.ncver.edu.au/research-and-statistics/publications/all-publications/apprentice-and-trainee-outcomes-2025 | 25 Mar 2026 | "Among trade apprentices and trainees, 94.8% of completers and 80.8% of non-completers were employed after training" |
+| 27.7% / 19.8% / 8.7% / 5.4% reasons for leaving | C8-05 | same NCVER outcomes 2025 page | 25 Mar 2026 | "the most commonly cited reason was dissatisfaction with pay, working conditions or the workplace (27.7%)"; personal reasons (19.8%); "illness or health reasons, cited by 8.7% of trade…"; "family reasons, cited by 5.4% of trade…" |
+| 15.6% nothing could have changed | C8-05 | same | 25 Mar 2026 | "In contrast, 15.6% of those in trades and 15.2% of those in non-trades reported there was nothing that could have changed" (to encourage completion) |
+| 65.3% with a different employer | C8-06 | same | 25 Mar 2026 | "Among employed non-completers, approximately two-thirds were employed with a different employer, including 65.3% of trade non-completers and 70.3% of non-trade non-completers" |
+| 73.7% trade / 37.5% non-trade in same occupation | C7-08, C9-07 | same | 25 Mar 2026 | "Close to three-quarters of trade completers (73.7%) were employed in the same occupational group…"; "Among non-trade completers, 37.5% were employed in the same occupational group" |
+| 58.7% six-year trade completion (2019 cohort) | C7-08, C8-02, C10-05 | https://ncver.edu.au/research-and-statistics/publications/all-publications/apprentice-and-trainee-completion-rates-2025 | 28 Jul 2026 | "The 6-year trade completion rate was 58.7% for the 2019 commencing cohort." |
+| Almost 1 in 5 leave in first 12 months | C8-02, C10-05 (caption) | same | 28 Jul 2026 | "Attrition for both trade and non-trade occupations tend to occur in the early years of training" … "almost one-fifth of trade apprenticeships ending without completion within the first 12 months." |
+| 55.3% micro, 65.9% large | C8-03, C10-05 | same | 28 Jul 2026 | "Completion rates generally increase with employer size, ranging from 55.3% for micro employers (up to 4 employees) to 65.9% for large employers (200 or more employees)." (trade) |
+| GTO 61.5% vs private 57.7% | C8-04, C10-08 | same | 28 Jul 2026 | Trade, 2019 cohort: private sector employers 57.7%; "Group training organisations (GTOs) reported a completion rate of 61.5%", "steadily rising over the previous four cohorts". |
+| 89.2% overall employment; 29.4% overqualified; 19.4% underemployed; 67.3% managerial/professional; $77,000 | C7-04, C7-07 | QILT 2025 GOS International Report (domestic comparison columns): https://qilt.edu.au/docs/default-source/default-document-library/2025-gos-international-report.pdf?sfvrsn=a7656b9a_4 (the national report PDF blocks automated fetching) | Jun 2026 | Domestic undergraduates: overall employment 89.2% (Fig. iv/9); underemployment 19.4% (Table 1; "An 'underemployed' person is someone employed part-time (less than 35 hours per week) who would prefer to work more hours"); perceived overqualification 29.4% (Table 2; SPOQ "assesses the extent to which graduates perceive their skills and education are not fully utilised in their current job"); "67.3 per cent for domestic graduates"; "compared to $77,000 for domestic undergraduates". |
+| 75.4% full-time | C7-04 | https://ministers.dewr.gov.au/clare/graduate-outcomes-survey-strong-graduate-employment-more-people-move-between-university-and (also `graduates.fullTimeEmploymentRate`) | 2026 (no date on page) | "New data shows 75.4 per cent of undergraduates were employed full-time within four to six months of completing their studies" |
+| $59.50 / $58.80 / $42.90 / $39.00 an hour | C7-05 | https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings/aug-2025 | 12 Dec 2025 | "Professionals and Managers also had the highest hourly rates ($59.50 and $58.80)"; "In August 2025, the median hourly earnings for employees was $42.90"; table row "Technicians and Trades Workers \| 33.60 \| 39.00" (Aug-20, Aug-25). |
+| Time at trade school is paid; fees and textbooks | C8-07 | https://www.fairwork.gov.au/find-help-for/apprentices-and-trainees/apprentice-entitlements | checked 17 Nov 2026 | "Time spent at trade school is paid time and is included in an apprentice's ordinary hours of work."; reimbursed for "all the fees charged by the RTO that are related to their training" and "the cost of their prescribed textbooks". Missed training is unpaid unless on leave. |
+| AASL $27,048, 20% discount, $69,528 | C8-08 | https://www.dewr.gov.au/skills-support-individuals/australian-apprenticeship-support-loans | checked 17 Nov 2026 | "These loans provide up to $27,048 (for 2026-27) in total and are paid monthly in arrears."; "Apprentices who successfully complete their apprenticeship will receive a 20% discount on their loan amount."; "the minimum repayment threshold ($69,528 for 2026-27)". |
+| Transfer your training contract | C8-06 | https://education.nsw.gov.au/skills-nsw/apprentices-and-trainees/support-with-your-apprenticeship-or-traineeship/self-help-section/i-have-changed-employers | checked 17 Nov 2026 | You and your old employer "will need to 'transfer' your training contract to the new employer"; "Approval of a transfer is not automatic." |
+| GTO is the employer; handles wages and paperwork | C8-04, C10-08 | https://www.nsw.gov.au/education-and-training/apprentices-and-trainees/employers/how-gtos-help | checked 17 Nov 2026 | "The GTO is the legal employer of the apprentice or trainee."; "Take care of all wages, on costs and employment records."; "Completing all associated paperwork". |
+| Apprentice Connect advice is free and confidential | C8-06 | https://skills.tas.gov.au/apprenticeships_and_traineeships/accordions/the_role_of_apprentice_connect_providers | checked 17 Nov 2026 | Providers "provide free information, advice and support to employers, apprentices and trainees"; "your first point of contact for free and confidential advice". |
+| $1,990 plumbers; 93% full-time; all jobs 69% | C9-03, C9-07 | https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations/3341-plumbers | data file Nov 2025 | "$1,990" median full-time earnings per week (ABS EEH May 2025); full-time share "93%" (All Occupations: 69%) (ABS LFS 2025). |
+| $1,760 carpenters; 89% full-time | C9-03, C9-07 | https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations/3312-carpenters-and-joiners | data file Nov 2025 | "$1,760" (ABS EEH May 2025); "89%" work full-time hours (ABS LFS 2025). |
+| $1,622 motor mechanics | C9-03 | https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/3212-motor-mechanics | data file Feb 2026 | "$1,622" for Motor Mechanics, compared with "$1,852" for All Occupations (ABS EEH May 2025). |
+| 21% construction; 15% technicians and trades; 7.6% all | C9-05 | https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/working-arrangements/aug-2025 | 12 Dec 2025 | "In August 2025, there were 1.1 million independent contractors…" (7.6% of employed people); "Construction (21%)"; "The occupations with the highest proportions of Independent Contractors were: Technicians and trades workers (15%)". |
+| 71 of 139; 29%; almost 1 in 2 | C9-06 | https://www.jobsandskills.gov.au/sites/default/files/2025-10/2025%20OSL%20Key%20Findings%20Report.pdf | Oct 2025 | "Technicians and Trades Workers made up 51% (71 out of 139)" of occupations in shortage every year 2021–2025; "In the 2025 OSL, 29% of occupations (293 out of 1022 assessed) were in national shortage"; "almost 1 in 2 occupations in shortage" (Technicians and Trades Workers). |
+| 28.7% employers with apprentices; down 2.6 points | C10-02 | https://ncver.edu.au/__data/assets/pdf_file/0026/9700433/Employers-use-and-views-of-the-VET-system-2025.pdf | Dec 2025 | "over a quarter of employers (28.7%) reporting they had apprentices or trainees in 2025", "decreased by 2.6 percentage points since 2023". 2023 = 31.3% (computed). |
+| 2,729,648 businesses; 994,178 employing; 688,870 with 1–4; 67,857 with 20–199; 5,322 with 200+ | C10-04 | https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/jul2021-jun2025 | 16 Dec 2025 | "At 30 June 2025 there were 2,729,648 actively trading businesses in the Australian economy, with 994,178 of these businesses being employing." Computed: non-employing 1,735,470 (63.6%), 1–4 25.2%, 5–19 232,129 (8.5%), 20–199 2.5%, 200+ 0.2%; under 5 staff 88.8%. |
+| White Card required; void after two years | C10-06 | https://www.safework.nsw.gov.au/licences-and-registrations/white-cards | checked 17 Nov 2026 | "A white card (or general construction induction card) is required for workers who want to carry out construction work."; "The white card becomes void if you haven't carried out construction work for two consecutive years or more."; other states' cards are accepted in NSW. |
+| Unpaid trials | C10-07 | https://www.fairwork.gov.au/starting-employment/unpaid-work/unpaid-trials | checked 17 Nov 2026 | An unpaid trial may be unlawful where "it isn't necessary to demonstrate the skills required for the job, or has continued for longer than is actually needed", or "the person is not under direct supervision for the trial". |
+| Free TAFE 100,000 places a year from 2027 (caption context only, not on a slide) | — | https://ministers.dewr.gov.au/giles/170000-and-counting-free-tafe-completions-continue-rise | 2026 | "The legislation locks in 100,000 Free TAFE places each year, from 2027." |
+
+**Checked but dropped (couldn't verify, or not like for like)**
+- NCVER VET student outcomes 2025, "employed after training" and median income for VET graduates: the NCVER page and media release give only improved employment status (62.4%) and further study (32.6%); the income figures sit in an Excel download our tools can't open. Not used. C7 uses the NCVER trade apprentice outcome (94.8%) instead.
+- NCVER median income for trade completers (outcomes 2025): Excel only. Not used. C7's pay comparison uses ABS median hourly earnings by occupation group instead.
+- Jobs and Skills Australia's "88% of VET graduates employed post-qualification" (JSA news, 4 Nov 2025): verified, but it comes from a different data source from QILT, so it isn't on a slide.
+- Electricians' median full-time earnings ($2,204): JSA shows this only from the May 2023 survey, while the other trades use May 2025. Left off C9-03 to keep one survey year.
+- Construction-only business size (ABS Counts of Australian Businesses): the construction split is only in the datacube. C10-04 uses all industries and says "Australian businesses".
+- NCVER employer survey reasons for not taking apprentices: not in the 2025 report text (data tables only). C10-02 uses the 28.7% usage figure instead.
+- Supervision time for employers: no primary figure (rates.js `supervisionHours` is an illustrative 0). Not used.
+- Uni student part-time income: rates.js `partTimeStudyIncome` is illustrative ($15,000). Not used; C7-03 compares apprentice pay with "still studying" instead.
+- Degree length / "years until full-time earning": no primary source opened, so there's no slide for it; C7-03's subhead carries the point in words.
+- Average HELP debt (ATO): not opened. C7 uses the computed $52,197 for three years of business instead.
+- HIA Trades Availability: not re-checked this pass. Not used.
