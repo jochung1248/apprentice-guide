@@ -438,7 +438,7 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
 - **Caption:**
   > 8 things nobody tells you about landing an apprenticeship (it's harder for the boss than you think)…
   >
-  > Fewer than 3 in 10 employers have an apprentice.
+  > Fewer than 3 in 10 employers train apprentices.
   > Year one of you costs a boss $41,279.
   > 9 in 10 businesses have fewer than 5 staff.
   > Your boss can get up to $5,000 for hiring you.
@@ -450,7 +450,7 @@ If Day 9 is too crowded, move C7 to Week 3 · Day 16 (Tue).
   > #apprenticeship #tradie #getanapprenticeship #careersadvice #smallbusiness
 - **Alt text:**
   1. Cover: "8 things nobody tells you about landing an apprenticeship".
-  2. One: "Fewer than 3 in 10 employers have an apprentice." Bars: 31.3% of employers had apprentices or trainees in 2023, 28.7% in 2025.
+  2. One: "Fewer than 3 in 10 employers train apprentices." Bars: 31.3% of employers had apprentices or trainees in 2023, 28.7% in 2025.
   3. Two: "Year one of you costs a boss $41,279." Bars of first-year employer costs: wages $34,033, super $4,084, workers comp $1,361, training $1,000, tools $800, incentive minus $5,000.
   4. Three: "9 in 10 Australian businesses have fewer than 5 staff." Bars of businesses by number of employees: none 64%, 1 to 4 25%, 5 to 19 8.5%, 20 to 199 2.5%, 200 or more 0.2%.
   5. Four: "4 in 10 apprentices a boss hires never finish." Ten hard hats, six orange (finish, 58.7%) and four grey.
