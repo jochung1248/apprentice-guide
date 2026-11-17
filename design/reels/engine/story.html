@@ -1,0 +1,186 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0;background:#F4F1EA}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#F4F1EA;color:#16181D;font-family:Inter}
+.abs{position:absolute}
+.mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.anton{font-family:Anton;font-weight:400;line-height:.92}
+.stripe{height:36px;background:repeating-linear-gradient(45deg,#16181D 0 26px,#FF6B1A 26px 52px)}
+.hl{background:#FFE14D;padding:0 8px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.or{color:#C2410C}
+.card{background:#fff;border:3px solid #16181D;border-radius:14px;padding:22px 28px;box-shadow:6px 6px 0 #E2DDD2}
+.ph{background:#E2DDD2;border:3px solid #16181D;border-radius:10px;overflow:hidden;position:relative}
+.ph .pat{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(22,24,29,.06) 0 14px,transparent 14px 28px);display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;box-sizing:border-box}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05)}
+.cap{font-family:JBM;font-weight:700;font-size:20px;letter-spacing:1px;text-transform:uppercase;color:#5B616A;margin-top:12px;line-height:1.45}
+.lead{font-size:52px;font-weight:800;line-height:1.18}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const HAT=(w)=>`<svg viewBox="0 0 200 130" width="${w}"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98 Z" fill="#C2410C" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><rect x="10" y="94" width="180" height="22" rx="11" fill="#16181D"/></svg>`;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+let LT=0;
+const k=(t0,d=0.5)=>ease((LT-t0)/d);
+const fu=(t0,d=0.5,dy=24)=>`opacity:${k(t0,d)};transform:translateY(${(1-k(t0,d))*dy}px)`;
+const money=v=>'$'+Math.round(v).toLocaleString('en-AU');
+// typewriter with *orange* and _highlight_ markup; unrevealed text stays in layout, invisible
+function typed(str,t0,cps=30){
+ const segs=[];let cur='',mode='';
+ for(const ch of str){ if(ch==='*'||ch==='_'){ if(cur) segs.push([cur,mode]); cur=''; mode=(mode===ch?'':ch); } else cur+=ch; }
+ if(cur) segs.push([cur,mode]);
+ let n=Math.floor(Math.max(0,LT-t0)*cps), out='';
+ for(const [s,m] of segs){ const a=s.slice(0,Math.max(0,n)), b=s.slice(Math.max(0,n)); n-=s.length;
+  const cls=m==='*'?'or':(m==='_'?'hl':'');
+  out+=(a?`<span class="${cls}">${a}</span>`:'')+(b?`<span class="${cls}" style="opacity:0">${b}</span>`:''); }
+ return out;
+}
+const PHOTOS={};  // slot number -> image url (set by the renderer when files exist)
+function photo(n,x,y,w,h,label,caption,t0){
+ const inner=PHOTOS[n]?`<img src="${PHOTOS[n]}">`:`<div class="pat"><div><div class="mono" style="font-size:26px;color:#3A3F47">Photo ${n}</div><div style="font-size:26px;font-weight:600;color:#5B616A;margin-top:10px">${label}</div></div></div>`;
+ return `<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;opacity:${k(t0,0.6)}"><div class="ph" style="height:${h}px">${inner}</div>${caption?`<div class="cap">${caption}</div>`:''}</div>`;
+}
+function chapter(n,title){
+ return `<div class="abs" style="left:84px;top:236px;display:flex;align-items:center;gap:16px;${fu(0,0.4,10)}">
+  <span class="mono" style="font-size:22px;background:#16181D;color:#F4F1EA;padding:6px 12px;border-radius:6px">${n}</span>
+  <span class="mono" style="font-size:24px">${title}</span></div>
+  <div class="abs mono" style="right:84px;top:244px;font-size:20px;color:#8A9099">Apprentice Guide</div>`;
+}
+function ledger(x,y,w,t0,o){
+ const g=k(t0+0.5,1.0);
+ return `<div class="abs card" style="left:${x}px;top:${y}px;width:${w}px;box-sizing:border-box;${fu(t0)}">
+  <div class="mono" style="font-size:20px;color:#5B616A">${o.where}</div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;gap:20px">
+   <div style="font-size:38px;font-weight:800;line-height:1.12">${o.what}</div>
+   ${o.tag?`<div class="mono" style="font-size:24px;white-space:nowrap;padding:6px 12px;border:3px solid ${o.tagc||'#C2410C'};color:${o.tagc||'#C2410C'};border-radius:6px;transform:rotate(-4deg);opacity:${k(t0+0.9,0.3)}">${o.tag}</div>`:''}
+  </div>
+  ${o.sub?`<div class="mono" style="font-size:19px;color:#8A9099;margin-top:10px">${o.sub}</div>`:''}</div>`;
+}
+const SURFACE=`<svg viewBox="0 0 260 150" width="250"><path d="M20 40 H150 L170 20 H190 V95 H20 Z" fill="#FFE14D" stroke="#16181D" stroke-width="7" stroke-linejoin="round"/><path d="M190 50 H235 Q246 50 246 62 V95 H190 Z" fill="#FFE14D" stroke="#16181D" stroke-width="7" stroke-linejoin="round"/><rect x="200" y="58" width="30" height="20" fill="#fff" stroke="#16181D" stroke-width="5"/><circle cx="62" cy="108" r="30" fill="#16181D"/><circle cx="62" cy="108" r="11" fill="#8A9099"/><circle cx="210" cy="108" r="30" fill="#16181D"/><circle cx="210" cy="108" r="11" fill="#8A9099"/></svg>`;
+const UNDER=`<svg viewBox="0 0 300 150" width="280"><path d="M10 70 H170 L185 58 H200 V102 H10 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="7" stroke-linejoin="round"/><path d="M200 74 H270 Q286 74 286 88 V102 H200 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="7" stroke-linejoin="round"/><rect x="214" y="64" width="44" height="12" fill="#16181D"/><circle cx="56" cy="110" r="26" fill="#16181D"/><circle cx="56" cy="110" r="10" fill="#8A9099"/><circle cx="244" cy="110" r="26" fill="#16181D"/><circle cx="244" cy="110" r="10" fill="#8A9099"/><path d="M0 40 H300" stroke="#16181D" stroke-width="5" stroke-dasharray="14 10"/></svg>`;
+
+const SC=[
+ // 0 · OPEN
+ {d:8.5, r(){ return `
+  ${photo(1,84,300,912,700,'Dale Elphinstone today (portrait)','Dale Elphinstone · founder, Elphinstone Group',0)}
+  <div class="abs anton" style="left:84px;top:1080px;font-size:120px">${typed('DALE ELPHINSTONE',0.6,18)}</div>
+  <div class="abs mono" style="left:84px;top:1210px;font-size:24px;color:#5B616A;${fu(1.6)}">Burnie, Tasmania · born 1951 · diesel mechanic</div>
+  <div class="abs lead" style="left:84px;right:150px;top:1280px">${typed('Started on apprentice wages at\u00a015.',2.4,26)}<br>${typed('The rich list now says _$1.94\u00a0billion._',4.4,26)}</div>`; }},
+ // 1 · THE APPRENTICE
+ {d:22.5, r(){
+  const pts=[{y:400,yr:'1951',pl:'Highclere, Tas',tx:'Born on a dairy farm',t:0.4},
+             {y:590,yr:'1966',pl:'Burnie · age 15',tx:'Apprentice diesel mechanic',sub:'William Adams · Cat dealer',t:4.4},
+             {y:800,yr:'1970',pl:'Mine sites, Tas',tx:'Qualified. Field service mechanic',t:10.0},
+             {y:990,yr:'1973',pl:'Canada',tx:'Works for Cat dealer Finning',t:15.0}];
+  let h=chapter('01','The apprentice');
+  pts.forEach((p,i)=>{
+   if(i>0){ const q=pts[i-1], g=k(p.t-0.6,0.7); h+=`<div class="abs" style="left:101px;top:${q.y+20}px;width:5px;height:${(p.y-q.y-20)*g}px;background:#16181D"></div>`; }
+   h+=`<div class="abs" style="left:84px;top:${p.y-6}px;${fu(p.t,0.5,16)}">
+     <div style="display:flex;gap:26px;align-items:flex-start"><div style="width:40px;height:40px;border-radius:50%;background:#FF6B1A;border:4px solid #16181D;box-sizing:border-box;flex:none"></div>
+     <div><div style="display:flex;gap:16px;align-items:baseline"><span class="anton" style="font-size:64px">${p.yr}</span><span class="mono" style="font-size:20px;color:#5B616A">${p.pl}</span></div>
+     <div style="font-size:30px;font-weight:800;margin-top:6px;max-width:400px;line-height:1.2">${p.tx}</div>${p.sub?`<div class="mono" style="font-size:18px;color:#C2410C;margin-top:6px">${p.sub}</div>`:''}</div></div></div>`;
+  });
+  h+=photo(2,600,360,330,440,'William Adams workshop or Cat machines, 1960s','William Adams, Caterpillar dealer · Tasmania',4.8);
+  h+=`<div class="abs lead" style="left:84px;right:150px;top:1190px;font-size:48px">${typed('Nine years after starting his apprenticeship, *he goes out on his own.*',18.5,28)}</div>`;
+  return h; }},
+ // 2 · THE SHED
+ {d:17.5, r(){
+  let h=chapter('02','The shed');
+  h+=ledger(84,320,846,0.4,{where:'Mooreville Road, Burnie · 1975',what:'Dale B Elphinstone Pty Ltd',sub:'Started in his father’s shed',tag:'Day one',tagc:'#16181D'});
+  h+=`<div class="abs" style="left:84px;top:580px;width:846px;display:flex;align-items:flex-end;justify-content:space-between">
+    <div style="text-align:center;${fu(4.6)}">${SURFACE}<div class="mono" style="font-size:18px;color:#5B616A;margin-top:8px">Cat truck · open-cut</div></div>
+    <div style="flex:1;height:6px;margin:0 20px 70px;background:#16181D;transform:scaleX(${k(5.6,0.8)});transform-origin:left"></div>
+    <div style="text-align:center;${fu(6.4)}">${UNDER}<div class="mono" style="font-size:18px;color:#C2410C;margin-top:8px">Rebuilt for underground</div></div></div>`;
+  h+=`<div class="abs lead" style="left:84px;right:150px;top:830px;font-size:46px">${typed('Take a truck built for open-cut mines. *Make it work underground.*',5.0,26)}</div>`;
+  h+=ledger(84,1010,846,10.6,{where:'Burnie · 1977',what:'First sale: the Elphinstone 79C',sub:'A modified Cat 769C, built for underground',tag:'Sold'});
+  h+=photo(3,84,1235,500,300,'The first Elphinstone 79C, or the early shed','',12.5);
+  return h; }},
+ // 3 · FULL CIRCLE
+ {d:15.5, r(){
+  let h=chapter('03','Full circle');
+  h+=`<div class="abs" style="left:84px;top:330px;width:846px;display:flex;justify-content:space-between;align-items:flex-end">
+   <div style="${fu(0.4)}"><div class="anton" style="font-size:170px">1966</div><div class="mono" style="font-size:24px;margin-top:10px">Apprentice</div></div>
+   <div style="flex:1;margin:0 26px 50px;height:30px;border:4px solid #16181D;border-radius:6px;background:#fff;overflow:hidden"><div style="height:100%;width:${k(2.2,1.4)*100}%;background:#FFE14D;background-image:repeating-linear-gradient(90deg,rgba(22,24,29,.8) 0 2px,transparent 2px 18px)"></div></div>
+   <div style="text-align:right;${fu(3.4)}"><div class="anton or" style="font-size:170px">1987</div><div class="mono" style="font-size:24px;margin-top:10px">Owner</div></div></div>
+   <div class="abs mono" style="left:84px;right:150px;top:600px;font-size:22px;color:#5B616A;text-align:center;${fu(3.8)}">Same business: William Adams</div>`;
+  h+=`<div class="abs lead" style="left:84px;right:150px;top:690px;font-size:50px">${typed('He buys the dealer where he did his apprenticeship. *Outright.*',4.4,26)}</div>`;
+  h+=ledger(84,960,846,8.2,{where:'1995',what:'Joint venture with Caterpillar',sub:'His underground manufacturing business'});
+  h+=ledger(84,1170,846,11.4,{where:'2000',what:'Caterpillar buys it',sub:'Elphinstone keeps William Adams',tag:'Sold'});
+  return h; }},
+ // 4 · THE SETBACK
+ {d:16, r(){
+  let h=chapter('04','The setback');
+  h+=`<div class="abs lead" style="left:84px;right:150px;top:320px;font-size:50px">${typed('2015. Caterpillar is moving production *to Thailand.*',0.3,26)}</div>`;
+  // factory: 5 cols x 4 rows windows; go dark 4.2–7.2, relight 9.6–11.4
+  let win=''; const N=20;
+  for(let i=0;i<N;i++){ const c=i%5, r=Math.floor(i/5);
+   const off=k(4.2+i*0.15,0.2), on=k(9.6+i*0.09,0.2);
+   const lit=(1-off)+on*off; const col=lit>0.5?(LT>9.6?'#FF6B1A':'#FFE14D'):'#3A3F47';
+   win+=`<rect x="${70+c*120}" y="${120+r*95}" width="80" height="60" rx="6" fill="${col}" stroke="#16181D" stroke-width="5"/>`; }
+  const g=k(1.2,0.8);
+  h+=`<div class="abs" style="left:84px;top:520px;opacity:${g}"><svg viewBox="0 0 740 560" width="740"><path d="M20 520 V100 L180 40 V100 L340 40 V100 L500 40 V100 L720 100 V520 Z" fill="#fff" stroke="#16181D" stroke-width="8" stroke-linejoin="round"/>${win}<rect x="600" y="430" width="90" height="90" fill="#16181D"/></svg></div>`;
+  const lab=LT<9.4?'Caterpillar · Burnie plant':'Elphinstone · Burnie · 2016';
+  h+=`<div class="abs mono" style="left:84px;top:1095px;font-size:22px;color:#5B616A;opacity:${g}">${lab}</div>`;
+  h+=`<div class="abs anton" style="left:620px;top:1080px;font-size:70px;color:#2F5BEA;opacity:${k(5.0,0.4)*(1-k(9.2,0.3))}">−280 JOBS</div>`;
+  h+=`<div class="abs lead" style="left:84px;right:150px;top:1180px;font-size:50px">${typed('So he buys his brand back.',8.0,24)}<br>${typed('_Same town. His own name again._',11.6,24)}</div>`;
+  return h; }},
+ // 5 · THE RICH LIST
+ {d:16.5, r(){
+  let h=chapter('05','The rich list');
+  const X0=110,X1=900,Y0=1010,Y1=600, yr=y=>X0+(y-2010)/(2025-2010)*(X1-X0), val=v=>Y0-(v/2.0)*(Y0-Y1);
+  const P=[{y:2010,v:0.515,t:0.4,l:'$515M',s:'BRW Rich List'},{y:2019,v:1.0,t:5.0,l:'$1B',s:'Tasmania’s first billionaire'},{y:2025,v:1.94,t:8.6,l:'$1.94B',s:'AFR Rich List'}];
+  // counter
+  let shown=P[0], cur=0;
+  P.forEach(p=>{ if(LT>=p.t) shown=p; });
+  const prev=P[Math.max(0,P.indexOf(shown)-1)];
+  cur=prev.v+(shown.v-prev.v)*k(shown.t,1.0); if(LT<P[0].t) cur=0; if(shown===P[0]) cur=0.515*k(P[0].t,1.2);
+  const txt=cur>=1?'$'+cur.toFixed(2)+'B':'$'+Math.round(cur*1000)+'M';
+  h+=`<div class="abs" style="left:84px;top:320px;${fu(0.2)}"><div class="anton" style="font-size:150px">${txt}</div><div class="mono" style="font-size:22px;color:#5B616A;margin-top:12px">Estimated wealth · ${LT>=P[2].t?'2025':(LT>=P[1].t?'2019':'2010')}</div></div>`;
+  let svg=`<line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#16181D" stroke-width="5"/>`;
+  for(let i=1;i<P.length;i++){ const a=P[i-1],b=P[i], g=k(b.t-0.2,1.2); if(g<=0) continue;
+   const xa=yr(a.y),ya=val(a.v),xb=xa+(yr(b.y)-xa)*g,ybb=ya+(val(b.v)-ya)*g;
+   svg+=`<line x1="${xa}" y1="${ya}" x2="${xb}" y2="${ybb}" stroke="#FF6B1A" stroke-width="10" stroke-linecap="round"/>`; }
+  P.forEach(p=>{ const o=k(p.t,0.4); svg+=`<g opacity="${o}"><circle cx="${yr(p.y)}" cy="${val(p.v)}" r="16" fill="#FF6B1A" stroke="#16181D" stroke-width="5"/><text x="${yr(p.y)}" y="${Y0+46}" font-family="JBM" font-weight="700" font-size="24" text-anchor="middle" fill="#5B616A">${p.y}</text></g>`; });
+  h+=`<div class="abs" style="left:0;top:0"><svg width="1080" height="1920" viewBox="0 0 1080 1920">${svg}</svg></div>`;
+  P.forEach((p,i)=>{ const x=yr(p.y), y=val(p.v); const al=i===2?'right:150px;text-align:right':`left:${Math.max(84,x-30)}px`;
+   h+=`<div class="abs" style="${al};top:${y-110}px;${fu(p.t+0.3,0.4,10)}"><div class="anton" style="font-size:48px;${i===2?'color:#C2410C':''}">${p.l}</div><div class="mono" style="font-size:17px;color:#5B616A">${p.s}</div></div>`; });
+  h+=`<div class="abs" style="left:84px;right:150px;top:1120px;display:flex;flex-direction:column;gap:18px">
+    <div style="${fu(10.4)}"><span class="hl" style="font-size:44px;font-weight:800">No. 88 in Australia, 2025</span></div>
+    <div style="font-size:38px;font-weight:800;line-height:1.2;${fu(13.0)}">First non-American in the US National Mining Hall of Fame</div></div>`;
+  return h; }},
+ // 6 · QUOTE
+ {d:7, r(){ return `
+  ${photo(4,84,300,912,640,'Dale today, or a new Elphinstone machine','',0.2)}
+  <div class="abs anton" style="left:84px;top:960px;font-size:150px;color:#FF6B1A;line-height:.7;${fu(0.8)}">“</div>
+  <div class="abs" style="left:84px;right:150px;top:1050px;font-size:62px;font-weight:800;line-height:1.12">${typed('We did it because we didn’t know we couldn’t.',1.0,22)}</div>
+  <div class="abs mono" style="left:84px;top:1290px;font-size:24px;color:#C2410C;${fu(3.6)}">— Dale Elphinstone</div>`; }},
+ // 7 · END
+ {d:9.5, r(){ return `
+  <div class="abs" style="left:84px;right:150px;top:380px">
+   <div class="lead">${typed('It started with an apprenticeship.',0.2,26)}</div>
+   <div class="mono" style="font-size:24px;color:#5B616A;margin-top:70px;${fu(2.2)}">First-year diesel apprentice · 2026–27</div>
+   <div class="anton or" style="font-size:230px;margin-top:20px;${fu(2.5)}">$560</div>
+   <div style="font-size:52px;font-weight:800;${fu(3.2)}">a week, award minimum.</div>
+   <div style="margin-top:90px;display:flex;align-items:center;gap:26px;${fu(5.0)}">
+    <div style="width:140px;height:140px;border-radius:28px;background:#fff;border:4px solid #16181D;display:flex;align-items:center;justify-content:center">${HAT(110)}</div>
+    <div><div class="anton" style="font-size:70px">APPRENTICE <span class="or">GUIDE</span></div><div style="font-size:34px;font-weight:600;color:#3A3F47;margin-top:8px">Work out yours · link in bio</div></div></div>
+  </div>`; }},
+];
+let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;});
+window.TOTAL=T;
+function render(t){
+ let h=`<div class="abs stripe" style="left:0;right:0;top:0"></div><div class="abs stripe" style="left:0;right:0;bottom:0"></div>`;
+ SC.forEach(s=>{ if(t<s.t0||t>=s.t1) return; LT=t-s.t0;
+  const out=1-clamp((t-(s.t1-0.45))/0.45);
+  h+=`<div class="abs" style="inset:0;opacity:${out}">${s.r()}</div>`; });
+ document.getElementById('stage').innerHTML=h;
+}
+window.render=render;
+window.setPhotos=p=>Object.assign(PHOTOS,p);
+window.scenes=()=>SC.map(s=>[s.t0,s.t1]);
+</script></body></html>
