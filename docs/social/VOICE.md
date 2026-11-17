@@ -6,12 +6,12 @@ This is modelled on what makes high-performing Australian data carousels work (f
 1. **Cover:** a curiosity list title in sentence case, with no number in the hook except the list count.
    "10 things nobody tells you about apprentice pay". A small caps kicker sits above it ("APPRENTICE GUIDE · 2026–27 PAY GUIDE"), and a "READ MORE ▸" pill sits at the bottom.
 2. **Insight slides (one idea each):**
-   - **Tag pill:** "INSIGHT ONE", "INSIGHT TWO"… (words, not digits).
+   - **Tag pill:** "ONE", "TWO"… (the number as a word, nothing else).
    - **Headline:** ONE blunt declarative sentence, at most 10 words. Second person or a plain fact, present tense. A two-beat contrast is welcome ("Chippies out-earn sparkies for four years. Then sparkies overtake."). It states the finding, not the topic.
    - **Subhead:** ONE sentence of evidence with the specific numbers. Plain words.
    - **Chart:** one per slide, with a caps label above it ("WEEKLY PAY BY YEAR OF APPRENTICESHIP"). Values sit on the bars or points in short form ($654, $1.1K, 68%). Use orange for the hero series and blueprint blue or steel for comparisons.
    - **Kicker line at the bottom:** a **bold first clause** with the "so what", then a plain second clause with a comparison or consequence.
-   - **"NEXT ▸"** pill bottom-right.
+   - **"SWIPE TO SEE NEXT ▸"** pill bottom-right.
 3. **Final slide: the soft sell.** "If only there was a tool…", then a calculator mockup, then "…that told you what you'd actually take home.", then "It's free. Link in bio." Sources go here, small, in one block.
 
 ## Rules
