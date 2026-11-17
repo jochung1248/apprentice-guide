@@ -1,0 +1,11 @@
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#F4F1EA;color:#16181D;font-family:Inter}
+.mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.anton{font-family:Anton;font-weight:400;line-height:.92}
+.stripe{position:absolute;left:0;right:0;height:36px;background:repeating-linear-gradient(45deg,#16181D 0 26px,#FF6B1A 26px 52px)}
+.hl{background:#FFE14D;padding:0 10px;border-radius:4px}
+.brand{position:absolute;left:84px;top:110px;display:flex;align-items:center;gap:18px}
