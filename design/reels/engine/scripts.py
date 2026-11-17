@@ -52,3 +52,26 @@ REELS['reel-5-hard-years-end']={'series':'AFTER YOU QUALIFY','scenes':[
  {'type':'stamp','t0':26.8,'t1':31.3,'kicker':'In shortage every year, 2021–2025','big':'71 OF 139','size':190,'sub':'occupations short every year since 2021 are trades.','cap':'Trade skills stay in demand.'},
  {'type':'end','t0':31.3,'t1':36.8,'kicker':'Qualified plumber · award minimum','big':'$1,247','sub':'a week. And that’s the floor.','cta':'See the climb, year by year · link in bio'},
 ]}
+
+REELS['reel-6-case-study']={'series':'APPRENTICE TO BILLIONAIRE','scenes':[
+ {'type':'hook','t0':0,'t1':3.4,'kicker':'Burnie, Tasmania · 1966','big':'AGE 15','size':250,'sub':'A diesel apprentice. Now an estimated billionaire.','cap':'Here’s every step.'},
+ {'type':'years','t0':3.4,'t1':27.0,'kicker':'Dale Elphinstone · the journey','who':'Dale Elphinstone','items':[
+   {'y':'1951','cap':'Born on a Tasmanian dairy farm','dur':1.8},
+   {'y':'1966','cap':'Apprentice diesel mechanic at 15','dur':2.0},
+   {'y':'1970','cap':'Qualified. Fixing machines at mine sites','dur':1.8},
+   {'y':'1973','cap':'Works for a Cat dealer in Canada','dur':1.7},
+   {'y':'1975','cap':'Starts his own business in his dad’s shed','dur':2.0},
+   {'y':'1977','cap':'Sells his first underground truck','dur':1.5},
+   {'y':'1987','cap':'Buys the dealer he did his apprenticeship with','dur':1.6},
+   {'y':'1995','cap':'Joint venture with Caterpillar','dur':1.3},
+   {'y':'2000','cap':'Sells it to Caterpillar','dur':1.3},
+   {'y':'2016','cap':'Cat moves the factory to Thailand','dur':1.6,'setback':True},
+   {'y':'2016','cap':'He buys his brand back','dur':1.5},
+   {'y':'2019','cap':'Tasmania’s first billionaire, on rich-list estimates','dur':1.2},
+   {'y':'2024','cap':'First non-American in the US Mining Hall of Fame','dur':1.3}],
+  'end':'We did it because we didn’t know we couldn’t.'},
+ {'type':'tapes','t0':27.0,'t1':33.0,'label':'Estimated wealth · BRW / AFR Rich List','title':'From the shed to $1.94 billion.','stagger':1.2,'max':2000000000,'bars':[
+   {'name':'2010 · BRW Rich List','v':515000000,'t':'$515M'},
+   {'name':'2025 · AFR Rich List','v':1940000000,'t':'$1.94B','c':'#FF6B1A'}],'cap':'Number 88 in Australia.'},
+ {'type':'end','t0':33.0,'t1':38.5,'kicker':'First-year diesel apprentice · 2026–27','big':'$560','sub':'a week to start. Same trade he picked.','cta':'Work out your trade · link in bio'},
+]}

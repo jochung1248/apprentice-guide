@@ -89,6 +89,33 @@ const R={
     ${bar(s.trade.name,s.trade,'#FF6B1A','#16181D',0.5)}${bar(s.uni.name,s.uni,'#2F5BEA','#2F5BEA',1.2)}</div>
    <div class="abs" style="left:84px;top:1130px;opacity:${ease((lt-(s.win_at||3.2))/0.5)};transform:translateY(${(1-ease((lt-(s.win_at||3.2))/0.5))*16}px)"><span class="mono" style="display:inline-flex;align-items:center;gap:14px;font-size:30px;padding:14px 24px;border-radius:999px;background:${s.winner==='TRADE'?'#FF6B1A':'#2F5BEA'};color:${s.winner==='TRADE'?'#16181D':'#fff'}">✓ ROUND TO ${s.winner}</span></div>`;
  },
+ years(s,lt){
+  let acc=0, idx=-1, ilt=0;
+  for(let i=0;i<s.items.length;i++){ if(lt>=acc){idx=i; ilt=lt-acc;} acc+=s.items[i].dur; }
+  const endMode=lt>=acc, it=s.items[Math.max(idx,0)];
+  const y0=+s.items[0].y, y1=+s.items[s.items.length-1].y, W=912;
+  const pos=y=>(y-y0)/(y1-y0)*W;
+  const curY=endMode?y1:+it.y, prevY=(idx>0&&!endMode)?+s.items[idx-1].y:curY;
+  const markX=pos(prevY)+(pos(curY)-pos(prevY))*ease(ilt/0.45);
+  let ticks='';
+  s.items.forEach((p,i)=>{ if(i>0&&s.items[i-1].y===p.y) return; const x=pos(+p.y), on=endMode||i<=idx;
+    ticks+=`<div class="abs" style="left:${x-9}px;top:5px;width:18px;height:18px;border-radius:50%;border:3px solid #16181D;background:${on?(p.setback?'#2F5BEA':'#FF6B1A'):'#fff'}"></div>`; });
+  const tl=`<div class="abs" style="left:84px;top:1250px;width:${W}px">
+    <div style="height:28px;border:4px solid #16181D;border-radius:6px;background:#fff;box-sizing:border-box;overflow:hidden"><div style="height:100%;width:${markX}px;background:#FFE14D"></div></div>
+    ${ticks}
+    <div class="abs mono" style="left:0;top:48px;font-size:24px;color:#5B616A">${s.items[0].y}</div>
+    <div class="abs mono" style="right:0;top:48px;font-size:24px;color:#5B616A">${s.items[s.items.length-1].y}</div></div>`;
+  const head=`<div class="abs mono" style="left:84px;top:450px;font-size:28px;color:#5B616A">${s.kicker||''}</div>`;
+  if(endMode){ const el=lt-acc, o=ease(el/0.5);
+   return head+`<div class="abs" style="left:84px;right:84px;top:560px;opacity:${o};transform:translateY(${(1-o)*30}px)">
+     <div class="anton" style="font-size:150px;color:#FF6B1A;line-height:.6">“</div>
+     <div style="font-size:84px;font-weight:800;line-height:1.08;margin-top:-10px">${s.end}</div>
+     <div class="mono" style="font-size:28px;color:#C2410C;margin-top:40px;opacity:${ease((el-0.6)/0.4)}">— ${s.who||''}</div></div>`+tl; }
+  const o=ease(ilt/0.25), col=it.setback?'#2F5BEA':'#16181D', co=ease((ilt-0.12)/0.25);
+  return head+`<div class="abs" style="left:84px;right:84px;top:520px">
+    <div class="anton" style="font-size:330px;color:${col};opacity:${o};transform:translateY(${(1-o)*36}px)">${it.y}</div>
+    <div style="margin-top:46px;opacity:${co};transform:translateY(${(1-co)*18}px)"><span style="display:inline;font-size:66px;font-weight:800;line-height:1.3;padding:4px 14px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;background:${it.setback?'rgba(47,91,234,.16)':'#FFE14D'}">${it.cap}</span></div></div>`+tl;
+ },
  end(s,lt){
   return `<div class="abs" style="left:0;right:0;top:470px;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center">
    <div class="mono" style="font-size:28px;color:#5B616A;opacity:${ease(lt/0.3)}">${s.kicker||''}</div>
