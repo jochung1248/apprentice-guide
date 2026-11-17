@@ -4,7 +4,7 @@ Post as a **Reel**. Add a trending sound in Instagram (no voiceover). Covers: us
 
 ## reel-loop-pay.mp4 (15s)
 
-What tradies actually earn, per week. 13 trades, highest to lowest.
+What tradies actually earn, per week. 15 trades, highest to lowest.
 
 First year on the left. The legal minimum once you qualify in the middle. What most full-time workers in that trade actually earn on the right.
 
@@ -13,9 +13,9 @@ Auto electricians top it at $2,808 a week.
 Save this one for later.
 
 —
-"What most earn" = median weekly earnings for full-time employees paid at the adult rate, before tax (Jobs and Skills Australia occupation profiles, ABS Survey of Employee Earnings and Hours, May 2025). It covers all experience levels; there's no official figure by years of experience. Mechanic covers car and diesel (ANZSCO 3212); fitter & turner = metal fitters and machinists (3232); boilermaker/welder = structural steel and welding trades (3223). 1st year and qualified minimum = Fair Work award rates from 1 July 2026, 38-hour week; 1st year is an apprentice under 21 without Year 12. Tilers, roof tilers, glaziers and landscapers left out: no published median. Full calculator, link in bio.
+"What most earn" = median weekly earnings for full-time employees paid at the adult rate, before tax (Jobs and Skills Australia occupation profiles, ABS Survey of Employee Earnings and Hours, May 2025). It covers all experience levels; there's no official figure by years of experience. Mechanic covers car and diesel (ANZSCO 3212); fitter & turner = metal fitters and machinists (3232); boilermaker/welder = structural steel and welding trades (3223); vehicle spray painter = vehicle painters (3243); panel beater = panelbeaters (3241). 1st year and qualified minimum = Fair Work award rates from 1 July 2026, 38-hour week; 1st year is an apprentice under 21 without Year 12. Tilers, roof tilers, glaziers and landscapers left out: no published median. Full calculator, link in bio.
 
-#apprentice #apprenticeship #tradie #tradieaustralia #autoelectrician #electrician #plumber #bricklayer #carpenter #fitter #tafe #careeradvice
+#apprentice #apprenticeship #tradie #tradieaustralia #autoelectrician #panelbeater #spraypainter #electrician #plumber #bricklayer #carpenter #fitter #tafe #careeradvice
 
 ## reel-loop-trap.mp4 (12s)
 
