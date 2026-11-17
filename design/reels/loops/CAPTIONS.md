@@ -4,22 +4,24 @@ Post as a **Reel**. Add a trending sound in Instagram (no voiceover). Covers: us
 
 ## reel-loop-pay.mp4 (15s)
 
-Trade pay per week in 2026. 18 trades, highest to lowest.
+What tradies actually earn, per week. 13 trades, highest to lowest.
 
-Plumbers top the list. 1st year to qualified roughly doubles your pay in every trade.
+First year on the left. The legal minimum once you qualify in the middle. What most full-time workers in that trade actually earn on the right.
+
+5 trades beat the average Aussie job. Auto electricians top it at $2,808 a week.
 
 Save this one for later.
 
 —
-Fair Work pay guides, award minimum rates from 1 July 2026, 38-hour week. 1st year = apprentice under 21 who didn't finish Year 12 (Year 12 finishers get more in years 1–2). Building trades use residential rates. Car mechanic, diesel mechanic and auto electrician share the Vehicle Repair Award table; fitter and boilermaker the Manufacturing Award; chef the Hospitality (General) Award; landscaper the Gardening and Landscaping Award. Qualified = award minimum for a tradesperson; many earn above it. Full calculator, link in bio.
+"What most earn" = median weekly earnings for full-time employees paid at the adult rate, before tax (Jobs and Skills Australia occupation profiles, ABS Survey of Employee Earnings and Hours, May 2025). It covers all experience levels; there's no official figure by years of experience. All jobs: $1,852. Mechanic covers car and diesel (ANZSCO 3212); fitter & turner = metal fitters and machinists (3232); boilermaker/welder = structural steel and welding trades (3223). 1st year and qualified minimum = Fair Work award rates from 1 July 2026, 38-hour week; 1st year is an apprentice under 21 without Year 12. Tilers, roof tilers, glaziers and landscapers left out: no published median. Full calculator, link in bio.
 
-#apprentice #apprenticeship #tradie #tradieaustralia #plumber #electrician #carpenter #bricklayer #dieselmechanic #hairdresser #chef #tafe #careeradvice
+#apprentice #apprenticeship #tradie #tradieaustralia #autoelectrician #electrician #plumber #bricklayer #carpenter #fitter #tafe #careeradvice
 
-## reel-loop-trap.mp4 (9s)
+## reel-loop-trap.mp4 (13s)
 
-The apprentice trap.
+The apprentice trap: don't buy the HiLux straight away.
 
-Four years on apprentice wages. Then the first big purchase is a ute on finance.
+Four years on apprentice wages. You finally qualify. Then 28% of your take-home goes on a ute.
 
 Tag the mate eyeing a ute 👇
 

@@ -1,27 +1,47 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="loop-base.css">
 <style>
-.lead{font-size:40px;font-weight:800;line-height:1.2;margin:0}
-.n{font-family:Anton;font-size:50px;color:#C2410C}
-.lab{font-family:JBM;font-weight:700;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#5B616A;margin:0 0 10px}
-.bar{display:flex;height:74px;border:4px solid #16181D;border-radius:8px;overflow:hidden}
-.bar div{display:flex;align-items:center;padding:0 16px;font-family:Anton;font-size:40px;white-space:nowrap}
-.key{display:flex;justify-content:space-between;font-size:26px;font-weight:800;margin-top:10px}
-.tag{position:absolute;background:#FF6B1A;border:5px solid #16181D;border-radius:12px;padding:6px 20px;font-family:Anton;font-size:64px;transform:rotate(-6deg);box-shadow:6px 6px 0 #16181D}
-</style></head><body><div id="stage">
-<div class="stripe" style="top:0"></div>
-<div class="brand"><svg viewBox="0 0 200 130" width="74"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98" fill="#C2410C" stroke="#16181D" stroke-width="7"/><rect x="10" y="94" width="180" height="18" rx="9" fill="#16181D"/></svg><span class="mono" style="font-size:26px">Apprentice Guide</span></div>
-<div style="position:absolute;left:84px;right:150px;top:215px">
- <div class="anton" style="font-size:100px;white-space:nowrap">THE APPRENTICE <span style="color:#C2410C">TRAP</span></div>
- <p class="lead" style="margin-top:24px">Qualified chippy: <span class="n">$1,214</span> a week. <span class="n">$1,009</span> after tax.</p>
- <p class="lead" style="margin-top:10px">First buy: a <span class="hl">$60K ute</span> on finance. 9% over 5 years.</p>
- <div style="position:relative;margin-top:26px"><div style="height:380px;border:4px solid #16181D;border-radius:14px;overflow:hidden;background:#fff"><img src="photos/hilux.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 62%;display:block"></div><div class="tag" style="left:-14px;top:-22px">$60K</div></div>
- <div style="margin-top:24px"><p class="lab">What you actually pay back</p>
-  <div class="bar"><div style="width:80.3%;background:#fff">$60,000 ute</div><div style="flex:1;background:#FF6B1A;justify-content:center">+$14,730</div></div>
-  <div class="key"><span>The ute + <span style="color:#C2410C">interest</span></span><span>= $74,730</span></div></div>
- <div style="margin-top:22px"><p class="lab">Your week, after tax: $1,009</p>
-  <div class="bar"><div style="width:28.5%;background:#FF6B1A">$287 ute</div><div style="flex:1;background:#FFE14D">$722 for everything else</div></div>
-  <div class="key"><span><span style="color:#C2410C">28%</span> to the ute. Every week. 5 years.</span></div></div>
- <p class="lead" style="margin-top:26px;font-size:42px">Four years waiting for the pay rise. Then the bank takes a quarter of it.</p>
- <div style="display:inline-block;margin-top:16px;background:#16181D;color:#F4F1EA;font-weight:800;font-size:34px;padding:14px 26px;border-radius:14px;box-shadow:8px 8px 0 #FF6B1A">Tag the mate eyeing a ute</div>
-</div>
-</div></body></html>
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:3px dashed #E2DDD2;font-size:38px;font-weight:800}
+.row .v{font-family:Anton;font-weight:400;font-size:56px}
+.lab{font-family:JBM;font-weight:700;font-size:21px;letter-spacing:2px;text-transform:uppercase;color:#5B616A}
+.bar{display:flex;height:64px;border:4px solid #16181D;border-radius:8px;overflow:hidden;background:#fff}
+.bar div{display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:34px;white-space:nowrap;overflow:hidden}
+.tag{position:absolute;background:#FF6B1A;border:5px solid #16181D;border-radius:12px;padding:4px 18px;font-family:Anton;font-size:58px;transform:rotate(-6deg);box-shadow:6px 6px 0 #16181D}
+</style></head><body><div id="stage"></div>
+<script>
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), ease=x=>1-Math.pow(1-clamp(x),3);
+let T=0; const k=(t0,d=0.4)=>ease((T-t0)/d);
+const fu=(t0,d=0.4,dy=20)=>`opacity:${k(t0,d)};transform:translateY(${(1-k(t0,d))*dy}px)`;
+const HAT=`<svg viewBox="0 0 200 130" width="74"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98" fill="#C2410C" stroke="#16181D" stroke-width="7"/><rect x="10" y="94" width="180" height="18" rx="9" fill="#16181D"/></svg>`;
+function render(t){ T=t;
+ const P=1214, TAX=205, UTE=287, LEFT=722;
+ const gTax=k(2.6,0.6), gUte=k(4.4,0.6);
+ const cur=Math.round(P - TAX*gTax - UTE*gUte);
+ const w=v=>(v/P*100).toFixed(2)+'%';
+ let h=`<div class="stripe" style="position:absolute;left:0;right:0;top:0"></div>
+ <div class="brand">${HAT}<span class="mono" style="font-size:26px">Apprentice Guide</span></div>
+ <div style="position:absolute;left:84px;right:150px;top:215px">
+  <div class="anton" style="font-size:100px;white-space:nowrap">THE APPRENTICE <span style="color:#C2410C">TRAP</span></div>
+  <div style="font-size:46px;font-weight:800;margin-top:12px">Don’t buy the HiLux <span class="hl">straight away.</span></div>
+  <div style="position:relative;margin-top:30px"><div style="height:260px;border:4px solid #16181D;border-radius:14px;overflow:hidden;background:#fff"><img src="photos/hilux.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 62%;display:block"></div><div class="tag" style="left:-14px;top:-22px">$60K</div>
+   <div class="mono" style="position:absolute;right:14px;bottom:12px;background:#16181D;color:#F4F1EA;font-size:20px;padding:6px 12px;border-radius:6px">On finance · 9% · 5 years</div></div>
+  <div class="lab" style="margin-top:24px;${fu(0.8)}">Your first week as a qualified chippy</div>
+  <div style="margin-top:6px">
+   <div class="row" style="${fu(1.0)}"><span>Pay</span><span class="v">$1,214</span></div>
+   <div class="row" style="${fu(2.6)}"><span>Tax</span><span class="v" style="color:#5B616A">−$205</span></div>
+   <div class="row" style="${fu(4.4)}"><span>HiLux repayment</span><span class="v" style="color:#C2410C">−$287</span></div>
+   <div class="row" style="border-bottom:none;${fu(6.0)}"><span>Left for rent, food, fuel</span><span class="v"><span class="hl">$722</span></span></div>
+  </div>
+  <div class="bar" style="margin-top:14px;${fu(1.0)}">
+   <div style="flex:1;background:#FFE14D">$${cur.toLocaleString('en-AU')}</div>
+   <div style="width:calc(${w(UTE)} * ${gUte});background:#FF6B1A">${gUte>0.6?'HiLux':''}</div>
+   <div style="width:calc(${w(TAX)} * ${gTax});background:#8A9099;color:#fff">${gTax>0.6?'Tax':''}</div>
+  </div>
+  <div style="margin-top:18px;font-size:44px;font-weight:800;line-height:1.15;${fu(7.2)}"><span style="font-family:Anton;font-weight:400;font-size:64px;color:#C2410C">28%</span> of your take-home. Every week. For five years.</div>
+  <div style="margin-top:16px;${fu(9.0)}"><div class="lab" style="margin-bottom:8px">What the HiLux really costs</div>
+   <div class="bar"><div style="width:80.3%;background:#fff;justify-content:flex-start;padding-left:16px">$60,000 HiLux</div><div style="flex:1;background:#FF6B1A">+$14,730</div></div>
+   <div style="display:flex;justify-content:space-between;font-size:28px;font-weight:800;margin-top:8px"><span>+ interest</span><span>= $74,730</span></div></div>
+ </div>`;
+ document.getElementById('stage').innerHTML=h;
+}
+window.render=render; render(99);
+</script></body></html>
