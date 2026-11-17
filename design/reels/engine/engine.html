@@ -1,0 +1,124 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0;background:#F4F1EA}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#F4F1EA;color:#16181D;font-family:Inter}
+.abs{position:absolute}
+.mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.anton{font-family:Anton;font-weight:400;line-height:.9}
+.stripe{height:36px;background:repeating-linear-gradient(45deg,#16181D 0 26px,#FF6B1A 26px 52px)}
+.tape{position:relative;height:70px;border:4px solid #16181D;border-radius:6px;box-sizing:border-box;background-image:repeating-linear-gradient(90deg,rgba(22,24,29,.85) 0 3px,transparent 3px 26px),repeating-linear-gradient(90deg,rgba(22,24,29,.85) 0 3px,transparent 3px 130px);background-size:100% 22px,100% 40px;background-repeat:no-repeat}
+.sticker{display:inline-block;background:#16181D;color:#F4F1EA;font-weight:800;font-size:48px;line-height:1.2;padding:22px 34px;border-radius:14px;box-shadow:8px 8px 0 #FF6B1A}
+.hl{background:#FFE14D;color:#16181D;padding:0 8px;border-radius:4px}
+.card{background:#fff;border-radius:18px;box-shadow:0 2px 0 #E2DDD2,0 24px 50px rgba(22,24,29,.12);overflow:hidden}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const HAT=(w)=>`<svg viewBox="0 0 200 130" width="${w}"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98 Z" fill="#C2410C" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><rect x="10" y="94" width="180" height="22" rx="11" fill="#16181D"/></svg>`;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);};
+const money=v=>'$'+Math.round(v).toLocaleString('en-AU');
+
+/* ---------- scene renderers: (s, lt) -> html, lt = seconds since scene start ---------- */
+const R={
+ hook(s,lt){
+  return `<div class="abs" style="left:84px;right:84px;top:470px">
+   <div class="mono" style="font-size:30px;color:#C2410C;opacity:${ease(lt/0.4)}">${s.kicker}</div>
+   <div class="anton" style="font-size:${s.size||200}px;margin-top:30px;transform:scale(${1.25-0.25*back(lt/0.5)});transform-origin:left top;opacity:${clamp(lt/0.25)}">${s.big}</div>
+   <div style="font-size:58px;font-weight:800;line-height:1.12;margin-top:40px;opacity:${ease((lt-0.5)/0.4)};transform:translateY(${(1-ease((lt-0.5)/0.4))*30}px)">${s.sub||''}</div></div>`;
+ },
+ tapes(s,lt){
+  const max=s.max||Math.max(...s.bars.map(b=>Math.abs(b.v)));
+  let h=`<div class="abs" style="left:84px;right:84px;top:420px"><div class="mono" style="font-size:26px;color:#5B616A">${s.label}</div><div style="font-size:64px;font-weight:800;line-height:1.08;margin:18px 0 50px">${s.title}</div>`;
+  s.bars.forEach((b,i)=>{
+   const st=(s.stagger??1.4)*i+0.3, g=ease((lt-st)/1.0), w=Math.abs(b.v)/max*(s.width||700)*g;
+   const col=b.c||'#FFE14D';
+   h+=`<div style="margin-bottom:44px;opacity:${clamp((lt-st+0.2)/0.3)}"><div class="mono" style="font-size:26px;color:#3A3F47;margin-bottom:12px">${b.name}</div>
+   <div style="display:flex;align-items:center;gap:22px"><div class="tape" style="width:${Math.max(w,8)}px;background-color:${col}"></div>
+   <div class="anton" style="font-size:72px;color:${b.tc||'#16181D'}">${(b.v<0?'−':(b.plus?'+':''))+ (b.pct?(Math.abs(b.v)*g).toFixed(1)+'%':(b.hr?'$'+(Math.abs(b.v)*g).toFixed(2)+'/hr':money(Math.abs(b.v)*g)))}</div></div></div>`;
+  });
+  return h+`</div>`;
+ },
+ stamp(s,lt){
+  const k=back(lt/0.45);
+  return `<div class="abs" style="left:0;right:0;top:520px;display:flex;flex-direction:column;align-items:center;gap:46px">
+   <div class="mono" style="font-size:28px;color:#5B616A;opacity:${ease(lt/0.3)}">${s.kicker||''}</div>
+   <div style="border:12px solid ${s.c||'#FF6B1A'};border-radius:28px;padding:30px 54px;transform:rotate(-6deg) scale(${2-k});opacity:${clamp(lt/0.2)}">
+    <div class="anton" style="font-size:${s.size||230}px;color:${s.c||'#FF6B1A'}">${s.big}</div></div>
+   <div style="font-size:56px;font-weight:800;text-align:center;line-height:1.15;max-width:880px;opacity:${ease((lt-0.6)/0.4)}">${s.sub||''}</div></div>`;
+ },
+ payslip(s,lt){
+  let rows='';
+  s.rows.forEach((r,i)=>{ const st=0.4+i*(s.step||0.9), o=ease((lt-st)/0.35);
+   rows+=`<div style="display:flex;justify-content:space-between;align-items:baseline;padding:26px 0;border-bottom:${r.total?'4px solid #16181D':'3px dashed #E2DDD2'};opacity:${o};transform:translateX(${(1-o)*-30}px)">
+   <div style="font-size:${r.total?50:44}px;font-weight:${r.total?800:600}">${r.l}</div>
+   <div class="${r.total?'anton':''}" style="${r.total?'font-size:96px':'font-family:JBM;font-weight:700;font-size:44px'};color:${r.c||'#16181D'}">${r.total?`<span class="hl">${r.v}</span>`:r.v}</div></div>`; });
+  return `<div class="abs" style="left:84px;right:84px;top:440px;opacity:${ease(lt/0.3)};transform:translateY(${(1-ease(lt/0.4))*40}px)">
+   <div class="card"><div class="stripe" style="height:18px"></div><div style="padding:36px 46px 40px">
+   <div style="display:flex;justify-content:space-between" class="mono"><span style="font-size:24px;color:#5B616A">${s.head}</span><span style="font-size:24px;color:#5B616A">${s.head2||''}</span></div>${rows}</div></div></div>`;
+ },
+ timeline(s,lt){
+  const W=820, n=s.points.length; let total=0, dots='';
+  s.points.forEach((p,i)=>{ const st=0.5+i*(s.step||1.1), o=back((lt-st)/0.4), x=p.x*W; if(lt>=st+0.2) total+=p.v;
+   dots+=`<div class="abs" style="left:${x-70}px;top:-122px;width:140px;display:flex;flex-direction:column;align-items:center;opacity:${clamp((lt-st)/0.15)};transform:translateY(${(1-o)*-60}px)">
+     <div style="width:96px;height:96px;border-radius:50%;background:#FF6B1A;border:5px solid #16181D;display:flex;align-items:center;justify-content:center" class="anton"><span style="font-size:38px">$2K</span></div></div>
+     <div class="abs mono" style="left:${x-80}px;top:58px;width:160px;text-align:center;font-size:24px;color:#3A3F47">${p.l}</div>`; });
+  return `<div class="abs" style="left:84px;right:84px;top:440px"><div class="mono" style="font-size:26px;color:#5B616A">${s.label}</div>
+   <div style="font-size:64px;font-weight:800;line-height:1.08;margin:18px 0 0">${s.title}</div></div>
+   <div class="abs" style="left:100px;top:1030px;width:${W}px"><div class="tape" style="width:${W}px;height:44px;background-color:#FFE14D"></div>${dots}</div>
+   <div class="abs" style="left:84px;right:84px;top:650px"><div class="mono" style="font-size:24px;color:#5B616A">PAID SO FAR</div><div class="anton" style="font-size:110px;color:#C2410C">${money(total)}</div></div>`;
+ },
+ round(s,lt){
+  // scoreboard + two tapes + winner stamp
+  const sc=s.score, prev=s.prev;
+  const show=lt>(s.win_at||3.2);
+  const cur=show?sc:prev;
+  const max=Math.max(s.trade.v,s.uni.v), W=640;
+  const bar=(lab,b,col,tc,st)=>{const g=ease((lt-st)/0.9);return `<div style="margin-bottom:38px;opacity:${clamp((lt-st+0.2)/0.3)}"><div class="mono" style="font-size:26px;color:#3A3F47;margin-bottom:10px">${lab}</div><div style="display:flex;align-items:center;gap:20px"><div class="tape" style="width:${Math.max(b.v/max*W*g,10)}px;background-color:${col}"></div><div class="anton" style="font-size:68px;color:${tc}">${b.t}</div></div></div>`;};
+  const ws=back((lt-(s.win_at||3.2))/0.4);
+  return `<div class="abs" style="left:84px;right:84px;top:400px;display:flex;justify-content:space-between;align-items:center;border:4px solid #16181D;border-radius:16px;padding:18px 34px;background:#fff">
+    <div class="mono" style="font-size:30px;color:#C2410C">TRADE</div><div class="anton" style="font-size:92px">${cur[0]} <span style="color:#8A9099">–</span> ${cur[1]}</div><div class="mono" style="font-size:30px;color:#2F5BEA">UNI</div></div>
+   <div class="abs" style="left:84px;right:84px;top:600px"><div class="mono" style="font-size:26px;color:#5B616A">ROUND ${s.n} · ${s.label}</div>
+    <div style="font-size:60px;font-weight:800;line-height:1.08;margin:16px 0 46px">${s.title}</div>
+    ${bar(s.trade.name,s.trade,'#FF6B1A','#16181D',0.5)}${bar(s.uni.name,s.uni,'#2F5BEA','#2F5BEA',1.2)}</div>
+   <div class="abs" style="right:84px;top:1110px;opacity:${clamp((lt-(s.win_at||3.2))/0.15)};transform:rotate(-7deg) scale(${2-ws})"><div style="border:9px solid ${s.winner==='TRADE'?'#FF6B1A':'#2F5BEA'};border-radius:20px;padding:12px 30px" class="anton"><span style="font-size:80px;color:${s.winner==='TRADE'?'#FF6B1A':'#2F5BEA'}">${s.winner} WINS</span></div></div>`;
+ },
+ end(s,lt){
+  return `<div class="abs" style="left:0;right:0;top:470px;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center">
+   <div class="mono" style="font-size:28px;color:#5B616A;opacity:${ease(lt/0.3)}">${s.kicker||''}</div>
+   <div class="anton" style="font-size:${s.size||170}px;color:#C2410C;transform:scale(${1.2-0.2*back(lt/0.5)})">${s.big||''}</div>
+   <div style="font-size:52px;font-weight:800;opacity:${ease((lt-0.4)/0.4)}">${s.sub||''}</div>
+   <div style="margin-top:80px;display:flex;align-items:center;gap:26px;opacity:${ease((lt-1.2)/0.5)}">
+    <div style="width:150px;height:150px;border-radius:30px;background:#fff;border:4px solid #16181D;display:flex;align-items:center;justify-content:center">${HAT(118)}</div>
+    <div style="text-align:left"><div class="anton" style="font-size:72px">APPRENTICE <span style="color:#C2410C">GUIDE</span></div><div style="font-size:36px;font-weight:600;color:#3A3F47;margin-top:10px">${s.cta||'Free calculator · link in bio'}</div></div></div></div>`;
+ }
+};
+
+let SCRIPT=null;
+function render(t){
+ const S=SCRIPT, st=document.getElementById('stage'); const total=S.scenes[S.scenes.length-1].t1;
+ let h=`<div class="abs stripe" style="left:0;right:0;top:0"></div><div class="abs stripe" style="left:0;right:0;bottom:0"></div>`;
+ // brand + tape progress (safe area starts ~220px)
+ h+=`<div class="abs" style="left:84px;right:84px;top:236px;display:flex;align-items:center;gap:18px">
+   <div style="width:66px;height:66px;border-radius:14px;background:#fff;border:3px solid #16181D;display:flex;align-items:center;justify-content:center">${HAT(52)}</div>
+   <div class="mono" style="font-size:26px">APPRENTICE GUIDE</div><div class="mono" style="margin-left:auto;font-size:24px;color:#5B616A">${S.series||''}</div></div>
+  <div class="abs" style="left:84px;right:84px;top:330px;height:26px;border:3px solid #16181D;border-radius:5px;background:#fff;overflow:hidden">
+   <div style="height:100%;width:${clamp(t/total)*100}%;background:#FFE14D;background-image:repeating-linear-gradient(90deg,rgba(22,24,29,.8) 0 2px,transparent 2px 18px);background-size:100% 11px;background-repeat:no-repeat"></div></div>`;
+ S.scenes.forEach(sc=>{
+  if(t<sc.t0-0.01||t>=sc.t1+0.3) return;
+  const lt=t-sc.t0, d=sc.t1-sc.t0;
+  const out=1-clamp((t-(sc.t1-0.0))/0.3), inn=ease(lt/0.35);
+  h+=`<div class="abs" style="inset:0;opacity:${Math.min(inn,out)};transform:translateY(${(1-inn)*50}px)">${R[sc.type](sc,lt)}</div>`;
+  if(sc.cap){ const co=Math.min(ease((lt-0.3)/0.3),1-clamp((t-sc.t1+0.25)/0.25));
+   h+=`<div class="abs" style="left:84px;right:84px;top:${sc.capY||1330}px;opacity:${co};transform:rotate(-1.5deg) translateY(${(1-co)*20}px)"><span class="sticker">${sc.cap}</span></div>`; }
+ });
+ st.innerHTML=h;
+}
+window.setScript=s=>{SCRIPT=s;};
+window.render=render;
+</script></body></html>
