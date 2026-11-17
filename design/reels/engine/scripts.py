@@ -24,3 +24,18 @@ REELS={
  {'type':'end','t0':16,'t1':21.5,'kicker':'Housing & new energy apprentices','big':'$10,000','sub':'Check if your trade qualifies.','cta':'Free calculator · link in bio'},
 ]},
 }
+
+REELS['reel-4-tradies-wanted']={'series':'TRADIES WANTED · 2026','scenes':[
+ {'type':'hook','t0':0,'t1':3.8,'kicker':'Australia · 2026','big':'TRADIES<br>WANTED','size':220,'sub':'Where the shortage is worst, and what it pays.','cap':'Every housing market is short.'},
+ {'type':'stamp','t0':3.8,'t1':8.3,'kicker':'More tradies and builders needed','big':'116,700','sub':'to hit Australia’s 1.2 million homes target.','cap':'On top of normal hiring.'},
+ {'type':'tapes','t0':8.3,'t1':15.5,'label':'Trades shortage score · Sept quarter 2026','title':'Where tradies are hardest to find.','stagger':0.8,'width':560,'compact':True,'bars':[
+   {'name':'Regional Queensland','v':0.86,'t':'0.86','c':'#FF6B1A'},{'name':'Regional SA','v':0.83,'t':'0.83'},{'name':'Brisbane','v':0.76,'t':'0.76'},{'name':'Perth','v':0.76,'t':'0.76'},{'name':'Sydney','v':0.47,'t':'0.47'},{'name':'Melbourne','v':0.06,'t':'0.06'}],'cap':'Longer tape, harder to find a tradie.','capY':1395},
+ {'type':'tapes','t0':15.5,'t1':21.5,'label':'Shortage score by trade · June quarter 2026','title':'The trades in shortest supply.','stagger':0.9,'width':620,'bars':[
+   {'name':'Bricklayers','v':1.02,'t':'1.02','c':'#FF6B1A'},{'name':'Wall and floor tilers','v':0.96,'t':'0.96'},{'name':'Roof tilers','v':0.83,'t':'0.83'},{'name':'Carpenters','v':0.80,'t':'0.80'}],'cap':'Bricklayers top the list.'},
+ {'type':'stamp','t0':21.5,'t1':26,'kicker':'Construction jobs unfilled','big':'21,600','sub':'across Australia in February 2026.','cap':'The work is there.'},
+ {'type':'tapes','t0':26,'t1':31.5,'label':'Employed after training · trade apprentices','title':'Finish, and you’re almost guaranteed a job.','stagger':1.0,'bars':[
+   {'name':'Finished their apprenticeship','v':94.8,'pct':True,'c':'#FF6B1A'},{'name':'Left early','v':80.8,'pct':True}],'cap':'Finishing is what counts.'},
+ {'type':'tapes','t0':31.5,'t1':38,'label':'Qualified · weekly award minimum · 2026–27','title':'What qualified tradies earn, at minimum.','stagger':0.8,'max':1300,'bars':[
+   {'name':'Plumber','v':1246.54,'c':'#FF6B1A'},{'name':'Electrician','v':1223.11},{'name':'Carpenter','v':1214.04},{'name':'Bricklayer','v':1202.08}],'cap':'That’s the floor, not the ceiling.'},
+ {'type':'end','t0':38,'t1':43.5,'kicker':'Your trade · your numbers','big':'22 TRADES','size':150,'sub':'Free apprentice pay calculator.'},
+]}
