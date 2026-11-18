@@ -1,0 +1,169 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0;background:#0E0F12}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#111317;color:#F4F1EA;font-family:Inter}
+.abs{position:absolute}
+.mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:3px}
+.anton{font-family:Anton;font-weight:400;line-height:.92}
+.spot{position:absolute;inset:0;background:radial-gradient(ellipse 60% 38% at 50% 52%,rgba(255,255,255,.09),rgba(255,255,255,0) 70%)}
+.cap{position:absolute;left:80px;right:80px;top:300px;text-align:center;font-size:36px;font-weight:600;line-height:1.3;color:#E2DDD2}
+.hero{position:absolute;left:0;right:0;text-align:center}
+.col{position:absolute;width:400px;text-align:center}
+.lbl{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:3px;font-size:24px;color:#8A9099}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=1.6;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const inout=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+let LT=0;
+const k=(t0,d=0.5)=>ease((LT-t0)/d);
+const fu=(t0,d=0.5,dy=24)=>`opacity:${k(t0,d)};transform:translateY(${(1-k(t0,d))*dy}px)`;
+const pop=(t0,d=0.5)=>`opacity:${clamp((LT-t0)/0.15)};transform:scale(${0.7+0.3*back((LT-t0)/d)})`;
+const cnt=(v,t0,d)=>Math.round(v*inout((LT-t0)/d));
+const money=n=>'$'+n.toLocaleString('en-AU');
+const OR='#FF6B1A', RED='#E5372B', CON='#F4F1EA', MUTE='#8A9099', LINE='#3A3F47';
+
+const HAT=(w,c=OR)=>`<svg viewBox="0 0 200 130" width="${w}" style="display:block"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="${c}"/><path d="M86 98 L86 38 C92 31 108 31 114 38 L114 98 Z" fill="rgba(0,0,0,.22)"/><rect x="10" y="94" width="180" height="22" rx="11" fill="${c}"/></svg>`;
+const CASE=(w,c='#C9C4B8')=>`<svg viewBox="0 0 200 150" width="${w}" style="display:block"><rect x="70" y="10" width="60" height="34" rx="10" fill="none" stroke="${c}" stroke-width="12"/><rect x="14" y="40" width="172" height="104" rx="16" fill="${c}"/><rect x="14" y="78" width="172" height="10" fill="rgba(0,0,0,.25)"/><rect x="88" y="70" width="24" height="26" rx="4" fill="#111317"/></svg>`;
+
+const SC=[
+ // 1 · HOOK — same pay
+ {d:6.5, r(){
+  const a=cnt(2003,0.6,1.6), p=cnt(1990,0.6,1.6);
+  return `<div class="spot"></div>
+   <div class="col" style="left:90px;top:520px;${pop(0.2)}"><div style="display:flex;justify-content:center;height:190px;align-items:flex-end">${CASE(210)}</div>
+     <div class="anton" style="font-size:70px;margin-top:30px">ACCOUNTANT</div>
+     <div class="anton" style="font-size:130px;color:#C9C4B8;margin-top:24px">${money(a)}</div><div class="lbl" style="margin-top:22px">a week</div></div>
+   <div class="col" style="left:590px;top:520px;${pop(0.35)}"><div style="display:flex;justify-content:center;height:190px;align-items:flex-end">${HAT(250)}</div>
+     <div class="anton" style="font-size:70px;margin-top:30px">PLUMBER</div>
+     <div class="anton" style="font-size:130px;color:${OR};margin-top:24px">${money(p)}</div><div class="lbl" style="margin-top:22px">a week</div></div>
+   <div class="hero anton" style="top:1250px;font-size:96px;${pop(3.0,0.5)}">ABOUT THE SAME PAY.</div>
+   <div class="hero" style="top:1420px;${fu(4.2)}"><span class="mono" style="font-size:30px;color:#111317;background:${OR};padding:10px 20px;border-radius:8px">No degree needed</span></div>`; }},
+
+ // 2 · PROBLEM — the two paths
+ {d:8.5, r(){
+  const node=(x,y,txt,t0,c,bg)=>`<div class="abs" style="left:${x-170}px;top:${y}px;width:340px;text-align:center;${pop(t0,0.4)}"><span class="anton" style="display:inline-block;font-size:60px;padding:14px 26px;border-radius:14px;border:4px solid ${c};color:${c};background:${bg||'transparent'}">${txt}</span></div>`;
+  const vline=(x,y,h,t0,c)=>`<div class="abs" style="left:${x-3}px;top:${y}px;width:6px;height:${h*k(t0,0.4)}px;background:${c};border-radius:3px"></div>`;
+  const L=300, R=780;
+  return `<div class="spot"></div>
+   ${node(540,470,'SCHOOL',0.1,CON)}
+   <div class="abs" style="left:${L}px;top:575px;width:${(540-L)*k(0.6,0.4)}px;height:6px;background:#C9C4B8;margin-left:${(540-L)*(1-k(0.6,0.4))}px"></div>
+   <div class="abs" style="left:540px;top:575px;width:${(R-540)*k(4.6,0.4)}px;height:6px;background:${OR}"></div>
+   ${vline(L,575,95,0.8,'#C9C4B8')}${node(L,670,'UNI',1.1,'#C9C4B8')}
+   ${vline(L,775,95,1.6,'#C9C4B8')}${node(L,870,'CORPORATE',1.9,'#C9C4B8')}
+   ${vline(L,975,95,2.4,'#C9C4B8')}${node(L,1070,'$$',2.7,'#C9C4B8')}
+   <div class="abs" style="left:${L-150}px;top:1200px;width:300px;text-align:center;${fu(3.0)}"><span class="lbl">What we’re told</span></div>
+   ${vline(R,575,95,4.8,OR)}${node(R,670,'TRADE',5.1,OR)}
+   ${vline(R,775,95,5.6,OR)}${node(R,870,'OWN IT',5.9,'#111317',OR)}
+   ${vline(R,975,95,6.4,OR)}${node(R,1070,'$$$',6.7,OR)}
+   <div class="abs" style="left:${R-170}px;top:1200px;width:340px;text-align:center;${fu(7.0)}"><span class="lbl" style="color:${OR}">The other path</span></div>`; }},
+
+ // 3 · EXAMPLE — accountant vs plumber
+ {d:17.5, r(){
+  const row=(y,t0,label,a,p,ac,pc,sub,fs=84)=>`<div class="abs" style="left:80px;right:80px;top:${y}px;${fu(t0)}">
+     <div class="lbl" style="text-align:center">${label}</div>
+     <div style="display:flex;margin-top:14px"><div style="flex:1;text-align:center" class="anton"><span style="font-size:${fs}px;color:${ac}">${a}</span></div>
+     <div style="width:4px;background:${LINE}"></div>
+     <div style="flex:1;text-align:center" class="anton"><span style="display:inline-block;line-height:${fs<80?1.12:0.92};font-size:${fs}px;color:${pc}">${p}</span></div></div>
+     ${sub?`<div style="display:flex;margin-top:6px"><div style="flex:1;text-align:center;font-size:24px;color:${MUTE}">${sub[0]}</div><div style="width:4px"></div><div style="flex:1;text-align:center;font-size:24px;color:${MUTE}">${sub[1]}</div></div>`:''}</div>`;
+  const help=cnt(52197,3.4,1.4), paid=cnt(173672,7.0,1.6);
+  const avg=k(14.6,0.6);
+  return `<div class="spot"></div>
+   <div class="abs" style="left:80px;right:80px;top:440px;display:flex;${fu(0)}">
+     <div style="flex:1;display:flex;flex-direction:column;align-items:center">${CASE(110)}<div class="anton" style="font-size:54px;margin-top:12px">ACCOUNTANT</div></div>
+     <div style="flex:1;display:flex;flex-direction:column;align-items:center">${HAT(130)}<div class="anton" style="font-size:54px;margin-top:12px;color:${OR}">PLUMBER</div></div></div>
+   ${row(650,1.2,'Training','3-YR DEGREE','4-YR APPRENTICESHIP','#C9C4B8',CON,null,58)}
+   ${row(850,3.0,'While training',LT<3.4?'':'−'+money(help),LT<7.05?'':'+'+money(paid),RED,OR,[LT>4?'HELP debt at 2026 rates, if deferred':'' ,LT>7.6?'paid to learn · award min, pre-tax':''])}
+   ${row(1050,11.0,'Typical pay · median full-time, all ages','$104K','$103K',CON,CON,['a year','a year'])}
+   <div class="abs" style="left:80px;right:80px;top:1290px;opacity:${avg}">
+     <div style="height:4px;background-image:linear-gradient(90deg,${MUTE} 50%,transparent 50%);background-size:24px 4px;transform:scaleX(${avg})"></div>
+     <div class="lbl" style="text-align:center;margin-top:16px">Median full-time job: $96K</div>
+     <div class="hero anton" style="position:static;margin-top:30px;font-size:60px;color:${OR}">BOTH OUT-EARN MOST WORKERS.</div></div>`; }},
+
+ // 4 · TWIST — own the business
+ {d:16.5, r(){
+  const flash=k(0,0.4)*(1-k(1.8,0.4));
+  if(LT<2.2) return `<div class="abs" style="inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,107,26,${0.4*flash}),rgba(17,19,23,0) 50%)"></div>
+     <div class="hero" style="top:780px;font-size:60px;font-weight:600;opacity:${k(0,0.3)}">But here’s the</div>
+     <div class="hero anton" style="top:860px;font-size:220px;color:#FFB27A;text-shadow:0 0 40px rgba(255,107,26,.8);${pop(0.3,0.5)}">TWIST</div>`;
+  const t=LT-2.2; const LTs=LT; LT=t;
+  const one=k(0.2,0.4);
+  const team=clamp((t-7.0)/2.0);
+  const slide=k(7.0,0.6), W=170, GAP=20, X0=540-(5*W+4*GAP)/2;
+  const hats=[0,1,2,3,4].map(i=>{ const show=i===0?one:k(7.2+i*0.35,0.35);
+     const x=i===0? (540-W/2)+(X0-(540-W/2))*slide : X0+i*(W+GAP);
+     return `<div class="abs" style="left:${x}px;top:560px;width:${W}px;opacity:${show};transform:translateY(${(1-show)*30}px)">${HAT(W,i===0?OR:'#FFB27A')}<div class="mono" style="font-size:20px;text-align:center;margin-top:8px;color:${i===0?OR:MUTE}">${i===0?'YOU':'PLUMBER '+(i+1)}</div></div>`; }).join('');
+  const rev = t<7.0 ? cnt(172500,2.6,1.2) : 172500+Math.round(690000*inout((t-7.4)/2.4));
+  const eq=`<div class="hero" style="top:870px;opacity:${k(1.2)*(1-k(6.6,0.4))}"><span class="anton" style="font-size:80px">$125</span><span class="lbl"> /hr </span><span class="anton" style="font-size:80px;color:${MUTE}"> × </span><span class="anton" style="font-size:80px">1,380</span><span class="lbl"> hrs</span></div>
+    <div class="hero lbl" style="top:980px;opacity:${k(1.8)*(1-k(6.6,0.4))};font-size:22px">Sydney plumber rate (ex GST) × billable hours a year</div>`;
+  const out=`${hats}
+   ${eq}
+   <div class="hero anton" style="top:1090px;font-size:${t<7?150:170}px;color:${OR};opacity:${k(2.6,0.3)}">${money(rev)}</div>
+   <div class="hero lbl" style="top:${t<7?1250:1270}px;opacity:${k(3.0)}">${t<7?'one plumber · revenue a year':'team of five · revenue a year'}</div>
+   <div class="hero" style="top:1360px;opacity:${k(1.2)}"><span class="mono" style="font-size:22px;color:#111317;background:#C9C4B8;padding:8px 16px;border-radius:6px">Example · before wages, materials and costs</span></div>`;
+  LT=LTs; return `<div class="spot"></div>`+out; }},
+
+ // 5 · OPPORTUNITY — demand up, supply down
+ {d:14.5, r(){
+  const tile=(y,t0,big,txt,c)=>`<div class="abs" style="left:110px;right:110px;top:${y}px;display:flex;align-items:center;gap:36px;${fu(t0)}">
+     <div class="anton" style="flex:none;width:360px;text-align:right;font-size:120px;color:${c}">${big}</div>
+     <div style="font-size:42px;font-weight:800;line-height:1.15">${txt}</div></div>`;
+  const ar=(t0,up)=>{const v=k(t0,0.5);return `<span style="display:inline-block;transform:translateY(${(up?-1:1)*20*(1-v)}px);opacity:${v}">${up?'▲':'▼'}</span>`;};
+  return `<div class="spot"></div>
+   <div class="hero anton" style="top:440px;font-size:100px;${fu(0.1)}">NOW’S THE TIME.</div>
+   ${tile(640,2.3,'1.2M','new homes Australia is trying to build',OR)}
+   ${tile(860,5.7,'3 YRS','of falling trade apprentice starts','#C9C4B8')}
+   ${tile(1080,9.1,'20K','construction jobs open right now','#C9C4B8')}
+   <div class="abs" style="left:110px;right:110px;top:1300px;display:flex;justify-content:space-around;${fu(12.0)}">
+     <div class="anton" style="font-size:96px;color:${OR}">DEMAND ${ar(12.2,true)}</div>
+     <div class="anton" style="font-size:96px;color:${RED}">SUPPLY ${ar(12.8,false)}</div></div>`; }},
+
+ // 6 · CTA
+ {d:7.5, r(){
+  const word='TRADES'.slice(0,Math.floor(clamp((LT-2.6)/1.0)*6));
+  const bars=[['Plumber',1990],['Accountant',2003],['Electrician',2191],['YOU?',0]];
+  const b=bars.map(([n,v],i)=>{ const h=v?v/2400*300*k(0.4+i*0.25,0.6):300*k(1.4,0.6)*(0.55+0.45*Math.abs(Math.sin(LT*3)));
+    return `<div style="width:150px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:360px">
+      <div class="anton" style="font-size:40px;color:${v?CON:OR};opacity:${k(0.8+i*0.25)}">${v?'$'+v.toLocaleString('en-AU'):'?'}</div>
+      <div style="width:110px;height:${h}px;border-radius:10px 10px 0 0;background:${v?LINE:OR};margin-top:10px"></div>
+      <div class="mono" style="font-size:20px;margin-top:12px;color:${v?MUTE:OR}">${n}</div></div>`; }).join('');
+  return `<div class="spot"></div>
+   <div class="hero anton" style="top:440px;font-size:100px;${fu(0)}">HOW DOES <span style="color:${OR}">YOUR PAY</span><br>STACK UP?</div>
+   <div class="abs" style="left:0;right:0;top:690px;display:flex;justify-content:center;gap:30px">${b}</div>
+   <div class="hero lbl" style="top:1070px;font-size:20px;opacity:${k(1.2)}">Median full-time pay · a week</div>
+   <div class="abs" style="left:150px;right:150px;top:1130px;background:#1C1F24;border:3px solid ${LINE};border-radius:28px;padding:26px 36px;${fu(2.2)}">
+     <div class="lbl" style="font-size:22px">Add a comment…</div>
+     <div class="anton" style="font-size:130px;color:${OR};margin-top:8px;min-height:120px">${word}<span style="color:${CON};opacity:${Math.floor(LT*2)%2}">|</span></div></div>
+   <div class="hero" style="top:1440px;font-size:40px;font-weight:800;${fu(4.0)}">and we’ll DM you our free pay calculator</div>`; }},
+];
+const CAPS=[
+ [0,4.0,'Did you know a plumber earns about the same as an accountant?'],[4.0,6.5,'Without a uni degree.'],
+ [6.5,10.6,'We’re told the way to get ahead is uni, then a corporate job.'],[10.6,15.0,'But that’s not the only path to wealth.'],
+ [15.0,17.5,'Take an accountant and a plumber.'],[17.5,21.7,'The accountant can rack up about $52K in HELP debt.'],
+ [21.7,26.3,'The plumber gets paid to learn: about $174K over four years.'],[26.3,29.6,'Over a career, they earn about the same.'],
+ [29.6,32.5,'Both earn more than most full-time workers.'],
+ [32.5,34.7,'But here’s the twist.'],[34.7,37.4,'The plumber can start their own business.'],
+ [37.4,42.6,'At Sydney rates, one plumber could bill, for example, about $172K a year.'],[42.6,49.0,'Build a team of five, and over $860K flows through the business.'],
+ [49.0,51.3,'And now’s the time to start.'],[51.3,54.7,'Australia is trying to build 1.2 million homes.'],
+ [54.7,58.1,'Trade apprentice starts have fallen three years in a row.'],[58.1,61.2,'And 20,000 construction jobs are open right now.'],
+ [61.2,63.5,'Demand is high. Supply is low.'],
+ [63.5,66.5,'Want to see how your pay stacks up?'],[66.5,71.0,'Comment TRADES and we’ll send you our free pay calculator.']];
+let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;});
+function render(t){
+ let h='';
+ SC.forEach((s,i)=>{ if(t<s.t0||t>=s.t1) return; LT=t-s.t0;
+  const out=i===SC.length-1?1:1-clamp((t-(s.t1-0.3))/0.3), inn=i===0?1:clamp(LT/0.25);
+  h+=`<div class="abs" style="inset:0;opacity:${Math.min(out,inn)}">${s.r()}</div>`; });
+ const c=CAPS.find(c=>t>=c[0]&&t<c[1]);
+ if(c) h+=`<div class="cap" style="opacity:${clamp((t-c[0])/0.15)}">${c[2]}</div>`;
+ document.getElementById('stage').innerHTML=h;
+}
+window.render=render; window.setPhotos=()=>{}; window.scenes=()=>SC.map(s=>[s.t0,s.t1]);
+</script></body></html>

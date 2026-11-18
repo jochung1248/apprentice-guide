@@ -521,7 +521,7 @@ Wording in quotes is copied from the source page. "Computed" means worked out wi
 - NCVER VET student outcomes 2025, "employed after training" and median income for VET graduates: the NCVER page and media release give only improved employment status (62.4%) and further study (32.6%); the income figures sit in an Excel download our tools can't open. Not used. C7 uses the NCVER trade apprentice outcome (94.8%) instead.
 - NCVER median income for trade completers (outcomes 2025): Excel only. Not used. C7's pay comparison uses ABS median hourly earnings by occupation group instead.
 - Jobs and Skills Australia's "88% of VET graduates employed post-qualification" (JSA news, 4 Nov 2025): verified, but it comes from a different data source from QILT, so it isn't on a slide.
-- Electricians' median full-time earnings ($2,204): JSA shows this only from the May 2023 survey, while the other trades use May 2025. Left off C9-03 to keep one survey year.
+- Electricians' median full-time earnings: $2,191 (May 2025) on JSA's ANZSCO occupation page (occupations-anzsco/3411-electricians, checked 19 Nov 2026). Older JSA pages show $2,204 (May 2023). Left off C9-03 when only the 2023 figure could be found.
 - Construction-only business size (ABS Counts of Australian Businesses): the construction split is only in the datacube. C10-04 uses all industries and says "Australian businesses".
 - NCVER employer survey reasons for not taking apprentices: not in the 2025 report text (data tables only). C10-02 uses the 28.7% usage figure instead.
 - Supervision time for employers: no primary figure (rates.js `supervisionHours` is an illustrative 0). Not used.

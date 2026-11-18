@@ -263,7 +263,7 @@ None of these repeat C0–C10, T1–T6, S1–S4, R1–R3 or F1–F3. All are fac
 - **Data:**
   - Median full-time weekly earnings: hairdressers $1,209, painters $1,379, cooks $1,432, motor mechanics $1,622, carpenters $1,760, plumbers $1,990.
   - All occupations: $1,852.
-  - Electricians: $2,204, **from the May 2023 survey**, while the rest are May 2025. Either drop electricians or footnote the year.
+  - Electricians: $2,191 (May 2025), on JSA's ANZSCO occupation page https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/3411-electricians (checked 19 Nov 2026). Some older JSA pages still show $2,204 from the May 2023 survey.
   - Sources: JSA occupation profiles (ABS EEH May 2025), checked 17 Nov 2026.
 - **Comment prompt:** "Which number surprised you?"
 
