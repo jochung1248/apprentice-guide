@@ -1,40 +1,45 @@
-# Reel 7: Australia needs tradies (explainer)
+# Reel 7: Australia needs tradies (explainer, v2)
 
-41.6s · dark explainer style (after @moneydecoded.au) · no site promo · captions burnt in at the top.
-Post as a Reel. Add the voiceover in CapCut (calm voice, normal speed). Optional: a quiet ambient bed under it.
+52.5s · dark explainer style (after @moneydecoded.au) · no site promo · captions burnt in at the top.
+Post as a Reel. Add the voiceover in CapCut (calm voice, normal speed). Optional quiet ambient bed.
 
 ## CapCut TTS script (start each line at the time shown)
 
 | Start | Line |
 |---|---|
 | 0:00 | Australia promised one point two million new homes. |
-| 0:02.6 | Who's building them? |
-| 0:04.6 | Thirty-five per cent of the time is gone. |
-| 0:07.8 | About a quarter of the homes are built. |
-| 0:11.4 | So, what happened? |
-| 0:13.3 | Twenty thousand construction jobs sit empty. |
-| 0:15.8 | And the pipeline leaks. |
-| 0:17.4 | Of every ten trade apprentices who start, about six finish. |
-| 0:22.0 | Fewer hands, higher prices. |
-| 0:24.0 | House building costs are up fifty-one per cent since before COVID. |
-| 0:28.3 | Renters feel it most. |
-| 0:30.0 | A new lease now takes a record thirty-three per cent of household income. |
-| 0:35.4 | At this pace, the target lands in late twenty-thirty. |
-| 0:38.6 | Eighteen months late. |
+| 0:03.1 | Who's going to build them? |
+| 0:05.5 | So, what happened? |
+| 0:07.4 | There aren't enough tradies. |
+| 0:09.0 | Twenty thousand construction jobs sit empty. |
+| 0:11.6 | And fewer people are starting. |
+| 0:13.4 | Trade apprentice starts have fallen three years in a row. |
+| 0:17.9 | Of those who start, only about six in ten finish. |
+| 0:21.4 | Last year, almost as many quit as qualified. |
+| 0:25.4 | Fewer tradies means fewer homes. |
+| 0:27.4 | About a quarter are built, with thirty-five per cent of the time gone. |
+| 0:32.9 | Fewer hands, higher prices. |
+| 0:35.0 | Building a house costs fifty-one per cent more than before COVID. |
+| 0:39.2 | Renters pay for it. |
+| 0:41.0 | A new lease now takes a record thirty-three per cent of household income. |
+| 0:46.3 | At this pace, the target lands in late twenty-thirty. |
+| 0:49.4 | Eighteen months late. |
 
 ## Caption
 
-Australia promised 1.2 million new homes by mid-2029.
+Australia promised 1.2 million new homes by mid-2029. Who's going to build them?
 
-7 of the 20 quarters are gone. About 308,000 homes are built. That's roughly a quarter.
+There aren't enough tradies. 20,000 construction jobs sit empty.
+Trade apprentice starts have fallen three years in a row: about 106,000 in 2022, 77,000 in 2025.
+Only about 6 in 10 trade apprentices finish. Last year 52,380 quit, almost as many as the 53,390 who qualified.
 
-20,000 construction jobs sit empty. Only about 6 in 10 trade apprentices finish. Building costs are up 51% on pre-COVID, and a new lease now takes a record 33% of household income.
+Fewer tradies, fewer homes. About a quarter of the target is built, with 35% of the time gone. Building costs are up 51% on pre-COVID, and a new lease takes a record 33% of household income.
 
 At this pace, the target lands in December 2030.
 
 Who do you know who should be on the tools? 👇
 
 —
-Sources: Treasury, National Housing Accord (1.2 million homes over 5 years from mid-2024). National Housing Supply and Affordability Council (NHSAC), Quarterly Report Aug 2026: ~308,000 homes completed in 7 of 20 Accord quarters; house construction costs 51% above pre-COVID; target estimated to be reached in the December quarter 2030. NHSAC, State of the Housing System 2026: rent under a new lease at an all-time high of 33% of median household income. ABS Job Vacancies Aug 2026: construction 20.0 thousand (original). NCVER, Apprentice and trainee completion rates 2025: 6-year trade completion rate 58.7% (2019 commencing cohort). "35%" = 7 ÷ 20 quarters; "about a quarter" = 308,000 ÷ 1,200,000; "18 months late" = Dec 2030 vs the Accord's 30 June 2029 end.
+Sources: NCVER Apprentices and trainees 2025: December quarter (trade commencements 76,585 in the 12 months to Dec 2025, "the third consecutive annual decline"; 79,975 in 2024; trade cancellations and withdrawals 52,380; trade completions 53,390). NCVER Apprentices and trainees 2023: December quarter (trade commencements 105,795 in 2022 and 85,965 in 2023, as published then). The 2022 peak followed the Boosting Apprenticeship Commencements wage subsidy; starts are still above 2019 (69,720). NCVER Apprentice and trainee completion rates 2025 (six-year trade completion rate 58.7%, 2019 cohort). ABS Job Vacancies Aug 2026 (construction 20.0 thousand, original). Treasury, National Housing Accord. NHSAC Quarterly Report Aug 2026 (~308,000 homes in 7 of 20 quarters; house construction costs 51% above pre-COVID; target estimated in the December quarter 2030). NHSAC State of the Housing System 2026 (new-lease rent at an all-time high of 33% of median household income).
 
-#housing #tradies #construction #australia #apprenticeship #housingcrisis #renting #tradieaustralia
+#housing #tradies #construction #australia #apprenticeship #tafe #housingcrisis #renting #tradieaustralia
