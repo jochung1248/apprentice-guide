@@ -2,7 +2,7 @@
 
 Business-owner Reel with a comment-keyword call to action. 71.0s, 1080×1920, dark explainer style (same look as Reel 7), captions at the top, no music baked in.
 
-Files: `reel-8-owner.mp4`, `reel-8-owner-cover.png`. Source (in the repo): `design/reels/engine/owner.html`, `design/reels/engine/cover8b.html`.
+Files: `reel-8-owner.mp4`, `reel-8-owner-cover.png` (cover: "Everyone tells you the only way is: go to uni, get a corporate job. Trades can match it. Some beat it." with accountant $104K, plumber $103K, electrician $114K). Source (in the repo): `design/reels/engine/owner.html`, `design/reels/engine/coverA.html`.
 
 ## Structure
 
@@ -53,7 +53,7 @@ Sources: Jobs and Skills Australia occupation profiles (ABS Employee Earnings an
 |---|---|---|
 | Accountant median full-time | $2,003/wk → $104K/yr | JSA 2211 Accountants; ×52 = $104,156 |
 | Plumber median full-time | $1,990/wk → $103K/yr | JSA 3341 Plumbers; ×52 = $103,480 |
-| Electrician median full-time | $2,191/wk | JSA occupation profile, ANZSCO page: jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/3411-electricians (ABS EEH May 2025), checked 19 Nov 2026. Some cached copies of the /occupations/ and labour-market-insights pages still show $2,204 (May 2023) |
+| Electrician median full-time | $2,191/wk | JSA occupation profile, ANZSCO page: jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/3411-electricians (ABS EEH May 2025), checked 19 Nov 2026. × 52 = $113,932 → $114K a year (cover). The /occupations/ and labour-market-insights pages show $2,204 (May 2023); use the occupations-anzsco page |
 | Median full-time job | $96K/yr | JSA all occupations median $1,852 × 52 = $96,304. On screen and in the voiceover as the median ("out-earn most workers"), not the average |
 | HELP debt | $52,197 | $17,399 × 3 years, 2026 maximum student contribution (commerce, law, accounting band). Only if fees are deferred; excludes indexation |
 | Newly qualified pay (caption only) | $74K grad / ~$65K plumber | QILT 2025 business median $74,000; award $1,246.54 × 52 = $64,820 (rates.js) |
