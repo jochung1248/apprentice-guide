@@ -1,6 +1,6 @@
-# Reel 7: Australia needs tradies (explainer, v3)
+# Reel 7: Australia needs tradies (explainer, v4)
 
-57s · dark explainer style (after @moneydecoded.au) · no site promo · captions burnt in at the top.
+60s · dark explainer style (after @moneydecoded.au) · no site promo · captions burnt in at the top.
 Post as a Reel. Add the voiceover in CapCut (calm voice, normal speed). Optional quiet ambient bed.
 
 ## CapCut TTS script (start each line at the time shown)
@@ -13,29 +13,30 @@ Post as a Reel. Add the voiceover in CapCut (calm voice, normal speed). Optional
 | 0:13.5 | On current pace, the target lands in late twenty-thirty. |
 | 0:16.4 | Eighteen months late. |
 | 0:18.6 | So, what happened? |
-| 0:20.5 | There aren't enough tradies. |
-| 0:22.1 | Twenty thousand construction jobs sit empty. |
+| 0:20.5 | Part of it: there aren't enough tradies. |
+| 0:22.6 | Twenty thousand construction jobs sit empty. |
 | 0:24.7 | And fewer people are starting. |
 | 0:26.5 | Trade apprentice starts have fallen three years in a row. |
 | 0:31.0 | Of those who start, only about six in ten finish. |
 | 0:34.5 | Last year, almost as many quit as qualified. |
-| 0:38.5 | Fewer hands, higher prices. |
-| 0:40.6 | Building a house costs fifty-one per cent more than before COVID. |
-| 0:44.8 | And renters pay for it. |
+| 0:38.5 | Labour shortages push costs up too. |
+| 0:40.6 | Building a house now costs fifty-one per cent more than before COVID. |
+| 0:44.8 | That flows through to renters. |
 | 0:46.6 | A new lease now takes a record thirty-three per cent of household income. |
-| 0:52.1 | Fewer tradies. Fewer homes. Higher rent. |
+| 0:52.1 | Interest rates, materials, land and population growth all play a part. |
+| 0:55.8 | But you can't build homes without tradies. |
 
 ## Caption
 
 Australia promised 1.2 million new homes by mid-2029. At this rate, we won't get there: about a quarter are built with 35% of the time gone, and the target slips to December 2030.
 
-So, what happened? There aren't enough tradies. 20,000 construction jobs sit empty.
+So, what happened? Part of it: there aren't enough tradies. 20,000 construction jobs sit empty.
 Trade apprentice starts have fallen three years in a row: about 106,000 in 2022, 77,000 in 2025.
 Only about 6 in 10 trade apprentices finish. Last year 52,380 quit, almost as many as the 53,390 who qualified.
 
-Fewer hands, higher prices. Building costs are up 51% on pre-COVID, and a new lease takes a record 33% of household income.
+Labour shortages push costs up too. Building a house costs 51% more than before COVID, and a new lease takes a record 33% of household income.
 
-Fewer tradies. Fewer homes. Higher rent.
+Interest rates, materials, land and population growth all play a part. But you can't build homes without tradies.
 
 Who do you know who should be on the tools? 👇
 

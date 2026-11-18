@@ -98,18 +98,23 @@ const SC0=[
    <div class="hero mono" style="top:520px;font-size:24px;color:#8A9099;opacity:${k(0.2)}">Target: June 2029</div>
    <div class="hero anton" style="top:1110px;font-size:120px;color:${OR};opacity:${k(3.4,0.4)}">18 MONTHS LATE</div>`; }},
 ];
-const CLOSE={d:4.0, r(){
-  const L=[['FEWER TRADIES.','#C9C4B8',0.2],['FEWER HOMES.','#C9C4B8',1.2],['HIGHER RENT.',RED,2.2]];
-  return `<div class="spot"></div><div class="floor"></div>`+L.map(([t,c,t0],i)=>`<div class="hero anton" style="top:${700+i*190}px;font-size:150px;color:${c};${fu(t0,0.4,20)}">${t}</div>`).join(''); }};
+const CLOSE={d:7.0, r(){
+  const chips=['Interest rates','Materials','Land','Population growth'];
+  const ch=chips.map((c,i)=>`<span class="mono" style="display:inline-block;margin:10px;padding:14px 22px;border:3px solid #5B616A;border-radius:40px;font-size:26px;color:#C9C4B8;${fu(0.3+i*0.5,0.4,14)}">${c}</span>`).join('');
+  return `<div class="spot"></div><div class="floor"></div>
+   <div class="hero mono" style="top:560px;font-size:24px;color:#8A9099;${fu(0.1)}">Many things push up costs and rent</div>
+   <div class="abs" style="left:120px;right:120px;top:620px;text-align:center">${ch}</div>
+   <div class="hero anton" style="top:900px;font-size:118px;color:#C9C4B8;${fu(3.6,0.5,20)}">BUT YOU CAN’T<br>BUILD HOMES</div>
+   <div class="hero anton" style="top:1130px;font-size:122px;color:${OR};${fu(4.4,0.5,20)}">WITHOUT TRADIES.</div>`; }};
 const SC=[SC0[0],Object.assign({},SC0[5],{d:8.5}),SC0[8],SC0[1],SC0[2],SC0[3],SC0[4],SC0[6],SC0[7],CLOSE];
 const CAPS=[[0,5.0,'Australia promised 1.2 million new homes by mid-2029.'],
  [5.0,7.3,'At this rate, we won’t get there.'],[7.3,13.5,'About a quarter are built, and 35% of the time is gone.'],
  [13.5,16.4,'On current pace, the target lands in late 2030.'],[16.4,18.5,'18 months late.'],
- [20.5,22.1,'There aren’t enough tradies.'],[22.1,24.7,'20,000 construction jobs sit empty.'],
+ [20.5,22.6,'Part of it: there aren’t enough tradies.'],[22.6,24.7,'20,000 construction jobs sit empty.'],
  [24.7,26.5,'And fewer people are starting.'],[26.5,31.0,'Trade apprentice starts have fallen three years in a row.'],
  [31.0,34.5,'Of those who start, only about 6 in 10 finish.'],[34.5,38.5,'Last year, almost as many quit as qualified.'],
- [38.5,40.6,'Fewer hands, higher prices.'],[40.6,44.8,'Building a house costs 51% more than before COVID.'],
- [44.8,46.6,'And renters pay for it.'],[46.6,51.9,'A new lease now takes a record 33% of household income.']];
+ [38.5,40.6,'Labour shortages push costs up too.'],[40.6,44.8,'Building a house now costs 51% more than before COVID.'],
+ [44.8,46.6,'That flows through to renters.'],[46.6,51.9,'A new lease now takes a record 33% of household income.'],[51.9,55.6,'Rates, materials, land and population all play a part.']];
 let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;}); SC[SC.length-1].t1+=1.2; window.TOTAL=SC[SC.length-1].t1;
 function render(t){ GT=t; let h='';
  SC.forEach((s,i)=>{ if(t<s.t0||t>=s.t1) return; LT=t-s.t0;
