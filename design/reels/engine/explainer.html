@@ -1,0 +1,162 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0;background:#0E0F12}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#111317;color:#F4F1EA;font-family:Inter}
+.abs{position:absolute}
+.mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:3px}
+.anton{font-family:Anton;font-weight:400;line-height:.92}
+.spot{position:absolute;inset:0;background:radial-gradient(ellipse 60% 38% at 50% 50%,rgba(255,255,255,.10),rgba(255,255,255,0) 70%)}
+.floor{position:absolute;left:0;right:0;top:1150px;height:770px;background:linear-gradient(rgba(14,15,18,0),#0B0C0E)}
+.cap{position:absolute;left:80px;right:80px;top:300px;text-align:center;font-size:34px;font-weight:600;line-height:1.3;color:#E2DDD2}
+.hero{position:absolute;left:0;right:0;text-align:center}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const inout=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+let LT=0,GT=0;
+const k=(t0,d=0.5)=>ease((LT-t0)/d);
+const fu=(t0,d=0.5,dy=24)=>`opacity:${k(t0,d)};transform:translateY(${(1-k(t0,d))*dy}px)`;
+const OR='#FF6B1A', RED='#E5372B', CON='#F4F1EA', STEEL='#5B616A';
+
+// timber wall frame: studs + plates
+function frame(w,h,stroke,fill,op=1){
+ const n=7, gap=(w-24)/(n-1); let s='';
+ for(let i=0;i<n;i++) s+=`<rect x="${i*gap}" y="12" width="24" height="${h-24}" fill="${fill}" stroke="${stroke}" stroke-width="3"/>`;
+ s+=`<rect x="0" y="0" width="${w}" height="16" fill="${fill}" stroke="${stroke}" stroke-width="3"/><rect x="0" y="${h-16}" width="${w}" height="16" fill="${fill}" stroke="${stroke}" stroke-width="3"/>`;
+ s+=`<rect x="0" y="${h*0.48}" width="${w}" height="12" fill="${fill}" stroke="${stroke}" stroke-width="3"/>`;
+ return `<svg viewBox="-4 -4 ${w+8} ${h+8}" width="${w}" height="${h}" style="opacity:${op}">${s}</svg>`;
+}
+const TIMBER='#D9A066', TSTROKE='#8A5A2B';
+
+const SC=[
+ // 1 · 1.2 million homes
+ {d:4.6, r(){
+  let ghosts='';
+  for(let r=0;r<5;r++) for(let c=0;c<6;c++){ const o=k(0.4+r*0.45,0.5)*0.22;
+   ghosts+=`<div class="abs" style="left:${60+c*165}px;top:${560+r*125}px;opacity:${o}">${frame(140,105,'#3A3F47','#24272D')}</div>`; }
+  const n=Math.round(1200000*inout((LT-1.0)/2.4));
+  return `<div class="spot"></div><div class="floor"></div>${ghosts}
+   <div class="abs" style="left:290px;top:720px;${fu(0,0.6,16)}">${frame(500,380,TSTROKE,TIMBER)}</div>
+   <div class="hero anton" style="top:1250px;font-size:170px;color:${OR};opacity:${k(1.0,0.4)}">${n.toLocaleString('en-AU')}</div>
+   <div class="hero mono" style="top:1430px;font-size:26px;color:#8A9099;opacity:${k(1.4)}">new homes promised · by mid-2029</div>`; }},
+ // 2 · twin gauges
+ {d:6.7, r(){
+  const g1=inout((LT-0.5)/1.6)*0.35, g2=inout((LT-3.4)/1.8)*0.26;
+  const H=520, W=250;
+  const gauge=(x,label,frac,col,shape,num,t0)=>`
+   <div class="abs" style="left:${x}px;top:620px;width:${W}px;${fu(t0,0.5,16)}">
+    <div style="position:relative;width:${W}px;height:${H}px">
+     <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="position:absolute;inset:0">
+      <defs><clipPath id="c${label}">${shape}</clipPath></defs>
+      <g clip-path="url(#c${label})"><rect x="0" y="0" width="${W}" height="${H}" fill="rgba(255,255,255,.05)"/>
+       <rect x="0" y="${H-H*frac}" width="${W}" height="${H*frac}" fill="${col}"/></g>
+      ${shape.replace('/>',' fill="none" stroke="#E2DDD2" stroke-width="6"/>')}
+     </svg>
+    </div>
+    <div class="mono" style="text-align:center;font-size:26px;margin-top:26px;color:#C9C4B8">${label}</div>
+    <div class="anton" style="text-align:center;font-size:120px;margin-top:10px;color:${col}">${num}</div>
+   </div>`;
+  const hour=`<path d="M20 10 H230 V40 C230 140 140 200 140 260 C140 320 230 380 230 480 V510 H20 V480 C20 380 110 320 110 260 C110 200 20 140 20 40 Z"/>`;
+  const house=`<path d="M125 20 L235 140 V510 H15 V140 Z"/>`;
+  return `<div class="spot"></div><div class="floor"></div>
+   ${gauge(150,'TIME',g1,OR,hour,Math.round(g1*100)+'%',0.1)}
+   ${gauge(680,'HOMES',g2,'#FFE14D',house,Math.round(g2*100)+'%',2.9)}
+   <div class="hero mono" style="top:1540px;font-size:24px;color:#8A9099;opacity:${k(5.0)}">308,000 of 1,200,000 built · 7 of 20 quarters</div>`; }},
+ // 3 · pivot
+ {d:2.0, r(){ const o=k(0.1,0.5);
+  return `<div class="abs" style="inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,107,26,${0.35*o}),rgba(17,19,23,0) 45%)"></div>
+   <div class="hero" style="top:800px;font-size:64px;font-weight:600;color:${CON};opacity:${k(0,0.3)}">So, what</div>
+   <div class="hero anton" style="top:880px;font-size:190px;color:#FFB27A;text-shadow:0 0 40px rgba(255,107,26,.8);opacity:${o};transform:scale(${0.94+0.06*o})">HAPPENED?</div>`; }},
+ // 4 · hard hats on hooks
+ {d:2.5, r(){
+  let h=''; const empty=[2,5,6,8];
+  for(let i=0;i<10;i++){ const x=110+i*88, e=empty.includes(i), sw=e?Math.sin(LT*5+i)*10*(1-k(1.6,0.8)):0;
+   h+=`<div class="abs" style="left:${x}px;top:720px;transform-origin:22px 0;transform:rotate(${sw}deg)">
+     <svg width="60" height="140" viewBox="0 0 60 140"><path d="M22 0 V40 Q22 58 38 58" fill="none" stroke="#8A9099" stroke-width="5" stroke-linecap="round"/>
+     ${e?'':`<path d="M2 116 C2 82 14 66 30 66 C46 66 58 82 58 116 Z" fill="${OR}" stroke="#0E0F12" stroke-width="4"/><rect x="-4" y="112" width="68" height="10" rx="5" fill="#E2DDD2"/>`}</svg></div>`; }
+  return `<div class="spot"></div><div class="floor"></div>
+   <div class="abs" style="left:90px;right:90px;top:712px;height:12px;background:#3A3F47;border-radius:6px"></div>${h}
+   <div class="hero anton" style="top:1050px;font-size:170px;color:${OR};${fu(0.3)}">20,000</div>
+   <div class="hero mono" style="top:1230px;font-size:26px;color:#8A9099;${fu(0.6)}">construction jobs unfilled</div>`; }},
+ // 5 · leaky pipe
+ {d:6.2, r(){
+  const X0=90,X1=990,Y=900,CR=520; let drops='';
+  const leak=[1,4,6,8]; let done=0;
+  for(let i=0;i<10;i++){ const t0=0.5+i*0.3, p=(LT-t0)/1.3; if(p<0) continue;
+   const lk=leak.includes(i);
+   if(lk){ const q=clamp(p/0.5); const x=X0+(CR-X0)*q; const fall=Math.max(0,(p-0.5))*900;
+     if(fall<300) drops+=`<circle cx="${x}" cy="${Y+fall}" r="16" fill="${OR}" opacity="${1-clamp(fall/300)}"/>`; }
+   else { const x=X0+(X1-X0)*clamp(p); if(p<1) drops+=`<circle cx="${x}" cy="${Y}" r="16" fill="${OR}"/>`; else done++; } }
+  const crack=`<path d="M${CR-14} ${Y+30} l10 -12 l8 10 l10 -14" stroke="#E2DDD2" stroke-width="4" fill="none"/>`;
+  return `<div class="spot"></div><div class="floor"></div>
+   <svg class="abs" style="left:0;top:0" width="1080" height="1920">
+    <rect x="${X0-20}" y="${Y-34}" width="${X1-X0+40}" height="68" rx="34" fill="#B87333" opacity=".35"/>
+    ${drops}
+    <rect x="${X0-20}" y="${Y-34}" width="${X1-X0+40}" height="68" rx="34" fill="none" stroke="#D08C4A" stroke-width="6"/>
+    ${crack}
+    <path d="M${X1+20} ${Y-20} h40 v60" stroke="#D08C4A" stroke-width="22" fill="none" stroke-linecap="round"/>
+   </svg>
+   <div class="hero anton" style="top:1150px;font-size:170px;color:${OR};opacity:${done>0?1:0}">${done} IN 10</div>
+   <div class="hero mono" style="top:1330px;font-size:26px;color:#8A9099;${fu(4.6)}">trade apprentices finish · 58.7%</div>`; }},
+ // 6 · price tag
+ {d:6.3, r(){
+  const p=Math.round(51*inout((LT-2.2)/2.6)); const sw=Math.sin(LT*2.2)*3;
+  return `<div class="spot"></div><div class="floor"></div>
+   <div class="abs" style="left:240px;top:560px;opacity:${k(0,0.4)}">${frame(500,380,TSTROKE,TIMBER)}</div>
+   <div class="abs" style="left:640px;top:690px;transform-origin:0 0;transform:rotate(${12+sw}deg);${'opacity:'+k(0.6,0.4)}">
+    <svg width="340" height="260" viewBox="0 0 340 260"><path d="M0 0 L80 120" stroke="#C9C4B8" stroke-width="4"/>
+     <path d="M70 110 L300 110 L320 185 L300 260 L70 260 Z" fill="${CON}" stroke="#0E0F12" stroke-width="5"/><circle cx="96" cy="185" r="12" fill="#111317"/></svg>
+    <div class="anton" style="position:absolute;left:122px;top:148px;font-size:84px;color:#111317">+${p}%</div></div>
+   <div class="hero mono" style="top:1230px;font-size:26px;color:#8A9099;${fu(2.4)}">house building costs vs pre-COVID</div>`; }},
+ // 7 · rent slice
+ {d:7.1, r(){
+  const g=inout((LT-2.0)/2.6)*0.33, red=k(4.6,0.6);
+  const col=`rgb(${Math.round(255+(229-255)*red)},${Math.round(225+(55-225)*red)},${Math.round(77+(43-77)*red)})`;
+  const W=760;
+  return `<div class="spot"></div><div class="floor"></div>
+   <div class="abs" style="left:160px;top:640px;width:${W}px;${fu(0,0.5,16)}">
+    <div class="mono" style="font-size:24px;color:#8A9099;margin-bottom:16px">Household income</div>
+    <div style="height:150px;border:5px solid #E2DDD2;border-radius:14px;overflow:hidden;display:flex;background:#24272D">
+     <div style="width:${g*100}%;background:${col};display:flex;align-items:center;justify-content:center" class="anton"><span style="font-size:60px;color:#111317;opacity:${k(3.0,0.4)}">RENT</span></div>
+     <div style="flex:1"></div></div>
+   </div>
+   <div class="hero anton" style="top:1000px;font-size:200px;color:${red>0.5?RED:'#FFE14D'};opacity:${k(2.4,0.4)}">${Math.round(g*100)}%</div>
+   <div class="hero mono" style="top:1210px;font-size:26px;color:#8A9099;${fu(4.2)}">of income · new lease · all-time high</div>`; }},
+ // 8 · calendar
+ {d:5.0, r(){
+  const months=['JUN 2029','SEP 2029','DEC 2029','MAR 2030','JUN 2030','SEP 2030','DEC 2030'];
+  const f=clamp((LT-0.9)/2.4)*(months.length-1); const i=Math.floor(f), fr=f-i;
+  const cur=months[Math.min(i,months.length-1)], nxt=months[Math.min(i+1,months.length-1)];
+  const page=(txt,rot,op,circ)=>`<div class="abs" style="left:290px;top:600px;width:500px;height:440px;background:${CON};border-radius:18px;color:#111317;transform-origin:50% 0;transform:rotateX(${rot}deg);opacity:${op};display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 30px 60px rgba(0,0,0,.5)">
+    <div style="position:absolute;top:0;left:0;right:0;height:70px;background:${OR};border-radius:18px 18px 0 0"></div>
+    <div class="anton" style="font-size:130px;margin-top:40px">${txt.split(' ')[0]}</div><div class="mono" style="font-size:40px;margin-top:6px">${txt.split(' ')[1]}</div>
+    ${circ?`<svg class="abs" style="left:60px;top:110px" width="380" height="280"><ellipse cx="190" cy="140" rx="180" ry="125" fill="none" stroke="${RED}" stroke-width="8"/></svg>`:''}</div>`;
+  const last=f>=months.length-1;
+  return `<div class="spot"></div><div class="floor"></div>
+   <div class="abs" style="left:290px;top:1290px;opacity:.18">${frame(500,240,TSTROKE,TIMBER)}</div>
+   <div style="perspective:1400px">${page(nxt,0,1,false)}${last?'':page(cur,-fr*110,1-fr*0.6,cur==='JUN 2029')}</div>
+   <div class="hero mono" style="top:520px;font-size:24px;color:#8A9099;opacity:${k(0.2)}">Target: June 2029</div>
+   <div class="hero anton" style="top:1110px;font-size:120px;color:${OR};opacity:${k(3.4,0.4)}">18 MONTHS LATE</div>`; }},
+];
+const CAPS=[[0.0,2.6,'Australia promised 1.2 million new homes.'],[2.6,4.6,'Who’s building them?'],[4.6,7.8,'35% of the time is gone.'],[7.8,11.3,'About a quarter of the homes are built.'],
+ [13.3,15.8,'20,000 construction jobs sit empty.'],[15.8,17.4,'And the pipeline leaks.'],[17.4,22.0,'Of every 10 trade apprentices who start, about 6 finish.'],
+ [22.0,24.0,'Fewer hands, higher prices.'],[24.0,28.3,'House building costs are up 51% since before COVID.'],[28.3,30.0,'Renters feel it most.'],
+ [30.0,35.4,'A new lease now takes a record 33% of household income.'],[35.4,38.6,'At this pace, the target lands in late 2030.'],[38.6,41.6,'18 months late.']];
+let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;}); SC[SC.length-1].t1+=1.2; window.TOTAL=SC[SC.length-1].t1;
+function render(t){ GT=t; let h='';
+ SC.forEach((s,i)=>{ if(t<s.t0||t>=s.t1) return; LT=t-s.t0;
+  const out=i===SC.length-1?1:1-clamp((t-(s.t1-0.3))/0.3), inn=clamp(LT/0.25);
+  h+=`<div class="abs" style="inset:0;opacity:${Math.min(out,inn)}">${s.r()}</div>`; });
+ const c=CAPS.find(c=>t>=c[0]&&t<c[1]);
+ if(c){ const o=clamp((t-c[0])/0.2)*clamp((c[1]-t)/0.2+0.0001*0+1); h+=`<div class="cap" style="opacity:${clamp((t-c[0])/0.2)}">${c[2]}</div>`; }
+ document.getElementById('stage').innerHTML=h;
+}
+window.render=render; window.setPhotos=()=>{}; window.scenes=()=>SC.map(s=>[s.t0,s.t1]);
+</script></body></html>

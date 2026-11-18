@@ -1,20 +1,23 @@
 import subprocess,os,sys,glob
 from playwright.sync_api import sync_playwright
 FPS=30
+import os as _o
+PAGE=_o.environ.get('PAGE','story.html')
 def photos():
     m={}
     for f in sorted(glob.glob('photos/p*.*')):
         n=os.path.basename(f)[1:].split('.')[0]
         if n.isdigit(): m[int(n)]=f
     return m
-def run(preview=None,out='reel-6-story'):
+def run(preview=None,out=None):
+    out=out or _o.environ.get('OUT','reel-6-story')
     with sync_playwright() as p:
         b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
-        pg=b.new_page(viewport={'width':1080,'height':1920}); pg.goto('http://localhost:8810/story.html'); pg.wait_for_timeout(600)
+        pg=b.new_page(viewport={'width':1080,'height':1920}); pg.goto('http://localhost:8810/'+PAGE); pg.wait_for_timeout(600)
         pg.evaluate('p=>setPhotos(p)', photos())
         if preview:
             for t in preview:
-                pg.evaluate(f'render({t})'); pg.wait_for_timeout(80); pg.screenshot(path=f'sp-{t}.jpg',type='jpeg',quality=80)
+                pg.evaluate(f'render({t})'); pg.wait_for_timeout(80); pg.screenshot(path=f'{out}-p{t}.jpg',type='jpeg',quality=80)
             b.close(); return
         sc=pg.evaluate('scenes()'); parts=[]
         for i,(a,z) in enumerate(sc):
