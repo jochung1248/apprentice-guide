@@ -40,8 +40,8 @@ const PIVOT=()=>{ const o=k(0.1,0.5);
   return `<div class="abs" style="inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,107,26,${0.35*o}),rgba(17,19,23,0) 45%)"></div>
    <div class="hero" style="top:800px;font-size:64px;font-weight:600;color:${CON};opacity:${k(0,0.3)}">So, what</div>
    <div class="hero anton" style="top:880px;font-size:190px;color:#FFB27A;text-shadow:0 0 40px rgba(255,107,26,.8);opacity:${o};transform:scale(${0.94+0.06*o})">HAPPENED?</div>`; };
-const SC=[
- {d:5.4, r(){ const n=Math.round(1200000*inout((LT-1.2)/2.6));
+const SC0=[
+ {d:5.0, r(){ const n=Math.round(1200000*inout((LT-1.0)/2.4));
   return `<div class="spot"></div><div class="floor"></div>${grid(0,99,0.2,0.4)}
    <div class="hero anton" style="top:1250px;font-size:170px;color:${OR};opacity:${k(1.2,0.4)}">${n.toLocaleString('en-AU')}</div>
    <div class="hero mono" style="top:1430px;font-size:26px;color:#8A9099;opacity:${k(1.6)}">new homes promised · by mid-2029</div>`; }},
@@ -98,14 +98,18 @@ const SC=[
    <div class="hero mono" style="top:520px;font-size:24px;color:#8A9099;opacity:${k(0.2)}">Target: June 2029</div>
    <div class="hero anton" style="top:1110px;font-size:120px;color:${OR};opacity:${k(3.4,0.4)}">18 MONTHS LATE</div>`; }},
 ];
-const CAPS=[[0.0,3.1,'Australia promised 1.2 million new homes.'],[3.1,5.4,'Who’s going to build them?'],
- [7.4,9.0,'There aren’t enough tradies.'],[9.0,11.6,'20,000 construction jobs sit empty.'],
- [11.6,13.4,'And fewer people are starting.'],[13.4,17.9,'Trade apprentice starts have fallen three years in a row.'],
- [17.9,21.4,'Of those who start, only about 6 in 10 finish.'],[21.4,25.4,'Last year, almost as many quit as qualified.'],
- [25.4,27.4,'Fewer tradies means fewer homes.'],[27.4,32.9,'About a quarter are built, with 35% of the time gone.'],
- [32.9,35.0,'Fewer hands, higher prices.'],[35.0,39.2,'Building a house costs 51% more than before COVID.'],
- [39.2,41.0,'Renters pay for it.'],[41.0,46.3,'A new lease now takes a record 33% of household income.'],
- [46.3,49.4,'At this pace, the target lands in late 2030.'],[49.4,52.5,'18 months late.']];
+const CLOSE={d:4.0, r(){
+  const L=[['FEWER TRADIES.','#C9C4B8',0.2],['FEWER HOMES.','#C9C4B8',1.2],['HIGHER RENT.',RED,2.2]];
+  return `<div class="spot"></div><div class="floor"></div>`+L.map(([t,c,t0],i)=>`<div class="hero anton" style="top:${700+i*190}px;font-size:150px;color:${c};${fu(t0,0.4,20)}">${t}</div>`).join(''); }};
+const SC=[SC0[0],Object.assign({},SC0[5],{d:8.5}),SC0[8],SC0[1],SC0[2],SC0[3],SC0[4],SC0[6],SC0[7],CLOSE];
+const CAPS=[[0,5.0,'Australia promised 1.2 million new homes by mid-2029.'],
+ [5.0,7.3,'At this rate, we won’t get there.'],[7.3,13.5,'About a quarter are built, and 35% of the time is gone.'],
+ [13.5,16.4,'On current pace, the target lands in late 2030.'],[16.4,18.5,'18 months late.'],
+ [20.5,22.1,'There aren’t enough tradies.'],[22.1,24.7,'20,000 construction jobs sit empty.'],
+ [24.7,26.5,'And fewer people are starting.'],[26.5,31.0,'Trade apprentice starts have fallen three years in a row.'],
+ [31.0,34.5,'Of those who start, only about 6 in 10 finish.'],[34.5,38.5,'Last year, almost as many quit as qualified.'],
+ [38.5,40.6,'Fewer hands, higher prices.'],[40.6,44.8,'Building a house costs 51% more than before COVID.'],
+ [44.8,46.6,'And renters pay for it.'],[46.6,51.9,'A new lease now takes a record 33% of household income.']];
 let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;}); SC[SC.length-1].t1+=1.2; window.TOTAL=SC[SC.length-1].t1;
 function render(t){ GT=t; let h='';
  SC.forEach((s,i)=>{ if(t<s.t0||t>=s.t1) return; LT=t-s.t0;

@@ -1,41 +1,41 @@
-# Reel 7: Australia needs tradies (explainer, v2)
+# Reel 7: Australia needs tradies (explainer, v3)
 
-52.5s · dark explainer style (after @moneydecoded.au) · no site promo · captions burnt in at the top.
+57s · dark explainer style (after @moneydecoded.au) · no site promo · captions burnt in at the top.
 Post as a Reel. Add the voiceover in CapCut (calm voice, normal speed). Optional quiet ambient bed.
 
 ## CapCut TTS script (start each line at the time shown)
 
 | Start | Line |
 |---|---|
-| 0:00 | Australia promised one point two million new homes. |
-| 0:03.1 | Who's going to build them? |
-| 0:05.5 | So, what happened? |
-| 0:07.4 | There aren't enough tradies. |
-| 0:09.0 | Twenty thousand construction jobs sit empty. |
-| 0:11.6 | And fewer people are starting. |
-| 0:13.4 | Trade apprentice starts have fallen three years in a row. |
-| 0:17.9 | Of those who start, only about six in ten finish. |
-| 0:21.4 | Last year, almost as many quit as qualified. |
-| 0:25.4 | Fewer tradies means fewer homes. |
-| 0:27.4 | About a quarter are built, with thirty-five per cent of the time gone. |
-| 0:32.9 | Fewer hands, higher prices. |
-| 0:35.0 | Building a house costs fifty-one per cent more than before COVID. |
-| 0:39.2 | Renters pay for it. |
-| 0:41.0 | A new lease now takes a record thirty-three per cent of household income. |
-| 0:46.3 | At this pace, the target lands in late twenty-thirty. |
-| 0:49.4 | Eighteen months late. |
+| 0:00 | Australia promised one point two million new homes by mid twenty twenty-nine. |
+| 0:05.0 | At this rate, we won't get there. |
+| 0:07.3 | About a quarter are built, and thirty-five per cent of the time is gone. |
+| 0:13.5 | On current pace, the target lands in late twenty-thirty. |
+| 0:16.4 | Eighteen months late. |
+| 0:18.6 | So, what happened? |
+| 0:20.5 | There aren't enough tradies. |
+| 0:22.1 | Twenty thousand construction jobs sit empty. |
+| 0:24.7 | And fewer people are starting. |
+| 0:26.5 | Trade apprentice starts have fallen three years in a row. |
+| 0:31.0 | Of those who start, only about six in ten finish. |
+| 0:34.5 | Last year, almost as many quit as qualified. |
+| 0:38.5 | Fewer hands, higher prices. |
+| 0:40.6 | Building a house costs fifty-one per cent more than before COVID. |
+| 0:44.8 | And renters pay for it. |
+| 0:46.6 | A new lease now takes a record thirty-three per cent of household income. |
+| 0:52.1 | Fewer tradies. Fewer homes. Higher rent. |
 
 ## Caption
 
-Australia promised 1.2 million new homes by mid-2029. Who's going to build them?
+Australia promised 1.2 million new homes by mid-2029. At this rate, we won't get there: about a quarter are built with 35% of the time gone, and the target slips to December 2030.
 
-There aren't enough tradies. 20,000 construction jobs sit empty.
+So, what happened? There aren't enough tradies. 20,000 construction jobs sit empty.
 Trade apprentice starts have fallen three years in a row: about 106,000 in 2022, 77,000 in 2025.
 Only about 6 in 10 trade apprentices finish. Last year 52,380 quit, almost as many as the 53,390 who qualified.
 
-Fewer tradies, fewer homes. About a quarter of the target is built, with 35% of the time gone. Building costs are up 51% on pre-COVID, and a new lease takes a record 33% of household income.
+Fewer hands, higher prices. Building costs are up 51% on pre-COVID, and a new lease takes a record 33% of household income.
 
-At this pace, the target lands in December 2030.
+Fewer tradies. Fewer homes. Higher rent.
 
 Who do you know who should be on the tools? 👇
 
