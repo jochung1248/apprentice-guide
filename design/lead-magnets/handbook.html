@@ -1,0 +1,193 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Tradie Boss Starter</title><style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter;font-weight:600;color:#16181D;font-size:11.5pt;line-height:1.5}
+.pg{width:210mm;height:297mm;position:relative;overflow:hidden;background:#F4F1EA;padding:22mm 20mm 20mm;page-break-after:always}
+.pg:last-child{page-break-after:auto}
+.stripe{position:absolute;left:0;right:0;top:0;height:7mm;background:repeating-linear-gradient(45deg,#16181D 0 5mm,#FF6B1A 5mm 10mm)}
+.foot{position:absolute;left:20mm;right:20mm;bottom:10mm;display:flex;justify-content:space-between;font-family:JBM;font-size:7.5pt;letter-spacing:1px;text-transform:uppercase;color:#5B616A}
+.kick{font-family:JBM;font-weight:700;font-size:9pt;letter-spacing:2px;text-transform:uppercase;color:#C2410C;margin-bottom:3mm}
+h1{font-family:Anton;font-weight:400;font-size:40pt;line-height:.95;margin:0 0 6mm;text-transform:uppercase}
+h1 em{font-style:normal;color:#FF6B1A}
+h2{font-family:Inter;font-weight:800;font-size:14pt;margin:7mm 0 2mm}
+p{margin:0 0 3mm}
+.box{background:#fff;border:2.5px solid #16181D;border-radius:4mm;box-shadow:2mm 2mm 0 #16181D;padding:6mm 7mm;margin:5mm 0}
+.dark{background:#16181D;color:#F4F1EA;box-shadow:2mm 2mm 0 #FF6B1A}
+.big{font-family:Anton;font-size:30pt;color:#FF6B1A;line-height:1}
+.hl{background:#FFE14D;padding:0 1.5mm;border-radius:1mm}
+table{width:100%;border-collapse:collapse;font-size:10.5pt}
+td,th{padding:2.2mm 2mm;border-bottom:1.5px dashed #E2DDD2;text-align:left;vertical-align:top}
+th{font-family:JBM;font-size:8pt;letter-spacing:1px;text-transform:uppercase;color:#5B616A}
+td.n{text-align:right;font-family:JBM;font-weight:700;white-space:nowrap}
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{padding:2mm 0 2mm 10mm;position:relative;border-bottom:1.5px dashed #E2DDD2}
+ul.check li:before{content:"";position:absolute;left:0;top:2.6mm;width:5mm;height:5mm;border:2px solid #16181D;border-radius:1mm;background:#fff}
+.small{font-size:9pt;color:#5B616A}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.src{font-size:8.5pt;line-height:1.45}
+.src li{margin-bottom:1.5mm}
+</style></head><body>
+
+<!-- 1 COVER -->
+<div class="pg" style="background:#16181D;color:#F4F1EA">
+ <div class="stripe"></div>
+ <div style="margin-top:40mm" class="kick">Free guide · @apprenticeguide</div>
+ <h1 style="font-size:72pt;color:#F4F1EA">Tradie<br><em>Boss</em><br>Starter</h1>
+ <p style="font-size:15pt;max-width:140mm">From the tools to running your own trade business. What you get, what it costs, and the first steps.</p>
+ <div style="position:absolute;left:20mm;right:20mm;bottom:32mm">
+  <svg viewBox="0 0 200 130" width="160"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#F4F1EA" stroke-width="7"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98 Z" fill="#C2410C" stroke="#F4F1EA" stroke-width="7"/><rect x="10" y="94" width="180" height="22" rx="11" fill="#F4F1EA"/></svg>
+  <p class="small" style="color:#8A9099;margin-top:6mm;max-width:150mm">General information only, current as at November 2026. Not financial, tax or legal advice. Rules have conditions and change. Talk to a registered tax agent or accountant about your situation.</p>
+ </div>
+</div>
+
+<!-- 2 THE GAP -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">01 · The gap</div>
+ <h1>You earn $32.<br><em>They bill $115.</em></h1>
+ <p>The award minimum for a qualified electrician works out to about <b>$32 an hour</b>. A Sydney sparky typically charges a customer around <b>$115 an hour</b> including GST. Most qualified tradies earn above the award, but the gap is still big. Here’s where it goes.</p>
+ <div class="box">
+  <table>
+   <tr><th>Out of $115 an hour</th><th style="text-align:right">Who keeps it</th></tr>
+   <tr><td>GST (1/11th of the price)</td><td class="n">ATO · $10.45</td></tr>
+   <tr><td>Your wage, super and leave</td><td class="n">You</td></tr>
+   <tr><td>Insurance, licences, ute, fuel, tools</td><td class="n">Running costs</td></tr>
+   <tr><td>Quotes, admin, travel, quiet weeks</td><td class="n">Unbilled time</td></tr>
+   <tr><td><b>What’s left</b></td><td class="n" style="color:#C2410C">Profit → owner</td></tr>
+  </table>
+ </div>
+ <p>As an employee, the profit goes to the business owner. When <b>you</b> own the business, you keep it. You also take on the costs and the risk.</p>
+ <div class="box dark"><div class="kick" style="color:#FF6B1A">The catch</div>
+ <p style="margin:0">Not every hour is billable. Quoting, driving, buying materials and chasing invoices are unpaid. A rate that looks huge can shrink fast. Page 4 shows how to work out yours.</p></div>
+ <p class="small">Charge-out figure: typical Sydney range from whatsthedamage.com.au (a cost guide, not official data). Award: Electrical, Electronic and Communications Contracting Award, $1,223.11 a week ÷ 38 hours.</p>
+ <div class="foot"><span>Tradie Boss Starter</span><span>2</span></div>
+</div>
+
+<!-- 3 FIRST STEPS -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">02 · Getting set up</div>
+ <h1>The first<br><em>steps</em></h1>
+ <ul class="check">
+  <li><b>Get an ABN.</b> It’s free through the Australian Business Register. Without one, businesses paying you must withhold 47% tax. Watch for sites that charge for this.</li>
+  <li><b>Pick a structure.</b> Sole trader is the simplest and cheapest. A company costs more to run but can pay a 25% tax rate on profits kept in it. Ask an accountant which fits.</li>
+  <li><b>Register for GST when you need to.</b> You must register within 21 days of your turnover reaching $75,000 a year. Registering is free.</li>
+  <li><b>Check your licence.</b> Most trades need a contractor licence from your state’s regulator before you can contract work in your own name.</li>
+  <li><b>Get insured.</b> Public liability at minimum. Consider income protection, because nobody pays you when you’re sick.</li>
+  <li><b>Open a separate business bank account.</b> Keeps tax time simple.</li>
+  <li><b>Set up bookkeeping software</b> for quotes, invoices and BAS.</li>
+  <li><b>Register a business name</b> if you trade under anything other than your own name.</li>
+ </ul>
+ <div class="box" style="margin-top:7mm"><b>Tip:</b> you can apply for your ABN and register for GST in the same online application.</div>
+ <div class="foot"><span>Tradie Boss Starter</span><span>3</span></div>
+</div>
+
+<!-- 4 PRICING -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">03 · Pricing</div>
+ <h1>Work out<br><em>your rate</em></h1>
+ <p>Start from what you need to earn, not what the bloke down the road charges. Here’s the method, with <span class="hl">example numbers only</span>.</p>
+ <div class="box">
+  <table>
+   <tr><th>Step</th><th style="text-align:right">Example</th></tr>
+   <tr><td>1. The pay you want, plus 12% for your own super</td><td class="n">$100,000 + $12,000</td></tr>
+   <tr><td>2. Add yearly running costs (ute, insurance, tools, phone, software, licences)</td><td class="n">+ $40,000</td></tr>
+   <tr><td>3. Total you need to bring in</td><td class="n">$152,000</td></tr>
+   <tr><td>4. Billable hours: 46 weeks × 30 billable hours (the rest is quoting, travel, admin)</td><td class="n">1,380 hrs</td></tr>
+   <tr><td><b>5. Break-even rate (before profit and GST)</b></td><td class="n" style="color:#C2410C">$110 / hr</td></tr>
+  </table>
+ </div>
+ <p>Then add a margin for profit and quiet months, and add GST on top if you’re registered. Swap in your own numbers. Your accountant can sanity-check them.</p>
+ <h2>Three rules that protect your rate</h2>
+ <ul class="check">
+  <li>Charge a call-out or minimum fee so short jobs still pay.</li>
+  <li>Mark up materials. You carry the cost until you’re paid.</li>
+  <li>Quote in writing with clear terms, including what’s not included.</li>
+ </ul>
+ <div class="foot"><span>Tradie Boss Starter</span><span>4</span></div>
+</div>
+
+<!-- 5 TAX PERKS -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">04 · Owner tax perks</div>
+ <h1>Four perks<br><em>owners get</em></h1>
+ <div class="grid">
+  <div class="box"><div class="big">$20,000</div><b>Instant asset write-off</b><p class="small" style="margin:2mm 0 0">Businesses with turnover under $10M can deduct each asset costing under $20,000 straight away, instead of over several years. Made permanent from 1 July 2026. It helps cash flow; the tool still costs what it costs.</p></div>
+  <div class="box"><div class="big">$1,000</div><b>Small business tax offset</b><p class="small" style="margin:2mm 0 0">Sole traders and partners in businesses with turnover under $5M get 16% off the tax on their business income, up to $1,000 a year. Worked out automatically from your tax return.</p></div>
+  <div class="box"><div class="big">$32,500</div><b>Deductible super</b><p class="small" style="margin:2mm 0 0">No one pays super for you, but you can pay your own and claim a deduction. The concessional cap is $32,500 for 2026–27, taxed at 15% inside super. Lodge a notice of intent with your fund first.</p></div>
+  <div class="box"><div class="big">$0 CGT</div><b>Sell the business</b><p class="small" style="margin:2mm 0 0">Small business CGT concessions can cut or remove tax when you sell. Owned it 15+ years and retiring at 55 or older? The gain can be fully exempt. Others include a 50% reduction and a $500,000 retirement exemption.</p></div>
+ </div>
+ <div class="box dark"><b>Plus:</b> run it as a company and profits kept in the company are taxed at 25% (base rate entity). You pay personal tax when you take the money out. Structure matters, so get advice before you choose.</div>
+ <p class="small">All four have conditions (turnover limits, asset tests, age tests). Check ato.gov.au or ask a registered tax agent.</p>
+ <div class="foot"><span>Tradie Boss Starter</span><span>5</span></div>
+</div>
+
+<!-- 6 CASH FLOW -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">05 · Cash flow</div>
+ <h1>Cash is<br><em>king</em></h1>
+ <p>Profitable businesses still go broke when the money comes in later than the bills go out. Late payment is common: Xero data shows small businesses were paid on average <b>6.6 days late</b> in the December 2025 quarter. The Small Business Ombudsman found <b>23% of big businesses take more than 120 days</b> to pay small suppliers.</p>
+ <ul class="check">
+  <li><b>Take a deposit</b> before you buy materials on bigger jobs.</li>
+  <li><b>Invoice the same day</b> you finish. Phone apps make this easy.</li>
+  <li><b>Short terms.</b> 7 days for homeowners; get progress payments on long jobs.</li>
+  <li><b>Make paying easy</b>: card on the spot, bank details on every invoice.</li>
+  <li><b>Follow up on day one</b> of being overdue, not week three.</li>
+  <li><b>Keep a buffer</b> of two or three months’ running costs.</li>
+ </ul>
+ <div class="box"><div class="kick">Tax-time rule</div>
+ <p style="margin:0">The GST you collect isn’t yours. Neither is the tax on your profit. Move a set slice of every payment into a separate “tax” account so the BAS and tax bill never catch you short. Ask your accountant what percentage to use.</p></div>
+ <div class="foot"><span>Tradie Boss Starter</span><span>6</span></div>
+</div>
+
+<!-- 7 REAL TALK -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">06 · Real talk</div>
+ <h1>What nobody<br><em>tells you</em></h1>
+ <div class="box">
+  <table>
+   <tr><th>Employee</th><th>Owner</th></tr>
+   <tr><td>Paid sick leave and annual leave</td><td>No work, no pay</td></tr>
+   <tr><td>Boss pays 12% super</td><td>You pay your own (or don’t, and regret it)</td></tr>
+   <tr><td>Boss chases unpaid invoices</td><td>You chase them</td></tr>
+   <tr><td>Clock off at knock-off</td><td>Quotes and admin at night</td></tr>
+   <tr><td>Income capped by the award or agreement</td><td>Income set by your rate, your hours and your team</td></tr>
+  </table>
+ </div>
+ <p>Construction also has more insolvencies than almost any other industry. Good work isn’t enough on its own; pricing (page 4) and cash flow (page 6) matter just as much.</p>
+ <h2>Still worth it?</h2>
+ <p>For plenty of people, yes. Construction is Australia’s largest industry by number of businesses: <b>454,850</b> of them. In 2024–25 there were <b>76,414</b> new construction businesses, more than any other industry. Many started with one tradie and one ute.</p>
+ <div class="box dark"><b>A sensible path:</b> finish your apprenticeship, get a few years as a qualified tradie, learn how your boss quotes and runs jobs, then go out on your own with a buffer saved.</div>
+ <div class="foot"><span>Tradie Boss Starter</span><span>7</span></div>
+</div>
+
+<!-- 8 CHECKLIST + SOURCES -->
+<div class="pg"><div class="stripe"></div>
+ <div class="kick">07 · Before you quit your job</div>
+ <h1>The <em>checklist</em></h1>
+ <ul class="check">
+  <li>Qualified, and licensed to contract in my state</li>
+  <li>Two to three months of running costs saved</li>
+  <li>My break-even hourly rate worked out</li>
+  <li>ABN, structure decided, GST plan</li>
+  <li>Public liability (and income protection) quoted</li>
+  <li>Accountant or registered tax agent lined up</li>
+  <li>Bookkeeping app, business account, tax account</li>
+  <li>First few customers or a subcontract lined up</li>
+ </ul>
+ <h2>Sources</h2>
+ <ol class="src">
+  <li>ATO: Instant asset write-off; Small business income tax offset; Concessional contributions cap; Small business CGT concessions; Registering for GST; Base rate entity company tax rate.</li>
+  <li>business.gov.au: Tax registration for your business (ABN, 47% withholding).</li>
+  <li>Fair Work Ombudsman: Electrical, Electronic and Communications Contracting Award 2020 pay guide.</li>
+  <li>ABS: Counts of Australian Businesses, 2024–25.</li>
+  <li>Australian Small Business and Family Enterprise Ombudsman: payment times research.</li>
+  <li>Xero Small Business Insights, December 2025 quarter.</li>
+  <li>whatsthedamage.com.au: electrician cost guide (Sydney charge-out rates).</li>
+ </ol>
+ <p class="small" style="margin-top:5mm">General information only, current as at November 2026. Not financial, tax or legal advice. Example figures are illustrative. © Apprentice Guide · @apprenticeguide</p>
+ <div class="foot"><span>Tradie Boss Starter</span><span>8</span></div>
+</div>
+</body></html>

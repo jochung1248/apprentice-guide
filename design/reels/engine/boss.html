@@ -1,0 +1,128 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
+html,body{margin:0}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#F4F1EA;color:#16181D;font-family:Inter}
+.abs{position:absolute}
+.mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.anton{font-family:Anton;font-weight:400;line-height:.92}
+.hero{position:absolute;left:0;right:0;text-align:center}
+.stripe{height:36px;background:repeating-linear-gradient(45deg,#16181D 0 26px,#FF6B1A 26px 52px)}
+.cap{position:absolute;left:90px;right:90px;top:1400px;text-align:center}
+.cap span{display:inline;background:#16181D;color:#F4F1EA;font-size:44px;font-weight:800;line-height:1.5;padding:6px 18px;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hl{background:#FFE14D;padding:0 10px;border-radius:6px}
+.card{background:#fff;border:5px solid #16181D;border-radius:24px;box-shadow:10px 10px 0 #16181D}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const inout=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+let LT=0;
+const k=(t0,d=0.4)=>ease((LT-t0)/d);
+const pop=(t0,d=0.45)=>`opacity:${clamp((LT-t0)/0.12)};transform:scale(${0.6+0.4*back((LT-t0)/d)})`;
+const fu=(t0,d=0.4,dy=30)=>`opacity:${k(t0,d)};transform:translateY(${(1-k(t0,d))*dy}px)`;
+const OR='#FF6B1A', INK='#16181D', RED='#E5372B';
+const HAT=(w)=>`<svg viewBox="0 0 200 130" width="${w}"><path d="M30 98 C30 52 58 30 100 30 C142 30 170 52 170 98 Z" fill="#FF6B1A" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><path d="M84 98 L84 40 C90 32 110 32 116 40 L116 98 Z" fill="#C2410C" stroke="#16181D" stroke-width="9" stroke-linejoin="round"/><rect x="10" y="94" width="180" height="22" rx="11" fill="#16181D"/></svg>`;
+const ICON={
+ drill:`<svg viewBox="0 0 120 120" width="200"><rect x="14" y="30" width="62" height="34" rx="8" fill="${OR}" stroke="${INK}" stroke-width="6"/><rect x="76" y="40" width="30" height="14" fill="#8A9099" stroke="${INK}" stroke-width="5"/><path d="M106 47 H118" stroke="${INK}" stroke-width="6" stroke-linecap="round"/><path d="M30 64 L24 104 H54 L50 64" fill="${INK}"/></svg>`,
+ receipt:`<svg viewBox="0 0 120 120" width="200"><path d="M24 8 H96 V112 L84 104 L72 112 L60 104 L48 112 L36 104 L24 112 Z" fill="#fff" stroke="${INK}" stroke-width="6" stroke-linejoin="round"/><path d="M38 34 H82 M38 52 H82 M38 70 H66" stroke="${INK}" stroke-width="6" stroke-linecap="round"/><circle cx="84" cy="80" r="20" fill="${OR}" stroke="${INK}" stroke-width="5"/><path d="M76 80 h16" stroke="${INK}" stroke-width="6" stroke-linecap="round"/></svg>`,
+ piggy:`<svg viewBox="0 0 120 120" width="200"><ellipse cx="60" cy="66" rx="42" ry="32" fill="#FFB6C1" stroke="${INK}" stroke-width="6"/><rect x="48" y="26" width="24" height="10" rx="3" fill="${INK}"/><circle cx="84" cy="58" r="4" fill="${INK}"/><rect x="34" y="92" width="12" height="18" fill="${INK}"/><rect x="72" y="92" width="12" height="18" fill="${INK}"/><ellipse cx="102" cy="68" rx="8" ry="10" fill="#FFB6C1" stroke="${INK}" stroke-width="5"/></svg>`,
+ sold:`<svg viewBox="0 0 120 120" width="200"><path d="M20 112 V14" stroke="${INK}" stroke-width="8" stroke-linecap="round"/><path d="M20 22 H104" stroke="${INK}" stroke-width="6"/><rect x="34" y="34" width="70" height="46" fill="${RED}" stroke="${INK}" stroke-width="5"/><text x="69" y="66" text-anchor="middle" font-family="Anton" font-size="26" fill="#fff">SOLD</text></svg>`
+};
+function perk(n,big,title,small,icon){ return {d:0, r(){
+  return `<div class="abs mono" style="left:84px;top:300px;font-size:30px;${fu(0,0.3,10)}"><span style="background:${INK};color:#F4F1EA;padding:8px 16px;border-radius:8px">Owner perk ${n} of 4</span></div>
+   <div class="abs card" style="left:120px;right:120px;top:420px;height:900px;${pop(0.1,0.5)}">
+    <div style="position:absolute;left:0;right:0;top:70px;display:flex;justify-content:center">${ICON[icon]}</div>
+    <div class="anton" style="position:absolute;left:0;right:0;top:330px;text-align:center;font-size:${big.length>6?150:190}px;color:${OR}">${big}</div>
+    <div style="position:absolute;left:50px;right:50px;top:560px;text-align:center;font-size:58px;font-weight:800;line-height:1.1;${fu(0.6)}">${title}</div>
+    <div class="mono" style="position:absolute;left:50px;right:50px;top:760px;text-align:center;font-size:22px;color:#5B616A;line-height:1.5;${fu(1.0)}">${small}</div>
+   </div>`; }}; }
+
+const SC=[
+ // 1 · HOOK
+ {d:5.8, r(){
+  const pay=Math.round(32*k(2.6,0.8));
+  return `<div class="hero mono" style="top:300px;font-size:30px;color:#5B616A;${fu(0,0.3,10)}">One hour of a sparky’s time</div>
+   <div class="abs" style="left:110px;top:420px;width:400px;text-align:center;${pop(0.1)}">
+     <div class="mono" style="font-size:26px;margin-bottom:16px">Customer pays</div>
+     <div class="card" style="padding:40px 0;background:${OR}"><div class="anton" style="font-size:150px">$115</div></div></div>
+   <div class="abs" style="left:570px;top:420px;width:400px;text-align:center;${pop(2.4)}">
+     <div class="mono" style="font-size:26px;margin-bottom:16px">Award pays</div>
+     <div class="card" style="padding:40px 0"><div class="anton" style="font-size:150px">$${pay}</div></div></div>
+   <div class="hero anton" style="top:860px;font-size:120px;${fu(4.0)}">WHERE’S THE <span style="color:${OR}">$83?</span></div>`; }},
+ // 2 · RECEIPT
+ {d:6.4, r(){
+  const lines=[['GST','$10.45'],['Super & leave',''],['Insurance',''],['Ute & fuel',''],['Tools',''],['Admin & quotes',''],['Quiet weeks','']];
+  let h=lines.map(([a,b],i)=>`<div style="display:flex;justify-content:space-between;font-family:JBM;font-weight:700;font-size:40px;padding:12px 0;border-bottom:3px dashed #E2DDD2;opacity:${k(0.5+i*0.45,0.2)}"><span>${a}</span><span style="color:#8A9099">${b||'✓'}</span></div>`).join('');
+  const p=k(4.0,0.4);
+  return `<div class="abs card" style="left:170px;right:170px;top:300px;padding:40px 50px;border-radius:12px;${fu(0,0.3,40)}">
+    <div class="mono" style="font-size:24px;color:#8A9099;text-align:center">Tax invoice · 1 hour</div>
+    <div class="anton" style="font-size:90px;text-align:center;margin:10px 0 20px">$115.00</div>${h}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;opacity:${p};transform:scale(${0.8+0.2*back((LT-4.0)/0.5)})"><span class="anton" style="font-size:80px">PROFIT</span><span class="anton" style="font-size:80px;color:${OR}">→ OWNER</span></div>
+   </div>`; }},
+ // 3 · OWNER
+ {d:6.6, r(){
+  const g=[0,1,2,3].map(i=>`<div style="width:170px;height:170px;${pop(3.4+i*0.3)};position:relative"><div style="position:absolute;inset:40px 0 0 0;background:${OR};border:5px solid ${INK};border-radius:10px"></div><div style="position:absolute;left:-8px;right:-8px;top:20px;height:44px;background:${OR};border:5px solid ${INK};border-radius:8px"></div><div style="position:absolute;left:70px;width:30px;top:20px;bottom:0;background:#FFE14D;border-left:5px solid ${INK};border-right:5px solid ${INK}"></div><div class="anton" style="position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:56px;color:${INK}">${i+1}</div></div>`).join('');
+  return `<div class="hero" style="top:360px;${pop(0.1)}"><div style="display:inline-block">${HAT(260)}</div></div>
+   <div class="hero anton" style="top:600px;font-size:140px;${fu(0.5)}">OWN THE BUSINESS,</div>
+   <div class="hero anton" style="top:740px;font-size:140px;color:${OR};${fu(1.2)}">KEEP THE PROFIT.</div>
+   <div class="hero mono" style="top:960px;font-size:28px;color:#5B616A;${fu(3.0)}">Plus 4 tax perks for owners</div>
+   <div class="abs" style="left:110px;right:110px;top:1040px;display:flex;justify-content:space-between">${g}</div>`; }},
+ perk(1,'$20,000','Write off each tool or bit of gear, straight away','Instant asset write-off · each asset under $20k · permanent from 1 July 2026','drill'),
+ perk(2,'$1,000','Off your tax bill as a sole trader','Small business income tax offset · 16% · up to $1,000 a year','receipt'),
+ perk(3,'$32,500','Into super a year, and claim it','Concessional cap 2026–27 · personal contributions you claim as a deduction','piggy'),
+ perk(4,'$0 CGT','Sell after 15 years to retire at 55+','Small business 15-year exemption · conditions apply','sold'),
+ // 8 · REAL TALK
+ {d:5.6, r(){
+  const xs=['No sick pay','Nobody pays your super','You chase the invoices'];
+  return `<div class="hero anton" style="top:320px;font-size:130px;${fu(0)}">REAL TALK.</div>
+   ${xs.map((x,i)=>`<div class="abs" style="left:150px;right:150px;top:${560+i*150}px;display:flex;align-items:center;gap:30px;${fu(0.6+i*0.9)}"><div style="flex:none;width:90px;height:90px;border-radius:50%;background:${RED};color:#fff;display:flex;align-items:center;justify-content:center" class="anton"><span style="font-size:60px">✕</span></div><div style="font-size:54px;font-weight:800">${x}</div></div>`).join('')}
+   <div class="hero" style="top:1060px;${fu(3.8)}"><span class="anton" style="font-size:110px;color:${RED}">$15,257</span><div class="mono" style="font-size:24px;color:#5B616A;margin-top:8px">lost to late payments · average small business · last year</div></div>`; }},
+ // 9 · MOMENTUM
+ {d:5.6, r(){
+  const n=Math.round(76414*inout((LT-0.6)/2.4));
+  let dots=''; for(let i=0;i<60;i++){ const t0=0.6+i*0.035; const x=150+(i%10)*80, y=880+Math.floor(i/10)*70;
+   dots+=`<div class="abs" style="left:${x}px;top:${y}px;width:56px;height:46px;opacity:${k(t0,0.2)}">${HAT(56)}</div>`; }
+  return `<div class="hero mono" style="top:340px;font-size:30px;color:#5B616A;${fu(0)}">New construction businesses · in one year</div>
+   <div class="hero anton" style="top:420px;font-size:220px;color:${OR}">${n.toLocaleString('en-AU')}</div>
+   <div class="hero" style="top:680px;font-size:54px;font-weight:800;${fu(3.0)}"><span class="hl">More than any other industry.</span></div>${dots}`; }},
+ // 10 · CTA
+ {d:5.6, r(){
+  const word='BOSS'.slice(0,Math.floor(clamp((LT-1.0)/0.8)*4));
+  return `<div class="hero anton" style="top:300px;font-size:120px;${fu(0)}">WANT THE PLAYBOOK?</div>
+   <div class="abs card" style="left:120px;right:120px;top:500px;padding:36px 40px;border-radius:30px;${pop(0.4)}">
+    <div class="mono" style="font-size:24px;color:#8A9099">Add a comment…</div>
+    <div class="anton" style="font-size:200px;color:${OR};margin-top:10px;min-height:190px">${word}<span style="opacity:${Math.floor(LT*2)%2?1:0};color:${INK}">|</span></div></div>
+   <div class="abs" style="left:120px;right:120px;top:960px;display:flex;gap:40px;align-items:center;${fu(2.2)}">
+    <div style="flex:none;width:260px;height:340px;background:${INK};border-radius:12px;box-shadow:10px 10px 0 ${OR};padding:24px;box-sizing:border-box;color:#F4F1EA">
+     <div style="display:flex;justify-content:center">${HAT(120)}</div>
+     <div class="anton" style="font-size:52px;text-align:center;margin-top:14px;line-height:.95">TRADIE<br><span style="color:${OR}">BOSS</span><br>STARTER</div></div>
+    <div style="font-size:52px;font-weight:800;line-height:1.15">Comment <span class="hl">BOSS</span> and we’ll DM you the free starter guide.</div></div>`; }},
+];
+SC.forEach((s,i)=>{ if(!s.d) s.d=[0,0,0,5.6,5.2,6.0,6.4][i]; });
+const CAPS=[[0,2.4,'Customers pay $115 an hour for a sparky.'],[2.4,4.0,'The award pays $32.'],[4.0,5.8,'So where’s the rest?'],
+ [5.8,9.6,'GST, super, insurance, the ute, tools, quiet weeks…'],[9.6,12.2,'…and profit.'],
+ [12.2,15.4,'When you own the business, the profit is yours.'],[15.4,18.8,'And owners get a few tax perks.'],
+ [18.8,24.4,'Write off tools and gear under $20K each, straight away.'],[24.4,29.6,'Sole traders get up to $1,000 off their tax.'],
+ [29.6,35.6,'Put up to $32,500 a year into super, and claim it.'],[35.6,42.0,'Own it 15 years, sell to retire at 55, and the gain can be tax-free.'],
+ [42.0,47.6,'Real talk: no sick pay, no boss paying your super, and you chase invoices.'],
+ [47.6,53.2,'Still, 76,414 new construction businesses started in one year.'],
+ [53.2,58.8,'Comment BOSS for the free starter guide.']];
+let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;});
+function render(t){
+ let h=`<div class="abs stripe" style="left:0;right:0;top:0"></div>`;
+ SC.forEach((s,i)=>{ if(t<s.t0||t>=s.t1) return; LT=t-s.t0;
+  const out=i===SC.length-1?1:1-clamp((t-(s.t1-0.25))/0.25);
+  h+=`<div class="abs" style="inset:0;opacity:${out}">${s.r()}</div>`; });
+ const c=CAPS.find(c=>t>=c[0]&&t<c[1]);
+ if(c) h+=`<div class="cap" style="opacity:${clamp((t-c[0])/0.15)}"><span>${c[1]-c[0]>0?c[2]:''}</span></div>`;
+ document.getElementById('stage').innerHTML=h;
+}
+window.render=render; window.setPhotos=()=>{}; window.scenes=()=>SC.map(s=>[s.t0,s.t1]);
+</script></body></html>
