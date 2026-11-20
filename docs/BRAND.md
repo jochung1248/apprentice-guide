@@ -2,7 +2,23 @@
 
 **The idea: "Hi-vis meets payslip".** Honest numbers delivered with site-signage confidence. The look is warm concrete ground, charcoal ink, one loud safety-orange accent, blueprint blue for data, and a highlighter yellow used only to mark numbers. Big condensed numerals like site signage; clean sans for reading; mono labels like dimension callouts on a building plan. It should feel useful and a bit cheeky, never corporate, and never a cartoon of a tradie.
 
-## Colour
+## Colour — Theme v2 (20 Nov 2026, replaces the orange accent)
+Chosen from three schemes (brown/cream/baby blue, sage/off-white/tomato, charcoal/silver/yellow) after mocking each up on the site. Charcoal + safety yellow won: it reads as site signage, matches the dark Reel style, and passes the squint test (the yellow call to action is the thing that stands out).
+
+| Role | Hex | Use |
+|---|---|---|
+| Charcoal | #282D31 | Page and Reel background |
+| Card | #30363B / raised #3A4146 | Cards, rows, table heads |
+| Night | #1F2327 | Header, footer, dark panels, logo square |
+| Silver | #D9DADC | Body text; #A9AEB3 for secondary text |
+| Safety yellow | #FFCB3C | Calls to action, current nav item, the one key number per screen. Nothing else. |
+| Rule grey | #6B747B | Hazard stripes, side borders, decoration |
+| Go green | #4CC38A (site) / #2FB36B (Reels) | Correct answer, positive change |
+| Alert red | #FF6A5E | Warnings, "very hard" |
+
+Links are white/silver and underlined, turning yellow on hover. Charts: trade = yellow, uni = #8FA8FF. All text meets WCAG AA. Reels use the same palette (see design/reels/engine/quote.html).
+
+## Colour (v1, retired)
 | Token | Hex | Role | Notes |
 |---|---|---|---|
 | `ink` | `#16181D` | Primary text, dark backgrounds (tweet cards, covers) | |

@@ -6,16 +6,16 @@
 @font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2)}
 @font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2)}
 html,body{margin:0;background:#0E0F12}
-#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#111317;color:#F4F1EA;font-family:Inter}
+#stage{width:1080px;height:1920px;position:relative;overflow:hidden;background:#282D31;color:#F4F5F6;font-family:Inter}
 .abs{position:absolute}
 .mono{font-family:JBM;font-weight:700;text-transform:uppercase;letter-spacing:3px}
 .anton{font-family:Anton;font-weight:400;line-height:.92}
 .hero{position:absolute;left:0;right:0;text-align:center}
 .spot{position:absolute;inset:0;background:radial-gradient(ellipse 60% 38% at 50% 45%,rgba(255,255,255,.08),rgba(255,255,255,0) 70%)}
-.pic{position:absolute;left:100px;right:100px;top:300px;height:500px;border-radius:28px;overflow:hidden;background:#1C1F24;border:3px solid #2A2E35}
+.pic{position:absolute;left:100px;right:100px;top:300px;height:500px;border-radius:28px;overflow:hidden;background:#30363B;border:3px solid #454C52}
 .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.opt{position:absolute;left:130px;right:130px;height:92px;border-radius:20px;display:flex;align-items:center;gap:26px;padding:0 30px;box-sizing:border-box;background:#1C1F24;border:3px solid #2A2E35}
-.opt .l{flex:none;width:58px;height:58px;border-radius:14px;background:#2A2E35;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:40px;color:#C9C4B8}
+.opt{position:absolute;left:130px;right:130px;height:92px;border-radius:20px;display:flex;align-items:center;gap:26px;padding:0 30px;box-sizing:border-box;background:#30363B;border:3px solid #454C52}
+.opt .l{flex:none;width:58px;height:58px;border-radius:14px;background:#454C52;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:40px;color:#D9DADC}
 .opt .v{font-family:Anton;font-size:58px;letter-spacing:1px}
 .opt .tick{margin-left:auto;font-family:Anton;font-size:56px}
 </style></head>
@@ -28,7 +28,7 @@ let LT=0;
 const k=(t0,d=0.45)=>ease((LT-t0)/d);
 const fu=(t0,d=0.45,dy=26)=>`opacity:${k(t0,d)};transform:translateY(${(1-k(t0,d))*dy}px)`;
 const pop=(t0,d=0.45)=>`opacity:${clamp((LT-t0)/0.12)};transform:scale(${0.7+0.3*back((LT-t0)/d)})`;
-const OR='#FF6B1A', RED='#E5372B', GO='#2FB36B', CON='#F4F1EA', MUTE='#8A9099', LINE='#2A2E35', BLUE='#5AA9E6';
+const OR='#FFCB3C', RED='#FF6A5E', GO='#2FB36B', CON='#F4F5F6', MUTE='#A9AEB3', LINE='#454C52', BLUE='#5AA9E6';
 let PHOTOS={};
 
 /* ---------- scene illustrations (880x500, flat) ---------- */
@@ -36,13 +36,13 @@ const ART={
  tap:(t)=>{ let drops=''; for(let i=0;i<3;i++){ const p=((t*0.9+i/3)%1); drops+=`<ellipse cx="560" cy="${236+p*170}" rx="${7-2*p}" ry="${11-3*p}" fill="${BLUE}" opacity="${1-p*0.6}"/>`; }
   return `<rect width="880" height="500" fill="#20242B"/>
    <g fill="#2A2F37">${[0,1,2,3,4,5,6,7].map(i=>`<rect x="${i*112}" y="0" width="108" height="56" rx="4"/><rect x="${i*112-56}" y="60" width="108" height="56" rx="4"/><rect x="${i*112}" y="120" width="108" height="56" rx="4"/>`).join('')}</g>
-   <rect x="0" y="400" width="880" height="100" fill="#3A3F47"/><rect x="0" y="392" width="880" height="16" fill="#555B64"/>
+   <rect x="0" y="400" width="880" height="100" fill="#5A6168"/><rect x="0" y="392" width="880" height="16" fill="#555B64"/>
    <path d="M250 410 Q250 470 320 470 L700 470 Q770 470 770 410 Z" fill="#C9CED6"/><path d="M280 410 Q280 450 330 450 L690 450 Q740 450 740 410Z" fill="#9AA1AB"/>
    <rect x="420" y="330" width="44" height="80" rx="10" fill="#D7DCE3"/><path d="M442 340 L442 190 Q442 150 482 150 L540 150 Q568 150 568 180 L568 220" fill="none" stroke="#D7DCE3" stroke-width="34" stroke-linecap="round"/>
    <rect x="400" y="300" width="84" height="22" rx="10" fill="#B9BFC8"/><rect x="456" y="268" width="70" height="16" rx="8" fill="#B9BFC8" transform="rotate(-20 456 276)"/>
    ${drops}<ellipse cx="560" cy="440" rx="${28+6*Math.sin(t*6)}" ry="7" fill="${BLUE}" opacity=".45"/>`; },
  hws:(t)=>{ const f=0.5+0.5*Math.sin(t*3);
-  return `<rect width="880" height="500" fill="#20242B"/><rect x="0" y="430" width="880" height="70" fill="#3A3F47"/>
+  return `<rect width="880" height="500" fill="#20242B"/><rect x="0" y="430" width="880" height="70" fill="#5A6168"/>
    <rect x="300" y="60" width="230" height="380" rx="60" fill="#DADFE6"/><rect x="300" y="60" width="230" height="380" rx="60" fill="none" stroke="#B4BAC3" stroke-width="6"/>
    <rect x="328" y="120" width="174" height="12" rx="6" fill="#C2C8D0"/><rect x="328" y="380" width="174" height="12" rx="6" fill="#C2C8D0"/>
    <circle cx="415" cy="250" r="48" fill="#fff" stroke="#9AA1AB" stroke-width="6"/><path d="M415 250 L${415-34} ${262}" stroke="${BLUE}" stroke-width="8" stroke-linecap="round"/><circle cx="415" cy="250" r="7" fill="#555B64"/>
@@ -62,7 +62,7 @@ const ART={
    <rect x="0" y="300" width="880" height="110" fill="#8A8F96"/><rect x="0" y="318" width="880" height="74" fill="#2A2420"/>
    <path d="M300 330 C 320 350, 360 350, 380 370 M330 325 C 345 345, 400 342, 430 380" stroke="#A07E5A" stroke-width="7" fill="none"/>
    <rect x="0" y="322" width="${880*lin}" height="66" rx="8" fill="${OR}" opacity=".9"/>
-   <text x="440" y="466" font-family="JBM" font-weight="700" font-size="30" fill="#C9C4B8" text-anchor="middle">10 m RELINED · NO DIGGING</text>`; },
+   <text x="440" y="466" font-family="JBM" font-weight="700" font-size="30" fill="#D9DADC" text-anchor="middle">10 m LINED FROM INSIDE · NO DIGGING</text>`; },
  mixer:(t)=>{ let drops=''; for(let i=0;i<2;i++){ const p=((t*0.8+i/2)%1); drops+=`<ellipse cx="440" cy="${330+p*140}" rx="7" ry="11" fill="${BLUE}" opacity="${1-p*0.6}"/>`; }
   return `<rect width="880" height="500" fill="#E8E4DC"/>
    <g stroke="#CFC8BA" stroke-width="4">${[0,1,2,3,4,5,6,7,8].map(i=>`<line x1="${i*110}" y1="0" x2="${i*110}" y2="500"/>`).join('')}${[0,1,2,3,4].map(i=>`<line x1="0" y1="${i*110+50}" x2="880" y2="${i*110+50}"/>`).join('')}</g>
@@ -77,46 +77,46 @@ const QS=[
  {art:'tap', title:'DRIPPING KITCHEN TAP', short:'Dripping kitchen tap', detail:'Weekday · Sydney · plumber comes out to fix the leak',
   ask:'Typical price, all in?', opts:['$90–$150','$150–$220','$220–$300','$300–$400'], ans:1,
   why:'Typical Sydney price for fixing a leaking tap: about $170', src:'What’s The Damage Sydney cost guide, Nov 2026'},
- {art:'hws', title:'HOT WATER TANK HAS DIED', short:'Hot water tank has died', detail:'New electric storage tank · supply + install · Sydney',
-  ask:'Typical price, fitted? (old tank removal extra)', opts:['$900–$1,250','$1,250–$1,550','$1,550–$1,900','$1,900–$2,400'], ans:2,
+ {art:'hws', title:'HOT WATER TANK HAS DIED', short:'Hot water tank has died', detail:'New electric hot water tank · bought + fitted · Sydney',
+  ask:'Typical price? (old one removed = extra)', opts:['$900–$1,250','$1,250–$1,550','$1,550–$1,900','$1,900–$2,400'], ans:2,
   why:'Typical Sydney price: about $1,700 installed', src:'What’s The Damage Sydney cost guide, Nov 2026'},
  {art:'burst', title:'PIPE BURSTS · SATURDAY NIGHT', short:'Pipe bursts, Saturday night', detail:'Emergency plumber · after hours · visit + repair',
   ask:'Typical total for the call-out and the fix?', opts:['$300–$500','$500–$700','$700–$850','$850–$1,300'], ans:3,
-  why:'About $450 for the after-hours visit + about $550 for the repair ≈ $1,000', src:'What’s The Damage (national), 2026'},
- {art:'sewer', title:'TREE ROOTS IN THE SEWER', short:'Tree roots in the sewer', detail:'10 m of 100 mm pipe relined · no junctions · no digging',
-  ask:'What does that cost?', opts:['$5,000–$6,500','$6,500–$7,500','$7,500–$9,000','$9,000–$11,000'], ans:1,
+  why:'After-hours visit ~$450 + repair ~$550 = about $1,000', src:'What’s The Damage (national), 2026'},
+ {art:'sewer', title:'TREE ROOTS IN THE SEWER', short:'Tree roots in the sewer', detail:'New lining inside 10 m of sewer pipe · no digging',
+  ask:'Standard pipe, no branches. Cost?', opts:['$5,000–$6,500','$6,500–$7,500','$7,500–$9,000','$9,000–$11,000'], ans:1,
   why:'$2,500 setup + $450 a metre × 10 m = $7,000 (incl. GST)', src:'A Sydney reliner’s published prices'},
- {art:'mixer', title:'LEAKY SHOWER MIXER', short:'Leaky shower mixer', detail:'Just the cartridge inside the mixer needs replacing',
+ {art:'mixer', title:'LEAKY SHOWER MIXER', short:'Leaky shower mixer', detail:'Only one small part inside the tap needs swapping',
   ask:'What was a real customer quoted?', opts:['$200–$500','$500–$900','$900–$1,500','$1,500–$2,500'], ans:2,
-  why:'$1,350 + GST = $1,485. Even after hours, a fair price is more like $400–$1,000', src:'Customer review (VIC), 2025 · cost guides'}
+  xtra:1.0, why:'They were quoted $1,485. A fair price, even after hours: about $400–$1,000', src:'Customer review (VIC), 2025 · cost guides'}
 ];
 const LET='ABCD';
-const QD=12.0, T_OPTS=1.4, T_CD=2.6, T_REV=7.6;
+const QD=9.8, T_OPTS=0.7, T_CD=1.4, T_REV=6.4;
 
-function question(n,q){ return {d:QD, r(){
+function question(n,q){ return {d:QD+(q.xtra||0), r(){
   const t=LT;
   // countdown
   const cd=clamp((t-T_CD)/5), left=Math.ceil(5-(t-T_CD));
   const showCd=t>=T_CD-0.2 && t<T_REV;
   const R=46, C=2*Math.PI*R;
   const timer=`<div class="abs" style="right:122px;top:322px;width:120px;height:120px;opacity:${showCd?k(T_CD-0.2,0.3):0}">
-     <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R+8}" fill="rgba(17,19,23,.88)"/><circle cx="60" cy="60" r="${R}" fill="none" stroke="#2A2E35" stroke-width="10"/>
+     <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R+8}" fill="rgba(17,19,23,.88)"/><circle cx="60" cy="60" r="${R}" fill="none" stroke="#454C52" stroke-width="10"/>
      <circle cx="60" cy="60" r="${R}" fill="none" stroke="${left<=2?RED:OR}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*cd}" transform="rotate(-90 60 60)"/>
      <text x="60" y="80" text-anchor="middle" font-family="Anton" font-size="58" fill="${CON}">${clamp(left,1,5)}</text></svg></div>`;
   const rev=t>=T_REV, rk=k(T_REV,0.35);
   const opts=q.opts.map((o,i)=>{
     const y=1050+i*112, ok=i===q.ans;
-    let bg='#1C1F24', bd=LINE, lb='#2A2E35', lc='#C9C4B8', vc=CON, op=k(T_OPTS+i*0.12,0.35), tick='';
-    if(rev){ if(ok){ bg=`rgba(47,179,107,${0.25*rk})`; bd=GO; lb=GO; lc='#111317'; tick=`<span class="tick" style="color:${GO};opacity:${rk}">✓</span>`; } else { op*=1-0.6*rk; } }
+    let bg='#30363B', bd=LINE, lb='#454C52', lc='#D9DADC', vc=CON, op=k(T_OPTS+i*0.12,0.35), tick='';
+    if(rev){ if(ok){ bg=`rgba(47,179,107,${0.25*rk})`; bd=GO; lb=GO; lc='#282D31'; tick=`<span class="tick" style="color:${GO};opacity:${rk}">✓</span>`; } else { op*=1-0.6*rk; } }
     const sc=rev&&ok?1+0.04*Math.sin(Math.PI*clamp((t-T_REV)/0.5)):1;
     return `<div class="opt" style="top:${y}px;background:${bg};border-color:${bd};opacity:${op};transform:translateX(${(1-k(T_OPTS+i*0.12,0.35))*40}px) scale(${sc})"><span class="l" style="background:${lb};color:${lc}">${LET[i]}</span><span class="v" style="color:${vc}">${o}</span>${tick}</div>`; }).join('');
   const pic=PHOTOS['q'+(n+1)]?`<img src="${PHOTOS['q'+(n+1)]}">`:`<svg viewBox="0 0 880 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">${ART[q.art](t)}</svg>`;
   return `<div class="spot"></div>
-   <div class="abs mono" style="left:100px;top:226px;font-size:26px;${fu(0,0.3,10)}"><span style="color:${OR}">Question ${n+1}</span><span style="color:${MUTE}"> / 5</span></div>
-   <div class="abs" style="right:100px;top:226px;display:flex;gap:8px;${fu(0,0.3,10)}">${[0,1,2,3,4].map(i=>`<span style="width:44px;height:12px;border-radius:6px;background:${i<n?'#3A3F47':i===n?OR:'#2A2E35'};margin-top:8px"></span>`).join('')}</div>
+   ${n===3&&t>QD-2.2?`<div class="abs mono" style="left:100px;top:226px;font-size:26px;color:${OR};opacity:${k(QD-2.2,0.3)}">Next: a real quote someone got</div>`:`<div class="abs mono" style="left:100px;top:226px;font-size:26px;${fu(0,0.3,10)}"><span style="color:${OR}">Question ${n+1}</span><span style="color:${MUTE}"> / 5</span></div>`}
+   <div class="abs" style="right:100px;top:226px;display:flex;gap:8px;${fu(0,0.3,10)}">${[0,1,2,3,4].map(i=>`<span style="width:44px;height:12px;border-radius:6px;background:${i<n?'#5A6168':i===n?OR:'#454C52'};margin-top:8px"></span>`).join('')}</div>
    <div class="pic" style="${pop(0.05,0.5)}">${pic}</div>${timer}
    <div class="hero anton" style="top:840px;font-size:${q.title.length>22?66:76}px;${fu(0.35)}">${q.title}</div>
-   <div class="hero" style="top:922px;font-size:34px;font-weight:600;color:#C9C4B8;opacity:${k(0.6)*(1-rk)}">${q.detail}</div>
+   <div class="hero" style="top:922px;font-size:34px;font-weight:600;color:#D9DADC;opacity:${k(0.6)*(1-rk)}">${q.detail}</div>
    <div class="hero mono" style="top:986px;font-size:26px;color:${OR};opacity:${k(T_OPTS-0.2)*(1-rk)}">${q.ask}</div>
    <div class="abs" style="left:130px;right:130px;top:916px;height:118px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:34px;line-height:1.25;font-weight:800;color:${GO};opacity:${rk}">${q.why}</div>
    ${opts}
@@ -124,27 +124,28 @@ function question(n,q){ return {d:QD, r(){
 
 const SC=[
  // HOOK
- {d:4.8, r(){
-  const meter=clamp((LT-1.6)/1.4);
+ {d:3.8, r(){
+  const meter=clamp((LT-0.8)/1.0);
   return `<div class="spot"></div>
    <div class="hero mono" style="top:330px;font-size:32px;color:${MUTE};${fu(0,0.3,10)}">Plumber edition</div>
    <div class="hero anton" style="top:400px;font-size:190px;${pop(0.1,0.5)}">GUESS</div>
-   <div class="hero anton" style="top:570px;font-size:190px;color:${OR};${pop(0.35,0.5)}">THE QUOTE</div>
-   <div class="abs" style="left:150px;right:150px;top:820px;${fu(1.2)}">
-     <div class="mono" style="font-size:28px;color:#C9C4B8;display:flex;justify-content:space-between"><span>Difficulty</span><span style="color:${RED};opacity:${k(2.8,0.2)}">Very hard</span></div>
-     <div style="margin-top:18px;height:36px;border-radius:18px;background:#2A2E35;overflow:hidden"><div style="height:100%;width:${meter*96}%;border-radius:18px;background:linear-gradient(90deg,${GO},#F2C14E 45%,${OR} 70%,${RED})"></div></div></div>
-   <div class="hero" style="top:1010px;font-size:54px;font-weight:800;line-height:1.2;${fu(3.0)}">Get all 5 right and<br>you’re basically a <span style="color:${OR}">plumber</span>.</div>
-   <div class="hero mono" style="top:1220px;font-size:24px;color:${MUTE};${fu(3.6)}">5 jobs · 4 options · 5 seconds each</div>`; }},
+   <div class="hero anton" style="top:570px;font-size:190px;color:${OR};${pop(0.25,0.5)}">THE QUOTE</div>
+   <div class="abs" style="left:150px;right:150px;top:820px;${fu(0.6)}">
+     <div class="mono" style="font-size:28px;color:#D9DADC;display:flex;justify-content:space-between"><span>Difficulty</span><span style="color:${RED};opacity:${k(1.8,0.2)}">Very hard</span></div>
+     <div style="margin-top:18px;height:36px;border-radius:18px;background:#454C52;overflow:hidden"><div style="height:100%;width:${meter*96}%;border-radius:18px;background:linear-gradient(90deg,${GO},#F2C14E 45%,${OR} 70%,${RED})"></div></div></div>
+   <div class="hero" style="top:1010px;font-size:54px;font-weight:800;line-height:1.2;${fu(1.9)}">Get all 5 right and<br>you’re basically a <span style="color:${OR}">plumber</span>.</div>
+   <div class="hero mono" style="top:1200px;font-size:28px;color:#D9DADC;${fu(1.5)}">5 jobs · 5 seconds each</div>
+   <div class="hero mono" style="top:1252px;font-size:30px;color:${OR};${fu(1.7)}">#5 is a real quote</div>`; }},
  ...QS.map((q,i)=>question(i,q)),
  // END
- {d:5.6, r(){
-  const ans=QS.map((q,i)=>`<div style="display:flex;align-items:center;gap:20px;${fu(0.5+i*0.18)}"><span class="anton" style="font-size:44px;color:${MUTE};width:40px">${i+1}</span><span class="anton" style="width:70px;height:70px;border-radius:16px;background:${GO};color:#111317;display:flex;align-items:center;justify-content:center;font-size:46px">${LET[q.ans]}</span><span style="font-size:36px;font-weight:600;color:#C9C4B8">${q.short}</span></div>`).join('');
+ {d:4.0, r(){
+  const ans=QS.map((q,i)=>`<div style="display:flex;align-items:center;gap:20px;${fu(0.5+i*0.18)}"><span class="anton" style="font-size:44px;color:${MUTE};width:40px">${i+1}</span><span class="anton" style="width:70px;height:70px;border-radius:16px;background:${GO};color:#282D31;display:flex;align-items:center;justify-content:center;font-size:46px">${LET[q.ans]}</span><span style="font-size:36px;font-weight:600;color:#D9DADC">${q.short}</span></div>`).join('');
   return `<div class="spot"></div>
    <div class="hero anton" style="top:300px;font-size:120px;${pop(0)}">HOW MANY</div>
    <div class="hero anton" style="top:420px;font-size:120px;color:${OR};${pop(0.2)}">DID YOU GET?</div>
    <div class="abs" style="left:150px;right:120px;top:620px;display:grid;gap:22px">${ans}</div>
-   <div class="hero" style="top:1300px;font-size:54px;font-weight:800;${fu(2.0)}">Comment your score 👇</div>
-   <div class="hero mono" style="top:1400px;font-size:22px;color:${MUTE};${fu(2.4)}">Cost guides 2026 + one real 2025 quote</div>`; }}
+   <div class="hero" style="top:1300px;font-size:54px;font-weight:800;${fu(1.2)}">Comment your score 👇</div>
+   <div class="hero mono" style="top:1400px;font-size:22px;color:${MUTE};${fu(1.5)}">Cost guides 2026 + one real 2025 quote</div>`; }}
 ];
 let T=0; SC.forEach(s=>{s.t0=T; T+=s.d; s.t1=T;});
 function render(t){

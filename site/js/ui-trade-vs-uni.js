@@ -4,8 +4,8 @@
   var R = window.TN_RATES, C = window.TN_CALC, U = window.TN_UI;
   var $ = function (id) { return document.getElementById(id); };
   var form = $('tvu-form');
-  // Brand: orange = trade path (hivis-deep), blueprint blue = uni path. Pair validated with the dataviz palette checker (all checks pass on white).
-  var COLORS = { trade: '#C2410C', uni: '#2F5BEA' };
+  // Theme v2 (dark): safety yellow = trade path, light blueprint blue = uni path. Both pass 3:1+ against the #30363B card.
+  var COLORS = { trade: '#FFCB3C', uni: '#8FA8FF' };
 
   U.fillTradeSelect($('trade'), 'electrician');
   var contrib = R.help.contributions.value, sal = R.graduates.medianSalary.value;
@@ -98,15 +98,15 @@
 
     // grid + y labels
     for (var v = minV; v <= maxV + 1e-6; v += step) {
-      svg.appendChild(el('line', { x1: padL, x2: W - padR, y1: Y(v), y2: Y(v), stroke: v === 0 ? '#8F8A7E' : '#E2DDD2', 'stroke-width': v === 0 ? 1.5 : 1 }));
-      svg.appendChild(el('text', { x: padL - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#5B616A' }, kfmt(v)));
+      svg.appendChild(el('line', { x1: padL, x2: W - padR, y1: Y(v), y2: Y(v), stroke: v === 0 ? '#8A9197' : '#454C52', 'stroke-width': v === 0 ? 1.5 : 1 }));
+      svg.appendChild(el('text', { x: padL - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#A9AEB3' }, kfmt(v)));
     }
     // x labels
     var every = xs.length > 12 ? 2 : 1;
     xs.forEach(function (a, i) {
-      if (i % every === 0 || i === xs.length - 1) svg.appendChild(el('text', { x: X(a), y: H - padB + 20, 'text-anchor': 'middle', 'font-size': 12, fill: '#5B616A' }, a));
+      if (i % every === 0 || i === xs.length - 1) svg.appendChild(el('text', { x: X(a), y: H - padB + 20, 'text-anchor': 'middle', 'font-size': 12, fill: '#A9AEB3' }, a));
     });
-    svg.appendChild(el('text', { x: W - padR + 9, y: H - padB + 20, 'font-size': 11, fill: '#5B616A' }, 'age'));
+    svg.appendChild(el('text', { x: W - padR + 9, y: H - padB + 20, 'font-size': 11, fill: '#A9AEB3' }, 'age'));
 
     function path(key) {
       return rows.map(function (r, i) { return (i ? 'L' : 'M') + X(r.endAge).toFixed(1) + ' ' + Y(r[key].position).toFixed(1); }).join(' ');
@@ -120,15 +120,15 @@
     if (Math.abs(yT - yU) < 30) { var mid = (yT + yU) / 2; if (yT <= yU) { yT = mid - 15; yU = mid + 15; } else { yT = mid + 15; yU = mid - 15; } }
     [['trade', 'Trade', yT], ['uni', 'Uni', yU]].forEach(function (d) {
       var cx = X(lt.endAge), cy = Y(lt[d[0]].position);
-      svg.appendChild(el('circle', { cx: cx, cy: cy, r: 4.5, fill: COLORS[d[0]], stroke: '#fff', 'stroke-width': 2 }));
-      svg.appendChild(el('text', { x: cx + 9, y: d[2] - 2, 'font-size': 12.5, 'font-weight': 800, fill: '#16181D' }, d[1]));
-      svg.appendChild(el('text', { x: cx + 9, y: d[2] + 13, 'font-size': 12, fill: '#5B616A' }, kfmt(lt[d[0]].position)));
+      svg.appendChild(el('circle', { cx: cx, cy: cy, r: 4.5, fill: COLORS[d[0]], stroke: '#30363B', 'stroke-width': 2 }));
+      svg.appendChild(el('text', { x: cx + 9, y: d[2] - 2, 'font-size': 12.5, 'font-weight': 800, fill: '#F4F5F6' }, d[1]));
+      svg.appendChild(el('text', { x: cx + 9, y: d[2] + 13, 'font-size': 12, fill: '#A9AEB3' }, kfmt(lt[d[0]].position)));
     });
 
     // hover layer: crosshair + tooltip
-    var cross = el('line', { y1: padT, y2: H - padB, stroke: '#16181D', 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0 });
-    var dT = el('circle', { r: 5, fill: COLORS.trade, stroke: '#fff', 'stroke-width': 2, opacity: 0 });
-    var dU = el('circle', { r: 5, fill: COLORS.uni, stroke: '#fff', 'stroke-width': 2, opacity: 0 });
+    var cross = el('line', { y1: padT, y2: H - padB, stroke: '#D9DADC', 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0 });
+    var dT = el('circle', { r: 5, fill: COLORS.trade, stroke: '#30363B', 'stroke-width': 2, opacity: 0 });
+    var dU = el('circle', { r: 5, fill: COLORS.uni, stroke: '#30363B', 'stroke-width': 2, opacity: 0 });
     svg.appendChild(cross); svg.appendChild(dT); svg.appendChild(dU);
     var hit = el('rect', { x: padL, y: padT, width: W - padL - padR, height: H - padT - padB, fill: 'transparent' });
     svg.appendChild(hit);

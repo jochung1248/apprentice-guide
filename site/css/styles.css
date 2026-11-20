@@ -1,5 +1,7 @@
 /* Apprentice Guide — styles.css
-   Brand theme v1 "Hi-vis meets payslip" (docs/BRAND.md).
+   Brand theme v1 "Hi-vis meets payslip" (docs/BRAND.md), re-coloured in v2 (Nov 2026) to a
+   three-colour scheme: charcoal #282D31 (background), silver #D9DADC (text and surfaces),
+   safety yellow #FFCB3C (calls to action and key numbers only). See "Theme v2" at the end.
    Mobile-first. Fonts: Anton (display/numerals), Inter (text), JetBrains Mono (labels) via one
    Google Fonts css2 link in each page head, with system-font fallbacks so the site still works offline. */
 
@@ -396,3 +398,184 @@ input[type="checkbox"]:disabled + span { color: var(--steel); }
 .pc-up li i { grid-column: 2; font-style: normal; font-size: .78rem; color: var(--go); text-align: right; font-weight: 600; }
 .pc-share-text { background: var(--concrete); border-radius: var(--r-ctl); padding: .7rem .85rem; font-weight: 600; }
 .result-hero .pc-dist + .src { font-weight: 400; }
+
+/* =====================================================================
+   Theme v2 — charcoal, silver, safety yellow (20 Nov 2026)
+   Rule: yellow is reserved for calls to action, the current page, and the one key result.
+   Squint at a page: the yellow button / number should be the thing that stands out.
+   ===================================================================== */
+:root {
+  color-scheme: dark;
+  --charcoal: #282D31;   /* page background */
+  --charcoal-2: #30363B; /* cards */
+  --charcoal-3: #3A4146; /* raised rows, table heads */
+  --night: #1F2327;      /* header, footer, dark panels */
+  --silver: #D9DADC;     /* main text on charcoal */
+  --silver-2: #A9AEB3;   /* secondary text (5.6:1 on cards) */
+  --yellow: #FFCB3C;     /* CTAs + key numbers */
+  --yellow-deep: #E0A800;
+  --rule: #6B747B;        /* decorative stripes and borders (not yellow) */
+  --white: #F4F5F6;
+
+  --bg: var(--charcoal);
+  --surface: var(--charcoal-2);
+  --line: #454C52;
+  --input-line: #80878E;
+  --trade: var(--yellow);
+  --uni: #8FA8FF;
+  --go: #4CC38A;
+  --shadow: 0 1px 2px rgba(0,0,0,.25), 0 8px 22px rgba(0,0,0,.22);
+}
+body { color: var(--silver); background: var(--bg); }
+h1, h2, h3, h4, .h3-size { color: var(--white); }
+a { color: var(--white); text-decoration-color: var(--silver-2); }
+a:hover { color: var(--yellow); text-decoration-color: var(--yellow); }
+:focus-visible { outline-color: var(--yellow); }
+.skip { background: var(--yellow); color: var(--charcoal); }
+
+.stripe { background: repeating-linear-gradient(45deg, var(--night) 0 10px, var(--rule) 10px 20px); }
+.site-header { background: var(--night); color: var(--silver); }
+.brand { color: var(--white); }
+.brand:hover { color: var(--yellow); }
+.brand span b { color: var(--yellow); }
+.site-nav a { color: var(--silver); }
+.site-nav a:hover { background: var(--charcoal-3); color: var(--white); }
+.site-nav a[aria-current="page"] { background: var(--yellow); color: var(--charcoal); }
+.site-header :focus-visible, .site-footer :focus-visible, .form-card.dark :focus-visible, .hook :focus-visible { outline-color: var(--yellow); }
+
+.hero::after { background:
+  repeating-linear-gradient(90deg, var(--silver-2) 0 1px, transparent 1px 10px) bottom / 100% 5px no-repeat,
+  repeating-linear-gradient(90deg, var(--silver) 0 2px, transparent 2px 50px) bottom / 100% 10px no-repeat; opacity: .35; }
+.kicker { color: var(--silver); background: transparent; border: 1.5px solid var(--silver-2); }
+.lede { color: var(--silver-2); }
+.section-alt { background: #23282C; }
+.section-alt a:not(.btn) { color: var(--white); }
+.section-alt a:not(.btn):hover { color: var(--yellow); }
+
+.card { background: var(--surface); border-color: var(--line); }
+.card h3 a, .card h2 a { color: var(--white); }
+.card h3 a:hover, .card h2 a:hover { color: var(--yellow); }
+.card-link { color: var(--silver); border-top: 1px solid var(--line); }
+.card-link:hover { border-color: var(--silver-2); color: var(--silver); background: var(--charcoal-3); }
+.card-link .cta { color: var(--yellow); }
+.card-link p { color: var(--silver-2); }
+
+/* Key result: white numeral with a yellow underline swipe */
+.hl::before { background: var(--yellow); height: .14em; bottom: -.06em; transform: rotate(-.8deg); }
+.big { color: var(--white); }
+
+.hook { background: var(--night); color: var(--silver); border: 1px solid var(--line); border-top: 0; }
+.hook::before { background: repeating-linear-gradient(45deg, var(--night) 0 10px, var(--rule) 10px 20px); }
+.hook .big { color: var(--yellow); }
+.hook a { color: var(--white); }
+.hook a:hover { color: var(--yellow); }
+.hook p { color: var(--silver-2); }
+.hook .hook-q { color: var(--white); }
+
+.btn { border-color: var(--yellow); background: var(--yellow); color: var(--charcoal); }
+.btn:hover { background: var(--white); border-color: var(--white); color: var(--charcoal); }
+.form-card.dark .btn { border-color: var(--yellow); }
+.form-card.dark .btn:hover { background: var(--white); color: var(--charcoal); border-color: var(--white); }
+
+legend, .field > label, .check { color: var(--white); }
+.hint, .label, .stat .k, .src, .src a, .meta, .foot-note, .payslip-head, .payslip dt, .pc-ticks, .pc-bands, .pc-legend { color: var(--silver-2); }
+.src a:hover { color: var(--white); }
+input[type="text"], input[type="email"], input[type="number"], select { color: var(--white); background: var(--night); border-color: var(--input-line); }
+input:hover, select:hover { border-color: var(--silver); }
+input[type="range"] { accent-color: var(--yellow); }
+.check input { accent-color: var(--yellow); }
+.seg span { background: var(--night); border-color: var(--input-line); color: var(--silver); }
+.seg input:checked + span { background: var(--silver); border-color: var(--silver); color: var(--charcoal); }
+.seg input:focus-visible + span { outline-color: var(--yellow); }
+.input-prefix > span, .input-suffix > span { color: var(--silver-2); }
+
+.result-hero { background: var(--surface); border: 2px solid var(--silver-2); }
+.stat { background: var(--surface); border-color: var(--line); }
+.stat .v { color: var(--white); }
+
+.payslip { background: var(--surface); border-color: var(--line); }
+.payslip .tear { border-top-color: var(--input-line); }
+.payslip .tear::before, .payslip .tear::after { background: var(--bg); border-color: var(--line); }
+.payslip dd.total, .payslip dt.total { border-top-color: var(--silver); color: var(--white); }
+.breakdown tr.total td { border-top-color: var(--silver); color: var(--white); }
+.data-table thead th { background: var(--charcoal-3); color: var(--white); }
+.data-table tr.mine td { background: rgba(255,203,60,.14); color: var(--white); }
+
+.timeline li { background: var(--surface); border-color: var(--line); border-left-color: var(--rule); }
+.timeline li b { color: var(--white); }
+.note { background: var(--surface); border-left-color: var(--silver-2); color: var(--silver-2); }
+.note strong { color: var(--white); }
+.note-warn { border-left-color: var(--silver); }
+.badge-ill { color: var(--silver); background: transparent; border-color: var(--silver-2); }
+.badge-ok { color: var(--silver); border-color: var(--go); }
+
+.chart-legend { color: var(--silver); }
+.chart-tip { background: var(--night); color: var(--silver); border: 1px solid var(--line); }
+.chart-tip b { color: var(--yellow); }
+details { background: var(--surface); border-color: var(--line); }
+
+.form-card { background: var(--surface); border-color: var(--silver-2); }
+.form-card.dark { background: var(--night); color: var(--silver); border: 1px solid var(--line); border-top: 0; }
+.form-card.dark::before { background: repeating-linear-gradient(45deg, var(--night) 0 10px, var(--rule) 10px 20px); }
+.form-card.dark h2 { color: var(--white); }
+.form-card.dark .hint { color: var(--silver-2); }
+.form-card.dark a { color: var(--white); }
+.form-card.dark a:hover { color: var(--yellow); }
+.form-card.dark input, .form-card.dark select { border-color: var(--input-line); }
+.error { color: #FF8A7A; }
+.form-card.dark .error { color: #FF8A7A; }
+.confirm { background: rgba(76,195,138,.12); color: var(--white); border-color: var(--go); }
+
+.article table { background: var(--surface); }
+.article th { background: var(--charcoal-3); color: var(--white); }
+.callout { background: var(--surface); border-color: var(--line); border-left-color: var(--rule); }
+
+.site-footer { background: var(--night); color: var(--silver-2); }
+.site-footer a { color: var(--silver); }
+.site-footer a:hover { color: var(--yellow); }
+.site-footer nav a { color: var(--silver); }
+.site-footer .disclaimer { color: var(--silver-2); }
+.site-footer .checked { color: var(--silver); }
+
+.sticky-result { background: var(--charcoal-3); color: var(--silver); border: 1px solid var(--line); border-top: 2px solid var(--silver-2); box-shadow: 0 -4px 16px rgba(0,0,0,.35); }
+.sticky-result .sr-num { color: var(--yellow); }
+.sticky-result .sr-link { color: var(--silver-2); }
+.sticky-result:hover .sr-link, .sticky-result:focus-visible .sr-link { color: var(--white); }
+.sticky-result:focus-visible { outline-color: var(--yellow); }
+
+.help-list li { background: var(--charcoal-3); }
+.help-list li.hl-item { border-left-color: var(--rule); }
+.wa-caveat { background: var(--charcoal-3); border-left-color: var(--rule); }
+input[type="checkbox"]:disabled + span { color: var(--silver-2); }
+
+/* Pay check */
+.pc-seg-lo { background: #5E676E; }
+.pc-seg-mid { background: #6B747B; }
+.pc-seg-hi { background: var(--silver-2); }
+.pc-you { background: var(--yellow); }
+.pc-you b { background: var(--yellow); color: var(--charcoal); }
+.pc-name em { color: var(--white); }
+.pc-bar i { background: #7183B8; }
+.pc-ranklist li.trade .pc-bar i { background: #C5C9CD; }
+.pc-ranklist li.pc-gap { color: var(--silver-2); }
+.pc-ranklist li.mine .pc-bar i { background: var(--yellow); }
+.pc-ranklist li.mine .pc-name { color: var(--white); }
+.pc-bar b { background: var(--surface); color: var(--silver); }
+.pc-youline { border-left-color: var(--white); }
+.pc-key { background: #7183B8; }
+.pc-key.trade { background: #C5C9CD; }
+.pc-key.you { border-left-color: var(--white); background: none; }
+.pc-tag { color: var(--silver); border-color: var(--silver-2); }
+.pc-up li { background: var(--charcoal-3); border-left-color: var(--rule); }
+.pc-up li i { color: var(--go); }
+.pc-share-text { background: var(--charcoal-3); color: var(--white); }
+@media (forced-colors: active) { .hl::before { display: none; } }
+/* Wide tables inside panels scroll in their own wrapper instead of widening the page */
+.calc > *, .results, .results > * { min-width: 0; }
+/* Print: dark text on white paper */
+@media print {
+  body, h1, h2, h3, h4, .h3-size, .big, .stat .v, legend, label, input, select, .card, .result-hero, .stat, .payslip, .note, details, .callout, .timeline li, .data-table thead th, .article th { color: #000 !important; background: #fff !important; border-color: #999 !important; box-shadow: none !important; }
+  a { color: #000 !important; }
+  .hint, .src, .label, .meta, .lede { color: #333 !important; }
+}
+
