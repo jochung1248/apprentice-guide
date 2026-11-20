@@ -321,3 +321,27 @@ test('every state has a name, licensing bodies and only verified, linked items',
   }
   assert.deepEqual(Object.keys(R.states), ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT']);
 });
+
+test('pay check: occupation data is complete and links to real trades', () => {
+  const occ = R.occupations.value;
+  assert.ok(R.occupations.verified && /jobsandskills\.gov\.au/.test(R.occupations.sourceUrl));
+  assert.equal(new Set(occ.map(o => o.key)).size, occ.length, 'unique keys');
+  occ.forEach(o => {
+    assert.ok(o.median > 900 && o.median < 5000, o.key + ' median in range');
+    assert.match(o.anzsco, /^\d{4}$/, o.key + ' ANZSCO 4-digit');
+    if (o.trade) assert.ok(R.trades[o.trade], o.key + ' maps to a known trade');
+    assert.ok(o.one && o.many, o.key + ' has singular and plural names');
+  });
+  const q = R.earnings.fullTimeQuartiles.value;
+  assert.ok(q.q1 < q.median && q.median < q.q3);
+});
+
+test('pay check: percentile is exact at the ABS quartiles and monotonic', () => {
+  const q = R.earnings.fullTimeQuartiles.value;
+  near(C.fullTimePercentile(q.q1, R), 0.25, 'q1');
+  near(C.fullTimePercentile(q.median, R), 0.5, 'median');
+  near(C.fullTimePercentile(q.q3, R), 0.75, 'q3');
+  assert.equal(C.fullTimePercentile(0, R), 0);
+  let last = 0;
+  for (let w = 200; w <= 8000; w += 100) { const p = C.fullTimePercentile(w, R); assert.ok(p >= last && p < 1); last = p; }
+});

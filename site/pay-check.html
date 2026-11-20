@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pay check — how does your pay stack up in Australia? | Apprentice Guide</title>
+<meta name="description" content="Put in your job and pay to see where you sit against every full-time worker in Australia, against others in your job, and against the legal minimum — with your take-home pay. ABS and Jobs and Skills Australia data.">
+<link rel="canonical" href="https://www.example.com/pay-check.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2040%2040%27%3E%3Crect%20width=%2740%27%20height=%2740%27%20rx=%276%27%20fill=%27%2316181D%27/%3E%3Ctext%20x=%2720%27%20y=%2729.5%27%20text-anchor=%27middle%27%20font-family=%27Anton,%20Impact,%20Arial%20Narrow%20Bold,%20sans-serif%27%20font-size=%2723%27%20fill=%27%23FF6B1A%27%3EAG%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="stripe" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".75" y=".75" width="38.5" height="38.5" rx="6" fill="#16181D" stroke="#5B616A" stroke-width="1.5"/><text x="20" y="29.5" text-anchor="middle" font-family="Anton, Impact, 'Arial Narrow Bold', sans-serif" font-size="23" letter-spacing=".5" fill="#FF6B1A">AG</text></svg><span>Apprentice <b>Guide</b></span></a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="pay-check.html" aria-current="page">Pay check</a></li>
+        <li><a href="apprentice-pay.html">Apprentice pay</a></li>
+        <li><a href="trade-vs-uni.html">Trade vs uni</a></li>
+        <li><a href="employer-cost.html">Employer cost</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="about-data.html">About the numbers</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Pay check · ABS and Jobs and Skills Australia data</span>
+      <h1>How does your pay stack up?</h1>
+      <p class="lede">Put in your job and what you earn. See where you sit against every full-time worker in Australia, against other people in your job, and against the legal minimum — plus what you actually take home.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="calc">
+      <form class="card inputs" id="pc-form" aria-label="Your job and pay">
+        <div class="field">
+          <label for="job">Your job</label>
+          <select id="job" name="job"></select>
+          <span class="hint">Not listed? Pick “Something else” to compare with all full-time workers.</span>
+        </div>
+
+        <fieldset class="field">
+          <legend>I get paid</legend>
+          <div class="seg" role="radiogroup">
+            <label><input type="radio" name="period" value="hour"><span>Per hour</span></label>
+            <label><input type="radio" name="period" value="week"><span>Per week</span></label>
+            <label><input type="radio" name="period" value="fortnight"><span>Per fortnight</span></label>
+            <label><input type="radio" name="period" value="year" checked><span>Per year</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="pay">Amount before tax</label>
+          <div class="input-prefix"><span>$</span><input id="pay" name="pay" type="number" min="0" step="any" inputmode="decimal" value="75000"></div>
+          <span class="hint" id="pay-hint">Before tax and not counting super. Include regular overtime if you get it — the official figures do.</span>
+        </div>
+
+        <div class="field">
+          <label for="hours">Hours you work a week</label>
+          <input id="hours" name="hours" type="number" min="1" max="80" step="0.5" value="38" inputmode="decimal">
+          <span class="hint">Full-time is usually 38. Under 35 hours, we compare your full-time equivalent.</span>
+          <span class="hint" id="hours-warn" hidden><b>Hours need to be more than 0 — we’re using 38 for now.</b></span>
+        </div>
+
+        <div class="field" id="appr-field" hidden>
+          <label class="check"><input type="checkbox" id="appr" name="appr"> <span>I’m an apprentice</span></label>
+          <div class="form-row two mt-s" id="appr-more" hidden>
+            <div class="field"><label for="appr-year">Year</label>
+              <select id="appr-year" name="apprYear"><option value="1">1st year</option><option value="2">2nd year</option><option value="3">3rd year</option><option value="4">4th year</option></select></div>
+            <div class="field"><label for="appr-type">Started at</label>
+              <select id="appr-type" name="apprType"><option value="junior">Under 21</option><option value="adult">21 or older</option></select></div>
+          </div>
+        </div>
+        <a class="sticky-result" href="#results" aria-describedby="sticky-label"><span class="sr-num" id="sticky-num">—</span> <span class="sr-label" id="sticky-label">of full-time workers earn less</span> <span class="sr-link">See full breakdown ↓</span></a>
+      </form>
+
+      <div class="results" id="results" aria-live="polite">
+        <div class="result-hero">
+          <p class="label" id="hero-label">You earn more than about</p>
+          <p class="big num"><span class="hl" id="hero-figure">—</span></p>
+          <p id="hero-text">—</p>
+          <div class="pc-dist" id="dist" aria-hidden="true"></div>
+          <p class="src mt-s" id="hero-src"></p>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="k" id="s-job-k">Your job: typical pay</div><div class="v" id="s-job">—</div></div>
+          <div class="stat"><div class="k" id="s-gap-k">You vs typical</div><div class="v" id="s-gap">—</div></div>
+          <div class="stat"><div class="k">You take home</div><div class="v" id="s-net">—</div></div>
+        </div>
+
+        <div class="card" id="job-card">
+          <h2 class="h3-size" id="job-title">You vs others in your job</h2>
+          <div id="job-body"></div>
+        </div>
+
+        <div class="card" id="floor-card" hidden>
+          <h2 class="h3-size">The legal minimum for your job</h2>
+          <div id="floor-body"></div>
+        </div>
+
+        <div class="card chart-card">
+          <h2 class="h3-size" id="rank-title">Where your job ranks</h2>
+          <p class="hint">Median full-time pay, all ages. Your pay is the dashed line.</p>
+          <div class="pc-rank" id="rank"></div>
+          <details class="mt-s">
+            <summary>See all <span id="rank-count"></span> jobs</summary>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="All jobs by median pay">
+              <table class="data-table">
+                <caption class="visually-hidden">Median full-time pay by job</caption>
+                <thead><tr><th scope="col">Job</th><th scope="col">A week</th><th scope="col">A year</th><th scope="col">You vs median</th></tr></thead>
+                <tbody id="rank-table"></tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+
+        <div class="card">
+          <h2 class="h3-size">Your pay, broken down</h2>
+          <table class="breakdown" id="breakdown"></table>
+          <p class="hint mt-s">Tax estimate uses <span data-fy>2026–27</span> resident rates, the low income tax offset and Medicare levy. No HELP repayments, deductions or salary sacrifice.</p>
+        </div>
+
+        <div class="card" id="next-card">
+          <h2 class="h3-size">Want to earn more?</h2>
+          <div id="next-body"></div>
+        </div>
+
+        <div class="card pc-share">
+          <h2 class="h3-size">Share your result</h2>
+          <p id="share-text" class="pc-share-text">—</p>
+          <button type="button" class="btn" id="share-btn">Copy result</button> <span class="hint" id="share-done" role="status"></span>
+        </div>
+
+        <div class="card">
+          <h2 class="h3-size">How we work this out</h2>
+          <ul id="assumptions" class="assumptions"></ul>
+        </div>
+
+        <div class="note">
+          <p><strong>Pay isn’t everything, and medians aren’t promises.</strong> Typical pay for a job covers everyone from new starters to 30-year veterans, so it’s normal to sit below it early on. Location, employer, overtime, shift work and running your own business all move the numbers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap article">
+      <p>Thinking about a trade? <a href="apprentice-pay.html">Apprentice pay by trade and year</a> · <a href="trade-vs-uni.html">Trade vs uni calculator</a> · <a href="about-data.html#pay-check">How we calculate</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="pay-check.html">Pay check</a></li>
+        <li><a href="apprentice-pay.html">Apprentice pay</a></li>
+        <li><a href="trade-vs-uni.html">Trade vs uni</a></li>
+        <li><a href="employer-cost.html">Employer cost</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="about-data.html">About the numbers</a></li>
+        <li><a href="index.html#enquire">Find a pre-apprenticeship</a></li>
+      </ul>
+    </nav>
+    <p class="checked">Figures last checked: <span data-last-checked>17 November 2026</span> · <span data-fy>2026–27</span> rates</p>
+    <p class="disclaimer">General information only — not financial, legal or tax advice. Pay comparisons use ABS and Jobs and Skills Australia survey data from May 2025; award minimums are from Fair Work pay guides. Check your exact entitlements with the <a data-fw-calc href="https://calculate.fairwork.gov.au/" target="_blank" rel="noopener">Fair Work Pay Calculator</a>. Nothing you type here leaves your device.</p>
+    <p class="disclaimer">Apprentice Guide (working name) is independent and not affiliated with any government agency.</p>
+  </div>
+</footer>
+<script src="js/rates.js"></script>
+<script src="js/calc.js"></script>
+<script src="js/ui-common.js"></script>
+<script src="js/ui-pay-check.js"></script>
+</body>
+</html>

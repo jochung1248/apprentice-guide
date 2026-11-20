@@ -437,6 +437,103 @@
         'Optional: weekly hours of a qualified worker’s time spent supervising. Default 0. Edit to suit.')
     },
 
+    // ---- Pay check: how full-time pay is spread across Australia ----------
+    // ABS Employee Earnings and Hours, May 2025 (released 23 Jan 2026): weekly total cash earnings
+    // (before tax, includes overtime) of all full-time employees. Quartiles are published; the
+    // pay-check page estimates other percentiles between and beyond them (see about-data.html).
+    earnings: {
+      fullTimeQuartiles: fig({ q1: 1424, median: 1887, q3: 2560 }, '2025-05-01',
+        'https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/latest-release',
+        'ABS — Employee Earnings and Hours, Australia, May 2025 (key statistics: all full-time persons)', true,
+        'Weekly total cash earnings for all full-time employees, May 2025: first quartile $1,424, median $1,887, third quartile $2,560. Total cash earnings include overtime and are before tax and salary sacrifice.'),
+      fullTimeAverage: fig(2130.6, '2025-05-01',
+        'https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/latest-release',
+        'ABS — Employee Earnings and Hours, Australia, May 2025', true,
+        'Average weekly total cash earnings, full-time persons. The average sits above the median because a small number of very high earners pull it up.'),
+      jsaAllOccupations: fig(1852, '2025-05-01', 'https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco',
+        'Jobs and Skills Australia — occupation profiles (ABS Survey of Employee Earnings and Hours, May 2025, customised report)', true,
+        'Median full-time weekly earnings across all occupations, as JSA publishes it next to each occupation. Slightly different population from the ABS headline median ($1,887), so we only compare occupations with occupations using this series.')
+    },
+
+    // Median full-time weekly earnings by occupation (ANZSCO 4-digit unit group), before tax.
+    // Source for every row: Jobs and Skills Australia occupation profiles, ANZSCO basis, from the
+    // ABS Survey of Employee Earnings and Hours, May 2025 (customised report). Checked 20 Nov 2026.
+    // Use the occupations-anzsco pages: some older JSA "labour-market-insights" pages still show May 2023 figures.
+    // trade: key into TRADES (award minimum shown as the legal floor), where the occupation maps cleanly.
+    occupations: fig((function () {
+      var G = { trade: 'Trades', office: 'Office, business and tech', people: 'Health, education and public service',
+                service: 'Hospitality, retail and service', machines: 'Driving, mining and machinery', managers: 'Managers' };
+      function o(key, label, anzsco, group, median, trade, note) { return { key: key, label: label, anzsco: anzsco, group: group, groupLabel: G[group], median: median, trade: trade || null, note: note || '' }; }
+      var N = {"autoelec": ["auto electrician", "auto electricians"], "fitter": ["fitter and turner", "fitters and turners"], "bricklayer": ["bricklayer", "bricklayers"], "electrician": ["electrician", "electricians"], "plumber": ["plumber", "plumbers"], "vehiclepainter": ["vehicle painter", "vehicle painters"], "panelbeater": ["panel beater", "panel beaters"], "plasterer": ["plasterer", "plasterers"], "carpenter": ["carpenter", "carpenters"], "boilermaker": ["boilermaker or welder", "boilermakers and welders"], "mechanic": ["motor mechanic", "motor mechanics"], "cook": ["cook", "cooks"], "chef": ["chef", "chefs"], "cabinetmaker": ["cabinetmaker", "cabinetmakers"], "painter": ["painter", "painters"], "hairdresser": ["hairdresser or barber", "hairdressers and barbers"], "ictanalyst": ["ICT business analyst", "ICT business and systems analysts"], "electricaleng": ["electrical engineer", "electrical engineers"], "software": ["software developer", "software developers"], "consultant": ["management consultant", "management consultants and analysts"], "civileng": ["civil engineer", "civil engineers"], "projectadmin": ["project administrator", "project and program administrators"], "auditor": ["auditor", "auditors and company secretaries"], "solicitor": ["lawyer", "lawyers"], "accountant": ["accountant", "accountants"], "hr": ["HR professional", "HR professionals"], "marketing": ["marketing professional", "marketing and advertising professionals"], "journalist": ["journalist", "journalists and writers"], "interior": ["interior designer", "interior designers"], "bankworker": ["bank worker", "bank workers"], "payroll": ["payroll clerk", "payroll clerks"], "realestate": ["real estate agent", "real estate agents"], "accountsclerk": ["accounting clerk", "accounting clerks"], "clerk": ["admin worker", "general clerks and admin workers"], "receptionist": ["receptionist", "receptionists"], "police": ["police officer", "police officers"], "secondaryteacher": ["high school teacher", "high school teachers"], "primaryteacher": ["primary school teacher", "primary school teachers"], "nurse": ["registered nurse", "registered nurses"], "socialworker": ["social worker", "social workers"], "tafeteacher": ["TAFE teacher", "TAFE and vocational teachers"], "earlychildhood": ["early childhood teacher", "early childhood teachers"], "carer": ["aged or disability carer", "aged and disability carers"], "security": ["security officer", "security officers"], "retailmanager": ["retail manager", "retail managers"], "bar": ["bar attendant or barista", "bar attendants and baristas"], "baker": ["baker", "bakers and pastrycooks"], "waiter": ["waiter", "waiters"], "retailsupervisor": ["retail supervisor", "retail supervisors"], "salesassistant": ["retail sales assistant", "retail sales assistants"], "miner": ["miner", "miners, drillers and shot firers"], "truckdriver": ["truck driver", "truck drivers"], "earthmoving": ["earthmoving plant operator", "earthmoving plant operators"], "constructionmanager": ["construction manager", "construction managers"], "ictmanager": ["ICT manager", "ICT managers"], "corporatemanager": ["corporate services manager", "corporate services managers"], "hrmanager": ["HR manager", "HR managers"], "salesmanager": ["sales or marketing manager", "sales, marketing and PR managers"]};
+      return [
+        o('autoelec', 'Auto electrician', '3211', 'trade', 2808, 'autoelec'),
+        o('fitter', 'Fitter and turner / metal fitter', '3232', 'trade', 2606, 'fitter', 'Metal Fitters and Machinists.'),
+        o('bricklayer', 'Bricklayer', '3311', 'trade', 2317, 'bricklayer', 'Bricklayers and Stonemasons.'),
+        o('electrician', 'Electrician', '3411', 'trade', 2191, 'electrician'),
+        o('plumber', 'Plumber', '3341', 'trade', 1990, 'plumber'),
+        o('vehiclepainter', 'Vehicle painter', '3243', 'trade', 1880, 'vehiclepainter'),
+        o('panelbeater', 'Panel beater', '3241', 'trade', 1848, 'panelbeater'),
+        o('plasterer', 'Plasterer', '3332', 'trade', 1841, 'plasterer', 'Plasterers.'),
+        o('carpenter', 'Carpenter or joiner', '3312', 'trade', 1760, 'carpenter', 'Carpenters and Joiners.'),
+        o('boilermaker', 'Boilermaker / welder', '3223', 'trade', 1688, 'boilermaker', 'Structural Steel and Welding Trades Workers.'),
+        o('mechanic', 'Motor mechanic (car or diesel)', '3212', 'trade', 1622, 'lightvehicle', 'Motor Mechanics; award floor shown is the vehicle-industry tradesperson rate.'),
+        o('cook', 'Cook', '3514', 'trade', 1432, 'cook'),
+        o('chef', 'Chef', '3513', 'trade', 1423, 'cook', 'Award floor shown is the cook (tradesperson) rate.'),
+        o('cabinetmaker', 'Cabinetmaker', '3941', 'trade', 1400, 'cabinetmaker'),
+        o('painter', 'Painter', '3322', 'trade', 1379, 'painter', 'Painting Trades Workers.'),
+        o('hairdresser', 'Hairdresser or barber', '3911', 'trade', 1209, 'hairdresser'),
+
+        o('ictanalyst', 'ICT business or systems analyst', '2611', 'office', 2697),
+        o('electricaleng', 'Electrical engineer', '2333', 'office', 2553),
+        o('software', 'Software developer / programmer', '2613', 'office', 2537, null, 'Software and Applications Programmers.'),
+        o('consultant', 'Management consultant / business analyst', '2247', 'office', 2444, null, 'Management and Organisation Analysts.'),
+        o('civileng', 'Civil engineer', '2332', 'office', 2217, null, 'Civil Engineering Professionals.'),
+        o('projectadmin', 'Project or program administrator', '5111', 'office', 2130, null, 'Contract, Program and Project Administrators.'),
+        o('auditor', 'Auditor or company secretary', '2212', 'office', 2104),
+        o('solicitor', 'Solicitor / lawyer', '2713', 'office', 2070),
+        o('accountant', 'Accountant', '2211', 'office', 2003),
+        o('hr', 'HR professional', '2231', 'office', 1970),
+        o('marketing', 'Marketing or advertising professional', '2251', 'office', 1957),
+        o('journalist', 'Journalist or writer', '2124', 'office', 1722),
+        o('interior', 'Interior designer', '2325', 'office', 1692),
+        o('bankworker', 'Bank worker', '5521', 'office', 1610),
+        o('payroll', 'Payroll clerk', '5513', 'office', 1606),
+        o('realestate', 'Real estate agent', '6121', 'office', 1504),
+        o('accountsclerk', 'Accounting clerk / bookkeeping', '5511', 'office', 1442, null, 'Accounting Clerks.'),
+        o('clerk', 'General clerk / admin', '5311', 'office', 1438),
+        o('receptionist', 'Receptionist', '5421', 'office', 1229),
+
+        o('police', 'Police officer', '4413', 'people', 2560),
+        o('secondaryteacher', 'High school teacher', '2414', 'people', 2322),
+        o('primaryteacher', 'Primary school teacher', '2412', 'people', 2226),
+        o('nurse', 'Registered nurse', '2544', 'people', 2192),
+        o('socialworker', 'Social worker', '2725', 'people', 2172),
+        o('tafeteacher', 'TAFE / vocational teacher', '2422', 'people', 2128),
+        o('earlychildhood', 'Early childhood teacher', '2411', 'people', 1906),
+        o('carer', 'Aged or disability carer', '4231', 'people', 1761),
+
+        o('security', 'Security officer', '4422', 'service', 1818),
+        o('retailmanager', 'Retail manager', '1421', 'service', 1620),
+        o('bar', 'Bar attendant or barista', '4311', 'service', 1500),
+        o('baker', 'Baker or pastrycook', '3511', 'service', 1417),
+        o('waiter', 'Waiter', '4315', 'service', 1346),
+        o('retailsupervisor', 'Retail supervisor', '6215', 'service', 1267),
+        o('salesassistant', 'Retail sales assistant', '6211', 'service', 1241),
+
+        o('miner', 'Miner, driller or shot firer', '7122', 'machines', 2908),
+        o('truckdriver', 'Truck driver', '7331', 'machines', 1960),
+        o('earthmoving', 'Earthmoving plant operator', '7212', 'machines', 1900),
+
+        o('constructionmanager', 'Construction manager', '1331', 'managers', 3751),
+        o('ictmanager', 'ICT manager', '1351', 'managers', 3310),
+        o('corporatemanager', 'Corporate services manager', '1321', 'managers', 2932),
+        o('hrmanager', 'HR manager', '1323', 'managers', 2768),
+        o('salesmanager', 'Sales, marketing or PR manager', '1311', 'managers', 2677)
+      ].map(function (r) { r.one = N[r.key][0]; r.many = N[r.key][1]; return r; });
+    })(), '2025-05-01', 'https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco',
+      'Jobs and Skills Australia — occupation profiles, ANZSCO basis (ABS Survey of Employee Earnings and Hours, May 2025, customised report)', true,
+      'Median weekly earnings of full-time employees in each occupation, before tax. Covers all ages and experience levels; JSA publishes no breakdown by experience. Each row checked 20 Nov 2026 on its page at jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/<code>-<name> (or the matching JSA listing page), showing the May 2025 survey source line or the $1,852 all-occupations comparator.'),
+
     // ---- Research figures quoted in guides --------------------------------
     research: {
       awardIncrease2026: fig(4.75, FY_START, 'https://www.fwc.gov.au/documents/resources/annual-wage-review-2026-decision-announcement.pdf',

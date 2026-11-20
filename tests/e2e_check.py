@@ -17,7 +17,7 @@ import json, sys, os, argparse
 from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get('TN_BASE', 'http://localhost:8765/')
-PAGES = ['index.html', 'apprentice-pay.html', 'trade-vs-uni.html', 'employer-cost.html', 'about-data.html',
+PAGES = ['index.html', 'pay-check.html', 'apprentice-pay.html', 'trade-vs-uni.html', 'employer-cost.html', 'about-data.html',
          'guides/index.html', 'guides/first-year-apprentice-pay-nsw.html', 'guides/key-apprenticeship-program-10000.html',
          'guides/trade-vs-uni-at-25.html', 'guides/why-apprentices-dont-finish.html', 'guides/career-change-adult-apprenticeship.html']
 VIEWPORTS = {'mobile': (390, 844), 'desktop': (1280, 800)}

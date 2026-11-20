@@ -92,6 +92,13 @@
     Object.keys(R[grp]).forEach(function (k) { add(LABELS[k] || k, R[grp][k], k); });
     if (grp === 'tax') add(LABELS.superGuarantee, R.superGuarantee, 'superGuarantee');
   });
+  add('Full-time weekly earnings: quartiles (all full-time employees)', R.earnings.fullTimeQuartiles, 'quartiles');
+  add('Full-time weekly earnings: average', R.earnings.fullTimeAverage, 'avg');
+  add('Median full-time weekly earnings, all occupations (JSA)', R.earnings.jsaAllOccupations, 'avg');
+  R.occupations.value.forEach(function (o) {
+    rows.push('<tr><td>' + U.esc(o.label) + ': median full-time weekly earnings<span class="hint">ANZSCO ' + o.anzsco + (o.note ? '. ' + U.esc(o.note) : '') + '</span></td><td>' + U.money(o.median) + '</td><td>' + U.esc(R.occupations.effectiveFrom) +
+      '</td><td><span class="badge-ok">verified</span></td><td><a href="' + U.esc(R.occupations.sourceUrl) + '" target="_blank" rel="noopener">' + U.esc(R.occupations.sourceName) + '</a></td></tr>');
+  });
   add('Under-18s: tax on wages', R.under18.tax, 'text');
   add('Under-18s: training contract consent', R.under18.consent, 'text');
   add('WA: state system employers', R.waNotice, 'text');
