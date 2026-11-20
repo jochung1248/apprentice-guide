@@ -68,6 +68,23 @@
     };
   }
 
+  /* ---------------- Pay check: where a weekly wage sits among full-time workers ---------------- */
+  // Standard normal CDF (Abramowitz–Stegun 7.1.26 erf approximation, error < 1.5e-7).
+  function normCdf(z) {
+    var t = 1 / (1 + 0.3275911 * Math.abs(z) / Math.SQRT2);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z / 2);
+    return z >= 0 ? (1 + y) / 2 : (1 - y) / 2;
+  }
+  // Share (0-1) of full-time employees earning less than `weekly`. Exact at the three ABS quartiles;
+  // between and beyond them a log-normal shape, fitted separately below and above the median.
+  function fullTimePercentile(weekly, R) {
+    var Q = R.earnings.fullTimeQuartiles.value, z75 = 0.6744897502;
+    if (!(weekly > 0)) return 0;
+    var l = Math.log(weekly / Q.median);
+    var sigma = l < 0 ? Math.log(Q.median / Q.q1) / z75 : Math.log(Q.q3 / Q.median) / z75;
+    return normCdf(l / sigma);
+  }
+
   /* ---------------- HELP ---------------- */
 
   function helpRepayment(repaymentIncome, R) {
@@ -319,6 +336,7 @@
     lowIncomeTaxOffset: lowIncomeTaxOffset,
     medicareLevy: medicareLevy,
     incomeTax: incomeTax,
+    fullTimePercentile: fullTimePercentile,
     helpRepayment: helpRepayment,
     apprenticeRate: apprenticeRate,
     apprenticeTypeForAge: apprenticeTypeForAge,

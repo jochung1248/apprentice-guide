@@ -188,6 +188,9 @@
     $('grad-src').innerHTML = (+$('grad').value === f.salary ? 'Median full-time graduate salary. ' + U.srcLine(R.graduates.medianSalary) : 'Your figure.');
 
     var tw = t.tradesperson.value.weekly;
+    var occ = (R.occupations ? R.occupations.value : []).filter(function (o) { return o.trade === inp.trade; })[0];
+    $('loading-typical').innerHTML = occ ? 'For comparison: typical full-time pay for ' + U.esc(occ.label.toLowerCase()) + 's is ' + U.money(occ.median) + ' a week (median across all ages, May 2025, includes overtime), about ' +
+      Math.round((occ.median / tw - 1) * 100) + '% above the award minimum. New starters usually earn less than that. <a href="pay-check.html?job=' + occ.key + '">Pay check →</a>' : '';
     var li = [
       'Apprentice wages: ' + U.esc(t.award) + ' minimum rates for ' + (inp.startAge >= 21 ? 'adult' : 'junior') + ' apprentices, 4-year apprenticeship, 52 paid weeks a year. ' + U.srcLine(t.apprenticeJuniorNoY12),
       'Qualified wage: award minimum ' + U.money(tw, true) + ' a week (' + U.money(tw * 52) + ' a year)' + (inp.marketLoading ? ' plus ' + Math.round(inp.marketLoading * 100) + '%' : '') + ', rising ' + (inp.payGrowth * 100).toFixed(1).replace(/\.0$/, '') + '% a year. ' + U.srcLine(t.tradesperson),
