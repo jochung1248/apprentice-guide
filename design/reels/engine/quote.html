@@ -49,12 +49,28 @@ const ART={
    <path d="M360 60 L360 20 M470 60 L470 20" stroke="#B87333" stroke-width="16"/>
    <g transform="translate(620 150)"><rect x="-22" y="0" width="44" height="190" rx="22" fill="#fff" stroke="#9AA1AB" stroke-width="5"/><circle cx="0" cy="210" r="34" fill="${BLUE}" stroke="#9AA1AB" stroke-width="5"/><rect x="-10" y="${140-20*f}" width="20" height="${70+20*f}" fill="${BLUE}"/></g>
    <text x="150" y="250" font-family="Anton" font-size="90" fill="${BLUE}" text-anchor="middle" opacity="${0.6+0.4*f}">❄</text>`; },
- burst:(t)=>{ let spray=''; for(let i=0;i<9;i++){ const a=-1.2+i*0.3, L=150+30*Math.sin(t*7+i); spray+=`<path d="M440 250 q ${Math.cos(a)*L*0.5} ${-80-20*Math.sin(t*5+i)} ${Math.cos(a)*L} ${Math.sin(a)*40+60}" stroke="${BLUE}" stroke-width="${8-i%3*2}" fill="none" stroke-linecap="round" opacity=".85"/>`; }
-  return `<rect width="880" height="500" fill="#161A22"/><circle cx="760" cy="90" r="46" fill="#F4F1EA"/><circle cx="782" cy="76" r="44" fill="#161A22"/>
-   <text x="90" y="110" font-family="JBM" font-weight="700" font-size="44" fill="${RED}">11:04 PM · SAT</text>
-   <rect x="0" y="380" width="880" height="120" fill="#2A2420"/><ellipse cx="440" cy="400" rx="${200+10*Math.sin(t*4)}" ry="26" fill="${BLUE}" opacity=".5"/>
-   <rect x="40" y="226" width="800" height="48" rx="10" fill="#B87333"/><rect x="40" y="226" width="800" height="12" fill="#D08B4A"/>
-   <path d="M425 228 l12 22 l-10 4 l16 20" stroke="#161A22" stroke-width="7" fill="none"/>${spray}`; },
+ toilet:(t)=>{ const g=clamp(t/4), pulse=0.5+0.5*Math.sin(t*6);
+  let drops=''; for(let i=0;i<6;i++){ const ph=((t*1.6+i/6)%1); drops+=`<circle cx="${503+ (i%2)*6}" cy="${262+ph*70}" r="${6-(i%3)}" fill="${BLUE}" opacity="${0.9-0.5*ph}"/><circle cx="${300-(i%2)*6}" cy="${262+((t*1.4+i/6+0.3)%1)*70}" r="${5-(i%3)}" fill="${BLUE}" opacity=".7"/>`; }
+  let tiles=''; for(let x=0;x<880;x+=80) tiles+=`<line x1="${x}" y1="0" x2="${x}" y2="330" stroke="#1E232B" stroke-width="3"/>`; for(let y=60;y<330;y+=60) tiles+=`<line x1="0" y1="${y}" x2="880" y2="${y}" stroke="#1E232B" stroke-width="3"/>`;
+  return `<rect width="880" height="500" fill="#161A22"/>${tiles}
+   <rect x="560" y="120" width="130" height="110" rx="8" fill="#0E1118" stroke="#3A4146" stroke-width="6"/><circle cx="625" cy="175" r="28" fill="#F4F1EA"/><circle cx="638" cy="166" r="26" fill="#0E1118"/>
+   <text x="50" y="84" font-family="JBM" font-weight="700" font-size="40" fill="${RED}">11:04 PM · SAT</text>
+   <rect x="0" y="330" width="880" height="30" fill="#2A2420"/>
+   <rect x="0" y="360" width="880" height="140" fill="#14110E"/><line x1="0" y1="360" x2="880" y2="360" stroke="#3A332C" stroke-width="4" stroke-dasharray="14 10"/>
+   <text x="860" y="390" font-family="JBM" font-weight="700" font-size="20" fill="#7A7068" text-anchor="end">UNDER THE FLOOR</text>
+   <path d="M400 330 V430 H880" stroke="#6E767D" stroke-width="50" fill="none" stroke-linejoin="round"/>
+   <path d="M400 330 V430 H880" stroke="#0B0D10" stroke-width="36" fill="none" stroke-linejoin="round"/>
+   <path d="M400 330 V430 H600" stroke="${BLUE}" stroke-width="36" fill="none" stroke-linejoin="round" opacity=".85"/>
+   <g transform="translate(612 430)"><circle r="${30+6*pulse}" fill="none" stroke="${RED}" stroke-width="5" opacity="${0.5+0.5*pulse}"/>
+     <circle cx="-8" cy="-6" r="13" fill="#6B4F3A"/><circle cx="8" cy="4" r="14" fill="#8A6A4F"/><circle cx="-4" cy="9" r="10" fill="#5A4231"/><circle cx="10" cy="-10" r="8" fill="#7A5C44"/></g>
+   <text x="612" y="492" font-family="JBM" font-weight="700" font-size="28" fill="${RED}" text-anchor="middle">BLOCKED</text>
+   <ellipse cx="400" cy="340" rx="${120+190*g}" ry="${10+8*g}" fill="${BLUE}" opacity=".55"/>
+   <rect x="250" y="130" width="90" height="120" rx="10" fill="#E8EAEC" stroke="#9AA1AB" stroke-width="5"/><rect x="262" y="118" width="66" height="14" rx="5" fill="#C9CDD2"/>
+   <path d="M300 268 Q315 330 385 334 L420 334 Q495 322 505 268 Z" fill="#E8EAEC" stroke="#9AA1AB" stroke-width="5"/>
+   <rect x="292" y="248" width="220" height="22" rx="10" fill="#F4F5F6" stroke="#9AA1AB" stroke-width="5"/>
+   <path d="M296 250 Q400 ${238-4*pulse} 508 250" stroke="${BLUE}" stroke-width="10" fill="none" stroke-linecap="round"/>
+   <path d="M505 256 q8 30 2 76" stroke="${BLUE}" stroke-width="9" fill="none" stroke-linecap="round" opacity=".9"/><path d="M297 256 q-8 30 -2 76" stroke="${BLUE}" stroke-width="7" fill="none" stroke-linecap="round" opacity=".8"/>
+   ${drops}`; },
  sewer:(t)=>{ const lin=clamp((t-0.6)/3.5);
   return `<rect width="880" height="500" fill="#3B2E25"/><rect width="880" height="110" fill="#5C7A3A"/><rect y="100" width="880" height="14" fill="#4A6330"/>
    <g><rect x="120" y="0" width="34" height="110" fill="#6B4A2E"/><circle cx="137" cy="10" r="70" fill="#3E6B2A"/></g>
@@ -80,9 +96,9 @@ const QS=[
  {art:'hws', title:'HOT WATER TANK HAS DIED', short:'Hot water tank has died', detail:'New electric hot water tank · bought + fitted · Sydney',
   ask:'Typical price? (old one removed = extra)', opts:['$900–$1,250','$1,250–$1,550','$1,550–$1,900','$1,900–$2,400'], ans:2,
   why:'Typical Sydney price: about $1,700 installed', src:'What’s The Damage Sydney cost guide, Nov 2026'},
- {art:'burst', title:'PIPE BURSTS · SATURDAY NIGHT', short:'Pipe bursts, Saturday night', detail:'Emergency plumber · after hours · visit + repair',
-  ask:'Typical total for the call-out and the fix?', opts:['$300–$500','$500–$700','$700–$850','$850–$1,300'], ans:3,
-  why:'After-hours visit ~$450 + repair ~$550 = about $1,000', src:'What’s The Damage (national), 2026'},
+ {art:'toilet', title:'BLOCKED TOILET · SATURDAY NIGHT', short:'Blocked toilet, Saturday night', detail:'Overflowing · blockage in the pipe · after hours',
+  ask:'Typical total to come out and clear it?', opts:['$350–$500','$500–$650','$650–$900','$900–$1,300'], ans:2,
+  why:'After-hours visit ~$450 + clearing the pipe ~$320 = about $770', src:'What’s The Damage (national), 2026'},
  {art:'sewer', title:'TREE ROOTS IN THE SEWER', short:'Tree roots in the sewer', detail:'New lining inside 10 m of sewer pipe · no digging',
   ask:'Standard pipe, no branches. Cost?', opts:['$5,000–$6,500','$6,500–$7,500','$7,500–$9,000','$9,000–$11,000'], ans:1,
   why:'$2,500 setup + $450 a metre × 10 m = $7,000 (incl. GST)', src:'A Sydney reliner’s published prices'},
@@ -124,18 +140,17 @@ function question(n,q){ return {d:QD+(q.xtra||0), r(){
 
 const SC=[
  // HOOK
- {d:3.8, r(){
-  const meter=clamp((LT-0.8)/1.0);
+ {d:6.0, r(){
+  const meter=clamp((LT-2.6)/1.0);
   return `<div class="spot"></div>
-   <div class="hero mono" style="top:330px;font-size:32px;color:${MUTE};${fu(0,0.3,10)}">Plumber edition</div>
-   <div class="hero anton" style="top:400px;font-size:190px;${pop(0.1,0.5)}">GUESS</div>
-   <div class="hero anton" style="top:570px;font-size:190px;color:${OR};${pop(0.25,0.5)}">THE QUOTE</div>
-   <div class="abs" style="left:150px;right:150px;top:820px;${fu(0.6)}">
-     <div class="mono" style="font-size:28px;color:#D9DADC;display:flex;justify-content:space-between"><span>Difficulty</span><span style="color:${RED};opacity:${k(1.8,0.2)}">Very hard</span></div>
+   <div class="hero mono" style="top:500px;font-size:32px;color:${MUTE};${fu(0,0.3,10)}">Plumber edition</div>
+   <div class="hero anton" style="top:570px;font-size:190px;${pop(0.1,0.5)}">GUESS</div>
+   <div class="hero anton" style="top:740px;font-size:190px;color:${OR};${pop(0.25,0.5)}">THE QUOTE</div>
+   <div class="abs" style="left:150px;right:150px;top:1010px;${fu(0.8)}">
+     <div class="mono" style="font-size:30px;color:#D9DADC;display:flex;justify-content:space-between;align-items:baseline"><span>Difficulty</span><span style="color:${RED};font-size:40px;opacity:${k(2.0,0.2)};display:inline-block;transform-origin:right center;transform:scale(${1+0.25*(1-k(2.0,0.3))})">Very hard</span></div>
      <div style="margin-top:18px;height:36px;border-radius:18px;background:#454C52;overflow:hidden"><div style="height:100%;width:${meter*96}%;border-radius:18px;background:linear-gradient(90deg,${GO},#F2C14E 45%,${OR} 70%,${RED})"></div></div></div>
-   <div class="hero" style="top:1010px;font-size:54px;font-weight:800;line-height:1.2;${fu(1.9)}">Get all 5 right and<br>you’re basically a <span style="color:${OR}">plumber</span>.</div>
-   <div class="hero mono" style="top:1200px;font-size:28px;color:#D9DADC;${fu(1.5)}">5 jobs · 5 seconds each</div>
-   <div class="hero mono" style="top:1252px;font-size:30px;color:${OR};${fu(1.7)}">#5 is a real quote</div>`; }},
+   <div class="hero mono" style="top:1230px;font-size:30px;color:#D9DADC;${fu(3.8)}">5 jobs · 5 seconds each</div>
+   <div class="hero mono" style="top:1286px;font-size:32px;color:${OR};${fu(4.1)}">#5 is a real quote</div>`; }},
  ...QS.map((q,i)=>question(i,q)),
  // END
  {d:4.0, r(){
